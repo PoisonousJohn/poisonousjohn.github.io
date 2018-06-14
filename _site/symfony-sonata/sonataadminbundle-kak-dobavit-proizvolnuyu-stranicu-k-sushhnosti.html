@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        SonataAdminBundle: как добавить произвольную страницу к сущности &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/">Posts</a></li>
+        </ul>
+    </div>
+  </nav>
+
+    <main>
+      <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2012-09-14 05:33:24 +0400">September 14, 2012</time>
+    
+  </div>
+
+  <h1 class="post-title">SonataAdminBundle: как добавить произвольную страницу к сущности</h1>
+  <div class="post-line"></div>
+
+  <p>У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.<!--more--></p>
+
+<p>Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureRoutes</span><span class="p">(</span><span class="nx">RouteCollection</span> <span class="nv">$collection</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'members'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getRouterIdParameter</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/members'</span><span class="p">);</span>
+        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'getProjects'</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>В примере я рассмотрел два случая:</p>
+<ol>
+	<li>Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members</li>
+	<li>Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjects</li>
+</ol>
+<div>Далее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:</div>
+<div>
+
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">membersAction</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">admin</span><span class="o">-&gt;</span><span class="na">getIdParameter</span><span class="p">());</span>
+
+        <span class="nv">$object</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">admin</span><span class="o">-&gt;</span><span class="na">getObject</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$object</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">NotFoundHttpException</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'unable to find the object with id : %s'</span><span class="p">,</span> <span class="nv">$id</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProjectsAction</span><span class="p">()</span>
+    <span class="p">{</span>
+
+        <span class="nv">$choice</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+
+        <span class="o">...</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">renderJson</span><span class="p">(</span><span class="nv">$choice</span><span class="p">);</span>
+
+    <span class="p">}</span></code></pre></figure>
+
+
+Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().
+
+Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод.
+<blockquote>Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в <a title="Архитектура Sonata Admin Bundle" href="http://fateev.pro/symfony-sonata/arxitektura-sonata-admin-bundle.html">другой статье</a>.</blockquote>
+&nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:
+
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="k">extends</span> <span class="s1">'SonataAdminBundle:Core:dashboard.html.twig'</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="nx">block</span> <span class="nx">content</span><span class="o">%</span><span class="p">}</span>
+      <span class="nx">blabla</span>
+<span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="nx">endblock</span><span class="o">%</span><span class="p">}</span></code></pre></figure>
+
+
+Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.
+
+На этом вроде все =)
+
+</div>
+<div>&nbsp;</div>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/symfony-sonata/sonataadminbundle-filtry.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/chronicles/statusmapbundle.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-15 00:58:41 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>

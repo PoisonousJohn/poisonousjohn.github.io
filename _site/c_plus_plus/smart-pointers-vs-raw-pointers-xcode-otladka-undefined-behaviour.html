@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Smart pointers vs raw pointers; XCode: отладка undefined behaviour &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/">Posts</a></li>
+        </ul>
+    </div>
+  </nav>
+
+    <main>
+      <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2014-01-12 02:44:28 +0400">January 12, 2014</time>
+    
+  </div>
+
+  <h1 class="post-title">Smart pointers vs raw pointers; XCode: отладка undefined behaviour</h1>
+  <div class="post-line"></div>
+
+  <h2>Скорость против удобства или Smart pointers не для игр</h2>
+<p><img class="alignleft size-full wp-image-269" title="icon-lg-speed" src="http://fateev.pro/wp-content/uploads/2014/01/icon-lg-speed.png" alt="" width="210" height="210" /></p>
+
+<p>Очень много времени потратил на оптимизацию, все никак не мог понять, что же мне так сильно все тормозит, рендер вроде уже оптимизировал,</p>
+
+<p>добрался до игровой механики. Проект - игра match3. Давно написал систему для match3 поля, ну и благополучно пользовался ей все это время. В свое время систему сделал на smart pointer’ах, чтобы особо не заморачиваться над жизненным циклом объектов, все работало как часы, пока не дошли до задач, где действительно много вычислений производится, профайлер показал, что довольно много времени уходит на alloc/dealloc shared pointer’ов, и я решил переписать всю систему на raw pointers.</p>
+
+<p>Точнее, прежде чем переписать, я решил провести некоторые тесты, для чего я вытащил эту систему в отдельный проект и погонял ее сначала в том виде, в каком она работает в проекте, а затем переписал на raw pointers и снова проверил. Тест показал, что стало быстрее примерно в 2 раза. Значительная разница, учитывая, что в игре smart pointer’ы гоняются кучу раз в течение одного фрейма. И это еще учитывая, что я у них выключил thread safety.</p>
+<blockquote>Использовать smart pointer в игровых проектах стоит только в крайних случаях, да и то, лучше в тех местах, где нет активной работы с ним</blockquote>
+<h2>Undefined behaviour: как сэкономить кучу времени</h2>
+<p>Довольный и преисполненный оптимизма, я перенес переписанную систему в проект, пришлось много где поменять куски кода на работу с raw pointers, но на этом дело не закончилось. Во первых, как  и любой человек, я допускаю ошибки, и при переходе на raw pointers возникали краши. Вот честно, я не знал как отлаживать undefined behaviour в XCode, я предполагал, что должна быть какая-нибудь утилита, в MS VS таких проблем нет, уже начал копать в сторону Valgrind, но потом подзабил и провозился со всем еще день, пока не застрял на месте, где ошибку ну совсем не мог выявить. Снова начал искать, и, слава Богу, наткнулся на stackoverflow на решение! Надеюсь кому-нибудь это поможет.</p>
+
+<p>Итак, чтобы иметь возможность отслеживать доступ к уже освобожденной памяти, либо двойное удаление pointer’ов, ну и вообще следить за целостностью кучи, достаточно всего лишь отредактировать <strong>Scheme</strong> и установить галку “<strong>Enable Guard Malloc”</strong> на вкладке <strong>Diagnostics</strong>:</p>
+
+<p><a href="http://fateev.pro/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.17.png"><img class="alignleft size-medium wp-image-266" title="Снимок экрана 2014-01-11 в 22.29.17" src="http://fateev.pro/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.17-300x168.png" alt="" width="300" height="168" /></a></p>
+
+<p><a href="http://fateev.pro/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.28.png"><img class="alignleft size-medium wp-image-265" title="Снимок экрана 2014-01-11 в 22.29.28" src="http://fateev.pro/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.28-300x203.png" alt="" width="300" height="203" /></a></p>
+
+<p><strong><span style="color: #ff0000;">К сожалению, у данного метода есть свои ограничения, он будет работать на iOS только в симуляторе, но оно и понятно почему.</span></strong></p>
+
+<p> </p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/chronicles/razmyshleniya-o-budushhem.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/gamedev/gamedev-interesnaya-sfera-no-suka-besposhhadnaya.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-15 00:58:41 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>

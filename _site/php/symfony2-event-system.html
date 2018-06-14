@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Symfony2: Event system &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/">Posts</a></li>
+        </ul>
+    </div>
+  </nav>
+
+    <main>
+      <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2013-01-13 23:11:44 +0400">January 13, 2013</time>
+    
+  </div>
+
+  <h1 class="post-title">Symfony2: Event system</h1>
+  <div class="post-line"></div>
+
+  <p>Недавно в очередной раз столкнулся с задачей ведения рейтинга пользователя и решил ее немного абстрагировать и сделать отдельный бандл. На проекте возникла необходимость кэширвать текущее значение очков пользователя. Для управления запиями рейтинга у меня есть отдельный сервис - RatingManager. Так как система управления записями о рейтинге централизована посредством этого менеджера, то для слежения за изменением очков пользователя я решил внедрить в бандл использование событий.</p>
+
+<!--more-->
+
+<p>Итак, в чем заключается идея системы событий? В общих чертах, все похоже на паттерн Publisher/Subscriber:</p>
+
+<p><a href="http://fateev.pro/wp-content/uploads/2013/01/PublishSubscribeSolution.gif"><img class="alignnone size-full wp-image-138" title="Publisher/Subscriber pattern" src="http://fateev.pro/wp-content/uploads/2013/01/PublishSubscribeSolution.gif" alt="" width="504" height="330" /></a></p>
+
+<p>Все довольно просто, рассмотрим это на примере symfony2:</p>
+<ol>
+	<li>Диспетчер событий (Symfony\Component\EventDispatcher\EventDispatcher)&nbsp;- &nbsp;выступает в роли Publisher'a, отвечает за транслирование этих событий на всю систему, можно сказать, посылает broadcast message с событием</li>
+	<li>Событие (Symfony\Component\EventDispatcher\Event)&nbsp;- это и есть событие, которое мы будем транслировать, если рассматривать на примере картинки с паттерном, то это Address Changed</li>
+	<li>Слушатель или Подписчик (Listener/Subscriber) - это сервис, который мы подписываем на конкретное событие. Если верить stackoverflow, то единственное значимое различие между этими двумя сервисами, это то что Слушатель подписывается на статичное событие посредством описания сервиса в конфиге, подписчик же может быть динамически подписан на событие в ходе выполнения приложения. &nbsp;</li>
+</ol>
+<p>Теперь на конкретном примере задачи с рейтингом: посредством RatingManager’a мы каким либо образом меняем рейтинг пользователя, в свою очередь RatingManager транслирует событие, мол “Рейтинг изменен”, далее мы создаем Listener для этого события и выполняем нужные нам действия.</p>
+
+<p>Теперь рассмотрим все по компонентам системы:</p>
+<h4>1. Event</h4>
+<p>Рассмотрим класс события RatingUpdatedEvent:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Ailove\RatingBundle\Event</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\EventDispatcher\Event</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Ailove\RatingBundle\Entity\RatingEntry</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">RatingUpdatedEvent</span> <span class="k">extends</span> <span class="nx">Event</span>
+<span class="p">{</span>
+
+    <span class="sd">/**
+     * @var RatingEntry
+     */</span>
+    <span class="k">protected</span> <span class="nv">$entry</span><span class="p">;</span>
+
+    <span class="sd">/**
+     * @var int
+     */</span>
+    <span class="k">protected</span> <span class="nv">$score</span><span class="p">;</span>
+
+    <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">RatingEntry</span> <span class="nv">$entry</span><span class="p">,</span> <span class="nv">$score</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">entry</span> <span class="o">=</span> <span class="nv">$entry</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">score</span> <span class="o">=</span> <span class="nv">$score</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * @return \Ailove\RatingBundle\Entity\RatingEntry
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getEntry</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">entry</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * @return int
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getScore</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">score</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>Ничего сложного, просто сохраняю нужную мне информацию, чтобы потом в Listener’e выполнить нужные манипуляции с данными, в т.ч. сохранить количество очков пользователя.</p>
+<h4>2. Event Wrapper</h4>
+<p>При транслировании события через диспетчер, мы должны указывать id события, событий может быть много, мы можем менять их id в процессе рефакторинга, поэтому я решил их обернуть в отдельный класс RatingEvents</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Ailove\RatingBundle\Event</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">RatingEvents</span>
+<span class="p">{</span>
+    <span class="sd">/**
+    * The rating.updated event is thrown each time user got
+    * new rating entry.
+    *
+    * The event listener receives an
+    * Ailove\RatingBundle\Event\RatingChangedEvent instance.
+    *
+    * @var string
+    */</span>
+    <span class="k">const</span> <span class="no">RATING_UPDATED</span> <span class="o">=</span> <span class="s1">'rating.updated'</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Данный идентификатор используется в методе dispatch диспетчера событий, а также используется в описании сервиса Listener’a чтобы указать какое событие ему нужно слушать.</p>
+<h4>3. RatingManager</h4>
+<p>Все компоненты для транслирования события готовы. Для менеджера рейтинга приведу только часть кода, посылающую событие:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">RatingManager</span>
+<span class="p">{</span>
+    <span class="sd">/**
+     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+     */</span>
+    <span class="k">protected</span> <span class="nv">$dispatcher</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">\Symfony\Component\DependencyInjection\ContainerInterface</span> <span class="nv">$container</span><span class="p">,</span> <span class="nv">$security</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dispatcher</span> <span class="o">=</span> <span class="nv">$container</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'event_dispatcher'</span><span class="p">);</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">registerEvent</span><span class="p">(</span><span class="nv">$event</span><span class="p">,</span> <span class="nv">$entity</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nv">$userId</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="nv">$event</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Ailove\RatingBundle\Event\RatingUpdatedEvent</span><span class="p">(</span><span class="nv">$entry</span><span class="p">,</span> <span class="nv">$score</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dispatcher</span><span class="o">-&gt;</span><span class="na">dispatch</span><span class="p">(</span><span class="nx">\Ailove\RatingBundle\Event\RatingEvents</span><span class="o">::</span><span class="na">RATING_UPDATED</span><span class="p">,</span> <span class="nv">$event</span><span class="p">);</span>
+        <span class="o">...</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>Здесь стоит обратить внимание на строчку  $this−&gt;dispatcher = $container−&gt;get(‘event_dispatcher’), мне пришлось потратить некоторое время чтобы выяснить, что в symfony все таки есть общесистемный диспетчер событий, в документации я не нашел ни слова про него.</p>
+
+<p>Далее по коду внутри метода registerEvent я создаю новое событие, которое унаследовал от базового класса Event, добавив к нему некую свою, нужную информацию, а затем посредством диспетчера я транслирую это событие системе с идентификатором RATING_UPDATED.</p>
+<h4>4. Listener</h4>
+<p>Последнее, что я сделал, это написал для всего этого Listener:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Dom\RoadmapBundle\Listener</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">FOS\UserBundle\Model\UserManagerInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\Security\Core\SecurityContextInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">RatingListener</span>
+<span class="p">{</span>
+    <span class="sd">/**
+     * @var \FOS\UserBundle\Model\UserManagerInterface
+     */</span>
+    <span class="k">protected</span> <span class="nv">$manager</span><span class="p">;</span>
+
+    <span class="sd">/**
+     * @var SecurityContextInterface
+     */</span>
+    <span class="k">protected</span> <span class="nv">$security</span><span class="p">;</span>
+
+    <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">UserManagerInterface</span> <span class="nv">$manager</span><span class="p">,</span> <span class="nx">SecurityContextInterface</span> <span class="nv">$security</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">manager</span> <span class="o">=</span> <span class="nv">$manager</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">security</span> <span class="o">=</span> <span class="nv">$security</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">onRatingUpdate</span><span class="p">(</span><span class="nx">\Ailove\RatingBundle\Event\RatingUpdatedEvent</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="sd">/**
+         * @var \Application\Sonata\UserBundle\Entity\User $user
+         */</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">security</span><span class="o">-&gt;</span><span class="na">getToken</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getUser</span><span class="p">();</span>
+
+        <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">setScore</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">getScore</span><span class="p">());</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">manager</span><span class="o">-&gt;</span><span class="na">updateUser</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>И описание сервиса Listener’a:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="s">ailove.rating.update.listener:</span><span class="err">
+</span>
+        <span class="s">class</span><span class="pi">:</span> <span class="s">Dom\RoadmapBundle\Listener\RatingListener</span><span class="err">
+</span>
+        <span class="s">arguments</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">@fos_user.user_manager"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">@security.context"</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">tags</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="pi">-</span> <span class="pi">{</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">kernel.event_listener</span><span class="pi">,</span> <span class="nv">event</span><span class="pi">:</span> <span class="nv">rating.updated</span><span class="pi">,</span> <span class="nv">method</span><span class="pi">:</span> <span class="nv">onRatingUpdate</span> <span class="pi">}</span></code></pre></figure>
+
+<p>Посредством тегов мы сообщаем symfony, что наш сервис - это Listener (name: kernel.event_listener), что он слушает событие rating.updated (мы использовали этот идентификатор выше) и что при получении этого события сервис должен запускать метод onRatingUpdate, который в качестве аргумента получит событие. А далее, используя данные внутри события я обновляю данные пользователя.</p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/symfony2/genemu-jquerydate-kak-udalit-native-datepicker-chrome-browser-a.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-15 00:58:41 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>

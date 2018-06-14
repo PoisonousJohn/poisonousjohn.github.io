@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Sonata Admin Bundle: One-To-Many и sonata_type_collection &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/">Posts</a></li>
+        </ul>
+    </div>
+  </nav>
+
+    <main>
+      <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2013-01-21 19:00:44 +0400">January 21, 2013</time>
+    
+  </div>
+
+  <h1 class="post-title">Sonata Admin Bundle: One-To-Many и sonata_type_collection</h1>
+  <div class="post-line"></div>
+
+  <p>На первых порах, в Сонате возникало непонимание того как правильно организовать редактирование связи one-to-many.  На самом деле, есть несколько неочевидных моментов в Сонате, которые могут вызвать проблемы.<!--more--></p>
+
+<p>Итак, как организовать one-to-many:</p>
+
+<ol>
+  <li>ORM сущности</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">mac</span><span class="pi">:</span><span class="err">
+</span>
+    <span class="na">targetEntity</span><span class="pi">:</span> <span class="s">Mac</span><span class="err">
+</span>
+    <span class="na">mappedBy</span><span class="pi">:</span> <span class="s">device</span><span class="err">
+</span>
+    <span class="na">cascade</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">all"</span><span class="pi">]</span><span class="err">
+</span>
+    <span class="na">orphanRemoval</span><span class="pi">:</span> <span class="no">true</span></code></pre></figure>
+
+<p>Здесь следует обратить внимание на параметр cascade, который говорит доктрине, что все действия, относящиеся к родителю, должны также влиять на дочерние объекты. Также важен параметр orphanRemove, который облегчит вам жизнь, так как говорит доктрине, что нужно отслеживать объекты, у которых нет привязки к родительскому объекту и удалять их. Это нужно в случаях, когда мы редактируем уже созданную сущность, внутри самой сущности, при редактировании достаточно всего лишь отвязать объект от родительской сущности и доктрина сама удалить его из базы.</p>
+
+<ol>
+  <li>Сущность</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="sd">/**
+* @var Application\Ailove\EquipBundle\Entity\Mac
+*/</span>
+<span class="k">private</span> <span class="nv">$mac</span><span class="p">;</span>
+
+<span class="sd">/**
+* Construct
+*/</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mac</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Doctrine\Common\Collections\ArrayCollection</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="sd">/**
+* Set mac
+*
+* @param Doctrine\Common\Collections\ArrayCollection $mac
+*/</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">setMac</span><span class="p">(</span><span class="nv">$mac</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$mac</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mac</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Doctrine\Common\Collections\ArrayCollection</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$mac</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$item</span><span class="o">-&gt;</span><span class="na">setDevice</span><span class="p">(</span><span class="nv">$this</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getMac</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$mac</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="nv">$item</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getMac</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">removeElement</span><span class="p">(</span><span class="nv">$item</span><span class="p">);</span>
+            <span class="nv">$item</span><span class="o">-&gt;</span><span class="na">setDevice</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mac</span> <span class="o">=</span> <span class="nv">$mac</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="sd">/**
+* Add mac
+*
+* @param Application\Ailove\EquipBundle\Entity\Mac $mac
+*/</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">addMac</span><span class="p">(</span><span class="nx">\Application\Ailove\EquipBundle\Entity\Mac</span> <span class="nv">$mac</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$mac</span><span class="o">-&gt;</span><span class="na">setDevice</span><span class="p">(</span><span class="nv">$this</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mac</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$mac</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="sd">/**
+* Remove mac
+*
+* @param Application\Ailove\EquipBundle\Entity\Mac $mac
+*/</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">removeMac</span><span class="p">(</span><span class="nx">\Application\Ailove\EquipBundle\Entity\Mac</span> <span class="nv">$mac</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getMac</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">removeElement</span><span class="p">(</span><span class="nv">$mac</span><span class="p">);</span>
+    <span class="nv">$mac</span><span class="o">-&gt;</span><span class="na">setDevice</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="sd">/**
+* Get mac
+*
+* @return Doctrine\Common\Collections\Collection
+*/</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">getMac</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mac</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Здесь нужно обратить внимание, что в первую очередь в one-t0-many поля должны быть обязательно представлены ArrayCollection, для этого нужно добавить соответствующую строчку в конструкторе. Соната требует наличия add и remove методов для свойства, в которых через методы сущности нужно осуществлять привязку или отвязку дочерних объектов, благодаря orphanRemoval доктрина сама определит когда нужно удалять отвязанный объект.</p>
+
+<ol>
+  <li>configureFormFields</li>
+</ol>
+
+<p>Внутри админ класса следует добавить следующее поле:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$formBuilder</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'mac'</span><span class="p">,</span> <span class="s1">'sonata_type_collection'</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">'required'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">'by_reference'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">'edit'</span> <span class="o">=&gt;</span> <span class="s1">'inline'</span><span class="p">,</span> <span class="s1">'inline'</span> <span class="o">=&gt;</span> <span class="s1">'table'</span><span class="p">)</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>На этом, собственно все. В конечном счете, one-to-many будет выглядеть примерно таким образом:</p>
+
+<p><a href="http://fateev.pro/wp-content/uploads/2013/01/Снимок-экрана-2013-01-21-в-14.52.53.png"><img class="alignnone size-medium wp-image-150" title="Снимок экрана 2013-01-21 в 14.52.53" src="http://fateev.pro/wp-content/uploads/2013/01/Снимок-экрана-2013-01-21-в-14.52.53-300x93.png" alt="" width="300" height="93" /></a></p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/symfony2/symfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/php/symfony2-event-system.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-15 00:58:41 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>

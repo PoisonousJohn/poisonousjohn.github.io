@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Утечки. XCode Leaks &#038; Allocations. Осторожно XML &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/">Posts</a></li>
+        </ul>
+    </div>
+  </nav>
+
+    <main>
+      <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2014-06-02 16:50:39 +0400">June 02, 2014</time>
+    
+  </div>
+
+  <h1 class="post-title">Утечки. XCode Leaks &#038; Allocations. Осторожно XML</h1>
+  <div class="post-line"></div>
+
+  <p><a href="http://fateev.pro/wp-content/uploads/2014/06/crystal_xml.png"><img class="alignleft size-full wp-image-325" title="crystal_xml" src="http://fateev.pro/wp-content/uploads/2014/06/crystal_xml.png" alt="" width="128" height="128" /></a>Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с памятью: после загрузки и выгрузки игровой сцены есть большая утечка порядка 20Мб, что, мягко говоря, много. Изначально я пробовал пользоваться инструментом Leaks, но он не показывал практически ничего. Тогда  я обратил свое внимание на инструмент Allocations. Разобраться в том как с ним работать в моем случае было довольно большой головной болью.</p>
+
+<p>Итак принцип по которому я работал был следующим:</p>
+<ol>
+	<li>Загружаю главный экран. Делаю снимок.</li>
+	<li>Загружаю игровой экран, загружаю главный экран, делаю снимок.</li>
+	<li>Повторяю пункт 2 еще несколько раз.</li>
+	<li>Открываю один из средних снимков и смотрю из-за каких объектов выросла куча</li>
+	<li>Устраняю те проблемы, причина которых стала очевидной</li>
+	<li>Повторяю все с пункта 1 до тех пор, пока результат работы приложения меня не устроит</li>
+</ol>
+<p>А теперь в кратце о неожиданных результатах, с которыми я столкнулся.</p>
+<h2>XML очень дорогой формат</h2>
+<p>Итак, я начну с минусов:</p>
+<ul>
+	<li>Слишком большие файлы - много избыточной информации</li>
+	<li>Довольно долгий парсинг</li>
+	<li>Требует довольно большого объема памяти</li>
+</ul>
+<p>Плюсы:</p>
+<ul>
+	<li>Удобочитаемость - важно особенно на этапе активной разработки, когда нужно что то поменять на лету</li>
+	<li>Можно сжать в архив</li>
+</ul>
+<p>Большие файлы для меня проблема, так как максимальный размер бандла ограничен, а xml файлов у меня много. Скорость парсинга, конечно, зависит от библиотеки для работы с xml, но, конечно, она несравнима, например, с обработкой бинарного формата. А вот проблема с памятью для меня оказалась большой неожиданностью. Я работаю c xml при помощи tinyxml. Ранее ресурсы были организованы таким образом, что хранился распарсенный xml, и, каждый раз применяя ресурс, я проходил по дереву для получения нужных мне параметров. Здесь открылись две проблемы: один XMLElement в памяти занимал 4Кб, а теперь, если представить сколько этих элементов в среднего размера xml’ке, то можно понять, что это катастрофично. Первым делом я перделал логику таким образом, чтобы парсить xml только при загрузке ресурса, а затем создавать объекты из заранее заполненных структур данных. Это не только освободило изрядный кусок памяти, но и дало большой прирост в производительности. Как показала практика, поиск по элементам в xml намного медленнее, чем, скажем, поиск по unordered_map’у. В итоге, избавившись от постоянной работы с xml, я только выиграл. Следующим шагом, я думаю, стоит перейти с xml на бинарный формат.</p>
+
+<p> </p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/chronicles/smiley-boom-perviy-krupniy-reliz.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-15 00:58:41 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>
