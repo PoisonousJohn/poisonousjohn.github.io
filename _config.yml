@@ -28,7 +28,7 @@ description: Learn new things, share your experience
 
 # Build settings
 markdown: kramdown
-theme: tale
+remote_theme: tale
 highlighter: rouge
 plugins:
   - jekyll-feed
