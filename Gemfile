@@ -13,7 +13,6 @@ gem "jekyll", "~> 3.8.3"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 #gem "minima", "~> 2.0"
 gem "tale", "~> 0.0"
-gem 'json', github: 'flori/json', branch: 'v1.8'
 gem "pygments.rb", "~> 0.5.0"
 
 
