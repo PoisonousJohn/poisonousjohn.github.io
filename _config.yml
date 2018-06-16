@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-url: http://poisonousjohn.github.io
+url: https://poisonousjohn.github.io
 name: 'Ivan Fateev&#039;s Blog'
 title: 'Ivan Fateev&#039;s Blog'
 description: Learn new things, share your experience
@@ -28,7 +28,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 
 # Build settings
 markdown: kramdown
-remote_theme: tale
+theme: tale
 highlighter: rouge
 plugins:
   - jekyll-feed

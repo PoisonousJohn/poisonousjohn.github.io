@@ -21,6 +21,49 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ "/assets/apple-touch-icon.png" | relative_url }}">
 
     <style>
+        nav {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+
+        section.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        .about-pic {
+            min-width: 300px;
+            width: 20%;
+            text-align: center;
+            margin-right: 1rem;
+        }
+
+        .about-details {
+            grid-column: span 2;
+        }
+
+        .skill-value {
+            margin-top: 0.2rem;
+            border: solid 1px #ccc;
+            height: 0.7rem;
+            width: 300px;
+        }
+        .skill-value div {
+            background-color: #aaa;
+            height: 100%;
+        }
+
+
         .catalogue-item {
             border: none;
             padding: 0px;
