@@ -1,4 +1,141 @@
-<p dir="ltr"><a href="http://fateev.pro/wp-content/uploads/2013/09/fig9.png"><img class="alignleft size-medium wp-image-230" title="fig9" src="http://fateev.pro/wp-content/uploads/2013/09/fig9-300x226.png" alt="" width="300" height="226" /></a>До настоящего момента я особо не сталкивался с задачами визуализации сложных эффектов, в целом все сводилось к примитивным анимациям, но в текущем проекте нужны были различные эффекты, сложность которых заранее не была известна. Мы задумались над концепцией разделения визуализации и программирования, чтобы мне не делать лишнюю работу. Вот тут то я впервые и столкнулся использованием частиц.</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Particle эффекты в мобильных играх &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        nav {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+
+        section.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        .about-pic {
+            min-width: 300px;
+            width: 20%;
+            text-align: center;
+            margin-right: 1rem;
+        }
+
+        .about-details {
+            grid-column: span 2;
+        }
+
+        .skill-value {
+            margin-top: 0.2rem;
+            border: solid 1px #ccc;
+            height: 0.7rem;
+            width: 300px;
+        }
+        .skill-value div {
+            background-color: #aaa;
+            height: 100%;
+        }
+
+
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+        <section id="content">
+            <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2013-09-07 20:53:42 +0400">September 07, 2013</time>
+    
+  </div>
+
+  <h1 class="post-title">Particle эффекты в мобильных играх</h1>
+  <div class="post-line"></div>
+
+  <p dir="ltr"><a href="http://fateev.pro/wp-content/uploads/2013/09/fig9.png"><img class="alignleft size-medium wp-image-230" title="fig9" src="http://fateev.pro/wp-content/uploads/2013/09/fig9-300x226.png" alt="" width="300" height="226" /></a>До настоящего момента я особо не сталкивался с задачами визуализации сложных эффектов, в целом все сводилось к примитивным анимациям, но в текущем проекте нужны были различные эффекты, сложность которых заранее не была известна. Мы задумались над концепцией разделения визуализации и программирования, чтобы мне не делать лишнюю работу. Вот тут то я впервые и столкнулся использованием частиц.</p>
 <p dir="ltr">Погуглив некоторое время, я пришел к выводу, что мне необходим редактор частиц и библиотека их визуализации, совместимая с OpenGL ES 2.0, интеграция которой в движок пройдет с наименьшими трудозатратами. Согласитесь, ведь это удобно иметь возможность настроить все параметры эффекта и в пару кликов интегрировать его в игру.</p>
 <p dir="ltr">Итак, я посоветовался с коллегами, они посоветовали посмотреть в сторону Particle Deisgner от 71Squared и Magic Particles от Astralax.</p>
 
@@ -65,3 +202,28 @@
 <h3 dir="ltr">В итоге что дают нам частицы?</h3>
 <p dir="ltr">Мы имеем возможность дизайнить эффекты в отдельном редакторе и в пару кликов встроить их в игру, не заморачиваясь с их отображением. Все сводится к тому, что мы просто запускаем эффект с нужным именем и в нужном месте, что, несомненно, избавляет нас от большого геморроя.</p>
 <p>Из минусов могу отметить только то, что используя такой подход, не получится добиться единообразия использования эффектов, например, с flash-версией игры.</p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/chronicles/lyubiteli-velosipedov.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/dev-tools/udalit-clrf-iz-fajla.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+        </section>
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-16 20:04:15 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>

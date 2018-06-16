@@ -1,4 +1,141 @@
-<p><a href="http://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2.png"><img class="alignleft wp-image-307 size-medium" src="http://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2-300x300.png" alt="Facebook Unity SDK" width="300" height="300" /></a></p>
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Facebook Unity SDK Problems and Error Handling &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        nav {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+
+        section.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        .about-pic {
+            min-width: 300px;
+            width: 20%;
+            text-align: center;
+            margin-right: 1rem;
+        }
+
+        .about-details {
+            grid-column: span 2;
+        }
+
+        .skill-value {
+            margin-top: 0.2rem;
+            border: solid 1px #ccc;
+            height: 0.7rem;
+            width: 300px;
+        }
+        .skill-value div {
+            background-color: #aaa;
+            height: 100%;
+        }
+
+
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+        <section id="content">
+            <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2015-08-05 13:58:45 +0300">August 05, 2015</time>
+    
+  </div>
+
+  <h1 class="post-title">Facebook Unity SDK Problems and Error Handling</h1>
+  <div class="post-line"></div>
+
+  <p><a href="http://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2.png"><img class="alignleft wp-image-307 size-medium" src="http://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2-300x300.png" alt="Facebook Unity SDK" width="300" height="300" /></a></p>
 
 <p>Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? It’s quite handy!”. Yes, it is, till you need to work with some kind of REST API.<!--more--></p>
 
@@ -127,3 +264,28 @@ Common error response looks like this:</p>
 <p>As you see the data format is kind of odd. But I retrieve data by sentences (a single word OR a statement between double quotes). Last part of a header is a message that we can log or display to user. invalid_token chunk looks like error type, so we can use it to decide how to deal with this error.</p>
 
 <p>As an alternative to my hack you can use WebRequest but I wouldn’t recommend rely on it.</p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/chronicles/cinnamon-zastavil-skuchat-po-linux.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/chronicles/smiley-boom-perviy-krupniy-reliz.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+        </section>
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-16 20:04:15 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>

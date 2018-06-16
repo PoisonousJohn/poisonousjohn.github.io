@@ -1,4 +1,141 @@
-<p>GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen, autocompleter и даже uploadify с jcrop.</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Genemu Form Bundle &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        nav {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+
+        section.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        .about-pic {
+            min-width: 300px;
+            width: 20%;
+            text-align: center;
+            margin-right: 1rem;
+        }
+
+        .about-details {
+            grid-column: span 2;
+        }
+
+        .skill-value {
+            margin-top: 0.2rem;
+            border: solid 1px #ccc;
+            height: 0.7rem;
+            width: 300px;
+        }
+        .skill-value div {
+            background-color: #aaa;
+            height: 100%;
+        }
+
+
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+        <section id="content">
+            <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2012-09-07 02:25:12 +0400">September 07, 2012</time>
+    
+  </div>
+
+  <h1 class="post-title">Genemu Form Bundle</h1>
+  <div class="post-line"></div>
+
+  <p>GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen, autocompleter и даже uploadify с jcrop.</p>
 
 <p>На <a title="Genemu Form Bundle" href="https://github.com/genemu/GenemuFormBundle">странице репозитория</a> все вполне адекватно описано, встраивается легко и без заморочек. Я его использую как замену для sonata_type_model, да и вообще вместо большинства стандартных типов Sonata.</p>
 
@@ -40,3 +177,28 @@
 <p><a href="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-06-at-10.18.54-PM.png"><img class="alignnone size-full wp-image-85" title="Screen Shot 2012-09-06 at 10.18.54 PM" src="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-06-at-10.18.54-PM.png" alt="" width="557" height="198" /></a></p>
 
 <p>Также в бандле есть тип поля для загрузки файлов, но я пока его еще не тестил, не приходилось =) но думаю, что все должно быть на уровне.</p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/chronicles/statusmapbundle.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/symfony-sonata/arxitektura-sonata-admin-bundle.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+        </section>
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-16 20:04:15 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>

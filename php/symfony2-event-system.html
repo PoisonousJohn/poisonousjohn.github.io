@@ -1,4 +1,141 @@
-<p>Недавно в очередной раз столкнулся с задачей ведения рейтинга пользователя и решил ее немного абстрагировать и сделать отдельный бандл. На проекте возникла необходимость кэширвать текущее значение очков пользователя. Для управления запиями рейтинга у меня есть отдельный сервис - RatingManager. Так как система управления записями о рейтинге централизована посредством этого менеджера, то для слежения за изменением очков пользователя я решил внедрить в бандл использование событий.</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Symfony2: Event system &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+    <style>
+        nav {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+
+        section.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        .about-pic {
+            min-width: 300px;
+            width: 20%;
+            text-align: center;
+            margin-right: 1rem;
+        }
+
+        .about-details {
+            grid-column: span 2;
+        }
+
+        .skill-value {
+            margin-top: 0.2rem;
+            border: solid 1px #ccc;
+            height: 0.7rem;
+            width: 300px;
+        }
+        .skill-value div {
+            background-color: #aaa;
+            height: 100%;
+        }
+
+
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            float: left;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            width: 100px;
+            margin-right: 1rem;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+        <section id="content">
+            <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2013-01-13 23:11:44 +0400">January 13, 2013</time>
+    
+  </div>
+
+  <h1 class="post-title">Symfony2: Event system</h1>
+  <div class="post-line"></div>
+
+  <p>Недавно в очередной раз столкнулся с задачей ведения рейтинга пользователя и решил ее немного абстрагировать и сделать отдельный бандл. На проекте возникла необходимость кэширвать текущее значение очков пользователя. Для управления запиями рейтинга у меня есть отдельный сервис - RatingManager. Так как система управления записями о рейтинге централизована посредством этого менеджера, то для слежения за изменением очков пользователя я решил внедрить в бандл использование событий.</p>
 
 <!--more-->
 
@@ -168,3 +305,28 @@
             <span class="pi">-</span> <span class="pi">{</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">kernel.event_listener</span><span class="pi">,</span> <span class="nv">event</span><span class="pi">:</span> <span class="nv">rating.updated</span><span class="pi">,</span> <span class="nv">method</span><span class="pi">:</span> <span class="nv">onRatingUpdate</span> <span class="pi">}</span></code></pre></figure>
 
 <p>Посредством тегов мы сообщаем symfony, что наш сервис - это Listener (name: kernel.event_listener), что он слушает событие rating.updated (мы использовали этот идентификатор выше) и что при получении этого события сервис должен запускать метод onRatingUpdate, который в качестве аргумента получит событие. А далее, используя данные внутри события я обновляю данные пользователя.</p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/symfony2/genemu-jquerydate-kak-udalit-native-datepicker-chrome-browser-a.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+        </section>
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-06-16 20:04:15 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+    </footer>
+  </body>
+</html>
