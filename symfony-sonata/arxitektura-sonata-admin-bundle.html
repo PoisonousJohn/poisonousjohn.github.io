@@ -1,0 +1,177 @@
+<p><a href="http://fateev.pro/wp-content/uploads/2012/09/sonata.jpg"><img class="size-full wp-image-78 alignleft" title="sonata" src="http://fateev.pro/wp-content/uploads/2012/09/sonata.jpg" alt="" width="59" height="59" /></a>Sonata Admin Bundle, как и вся концепция symfony2 поддерживает сервисно-ориентированную архитектуру, поэтому, чтобы сделать CRUD для сущности, в первую очередь, необходимо создать определенный сервис.</p>
+
+<!--more-->
+<p>Приведу пример сервиса в моем проекте:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">services</span><span class="pi">:</span><span class="err">
+</span>
+    <span class="s">mtools.budget.expense.admin:</span><span class="err">
+</span>
+        <span class="s">id</span><span class="pi">:</span> <span class="s">mtools.budget.expense.admin</span><span class="err">
+</span>
+        <span class="s">class</span><span class="pi">:</span> <span class="s">Mtools\BudgetBundle\Admin\BudgetExpenseAdmin</span><span class="err">
+</span>
+        <span class="s">tags:</span><span class="err">
+</span>
+            <span class="s">- { name</span><span class="pi">:</span> <span class="s">sonata.admin, manager_type</span><span class="pi">:</span> <span class="s">orm, group</span><span class="pi">:</span> <span class="s">budget, label</span><span class="pi">:</span> <span class="s">Расходная cмета }</span><span class="err">
+</span>
+        <span class="s">arguments</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">null</span><span class="pi">,</span> <span class="nv">Mtools\BudgetBundle\Entity\BudgetExpense</span><span class="pi">,</span> <span class="nv">MtoolsBudgetBundle</span><span class="pi">:</span><span class="nv">BudgetExpenseAdmin&amp;nbsp;</span><span class="pi">]</span></code></pre></figure>
+
+<p>Итак, по порядку:</p>
+<ul>
+	<li>mtools.budget.expense.admin - выступает в качестве родительского id сервиса, на следующей строчке, я все же явно указываю, что это id сервиса</li>
+	<li>class - это админ класс для вашей сущности, должен быть наследником&nbsp;Sonata\AdminBundle\Admin\Admin</li>
+	<li>tags - теги, по которым соната определяет, что этот сервис принадлежит ей. Обращу внимание на то, что group действителен только в том случае, если в конфигурации сонаты вы явно не указывает список групп, которые должны выводиться в dashboard; label - фактически, это имя сущности, которое будет выводиться в dashboard</li>
+	<li>arguments - первый аргумент... честно говоря хз что это, второй аргумент - это класс сущности, которую мы редактируем, третий аргумент - это класс контроллера, который будет обслуживать нашу сущность, должен быть &nbsp;наследником&nbsp;Sonata\AdminBundle\Controller\CRUDController</li>
+</ul>
+<p>Теперь рассмотрим архитектуру админ класса. Так как основная задача админгенератора, обеспечить CRUD, то, соответственно, все архитектура завязана вокруг этих действий. Основными являются три метода для настройки админ класса:</p>
+<ul>
+	<li>configureFormFields - в данном методе мы настраиваем вид формы для редактирования нашей сущности</li>
+	<li>configureListFields - этот метод определяет набор колонок, которые будут отображены при выводе списка сущностей для редактирования</li>
+	<li>configureDatagridFilters - а в этом методе мы определяем набор фильтров, которые мы сможем использовать для поиска по сущностям (<a title="SonataAdminBundle: фильтры" href="http://fateev.pro/symfony-sonata/sonataadminbundle-filtry.html">Более подробная информация о фильтрах</a>)</li>
+	<li>configureRoutes - соната динамически генерирует роуты для сущностей, с помощью этого метода можно управлять как уже сгенерированными роутами для CRUD'a (create, edit, delete), так и добавить свои роуты, например для <a title="SonataAdminBundle: как добавить произвольную страницу к сущности" href="http://fateev.pro/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">произвольной страницы</a></li>
+</ul>
+<p>Вцелом, принцип настройки админ класса сходен для всех трех методов, но есть и свои особенности. В простейшем виде метод может выглядеть следующим обарзом:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureFormFields</span><span class="p">(</span><span class="nx">FormMapper</span> <span class="nv">$formMapper</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="nv">$formMapper</span>
+            <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Название'</span><span class="p">))</span>
+        <span class="p">;</span>
+        <span class="o">...</span></code></pre></figure>
+
+<p>Мы используем метод add класса FormMapper, чтобы добавить в форму поле для редактирования названия сущности. Первый аргумент  - идентификатор поля сущности, второй (чаще всего будет null) - тип поля формы, соната, чаще всего, без проблем определяет тип поля автоматически и подбирает соответствующий тип поля формы, третий - список опции для поля.</p>
+<blockquote>Замечу то, что соната позволяет использовать стандартные типы полей формы symfony2, а это дает возможность очень гибко строить кастомные формы. В дальнеших статьях я расскажу о том как сделать свой тип поля, а также расскажу о готовых решениях.</blockquote>
+<p>Для связных сущностей, возможно, придется явно указывать тип поля sonata_type_model, у которого есть довольно удобная опция edit =&gt; ‘list’, позволяющая производить создание и поиск нужной сущности прямо в попапе. Хотя, конечно, на тот момент, когда я использовал эту фишку, она была довольно сырой и было несколько неприятных багов, вроде того, что нужно инициализировать кастомные js скрипты специально для попапа, поэтому я стал использовать немного другое решение, но об этом в другой статье.</p>
+
+<p>Пример поля sonata_type_model с опцией edit =&gt; ‘list’:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureFormFields</span><span class="p">(</span><span class="nx">FormMapper</span> <span class="nv">$formMapper</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$formMapper</span>
+            <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Название'</span><span class="p">))</span>
+            <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'subProject'</span><span class="p">,</span> <span class="s1">'sonata_type_model'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Подпроект'</span><span class="p">),</span> <span class="k">array</span><span class="p">(</span><span class="s1">'edit'</span> <span class="o">=&gt;</span> <span class="s1">'list'</span><span class="p">))</span></code></pre></figure>
+
+<p>Выглядит это примерно так:</p>
+
+<p><a href="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.36.01-AM.png"><img class="size-medium wp-image-96 alignleft" title="Screen Shot 2012-09-14 at 12.36.01 AM" src="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.36.01-AM-300x65.png" alt="" width="300" height="65" /></a></p>
+
+<p><a href="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.37.47-AM.png"><img class="alignnone size-medium wp-image-97" title="Screen Shot 2012-09-14 at 12.37.47 AM" src="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.37.47-AM-300x126.png" alt="" width="300" height="126" /></a></p>
+<blockquote>Полный список типов полей, доступных в сонате, можно посмотреть в файле сервисов Sonata/AdminBundle/Resources/config/form_types.xml</blockquote>
+<p>Метод configureListFields, очень похож на configureFormFields, но в нем есть дополнительный метод addIdentifier, который добавляет не только колонку со значением поля, но и делает эту колонку ссылкой для редактирования сущности, если вы опустите это поле, то просто не сможете отредактировать вашу сущность. Вот пример метода:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureListFields</span><span class="p">(</span><span class="nx">ListMapper</span> <span class="nv">$listMapper</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="nv">$listMapper</span>
+            <span class="o">-&gt;</span><span class="na">addIdentifier</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Название'</span><span class="p">))</span>
+        <span class="o">...</span></code></pre></figure>
+
+<blockquote>Обратите внимание, что в configureFormFields НЕ НУЖНО использовать sonata_type_model, Sonata сама должна определить тип поля и вывести соответствующее значение. Кстати значение связных сущностей выводится из метода __toString(), поэтому если вы выводите связные сущности в списке, этот метод обязателен для реализации</blockquote>
+<p> Метод configureDatagridFields немного более сложный, хотя схож с предыдущими. Пример:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureDatagridFilters</span><span class="p">(</span><span class="nx">DatagridMapper</span> <span class="nv">$datagridMapper</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$datagridMapper</span>
+            <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Название'</span><span class="p">))</span>
+        <span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>Не смотря на то, что вид метода add такой же, как и прошлых, он в корне отличается от них. Второй параметр - это не тип поля, а тип фильтра, фактически он определяет то, как поле будет фильтроваться в базе. Сам тип поля формы в фильтре, а также его опции - это, соответственно, четвертый и пятый параметры, принцип у них такой же, как и в двух предыдущих методых.</p>
+<blockquote>Тип фильтра, по умолчанию, ставьте null, Sonata чаще всего сама легко определяет нужный, но, если что, список доступных типов фильтра можно посмотреть в файле Sonata/DoctrineOMRAdminBundle/Resources/config/doctrine_orm_filter_types.xml</blockquote>
+<p>Что касается метода configureRoutes, то его можно использовать, к примеру, чтобы запретить какое либо из действий для сущности:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureRoutes</span><span class="p">(</span><span class="nx">RouteCollection</span> <span class="nv">$collection</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="s1">'create'</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>Данный код запрещает создание новых сущностей. Соната сама скроет все ссылки на создание новой сущности. Более подробно про configureRoutes рассказано <a title="SonataAdminBundle: как добавить произвольную страницу к сущности" href="http://fateev.pro/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">здесь</a>.</p>
+
+<p>В админ классе есть методы-события, связанные с CRUD’ами: prePersist, postPersist, preUpdate, postUpdate, preRemove, postRemove. Эти методы, в качестве единственного аргумента, получают редактируемый/создаваемый нами объект/ В большинстве случаев, этих методов вполне достаточно, чтобы обслужить создание/обновление/удаление объекта.</p>
+
+<p>После того как вы закончите с админ классом и опишите новый сервис, если у вас конфигурация админ бандла по умолчанию, то в dashboard появится новый пункт для редактирования вашей сущности. Это происходит автоматически, соната определяет нужные сервисы по тегу sonata.admin.</p>
+
+<p>Если нужно выводить конкретную структуру админ сервисов в dashboard, то для этого предусмотрена определенная конфигурация админ бандла:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">sonata_admin</span><span class="pi">:</span><span class="err">
+</span>
+    <span class="na">dashboard</span><span class="pi">:</span><span class="err">
+</span>
+        <span class="na">groups</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">sonata_user</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">label</span><span class="pi">:</span> <span class="s">Пользователи</span><span class="err">
+</span>
+                <span class="na">items</span><span class="pi">:</span><span class="err">
+</span>
+                   <span class="pi">-</span> <span class="s">sonata.user.admin.user</span></code></pre></figure>
+
+<p>sonata.user.admin.user - здесь, соответственно, id сервиса, который попадет в группу, sonata_user произвольный, уникальный идентификатор группы, label - имя группы, которое будет отображаться в dashboard’e</p>
+
+<p>Приведу несколько трюков, которые могут пригодиться:</p>
+
+<ol>
+  <li>Вывести разный набор полей, в зависимости от того, редактируем мы сущность или создаем</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureFormFields</span><span class="p">(</span><span class="nx">FormMapper</span> <span class="nv">$formMapper</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$formMapper</span>
+            <span class="o">-&gt;</span><span class="na">with</span><span class="p">(</span><span class="s1">'Подпроект'</span><span class="p">)</span>
+                <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Название'</span><span class="p">,</span>
+                <span class="p">))</span>
+        <span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getSubject</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">())</span> <span class="p">{</span>
+            <span class="c1">//если мы редактируем объект
+</span>
+            <span class="nv">$formMapper</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'description'</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Описание'</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="nv">$formMapper</span> <span class="o">-&gt;</span><span class="na">end</span><span class="p">();</span></code></pre></figure>
+
+<p>При создании новой сущности Sonata создает пустой объект этой сущности, а при редактировании, получает его из базы. Этот объект мы получаем посредством метода getSubject(), и, если у объект есть id, то значит, что он уже есть в базе, а, следовательно, мы редактируем объект.</p>
+
+<p>Также здесь присутствуют два неупомянутых методы with() и end(). Они позволяют группировать поля в fieldset.</p>
+
+<ol>
+  <li>Этот же трюк можно использовать, чтобы устанавливать значения полей по умолчанию:</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getSubject</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">())</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getSubject</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">setSomeValue</span><span class="p">(</span><span class="nv">$someValue</span><span class="p">);</span>
+        <span class="p">}</span></code></pre></figure>
+
+<ol>
+  <li>Для работы с другими сущностями вам может понадобиться получить  entityManager:</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+        <span class="nv">$em</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getModelManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getEntityManager</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getSubject</span><span class="p">());</span></code></pre></figure>
+
+<blockquote>Обратите внимание, что getEntityManager принимает в качестве параметра объект (например тот, который мы редактируем)</blockquote>
+<ol>
+  <li>Соната довольно логично использует шаблонизатор, поэтому переопределить шаблон того или иного action’a (edit, list) довольно просто. Сначала вам необходимо создать шаблон и унаследовать его от сонатовского:</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="k">extends</span> <span class="s1">'SonataAdminBundle:CRUD:base_list.html.twig'</span> <span class="o">%</span><span class="p">}</span></code></pre></figure>
+
+<p>Затем, в шаблоне переопределите соответствующие блоки. Финальный шаг - указать админ классу, какой шаблон нужно использовать для action’a. Я это делал, вызывая метод setTemplate внутри метода configureFormFields, хотя можно было бы придумать и более изящный способ:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureFormFields</span><span class="p">(</span><span class="nx">FormMapper</span> <span class="nv">$formMapper</span><span class="p">)</span>
+    <span class="p">{</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setTemplate</span><span class="p">(</span><span class="s1">'edit'</span><span class="p">,</span> <span class="s1">'SonataTemplatesBundle:Default:edit_with_top_actions.html.twig'</span><span class="p">);</span></code></pre></figure>
+
+<p>Ну вот, думаю на этом все =) надеюсь эта информация будет вам полезна, дерзайте.</p>

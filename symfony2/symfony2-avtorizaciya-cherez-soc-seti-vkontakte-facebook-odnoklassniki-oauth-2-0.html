@@ -1,0 +1,136 @@
+<blockquote>Update: Рассмотрите в первую очередь <a href="https://github.com/hwi/HWIOAuthBundle" rel="nofollow">https://github.com/hwi/HWIOAuthBundle</a></blockquote>
+<p>Собственно, так получилось, что я сделал авторизацию через 3 популярные соцсети на OAuth 2.0. Тестировалось все под symfony 2.1:</p>
+
+<p><a title="VKontakte" href="https://github.com/ailove-dev/AbstractSocialBundle">AbstractSocialBundle</a></p>
+
+<p><a title="VKontakte" href="https://github.com/ailove-dev/VKBundle">VKontakte</a></p>
+
+<p><a title="Facebook" href="https://github.com/ailove-dev/FacebookBundle">Facebook</a></p>
+
+<p><a title="Odnoklassniki" href="https://github.com/ailove-dev/OKBundle">Odnoklassniki</a></p>
+
+<p>К сожалению, полной документации по интеграции бандлов у меня пока нет, опишу кратко.</p>
+<h3>Как поставить</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./composer.phar require ailove-dev/vk-bundle dev-master
+./composer.phar require ailove-dev/ok-bundle dev-master
+./composer.phar require ailove-dev/facebook-bundle dev-master
+</code></pre></div></div>
+
+<p>Необходимо в security.yml интегрировать провайдер для нужной соц. сети (если у вас несколько авторизаций будет, то обычно делают chain provider):</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="na">providers</span><span class="pi">:</span><span class="err">
+</span>
+        <span class="na">chain_provider</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">chain</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">providers</span><span class="pi">:</span> <span class="pi">[</span>  <span class="nv">fos_userbundle</span><span class="pi">,</span> <span class="nv">vk_provider</span><span class="pi">,</span> <span class="nv">fb_provider</span><span class="pi">,</span> <span class="nv">ok_provider</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">fos_userbundle</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">fos_user.user_provider.username_email</span><span class="err">
+</span>
+        <span class="na">vk_provider</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">vk.user.provider</span><span class="err">
+</span>
+        <span class="na">ok_provider</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">ok.user.provider</span><span class="err">
+</span>
+        <span class="na">fb_provider</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">fb.user.provider</span></code></pre></figure>
+
+<p>Также необходимо описать файрволы:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="na">firewalls</span><span class="pi">:</span><span class="err">
+</span>
+         <span class="na">main</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">pattern</span><span class="pi">:</span> <span class="s">^/</span><span class="err">
+</span>
+            <span class="na">fb_firewall</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">check_path</span><span class="pi">:</span> <span class="s">/fb/login_check/</span><span class="err">
+</span>
+                <span class="na">login_path</span><span class="pi">:</span> <span class="s">/fb/login/</span><span class="err">
+</span>
+                <span class="na">use_forward</span><span class="pi">:</span> <span class="no">false</span><span class="err">
+</span>
+                <span class="na">failure_path</span><span class="pi">:</span> <span class="s">/fail</span><span class="err">
+</span>
+                <span class="na">always_use_default_target_path</span><span class="pi">:</span> <span class="no">true</span><span class="err">
+</span>
+                <span class="na">default_target_path</span><span class="pi">:</span> <span class="s">/user/connect/</span><span class="err">
+</span>
+                <span class="na">provider</span><span class="pi">:</span> <span class="s">chain_provider</span><span class="err">
+</span>
+            <span class="na">vk_firewall</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">check_path</span><span class="pi">:</span> <span class="s">/vk/login_check/</span><span class="err">
+</span>
+                <span class="na">login_path</span><span class="pi">:</span> <span class="s">/vk/login/</span><span class="err">
+</span>
+                <span class="na">use_forward</span><span class="pi">:</span> <span class="no">false</span><span class="err">
+</span>
+                <span class="na">failure_path</span><span class="pi">:</span> <span class="s">/</span><span class="err">
+</span>
+                <span class="na">always_use_default_target_path</span><span class="pi">:</span> <span class="no">true</span><span class="err">
+</span>
+                <span class="na">default_target_path</span><span class="pi">:</span> <span class="s">/user/connect/</span><span class="err">
+</span>
+                <span class="na">provider</span><span class="pi">:</span> <span class="s">chain_provider</span><span class="err">
+</span>
+            <span class="na">ok_firewall</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">check_path</span><span class="pi">:</span> <span class="s">/ok/login_check/</span><span class="err">
+</span>
+                <span class="na">login_path</span><span class="pi">:</span> <span class="s">/ok/login/</span><span class="err">
+</span>
+                <span class="na">use_forward</span><span class="pi">:</span> <span class="no">false</span><span class="err">
+</span>
+                <span class="na">failure_path</span><span class="pi">:</span> <span class="s">/</span><span class="err">
+</span>
+                <span class="na">always_use_default_target_path</span><span class="pi">:</span> <span class="no">true</span><span class="err">
+</span>
+                <span class="na">default_target_path</span><span class="pi">:</span> <span class="s">/user/connect/</span><span class="err">
+</span>
+                <span class="na">provider</span><span class="pi">:</span> <span class="s">chain_provider</span><span class="err">
+</span>
+            <span class="na">anonymous</span><span class="pi">:</span> <span class="no">true</span><span class="err">
+</span>
+            <span class="na">logout</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">path</span><span class="pi">:</span> <span class="s">/logout</span><span class="err">
+</span>
+                <span class="na">target</span><span class="pi">:</span> <span class="s">/</span></code></pre></figure>
+
+<blockquote>/user/connect/ здесь - роут для контроллера, который будет обрабатывать авторизовавшегося пользователя (бандлы только создают соответствующий токен). Пример контроллера можно посмотреть <a href="https://github.com/ailove-dev/sf2.1-sonata/blob/master/src/Application/Sonata/UserBundle/Controller/SocialConnectController.php">здесь</a>.</blockquote>
+<p>Доступ к контроллеру стоит ограничить только для авторизованных пользователь (бандлы используют соответствующие роли, поэтому их стоит добавить в ROLES):</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="na">role_hierarchy</span><span class="pi">:</span><span class="err">
+</span>
+        <span class="c1"># Social
+</span>
+        <span class="na">ROLE_VK_USER</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_USER</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">ROLE_OK_USER</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_USER</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">ROLE_FACEBOOK_USER</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_USER</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">ROLE_REGISTERED</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_VK_USER</span><span class="pi">,</span> <span class="nv">ROLE_OK_USER</span><span class="pi">,</span> <span class="nv">ROLE_FACEBOOK_USER</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="c1"># Admin
+</span>
+        <span class="na">ROLE_ADMIN</span><span class="pi">:</span>       <span class="s">ROLE_REGISTERED</span><span class="err">
+</span>
+        <span class="na">ROLE_SUPER_ADMIN</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_USER</span><span class="pi">,</span> <span class="nv">ROLE_SONATA_ADMIN</span><span class="pi">,</span> <span class="nv">ROLE_ADMIN</span><span class="pi">,</span> <span class="nv">ROLE_ALLOWED_TO_SWITCH</span><span class="pi">,</span> <span class="nv">ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT</span><span class="pi">,</span> <span class="nv">ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT</span><span class="pi">,</span> <span class="nv">ROLE_REGISTERED</span><span class="pi">]</span></code></pre></figure>
+
+<p>Cсылки для входа и выхода:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>VK<span class="nt">&lt;/a&gt;</span> | <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/a&gt;</span> | <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>FB<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Выход<span class="nt">&lt;/a&gt;</span></code></pre></figure>
+
+<blockquote>Также бандлы поддаются настройке! Посмотреть параметры можно <a href="https://github.com/ailove-dev/AbstractSocialBundle/blob/master/Classes/AbstractConfiguration.php">здесь</a>.</blockquote>
+<p> </p>

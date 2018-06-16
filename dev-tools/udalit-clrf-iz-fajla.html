@@ -1,0 +1,4 @@
+<p><a href="http://fateev.pro/wp-content/uploads/2013/07/windows-8-fail.jpeg"><img src="http://fateev.pro/wp-content/uploads/2013/07/windows-8-fail-300x200.jpeg" alt="" title="windows-8-fail" width="300" height="200" class="alignleft size-medium wp-image-222" /></a>
+Не так часто сталкиваюсь с файлами в windows кодировках, но бывает, и наличие в них некорректных переносов жутко раздражает, XCode, например, от таких переносов вообще сходит с ума и показывает ошибки не на тех строках. Удалить CLRF поможет простая команда:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cat </span>file | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'\015'</span> <span class="o">&gt;</span> file</code></pre></figure>

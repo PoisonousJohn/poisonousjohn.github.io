@@ -1,0 +1,65 @@
+<p>У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.<!--more--></p>
+
+<p>Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureRoutes</span><span class="p">(</span><span class="nx">RouteCollection</span> <span class="nv">$collection</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'members'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getRouterIdParameter</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/members'</span><span class="p">);</span>
+        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'getProjects'</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>В примере я рассмотрел два случая:</p>
+<ol>
+	<li>Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members</li>
+	<li>Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjects</li>
+</ol>
+<div>Далее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:</div>
+<div>
+
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">membersAction</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">admin</span><span class="o">-&gt;</span><span class="na">getIdParameter</span><span class="p">());</span>
+
+        <span class="nv">$object</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">admin</span><span class="o">-&gt;</span><span class="na">getObject</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$object</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">NotFoundHttpException</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'unable to find the object with id : %s'</span><span class="p">,</span> <span class="nv">$id</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProjectsAction</span><span class="p">()</span>
+    <span class="p">{</span>
+
+        <span class="nv">$choice</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+
+        <span class="o">...</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">renderJson</span><span class="p">(</span><span class="nv">$choice</span><span class="p">);</span>
+
+    <span class="p">}</span></code></pre></figure>
+
+
+Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().
+
+Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод.
+<blockquote>Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в <a title="Архитектура Sonata Admin Bundle" href="http://fateev.pro/symfony-sonata/arxitektura-sonata-admin-bundle.html">другой статье</a>.</blockquote>
+&nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:
+
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="k">extends</span> <span class="s1">'SonataAdminBundle:Core:dashboard.html.twig'</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="nx">block</span> <span class="nx">content</span><span class="o">%</span><span class="p">}</span>
+      <span class="nx">blabla</span>
+<span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="nx">endblock</span><span class="o">%</span><span class="p">}</span></code></pre></figure>
+
+
+Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.
+
+На этом вроде все =)
+
+</div>
+<div>&nbsp;</div>

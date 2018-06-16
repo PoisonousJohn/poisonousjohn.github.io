@@ -1,0 +1,52 @@
+<p><a href="http://fateev.pro/wp-content/uploads/2014/01/archive.png"><img class="alignleft size-full wp-image-291" title="archive" src="http://fateev.pro/wp-content/uploads/2014/01/archive.png" alt="" width="256" height="256" /></a>Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить <strong>PNG</strong> на два <strong>JPG’a</strong> или на <strong>JPG</strong> + <strong>PNG</strong>, в первом файле будут храниться <strong>RGB</strong> каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).</p>
+
+<p>Для разбиения текстур из <strong>PNG</strong> на два <strong>JPG</strong> я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python
+</span>
+
+<span class="kn">import</span> <span class="nn">os</span><span class="p">,</span> <span class="n">fnmatch</span>
+<span class="kn">import</span> <span class="nn">Image</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">ntpath</span>
+<span class="kn">import</span> <span class="nn">ImageFile</span>
+
+<span class="n">ImageFile</span><span class="o">.</span><span class="n">MAXBLOCK</span> <span class="o">=</span> <span class="mi">2048</span><span class="o">*</span><span class="mi">2048</span><span class="c"># default is 64k
+</span>
+
+<span class="k">def</span> <span class="nf">splitImage</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">'splitting </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">'</span> <span class="o">%</span> <span class="n">png</span>
+    <span class="n">originalImage</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">baseName</span> <span class="o">=</span> <span class="n">ntpath</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">originalImage</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">baseName</span> <span class="o">+</span> <span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'JPEG'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">optimize</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">originalImage</span><span class="o">.</span><span class="n">getbands</span><span class="p">())</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">ir</span><span class="p">,</span> <span class="n">ig</span><span class="p">,</span> <span class="n">ib</span><span class="p">,</span> <span class="n">ia</span> <span class="o">=</span> <span class="n">originalImage</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">alphaImage</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="s">"RGB"</span><span class="p">,</span> <span class="p">(</span><span class="n">ia</span><span class="p">,</span> <span class="n">ia</span><span class="p">,</span> <span class="n">ia</span><span class="p">));</span>
+        <span class="n">alphaImage</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">baseName</span> <span class="o">+</span> <span class="s">'_alpha.jpg'</span><span class="p">,</span> <span class="s">'JPEG'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">locate</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">root</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">fnmatch</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'Pack animations.'</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'images'</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s">'I'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Directory with images'</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">pngDir</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">images</span>
+
+<span class="k">for</span> <span class="n">png</span> <span class="ow">in</span> <span class="n">locate</span><span class="p">(</span><span class="s">"*.png"</span><span class="p">,</span> <span class="n">pngDir</span><span class="p">):</span>
+    <span class="n">splitImage</span><span class="p">(</span><span class="n">png</span><span class="p">)</span></code></pre></figure>
+
+<p> </p>
+
+<p>Что касается <strong>OpenGL</strong>, то в итоге происходит загрузка той же <strong>RGBA</strong> текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива.</p>
+
+<p> </p>

@@ -1,0 +1,42 @@
+<p>GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen, autocompleter и даже uploadify с jcrop.</p>
+
+<p>На <a title="Genemu Form Bundle" href="https://github.com/genemu/GenemuFormBundle">странице репозитория</a> все вполне адекватно описано, встраивается легко и без заморочек. Я его использую как замену для sonata_type_model, да и вообще вместо большинства стандартных типов Sonata.</p>
+
+<p>Большие плюсы:</p>
+<ul>
+	<li>Прекрасно работает с сущностями</li>
+	<li>Умеет делать ajax запросы для подгрузки списков для выбора</li>
+	<li>Можно подствлять query builder для подгрузки списка сущностей</li>
+</ul>
+<p>Вот несколько примеров:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureFormFields</span><span class="p">(</span><span class="nx">FormMapper</span> <span class="nv">$formMapper</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$formMapper</span>
+                <span class="o">...</span>
+                <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'project'</span><span class="p">,</span> <span class="s1">'genemu_jquerychosen'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Проект'</span><span class="p">,</span>
+                    <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'Mtools\ProjectBundle\Entity\Project'</span><span class="p">,</span>
+                    <span class="s1">'widget'</span> <span class="o">=&gt;</span> <span class="s1">'entity'</span><span class="p">,</span>
+                    <span class="s1">'choices'</span> <span class="o">=&gt;</span> <span class="nv">$allowedProjects</span><span class="p">,</span>
+                    <span class="s1">'multiple'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="p">))</span>
+                <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'projectType'</span><span class="p">,</span> <span class="s1">'genemu_jquerychosen'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Тип проекта'</span><span class="p">,</span>
+                    <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'Mtools\SystemValuesBundle\Entity\ProjectType'</span><span class="p">,</span>
+                    <span class="s1">'widget'</span> <span class="o">=&gt;</span> <span class="s1">'entity'</span><span class="p">,</span>
+                    <span class="s1">'multiple'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+                    <span class="s1">'required'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="p">))</span>
+                <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'rolesArray'</span><span class="p">,</span> <span class="s1">'genemu_jquerychosen'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Доступ'</span><span class="p">,</span>
+                    <span class="s1">'choices'</span> <span class="o">=&gt;</span> <span class="nv">$roles</span><span class="p">,</span>
+                    <span class="s1">'multiple'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="s1">'required'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="p">))</span>
+                <span class="o">...</span></code></pre></figure>
+
+<p>И вот как примерно это выглядит в форме:</p>
+
+<p><a href="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-06-at-10.18.54-PM.png"><img class="alignnone size-full wp-image-85" title="Screen Shot 2012-09-06 at 10.18.54 PM" src="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-06-at-10.18.54-PM.png" alt="" width="557" height="198" /></a></p>
+
+<p>Также в бандле есть тип поля для загрузки файлов, но я пока его еще не тестил, не приходилось =) но думаю, что все должно быть на уровне.</p>
