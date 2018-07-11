@@ -5,7 +5,7 @@ author: Poisonous John
 layout: post
 guid: /ru/gamedev/offline-mode-in-client-server-apps.html
 permalink: /ru/gamedev/offline-mode-in-client-server-apps.html
-image: /wp-content/uploads/2017/11/jp_oss_pirate_small.png
+image: /imgs/offline-mode-facade.png
 categories:
   - Gamedev
 tags:
@@ -73,7 +73,7 @@ tags:
 
 Все взаимодействие с сервером вы пускаете через Фасад (Facade). При билде делается настройка "isOffline", и если она включена, подставляются заглушки для всех сетевых сервисов.
 
-![Offline mode class diagram](/imgs/offline-mode-facade.png)
+[![Offline mode class diagram](/imgs/offline-mode-facade.png)](/imgs/offline-mode-facade.png)
 
 На диаграмме я показал, что API может быть разделен на разные компоненты, при этом фасад их скрывает. Каждый из компонентов имеет оффлайн заглушку.
 
