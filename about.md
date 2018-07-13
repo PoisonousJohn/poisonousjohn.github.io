@@ -10,6 +10,20 @@ permalink: /about/
         <img src="/wp-content/uploads/2012/09/IMG_9760_final_bw-300x300.jpg" />
         <p>Ivan Fateev<br/>(Poisonous John)</p>
         <p>Technical Evangelist <br/> (Cloud Solution Architect) <br/> @ Microsoft</p>
+        <div class="social-links">
+            <a href="https://github.com/PoisonousJohn/">
+                <img src="/imgs/github.png" alt="Github profile" />
+            </a>
+            <a href="https://twitter.com/Poisonous_John">
+                <img src="/imgs/twitter.png" alt="Twitter profile" />
+            </a>
+            <a href="https://t.me/Poisonous_John">
+                <img src="/imgs/telegram.png" alt="Telegram profile" />
+            </a>
+            <a href="https://www.linkedin.com/in/poisonousjohn/">
+                <img src="/imgs/linkedin.png" alt="Linkedin profile" />
+            </a>
+        </div>
     </div>
 
     <div class="about-details">

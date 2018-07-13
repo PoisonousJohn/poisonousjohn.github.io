@@ -23,6 +23,8 @@
     <link rel="icon" type="image/png" href="{{ "/wp-content/uploads/2012/09/favicon.png" | relative_url }}">
 
     <style>
+
+
         .post-title {
             font-size: 2rem;
         }
@@ -39,6 +41,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 10px;
+            margin-right: 1rem;
         }
 
         section.about {
@@ -52,17 +55,39 @@
             width: 20%;
             text-align: center;
             margin-right: 1rem;
+            grid-column: 2;
+
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .social-links img {
+            width: 50px;
         }
 
         .about-details {
-            grid-column: span 2;
+            grid-column: span 3;
         }
+
+        @media (min-width: 600px) {
+            .skills {
+                margin-right: 0px;
+            }
+            .about-details {
+                grid-column: 1 none;
+            }
+        }
+
 
         .skill-value {
             margin-top: 0.2rem;
             border: solid 1px #ccc;
             height: 0.7rem;
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
         }
         .skill-value div {
             background-color: #aaa;
