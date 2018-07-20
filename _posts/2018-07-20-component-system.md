@@ -5,7 +5,7 @@ author: Poisonous John
 layout: post
 guid: /ru/gamedev/component-system.html
 permalink: /ru/gamedev/comopnent-system.html
-image: /imgs/offline-mode-facade.png
+image: /imgs/health-component.jpg
 categories:
   - Gamedev
 tags:
