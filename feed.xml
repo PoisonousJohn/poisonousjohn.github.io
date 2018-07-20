@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2018-07-13T20:09:42+03:00</updated><id>https://fateev.pro/</id><title type="html">Ivan Fateev's Blog</title><subtitle>Learn new things, share your experience</subtitle><entry><title type="html">Оффлайн режим в клиент-серверных приложениях</title><link href="https://fateev.pro/ru/gamedev/offline-mode-in-client-server-apps.html" rel="alternate" type="text/html" title="Оффлайн режим в клиент-серверных приложениях" /><published>2018-07-11T17:33:30+03:00</published><updated>2018-07-11T17:33:30+03:00</updated><id>https://fateev.pro/ru/gamedev/offline-mode</id><content type="html" xml:base="https://fateev.pro/ru/gamedev/offline-mode-in-client-server-apps.html">&lt;p&gt;Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют различные социальные составляющие: кланы, чаты, список друзей, да что угодно. И каждый пук уходит в аналитику.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2018-07-20T17:44:39+03:00</updated><id>https://fateev.pro/</id><title type="html">Ivan Fateev's Blog</title><subtitle>Learn new things, share your experience</subtitle><entry><title type="html">Система компонентов cущностей (Entity Component System)</title><link href="https://fateev.pro/ru/gamedev/comopnent-system.html" rel="alternate" type="text/html" title="Система компонентов cущностей (Entity Component System)" /><published>2018-07-11T17:33:30+03:00</published><updated>2018-07-11T17:33:30+03:00</updated><id>https://fateev.pro/ru/gamedev/component-system</id><content type="html" xml:base="https://fateev.pro/ru/gamedev/comopnent-system.html">&lt;p&gt;Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.&lt;/p&gt;
+
+&lt;p&gt;Когда люди работают над сложными механиками, они пытаются выделить общие части системы, чтобы их переиспользовать. Но так случается, что общие части должны присутствовать в совершенно несвязанных модулях.&lt;/p&gt;
+
+&lt;p&gt;Частая ошибка – пытаться объединить то, что должно лежать раздельно. Из-за того, что общий функционал нужен в двух несвязанных ветках наследования, а большинство языков не поддерижвают множественное наследование, то люди извращаются как могут. Впиливают куда-нибудь наверх еще уровень наследования, чтобы где-то через несколько уровней вниз, 2 класса использовали 1-2 метода.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/inheritance-problem.png&quot; alt=&quot;Inheritnace-problem-diagram&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Часто еще бывает, что этот Common класс не используется целиком, и среди всей иерархии тащатся бесполезные части.&lt;/p&gt;
+
+&lt;h2 id=&quot;component-pattern&quot;&gt;Component pattern&lt;/h2&gt;
+
+&lt;p&gt;Если использовать шаблон &lt;a href=&quot;http://gameprogrammingpatterns.com/component.html&quot;&gt;Component&lt;/a&gt;, то все упрощается. Мы просто меняем наследование на композицию, добавляем там где нам нужно компонент, и вызываем методы.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/inheritance-problem2.png&quot; alt=&quot;Inheritnace-problem-diagram&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Теперь у нас ничего лишнего в родительских классах, все выглядит почище. Не смотря на то, что решение простое, и, казалось бы, интуитивное, люди, почему-то, все равно хотят использовать наследование, как одержимые.&lt;/p&gt;
+
+&lt;h2 id=&quot;entity-component-pattern&quot;&gt;Entity Component Pattern&lt;/h2&gt;
+
+&lt;p&gt;Я не смог найти правильное название для этого шаблона. Это что-то среднее между использование компонентов, что я рассмотрел ранее, и Entity Component System, что мы рассмотрим позже.&lt;/p&gt;
+
+&lt;p&gt;Предыдущий подход имеет один большой недостаток: использование всех компонентов зашито в коде. То есть, мы не можем добавить к классу игрока новый компонент, не поменяв код.&lt;/p&gt;
+
+&lt;p&gt;Это может быть довольно сильным ограничением, ведь геймплей должен быть настраиваемым. Если каждый раз гейм-дизайнер будет дергать программиста, чтобы изменить скорость перемещения персонажа – это катастрофа.&lt;/p&gt;
+
+&lt;p&gt;Для этого в играх есть некая система для конфигурации. Если можно конфигурировать то что уже написано в коде, так почему бы не дать еще больше свободы для креатива и не “хардкодить” поведение заранее.&lt;/p&gt;
+
+&lt;p&gt;Шаблон Entity Component – это то, как работает вся система в Unity. Идея, на самом деле неплохая, но реализация так себе. О ее недостатках все известно, но мы часто забываем о преимуществах.&lt;/p&gt;
+
+&lt;p&gt;Данный шаблон предполагает, что все в программе – это некая “Сущность (Entity)”. В терминах Unity сущность – это GameObject. И каждая сущность может иметь набор компонентов. Они заранее не определены и их список может меняться посредством методов.&lt;/p&gt;
+
+&lt;p&gt;Если откинуть мысли о производительности, то давайте посмотрим какое преимущество нам дает такая система.&lt;/p&gt;
+
+&lt;h3 id=&quot;классический-пример&quot;&gt;Классический пример.&lt;/h3&gt;
+
+&lt;p&gt;Есть, например, шутер. В нем есть игроки, которые палят друг в друга, пока не прикончат. Внезапно гейм-дизайнер решил, что в игре должны быть и разрушаемые предметы, причем разрушаться они должны после определенного урона.&lt;/p&gt;
+
+&lt;p&gt;Компоненты позволяют отделить код от конфигурации/представления. Поэтому, если программисты делали свою работу хорошо, и сделали отдельный компонент, который имеет “здоровье” и может принимать урон, то разрушение чего-угодно решается простым добавлением компонента к объекту.&lt;/p&gt;
+
+&lt;p&gt;В юнити, гейм-дизайнер может открыть “префаб” камня, например, и добавить к нему соответствующий компонент. Если бы у нас не было такой возможности, то программисту понадобилось бы искать условный класс “Камень” и добавлять компонент в код.&lt;/p&gt;
+
+&lt;p&gt;Немного программер-арта:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/health-component.jpg&quot; alt=&quot;Health component attached to every object&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;HealthComponent приаттачен как к плеерам, так и к камню, что позволяет сразу получить весь необходимый функционал, включая отображение полосок здоровья.&lt;/p&gt;
+
+&lt;p&gt;Еще одна приятная возможность такой системы, что компоненты можно аттачить к объектам в рантайме, по какому-либо событию, что тоже позволяет делать интересные механики.&lt;/p&gt;
+
+&lt;p&gt;Это классный паттерн, но у него есть свои недостатки:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;мы не знаем какие компоненты есть у объекта заранее, можем определить это только в рантайме, что рождает все эти ошибки, когда мы пытаемся использовать компонент, которого нет&lt;/li&gt;
+  &lt;li&gt;зависимости между компонентами сложнее реализовать и отслеживать&lt;/li&gt;
+  &lt;li&gt;такая система бьет по производительности, так как многие вещи делаются в рантайме&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Но преимущества сильно перевешивают недостатки, имхо.&lt;/p&gt;
+
+&lt;h2 id=&quot;entity-component-system&quot;&gt;Entity Component System&lt;/h2&gt;
+
+&lt;p&gt;На самом деле, шаблон &lt;a href=&quot;https://github.com/junkdog/artemis-odb/wiki/Introduction-to-Entity-Systems&quot;&gt;Entity Component System (ECS)&lt;/a&gt; очень похож на предыдущий вариант. С одним ключевым отличием: бизнес логика по обработке компонентов лежит в системах, а не в самих компонентах.&lt;/p&gt;
+
+&lt;p&gt;В отличие от предыдущего подхода, где, например, метод Update присутствует в каждом отдельном компоненте, в ECS есть система обработки компонентов, которая имеет список всех компонентов одного типа, и, итерируясь по ним, исполняет бизнес логику.&lt;/p&gt;
+
+&lt;p&gt;В чем здесь выгода?&lt;/p&gt;
+
+&lt;p&gt;Попробуйте в Unity отключить все компоненты определенного типа. Это возможно, но будет проблематично:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Найти все компоненты типа T и выключить их: FindObjectsOfType&lt;T&gt;, который по сути итерируется по всем объектам в сцене.&lt;/T&gt;&lt;/li&gt;
+  &lt;li&gt;Сделать статическую переменную в классе компонента и проверять ее внутри Update и других методов, т.е. по сути исполнять N раз одну и ту же работу в каждом компоненте.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Если у вас есть система физики, которая работает с рядом физических компонентов, обновляя их, то выключить физику можно простейшим выключением апдейта самой системы.&lt;/p&gt;
+
+&lt;p&gt;Аналогично, если в Update есть какое-то вычисление, одинаковое для всех компонентов, то система его может закэшировать.&lt;/p&gt;
+
+&lt;p&gt;Итерация и обработка однотипных компонентов происходит гораздо быстрее.&lt;/p&gt;
+
+&lt;p&gt;Система может манипулировать несколькими типами компонентов и эффективно их обрабатывать, решая проблему зависимостей и взаимодействия. Даже если у вас несколько типов компонентов, код логично сгруппирован в системе.&lt;/p&gt;
+
+&lt;p&gt;А самое главное – порядок обработки компонентов системами строго определен, так как системы обрабатывают компоненты последовательно.&lt;/p&gt;
+
+&lt;p&gt;Кстати, Unity уже сделали &lt;a href=&quot;https://github.com/Unity-Technologies/EntityComponentSystemSamples&quot;&gt;свою реализацию ECS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;подводим-итоги&quot;&gt;Подводим итоги&lt;/h2&gt;
+
+&lt;p&gt;Люди все еще думают классическими терминами ООП, и стремятся “унаследовать” все подряд. Для механики игр больше подходят другие решения вроде Entity Component System (ECS). И да, если вы не пробовали писать код с таким подходом, то скорее всего придется немножко сломать голову и поменять мышление.&lt;/p&gt;
+
+&lt;h2 id=&quot;ссылки&quot;&gt;Ссылки&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/junkdog/artemis-odb/wiki/Introduction-to-Entity-Systems&quot;&gt;Introduction to Entity Systems&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/sschmid/Entitas-CSharp&quot;&gt;Entitas: Entity Compoent System Framework specifically made for C# &amp;amp; Unity&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://habr.com/post/343778/&quot;&gt;Шаблон проектирования Entity-Component-System — реализация и пример игры&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.davidpol.com/2018/03/28/survival-shooter-ecs/&quot;&gt;Survival Shooter using Unity’s Entity Component System&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Poisonous John</name></author><category term="Gamedev" /><category term="Architecture" /><category term="Patterns" /><summary type="html">Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://fateev.pro/imgs/health-component.jpg" /></entry><entry><title type="html">Оффлайн режим в клиент-серверных приложениях</title><link href="https://fateev.pro/ru/gamedev/offline-mode-in-client-server-apps.html" rel="alternate" type="text/html" title="Оффлайн режим в клиент-серверных приложениях" /><published>2018-07-11T17:33:30+03:00</published><updated>2018-07-11T17:33:30+03:00</updated><id>https://fateev.pro/ru/gamedev/offline-mode</id><content type="html" xml:base="https://fateev.pro/ru/gamedev/offline-mode-in-client-server-apps.html">&lt;p&gt;Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют различные социальные составляющие: кланы, чаты, список друзей, да что угодно. И каждый пук уходит в аналитику.&lt;/p&gt;
 
 &lt;p&gt;Конечно же, сетап команды предполагает два отдельных юнита, которые занимаются своей частью: одни – сервером, другие – клиентом. Есть несколько вариантов, как ведется разработка.&lt;/p&gt;
 
@@ -321,4 +419,4 @@ Common error response looks like this:&lt;/p&gt;
 &lt;p&gt;token.clear();&lt;/p&gt;
 &lt;p&gt;refreshAccount();&lt;br /&gt; }&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;Не знаю что конкретно вызывало краш, обозначенная строчка ничего криминального не делала, но закомментив ее, все заработало&lt;/p&gt;</content><author><name>Poisonous John</name></author><category term="Crash" /><category term="Facebook" /><category term="iOS" /><category term="ObjectiveC" /><category term="SDK" /><summary type="html">Каким-то необычайно странным образом столкнулся со следующей проблемой: Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапускаем приложениеПолучаем crash на objc_release (двойной релиз) Включив Enable Zombie Objects, локализовал проблему: [FBSession release] message sent to deallocated instance В проекте выключен ARC, код брал из документации FB. Покопавшись еще немного (и приняв во внимание, что, скорее всего, FBSession релизится при logout) нашел функцию, которая приводила к крашу: void IOSFacebook::logout() { [FBSession.activeSession closeAndClearTokenInformation]; [FBSession.activeSession close]; // [FBSession setActiveSession:nil]; Эта строчка вызывала краш token.clear(); refreshAccount(); } &amp;nbsp; Не знаю что конкретно вызывало краш, обозначенная строчка ничего криминального не делала, но закомментив ее, все заработало</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2.png" /></entry><entry><title type="html">XCode5: Assistant editor</title><link href="https://fateev.pro/dev-tools/xcode5-assistant-editor.html" rel="alternate" type="text/html" title="XCode5: Assistant editor" /><published>2014-04-02T13:50:19+04:00</published><updated>2014-04-02T13:50:19+04:00</updated><id>https://fateev.pro/dev-tools/xcode5-assistant-editor</id><content type="html" xml:base="https://fateev.pro/dev-tools/xcode5-assistant-editor.html">&lt;p&gt;&lt;a href=&quot;http://fateev.pro/wp-content/uploads/2014/04/xcode-logo.png&quot;&gt;&lt;img class=&quot;alignleft size-medium wp-image-299&quot; title=&quot;xcode-logo&quot; src=&quot;http://fateev.pro/wp-content/uploads/2014/04/xcode-logo-300x300.png&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;300&quot; /&gt;&lt;/a&gt;Задолбало тратить свободное рабочее место в окне, и я занялся поисками как эффективно использовать рабочую область в XCode5. После недолгих поисков наткнулся на эту &lt;a href=&quot;http://geekanddad.wordpress.com/2012/03/11/xcode-4-tip-option-key-directs-open-action-to-assistant-editor/&quot; rel=&quot;nofollow&quot;&gt;статью &lt;/a&gt; . которая позволила понять как добиться такой простой фишки как быстрое открытие файла в Assistant editor’e. Для этого достаточно вызвать диалог &lt;strong&gt;Cmd + Shift + O&lt;/strong&gt;, а затем при выборе того что открыть нажать &lt;strong&gt;Option + Enter&lt;/strong&gt;, это сразу же откроет нужное в Assistant editor’e. В самой же статье описано как можно использовать несколько Assistant editor’ов. От себя добавлю, что навигацию между ними можно осуществлять с помощью окна вызываемого по &lt;strong&gt;Cmd+J&lt;/strong&gt;.&lt;/p&gt;</content><author><name>Poisonous John</name></author><category term="daily" /><category term="tools" /><category term="xcode" /><summary type="html">Задолбало тратить свободное рабочее место в окне, и я занялся поисками как эффективно использовать рабочую область в XCode5. После недолгих поисков наткнулся на эту статью . которая позволила понять как добиться такой простой фишки как быстрое открытие файла в Assistant editor’e. Для этого достаточно вызвать диалог Cmd + Shift + O, а затем при выборе того что открыть нажать Option + Enter, это сразу же откроет нужное в Assistant editor’e. В самой же статье описано как можно использовать несколько Assistant editor’ов. От себя добавлю, что навигацию между ними можно осуществлять с помощью окна вызываемого по Cmd+J.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://fateev.pro/wp-content/uploads/2014/04/xcode-logo.png" /></entry></feed>
+&lt;p&gt;Не знаю что конкретно вызывало краш, обозначенная строчка ничего криминального не делала, но закомментив ее, все заработало&lt;/p&gt;</content><author><name>Poisonous John</name></author><category term="Crash" /><category term="Facebook" /><category term="iOS" /><category term="ObjectiveC" /><category term="SDK" /><summary type="html">Каким-то необычайно странным образом столкнулся со следующей проблемой: Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапускаем приложениеПолучаем crash на objc_release (двойной релиз) Включив Enable Zombie Objects, локализовал проблему: [FBSession release] message sent to deallocated instance В проекте выключен ARC, код брал из документации FB. Покопавшись еще немного (и приняв во внимание, что, скорее всего, FBSession релизится при logout) нашел функцию, которая приводила к крашу: void IOSFacebook::logout() { [FBSession.activeSession closeAndClearTokenInformation]; [FBSession.activeSession close]; // [FBSession setActiveSession:nil]; Эта строчка вызывала краш token.clear(); refreshAccount(); } &amp;nbsp; Не знаю что конкретно вызывало краш, обозначенная строчка ничего криминального не делала, но закомментив ее, все заработало</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2.png" /></entry></feed>
