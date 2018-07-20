@@ -3,8 +3,8 @@ title: 'Система компонентов cущностей (Entity Componen
 date: 2018-07-11T14:33:30+00:00
 author: Poisonous John
 layout: post
-guid: /ru/gamedev/component-system.html
-permalink: /ru/gamedev/comopnent-system.html
+guid: /ru/gamedev/entity-component-system.html
+permalink: /ru/gamedev/entity-component-system.html
 image: /imgs/health-component.jpg
 categories:
   - Gamedev
