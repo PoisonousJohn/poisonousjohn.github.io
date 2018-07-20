@@ -1,6 +1,6 @@
 ---
 title: 'Система компонентов cущностей (Entity Component System)'
-date: 2018-07-11T14:33:30+00:00
+date: 2018-07-20T14:33:30+00:00
 author: Poisonous John
 layout: post
 guid: /ru/gamedev/entity-component-system.html
