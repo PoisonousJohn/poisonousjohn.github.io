@@ -58,8 +58,8 @@ autopages:
   # Category pages, omit entire config element to disable
   categories:
     # Optional, the list of layouts that should be processed for every category found in the site
-    layouts:
-      - 'autopage_category.html'
+    # layouts:
+      # - 'autopage_category.html'
     # Optional, the title that each category paginate page should get (:cat is replaced by the Category name)
     title: 'Posts in category :cat'
     # Optional, the permalink for the  pagination page (:cat is replaced),
