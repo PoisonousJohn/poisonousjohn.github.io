@@ -9,7 +9,7 @@ permalink: /about/
     <div class="about-pic">
         <img src="/wp-content/uploads/2012/09/IMG_9760_final_bw-300x300.jpg" />
         <p>Ivan Fateev<br/>(Poisonous John)</p>
-        <p>Technical Evangelist <br/> (Cloud Solution Architect) <br/> @ Microsoft</p>
+        <p>Mobile Development Team Lead @ Anna Money</p>
         <div class="social-links">
             <a href="https://github.com/PoisonousJohn/">
                 <img src="/imgs/github.png" alt="Github profile" />
@@ -46,7 +46,7 @@ permalink: /about/
             <div class="skill-name">Go</div>
             <div class="skill-value"><div style="width: 15%;"></div></div>
             <div class="skill-name">Java</div>
-            <div class="skill-value"><div style="width: 25%;"></div></div>
+            <div class="skill-value"><div style="width: 60%;"></div></div>
         </div>
         <h2>Frameworks & Libraries</h2>
         <div class="skills">
@@ -56,6 +56,13 @@ permalink: /about/
             <div class="skill-value"><div style="width: 30%;"></div></div>
             <div class="skill-name">Symfony2</div>
             <div class="skill-value"><div style="width: 90%;"></div></div>
+        </div>
+        <h2>Platforms</h2>
+        <div class="skills">
+            <div class="skill-name">iOS</div>
+            <div class="skill-value"><div style="width: 65%;"></div></div>
+            <div class="skill-name">Android</div>
+            <div class="skill-value"><div style="width: 40%;"></div></div>
         </div>
         <h2>Other</h2>
         <div class="skills">
