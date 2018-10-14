@@ -12,7 +12,7 @@ layout: default
 
         <p>
           {% if post.image %}
-          <img src={{post.image}} align="left"/>
+          <img src={{post.image}} align="center"/>
           {% endif %}
           {{ post.content | strip_html | truncatewords: 30 }}
         </p>
