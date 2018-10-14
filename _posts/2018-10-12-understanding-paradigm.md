@@ -24,7 +24,9 @@ tags:
 
 Я вижу, как библиотеку RX (для Unity это [UniRx](https://github.com/neuecc/UniRx)) пользуют в разных проектах. В частности, один из вариантов использования -- это обертка над API. Оно и понятно, благодаря RX можно удобно комбинировать запросы, реагировать на ошибки и тому подобное.
 
-Давайте посмотрим на пример. Я буду писать на .Net Core и Rx.Net, но его можно легко транслировать на Unity и UniRx.
+Давайте посмотрим на пример. Я буду писать на .Net Core и Rx.Net, но его можно легко транслировать на Unity и UniRx. Если вы знакомы с RX, то можете пропустить следующую секцию, и перейти к [следующей части](#understanding-paradigm)
+
+## Пример работы с API через RX.Net
 
 Итак, предположим, у нас есть некий интерфейс коммуникации с сервером.
 
@@ -273,5 +275,216 @@ public class LoginRepositoryStub {
 }
 {% endhighlight %}
 
+Ну и в конце, после авторизации, нам нужно получить UserState.
+
+{% highlight csharp %}
+
+{% endhighlight %}
+
 Таким образом, Retry и Timeout будут инкапсулированы в репозитории, и пользователю не нужно о них думать.
 
+Финальный стрим будет выглядеть следующим образом:
+{% highlight csharp %}
+IDisposable disposable = loginRepository.GetToken("device id")
+	.SelectMany(token => {
+		Console.WriteLine($"Got token: {token}. Fetching user state");
+		return loginRepository.GetUserSave(token)
+				.Select(state => {
+					Console.WriteLine("state: " + state);
+					return state;
+				});
+	})
+	.Finally(() => {
+		exit = true;
+		Console.WriteLine("Finished getting the token");
+	})
+	.Subscribe(userState => {
+		Console.WriteLine($"User's cash: {userState.cash}");
+	},
+	e => {
+		Console.WriteLine($"Got exception while getting the state: {e}");
+	},
+	() => {
+		Console.WriteLine($"Completed");
+	});
+{% endhighlight %}
+
+## Соблюдаем философию RX
+<a name="understanding-paradigm"></a>
+
+Итак, давайте подведем краткие итоги. На данном этапе ясно, что RX позволяет легко и прозрачно внедрять логику вроде ретрая или таймаутов. В целом, логика работы с асинхрорнными операциями выглядит более стройно и понятно.
+
+> Пытливый ум читателя может заметить, что то же самое можно было бы сделать с помощью async/await, но не во всех версиях Unity/С# оно доступно, да и обработка ошибок, на мой взгляд, при таком подходе, не так прозрачна. В любом случае -- решать вам.
+
+Давайте вернемся к началу статьи. Я сказал, что важно понимать парадигму, чтобы максимально извлекать из нее выгоду. Что в приведенном мною примере не так?
+
+Реактивное программирование потому и называется реактивным, что весь код должен реагировать на события. Мы должны создавать все стримы событий заранее. Тогда мы будем уверены, что, когда прилетит событие, все обновится как надо.
+
+В описанном же примере стрим "пассивный". То есть посылка запроса происходит во время подписки на событие. Мы одновременно запрашиваем данные, и их читаем. Более того, такая подписка действую всего лишь один раз, из-за `SingleAsync`.
+
+Это очень ограничивает варианты использования кода. Например, мы можем либо привязать код обновления к загрузке какого-либо вью, либо к кнопке "refresh". Если нам нужны обновления в реальном времени, то мы делаем периодический refresh, что совсем не красиво.
+
+Не смотря на то, что это естественно для REST API, это убивает всю гибкость и выгоду от RX.
+
+В идеологии RX, запрос данных и реакция на событие об обновлении данных &mdash; две разные задачи, которые должны обрабатываться отдельно. Если вы знакомы с паттерном [MVVM](https://ru.wikipedia.org/wiki/Model-View-ViewModel), то можете заметить, что в нем изменение модели и обновление вьюхи разделено. Обновление вью производится с помощью байндингов, которые реагируют на события. Изменение модели производится с помощью команд.
+
+RX по сути требует такого же подхода. Как же это воплотить при работе с API?
+
+## Reactive API
+
+Представим, что запрос данных &mdash; это команда в терминах MVVM. А ответы от API -- это событие, которое может прикатить в любое время. Если мы их разделим, то все вьюхи при старте сразу могут подписаться на событие обновления, а мы можем быть уверены, что данные будут всегда акутальны.
+
+Запросить же обновление данных мы можем из любого места программы. При этом, в отличие от предыдущего подхода, нам не нужно будет менять код обновления view. Да и вообще мы можем быть совершенно отвязаны от view.
+
+Итак, интерфейс меняется следующим образом:
+
+using System;
+using System.Reactive;
+using System.Reactive.Linq;
+using Game.Models;
+
+{% highlight csharp %}
+using System;
+using System.Reactive;
+using System.Reactive.Linq;
+using Game.Models;
+
+public interface ILoginRepository {
+	#region commands
+
+	void fetchToken(string deviceId);
+	void fetchUserSave(string token);
+
+	#endregion
+
+	#region events
+
+	IObservable<string> GetTokenObservable();
+	IObservable<UserState> GetUserSaveObservable();
+
+	#endregion
+}
+{% endhighlight %}
+
+По интерфейсу сразу понятно как данные запросить, и как подписаться на обновления.
+
+Теперь к реализации.
+
+Что я меняю первым делом -- создаю отдельные Observable:
+
+{% highlight csharp %}
+public class LoginRepositoryStub : ILoginRepository
+{
+	private BehaviorSubject<string> _tokenSubject = new BehaviorSubject<string>(null);
+	private BehaviorSubject<UserState> _userStateSubject = new BehaviorSubject<UserState>(null);
+}
+{% endhighlight %}
+
+BehaviorSubject &mdash; классная штука. При подписке на него он сразу эммитит последнее известное ему onNext значение. Таким образом, если токен уже был получен, то подписчик будет обладать актуальным значением. Это такой своеобразный кэш.
+
+Если в какой-то момент мы поймем, что токен надо обновить, то достаточно просто вызывать fetchToken() и все заинтересованные его получат.
+
+Даже если нам необходимо периодическое обновление, то его легко сделать в одном месте по таймеру. Подписчиков может быть сколь угодно много.
+
+Но это еще не все. Часто в приложениях нужен прямо таки настоящий реалтайм, когда сервер уведомляет клиент об изменениях. Например, с использованием сокетов. Если это ваш случай, то изменить код с REST API на сокеты элементарно. Все подписки остаются прежними. Меняется только транспорт: присоединяемся к сокету, и прокидываем событие в BehaviorSubject.
+
+Важный момент: такой стрим не завершается никогда, при нормальных обстоятельствах. Если стрим закрылся, то это либо программа завершается, либо произошла ошибка. То есть, например, http ошибки прокидывать в этот стрим не нужно. Вся обработка ошибок должна уйти на другой слой логики.
+
+Итак, давайте посмотрим как изменилась реализация с разделением кода.
+
+{% highlight csharp %}
+public class LoginRepositoryStub : ILoginRepository
+{
+
+	// нужно учитывать, что при подписке может прийти null
+	private BehaviorSubject<string> _tokenSubject = new BehaviorSubject<string>(null);
+	// нужно учитывать, что при подписке может прийти null
+	private BehaviorSubject<UserState> _userStateSubject = new BehaviorSubject<UserState>(null);
+
+	private Action getTokenHandler;
+
+	private void ReturnToken() {
+		_tokenSubject.OnNext("user_stub_token");
+	}
+
+	public IObservable<string> GetTokenObservable()
+	{
+		return _tokenSubject;
+	}
+
+	public IObservable<UserState> GetUserSaveObservable()
+	{
+		return _userStateSubject;
+	}
+
+	public void fetchToken(string deviceId)
+	{
+		// вся логика работы с транспортом должна уйти на этот слой
+		Observable.Timer(TimeSpan.FromSeconds(1))
+			.Subscribe(__ => {
+				ReturnToken();
+			});
+	}
+
+	public void fetchUserSave(string token)
+	{
+		// вся логика работы с транспортом должна уйти на этот слой
+		Observable.Timer(TimeSpan.FromSeconds(1))
+			.Subscribe(__ => {
+				_userStateSubject.OnNext(new UserState());
+			});
+	}
+}
+{% endhighlight %}
+
+Здесь я сделал просто заглушку, которая присылает события с задержкой. Но на деле, в этом месте должен посылаться запрос и обрабатываться ошибки. Если пользователю нужно знать об ошибке, то нужно вывесить отдельный Observable с человекопонятным типом ошибки.
+
+Теперь посмотрим на сам стрим.
+
+{% highlight csharp %}
+static void Main(string[] args)
+{
+	Console.WriteLine("Started the program");
+	bool exit = false;
+	IDisposable disposable = loginRepository.GetTokenObservable()
+		.Finally(() => {
+			Console.WriteLine($"Closing token observable");
+		})
+		.Where(token => token != null)
+		.Subscribe(token => {
+			Console.WriteLine($"Got token {token}");
+			loginRepository.fetchUserSave(token);
+		},
+		e => {
+			Console.WriteLine($"Got exception while getting the token: {e}");
+		});
+
+	loginRepository.GetUserSaveObservable()
+		.Where(state => state != null)
+		.Subscribe(state => {
+			Console.WriteLine($"User's cash: {state.cash}");
+			exit = true;
+		});
+
+	loginRepository.fetchToken("device id");
+	while (!exit) {
+		Thread.Sleep(1);
+	}
+}
+{% endhighlight %}
+
+Интересные моменты:
+
+1. Теперь две отдельные подписки
+2. Подписки учитывают, что может прийти null, поэтому фильтруют ивенты
+3. Команды на запрос данных могут находиться в любом месте программы, как до подписки, так и после. Завязка на порядок вызова отсутствует.
+
+## Подводим итоги
+
+Фух, получилась довольно большая статья. Но основная мысль такова: недостаточно использовать парадигму, нужно полностью понять и принять ее философию. Если мы это не делаем, то сильно себя ограничиваем, тем самым теряя всю пользу от подхода.
+
+Сделаю удобную работу с API можно и нужно. Если утилизировать возможность реактивности по максимуму, разделяя запросы и события, то код будет понятен и предсказуем.
+
+Тем не менее, я хочу предостеречь о сложностях отладки RX стримов. когда что-то не работает, приходится повозится, зарываясь в дебрях колстека. Это один из негативных моментов работы с RX, да и ФП в целом.
+
+Как всегда, если у вас есть мысли по теме &mdash; буду рад услышать. Комменты, или ПМ приветствуются.
