@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Важность понимания парадигмы. RX для работы с API &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Важность понимания парадигмы. RX для работы с API" />
+    <meta property="og:description" content="Важность понимания парадигмы. RX для работы с API" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700"> -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/wp-content/uploads/2012/09/favicon.png">
+
+    <style>
+
+
+        .post-title {
+            font-size: 2rem;
+        }
+
+        nav {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            margin-right: 1rem;
+        }
+
+        section.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        .about-pic {
+            min-width: 300px;
+            width: 20%;
+            text-align: center;
+            margin-right: 1rem;
+            grid-column: 2;
+
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .social-links img {
+            width: 50px;
+        }
+
+        .about-details {
+            grid-column: span 3;
+        }
+
+        @media (min-width: 600px) {
+            .skills {
+                margin-right: 0px;
+            }
+            .about-details {
+                grid-column: 1 none;
+            }
+        }
+
+
+        .skill-value {
+            margin-top: 0.2rem;
+            border: solid 1px #ccc;
+            height: 0.7rem;
+            max-width: 300px;
+            width: 100%;
+        }
+        .skill-value div {
+            background-color: #aaa;
+            height: 100%;
+        }
+
+
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            /* float: left; */
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            /* width: 100px; */
+            margin-right: 1rem;
+            max-width: 100%;
+            max-height: 400px;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+        pre {
+            tab-size: 2;
+        }
+
+        html {
+            /* font-family: 'Times New Roman', Roman, serif; */
+            font-size: large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+
+    </style>
+</head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+        <section id="content">
+            <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2018-10-12 15:00:00 +0300">October 12, 2018</time>
+    
+  </div>
+
+  <h1 class="post-title">Важность понимания парадигмы. RX для работы с API</h1>
+  <div class="post-line"></div>
+
+  <p>Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывает что-то новое для нас. Возможно, что раньше мы не обращали внимание на них, или просто отсутствовала необходимость. Но теперь, когда она появилась, важно открыть свой разум, и освободить его от оков старых устоев.</p>
+
+<p>Когда мы изучаем что-то новое, бывает сложно перестроиться. Что такое парадигма? Это философия, образ мышления. Если его не понять, не придерживаться ему, то использование инструментов парадигмы становится бессмысленным.</p>
+
+<p>С этой проблемой столкнулись С++ программисты, когда популярность Си стала угасать, и многие Сишные программисты ринулись покорять новый, более популярный, более сложный язык. Проблема была в том, что С++ использовали как Си с классами, не пытаясь постичь ООП, соответствующие паттерны, ну вы поняли мысль.</p>
+
+<p>Хотя люди и получили новый инструмент, они просто не хотели менять свой образ мышления. Ведь для этого нужно многое переосмыслить, поменять образ мышления. Не все этого хотят, не все на это способны.</p>
+
+<p>Это я все к чему. <a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B5%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">Парадигма реактивного программирования</a> становится все более популярной. Если вы еще не знакомы с ней, я очень советую познакомиться.</p>
+
+<p>Я вижу, как библиотеку RX (для Unity это <a href="https://github.com/neuecc/UniRx">UniRx</a>) пользуют в разных проектах. В частности, один из вариантов использования – это обертка над API. Оно и понятно, благодаря RX можно удобно комбинировать запросы, реагировать на ошибки и тому подобное.</p>
+
+<p>Давайте посмотрим на пример. Я буду писать на .Net Core и Rx.Net, но его можно легко транслировать на Unity и UniRx. Если вы знакомы с RX, то можете пропустить следующую секцию, и перейти к <a href="#understanding-paradigm">следующей части</a></p>
+
+<h2 id="пример-работы-с-api-через-rxnet">Пример работы с API через RX.Net</h2>
+
+<p>Итак, предположим, у нас есть некий интерфейс коммуникации с сервером.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reactive</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reactive.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Game.Models</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="nc">ILoginRepository</span> <span class="p">{</span>
+	<span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">GetToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">deviceId</span><span class="p">);</span>
+	<span class="n">IObservable</span><span class="p">&lt;</span><span class="n">UserState</span><span class="p">&gt;</span> <span class="nf">GetUserSave</span><span class="p">(</span><span class="kt">string</span> <span class="n">token</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Здесь есть две простейшие операции: получить токен и получить сейв. Как правило, при старте игры мы получаем токен (если он протух или его не было), затем получаем сейв. В принципе это может быть объединено и в одну операцию. Но для демонстрации идеи я их разделил.</p>
+
+<p>Методы возвращают IObservable, что означает, что операция асинхронна, и может занять какое-то время.</p>
+
+<p>Сделаем простейшую заглушку для интерфейса.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reactive.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Game.Models</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">LoginRepositoryStub</span> <span class="p">:</span> <span class="n">ILoginRepository</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">GetToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">deviceId</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">Observable</span><span class="p">.</span><span class="nf">Return</span><span class="p">(</span><span class="s">"stub_user_token"</span><span class="p">)</span>
+					<span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+					<span class="p">.</span><span class="nf">SingleAsync</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="n">UserState</span><span class="p">&gt;</span> <span class="nf">GetUserSave</span><span class="p">(</span><span class="kt">string</span> <span class="n">token</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">Observable</span>
+					<span class="p">.</span><span class="nf">Return</span><span class="p">(</span><span class="k">new</span> <span class="nf">UserState</span><span class="p">())</span>
+					<span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+					<span class="p">.</span><span class="nf">SingleAsync</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Здесь оба метода возвращают фиксированное значение с небольшой задержкой.</p>
+
+<p>Обратите внимание, что здесь использован <code class="highlighter-rouge">SingleAsync</code>, который сразу закрывает стрим, после первого же события. Казалось бы, вполне логичное решение, ведь один запрос - один ответ.</p>
+
+<p><code class="highlighter-rouge">UserState</code> пример класса сейва, просто для демонстрации.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">namespace</span> <span class="nn">Game.Models</span> <span class="p">{</span>
+	<span class="k">public</span> <span class="k">class</span> <span class="nc">UserState</span> <span class="p">{</span>
+		<span class="k">public</span> <span class="kt">long</span> <span class="n">cash</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Ну и теперь попробуем это завести.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reactive.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reactive</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">understanding_paradigm</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="n">ILoginRepository</span> <span class="n">loginRepository</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">LoginRepositoryStub</span><span class="p">();</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Started the program"</span><span class="p">);</span>
+            <span class="kt">bool</span> <span class="n">exit</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+            <span class="n">loginRepository</span><span class="p">.</span><span class="nf">GetToken</span><span class="p">(</span><span class="s">"device id"</span><span class="p">)</span>
+                <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">token</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got token: </span><span class="p">{</span><span class="n">token</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+                <span class="p">},</span> <span class="n">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got exception while getting the token: </span><span class="p">{</span><span class="n">e</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+                <span class="p">},</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Finished getting the token"</span><span class="p">);</span>
+                    <span class="n">exit</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                <span class="p">});</span>
+            <span class="k">while</span> <span class="p">(!</span><span class="n">exit</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Thread</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Программа покажет следующий вывод:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Started the program
+Got token: stub_user_token
+Finished getting the token
+</code></pre></div></div>
+
+<p>Пока что все ок. Теперь попробуем сэмулировать ошибку сервиса. Привожу только измененные части.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">LoginRepositoryStub</span> <span class="p">:</span> <span class="n">ILoginRepository</span>
+<span class="p">{</span>
+	<span class="k">private</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;</span> <span class="n">getTokenHandler</span><span class="p">;</span>
+
+	<span class="k">private</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">ReturnToken</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">Observable</span><span class="p">.</span><span class="nf">Return</span><span class="p">(</span><span class="s">"user_stub_token"</span><span class="p">)</span>
+				<span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+				<span class="p">.</span><span class="nf">SingleAsync</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="k">private</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">ReturnError</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">Observable</span><span class="p">.</span><span class="n">Throw</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="k">new</span> <span class="nf">Exception</span><span class="p">(</span><span class="s">"Failed to get token"</span><span class="p">))</span>
+				<span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+				<span class="p">.</span><span class="nf">SingleAsync</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">GetToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">deviceId</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">getTokenHandler</span> <span class="p">=</span> <span class="n">getTokenHandler</span> <span class="p">==</span> <span class="k">null</span>
+							<span class="p">?</span> <span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;)</span><span class="n">ReturnError</span>
+							<span class="p">:</span> <span class="n">ReturnToken</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="nf">getTokenHandler</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>При первом запросе к GetToken возвращаю ошибку сервера. При втором, меняю имплементацию и возвращаю токен.</p>
+
+<p>Запускаем программу, и видим, что она висит. Третье сообщение не выводится никогда.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Started the program
+Got exception while getting the token: System.Exception: Failed to get token
+</code></pre></div></div>
+
+<p>Одна из частых ошибок – люди не предусматривают обработку завершения стрима с ошибкой. В данном случае ошибка обработана (выведена в консоль), но выход из программы не осуществлен, так как onComplete не вызвался. В данном случае в <code class="highlighter-rouge">exit = false</code> достаточно перенести в Finally.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">loginRepository</span><span class="p">.</span><span class="nf">GetToken</span><span class="p">(</span><span class="s">"device id"</span><span class="p">)</span>
+	<span class="p">.</span><span class="nf">Finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">exit</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+	<span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">token</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got token: </span><span class="p">{</span><span class="n">token</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">},</span> <span class="n">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got exception while getting the token: </span><span class="p">{</span><span class="n">e</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">},</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Finished getting the token"</span><span class="p">);</span>
+	<span class="p">});</span></code></pre></figure>
+
+<p>Теперь, обычная практика, добавить retry и таймаут, мало ли, может плохое соединение, и можно повторить запрос.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">loginRepository</span><span class="p">.</span><span class="nf">GetToken</span><span class="p">(</span><span class="s">"device id"</span><span class="p">)</span>
+	<span class="p">.</span><span class="nf">Timeout</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+	<span class="p">.</span><span class="nf">Retry</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+	<span class="p">.</span><span class="nf">Finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">exit</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Finished getting the token"</span><span class="p">);</span>
+	<span class="p">})</span>
+	<span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">token</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got token: </span><span class="p">{</span><span class="n">token</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">},</span> <span class="n">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got exception while getting the token: </span><span class="p">{</span><span class="n">e</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">});</span></code></pre></figure>
+
+<p>Чтобы поддержать задержку ошибки, нужно немного изменить метод <code class="highlighter-rouge">ReturnError</code>:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">private</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">ReturnError</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="n">Observable</span><span class="p">.</span><span class="nf">Return</span><span class="p">(</span><span class="s">"empty"</span><span class="p">)</span>
+				<span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+				<span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">o</span> <span class="p">=&gt;</span> <span class="n">Observable</span><span class="p">.</span><span class="n">Throw</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="k">new</span> <span class="nf">Exception</span><span class="p">(</span><span class="s">"failed to get token"</span><span class="p">)));</span>
+<span class="p">}</span></code></pre></figure>
+
+<blockquote>
+  <p>Обратите внимание! Мы не можем сделать просто <code class="highlighter-rouge">Observable.Throw&lt;string&gt;(new Exception("error")).Delay(TimeSpan.FromSeconds(10)))</code>. В таком случае Delay не будет работать, так как ошибка прерывает стрим моментально. Поэтому здесь я комбинирую стрим через SelectMany. Так же мы не можем воспользоваться Observable.Empty, так как он тоже сразу закроет стрим.</p>
+</blockquote>
+
+<p>Оператор Retry организован таким образом, что при возникновении ошибки, он переподписывается на стрим. В текущей реализации логика в методе <code class="highlighter-rouge">GetLogin()</code> не будет вызвана при переподписке. Поэтому необходимо его обновить.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">GetToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">deviceId</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">Observable</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">observer</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"GetToken called"</span><span class="p">);</span>
+		<span class="n">getTokenHandler</span> <span class="p">=</span> <span class="n">getTokenHandler</span> <span class="p">==</span> <span class="k">null</span>
+							<span class="p">?</span> <span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;)</span><span class="n">ReturnError</span>
+							<span class="p">:</span> <span class="n">ReturnToken</span><span class="p">;</span>
+		<span class="k">return</span> <span class="nf">getTokenHandler</span><span class="p">().</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">observer</span><span class="p">);</span>
+	<span class="p">});</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Здесь используется фабрика Observable.Create, которая будет вызывать функтор при каждой подписке. Таким образом мы можем быть уверены, что возвращаем разные результаты при Retry.</p>
+
+<p>Запускаем программу:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Started the program
+GetToken called
+GetToken called
+GetToken called
+Got exception while getting the token: System.TimeoutException: The operation has timed out.
+Finished getting the token
+</code></pre></div></div>
+
+<p>GetToken вызвался трижды, при этом весь стрим завершился с ошибкой таймаута. Если мы изменим задержку на приемлемые значения, то увидим следующий вывод:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Started the program
+GetToken called
+GetToken called
+Got token: user_stub_token
+</code></pre></div></div>
+
+<p>Прилеплять логику по ретраю и таймауту извне не красиво, поэтому мы можем перенести это в репозиторий.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">static</span> <span class="k">class</span> <span class="nc">APIRxExtensions</span> <span class="p">{</span>
+	<span class="k">private</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">DEFAULT_TIMEOUT_SECS</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+	<span class="k">private</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">DEFAULT_RETRY_COUNT</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+	<span class="k">public</span> <span class="k">static</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">WrapWithRetryAndTimeout</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">observable</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">observable</span>
+				<span class="p">.</span><span class="nf">Retry</span><span class="p">(</span><span class="n">DEFAULT_RETRY_COUNT</span><span class="p">)</span>
+				<span class="p">.</span><span class="nf">Timeout</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="n">DEFAULT_TIMEOUT_SECS</span><span class="p">));</span>
+	<span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">LoginRepositoryStub</span> <span class="p">{</span>
+	<span class="k">public</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">GetToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">deviceId</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">Observable</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">observer</span> <span class="p">=&gt;</span> <span class="p">{</span>
+			<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"GetToken called"</span><span class="p">);</span>
+			<span class="n">getTokenHandler</span> <span class="p">=</span> <span class="n">getTokenHandler</span> <span class="p">==</span> <span class="k">null</span>
+								<span class="p">?</span> <span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;)</span><span class="n">ReturnError</span>
+								<span class="p">:</span> <span class="n">ReturnToken</span><span class="p">;</span>
+			<span class="k">return</span> <span class="nf">getTokenHandler</span><span class="p">().</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">observer</span><span class="p">);</span>
+		<span class="p">}).</span><span class="nf">WrapWithRetryAndTimeout</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Ну и в конце, после авторизации, нам нужно получить UserState.</p>
+
+<p>Таким образом, Retry и Timeout будут инкапсулированы в репозитории, и пользователю не нужно о них думать.</p>
+
+<p>Финальный стрим будет выглядеть следующим образом:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">IDisposable</span> <span class="n">disposable</span> <span class="p">=</span> <span class="n">loginRepository</span><span class="p">.</span><span class="nf">GetToken</span><span class="p">(</span><span class="s">"device id"</span><span class="p">)</span>
+	<span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">token</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got token: </span><span class="p">{</span><span class="n">token</span><span class="p">}</span><span class="s">. Fetching user state"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="n">loginRepository</span><span class="p">.</span><span class="nf">GetUserSave</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+				<span class="p">.</span><span class="nf">Select</span><span class="p">(</span><span class="n">state</span> <span class="p">=&gt;</span> <span class="p">{</span>
+					<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"state: "</span> <span class="p">+</span> <span class="n">state</span><span class="p">);</span>
+					<span class="k">return</span> <span class="n">state</span><span class="p">;</span>
+				<span class="p">});</span>
+	<span class="p">})</span>
+	<span class="p">.</span><span class="nf">Finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">exit</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Finished getting the token"</span><span class="p">);</span>
+	<span class="p">})</span>
+	<span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">userState</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"User's cash: </span><span class="p">{</span><span class="n">userState</span><span class="p">.</span><span class="n">cash</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">},</span>
+	<span class="n">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got exception while getting the state: </span><span class="p">{</span><span class="n">e</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">},</span>
+	<span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Completed"</span><span class="p">);</span>
+	<span class="p">});</span></code></pre></figure>
+
+<h2 id="соблюдаем-философию-rx">Соблюдаем философию RX</h2>
+<p><a name="understanding-paradigm"></a></p>
+
+<p>Итак, давайте подведем краткие итоги. На данном этапе ясно, что RX позволяет легко и прозрачно внедрять логику вроде ретрая или таймаутов. В целом, логика работы с асинхрорнными операциями выглядит более стройно и понятно.</p>
+
+<blockquote>
+  <p>Пытливый ум читателя может заметить, что то же самое можно было бы сделать с помощью async/await, но не во всех версиях Unity/С# оно доступно, да и обработка ошибок, на мой взгляд, при таком подходе, не так прозрачна. В любом случае – решать вам.</p>
+</blockquote>
+
+<p>Давайте вернемся к началу статьи. Я сказал, что важно понимать парадигму, чтобы максимально извлекать из нее выгоду. Что в приведенном мною примере не так?</p>
+
+<p>Реактивное программирование потому и называется реактивным, что весь код должен реагировать на события. Мы должны создавать все стримы событий заранее. Тогда мы будем уверены, что, когда прилетит событие, все обновится как надо.</p>
+
+<p>В описанном же примере стрим “пассивный”. То есть посылка запроса происходит во время подписки на событие. Мы одновременно запрашиваем данные, и их читаем. Более того, такая подписка действую всего лишь один раз, из-за <code class="highlighter-rouge">SingleAsync</code>.</p>
+
+<p>Это очень ограничивает варианты использования кода. Например, мы можем либо привязать код обновления к загрузке какого-либо вью, либо к кнопке “refresh”. Если нам нужны обновления в реальном времени, то мы делаем периодический refresh, что совсем не красиво.</p>
+
+<p>Не смотря на то, что это естественно для REST API, это убивает всю гибкость и выгоду от RX.</p>
+
+<p>В идеологии RX, запрос данных и реакция на событие об обновлении данных — две разные задачи, которые должны обрабатываться отдельно. Если вы знакомы с паттерном <a href="https://ru.wikipedia.org/wiki/Model-View-ViewModel">MVVM</a>, то можете заметить, что в нем изменение модели и обновление вьюхи разделено. Обновление вью производится с помощью байндингов, которые реагируют на события. Изменение модели производится с помощью команд.</p>
+
+<p>RX по сути требует такого же подхода. Как же это воплотить при работе с API?</p>
+
+<h2 id="reactive-api">Reactive API</h2>
+
+<p>Представим, что запрос данных — это команда в терминах MVVM. А ответы от API – это событие, которое может прикатить в любое время. Если мы их разделим, то все вьюхи при старте сразу могут подписаться на событие обновления, а мы можем быть уверены, что данные будут всегда акутальны.</p>
+
+<p>Запросить же обновление данных мы можем из любого места программы. При этом, в отличие от предыдущего подхода, нам не нужно будет менять код обновления view. Да и вообще мы можем быть совершенно отвязаны от view.</p>
+
+<p>Итак, интерфейс меняется следующим образом:</p>
+
+<p>using System;
+using System.Reactive;
+using System.Reactive.Linq;
+using Game.Models;</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reactive</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Reactive.Linq</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Game.Models</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="nc">ILoginRepository</span> <span class="p">{</span>
+	<span class="err">#</span><span class="n">region</span> <span class="n">commands</span>
+
+	<span class="k">void</span> <span class="nf">fetchToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">deviceId</span><span class="p">);</span>
+	<span class="k">void</span> <span class="nf">fetchUserSave</span><span class="p">(</span><span class="kt">string</span> <span class="n">token</span><span class="p">);</span>
+
+	<span class="err">#</span><span class="n">endregion</span>
+
+	<span class="err">#</span><span class="n">region</span> <span class="n">events</span>
+
+	<span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">GetTokenObservable</span><span class="p">();</span>
+	<span class="n">IObservable</span><span class="p">&lt;</span><span class="n">UserState</span><span class="p">&gt;</span> <span class="nf">GetUserSaveObservable</span><span class="p">();</span>
+
+	<span class="err">#</span><span class="n">endregion</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>По интерфейсу сразу понятно как данные запросить, и как подписаться на обновления.</p>
+
+<p>Теперь к реализации.</p>
+
+<p>Что я меняю первым делом – создаю отдельные Observable:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">LoginRepositoryStub</span> <span class="p">:</span> <span class="n">ILoginRepository</span>
+<span class="p">{</span>
+	<span class="k">private</span> <span class="n">BehaviorSubject</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">_tokenSubject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BehaviorSubject</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+	<span class="k">private</span> <span class="n">BehaviorSubject</span><span class="p">&lt;</span><span class="n">UserState</span><span class="p">&gt;</span> <span class="n">_userStateSubject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BehaviorSubject</span><span class="p">&lt;</span><span class="n">UserState</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>BehaviorSubject — классная штука. При подписке на него он сразу эммитит последнее известное ему onNext значение. Таким образом, если токен уже был получен, то подписчик будет обладать актуальным значением. Это такой своеобразный кэш.</p>
+
+<p>Если в какой-то момент мы поймем, что токен надо обновить, то достаточно просто вызывать fetchToken() и все заинтересованные его получат.</p>
+
+<p>Даже если нам необходимо периодическое обновление, то его легко сделать в одном месте по таймеру. Подписчиков может быть сколь угодно много.</p>
+
+<p>Но это еще не все. Часто в приложениях нужен прямо таки настоящий реалтайм, когда сервер уведомляет клиент об изменениях. Например, с использованием сокетов. Если это ваш случай, то изменить код с REST API на сокеты элементарно. Все подписки остаются прежними. Меняется только транспорт: присоединяемся к сокету, и прокидываем событие в BehaviorSubject.</p>
+
+<p>Важный момент: такой стрим не завершается никогда, при нормальных обстоятельствах. Если стрим закрылся, то это либо программа завершается, либо произошла ошибка. То есть, например, http ошибки прокидывать в этот стрим не нужно. Вся обработка ошибок должна уйти на другой слой логики.</p>
+
+<p>Итак, давайте посмотрим как изменилась реализация с разделением кода.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">LoginRepositoryStub</span> <span class="p">:</span> <span class="n">ILoginRepository</span>
+<span class="p">{</span>
+
+	<span class="c1">// нужно учитывать, что при подписке может прийти null</span>
+	<span class="k">private</span> <span class="n">BehaviorSubject</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">_tokenSubject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BehaviorSubject</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+	<span class="c1">// нужно учитывать, что при подписке может прийти null</span>
+	<span class="k">private</span> <span class="n">BehaviorSubject</span><span class="p">&lt;</span><span class="n">UserState</span><span class="p">&gt;</span> <span class="n">_userStateSubject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">BehaviorSubject</span><span class="p">&lt;</span><span class="n">UserState</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+
+	<span class="k">private</span> <span class="n">Action</span> <span class="n">getTokenHandler</span><span class="p">;</span>
+
+	<span class="k">private</span> <span class="k">void</span> <span class="nf">ReturnToken</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">_tokenSubject</span><span class="p">.</span><span class="nf">OnNext</span><span class="p">(</span><span class="s">"user_stub_token"</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">GetTokenObservable</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">_tokenSubject</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="n">UserState</span><span class="p">&gt;</span> <span class="nf">GetUserSaveObservable</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="k">return</span> <span class="n">_userStateSubject</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="k">void</span> <span class="nf">fetchToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">deviceId</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="c1">// вся логика работы с транспортом должна уйти на этот слой</span>
+		<span class="n">Observable</span><span class="p">.</span><span class="nf">Timer</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+			<span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">__</span> <span class="p">=&gt;</span> <span class="p">{</span>
+				<span class="nf">ReturnToken</span><span class="p">();</span>
+			<span class="p">});</span>
+	<span class="p">}</span>
+
+	<span class="k">public</span> <span class="k">void</span> <span class="nf">fetchUserSave</span><span class="p">(</span><span class="kt">string</span> <span class="n">token</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="c1">// вся логика работы с транспортом должна уйти на этот слой</span>
+		<span class="n">Observable</span><span class="p">.</span><span class="nf">Timer</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
+			<span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">__</span> <span class="p">=&gt;</span> <span class="p">{</span>
+				<span class="n">_userStateSubject</span><span class="p">.</span><span class="nf">OnNext</span><span class="p">(</span><span class="k">new</span> <span class="nf">UserState</span><span class="p">());</span>
+			<span class="p">});</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Здесь я сделал просто заглушку, которая присылает события с задержкой. Но на деле, в этом месте должен посылаться запрос и обрабатываться ошибки. Если пользователю нужно знать об ошибке, то нужно вывесить отдельный Observable с человекопонятным типом ошибки.</p>
+
+<p>Теперь посмотрим на сам стрим.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Started the program"</span><span class="p">);</span>
+	<span class="kt">bool</span> <span class="n">exit</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+	<span class="n">IDisposable</span> <span class="n">disposable</span> <span class="p">=</span> <span class="n">loginRepository</span><span class="p">.</span><span class="nf">GetTokenObservable</span><span class="p">()</span>
+		<span class="p">.</span><span class="nf">Finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+			<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Closing token observable"</span><span class="p">);</span>
+		<span class="p">})</span>
+		<span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">token</span> <span class="p">=&gt;</span> <span class="n">token</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+		<span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">token</span> <span class="p">=&gt;</span> <span class="p">{</span>
+			<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got token </span><span class="p">{</span><span class="n">token</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">loginRepository</span><span class="p">.</span><span class="nf">fetchUserSave</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+		<span class="p">},</span>
+		<span class="n">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+			<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Got exception while getting the token: </span><span class="p">{</span><span class="n">e</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+		<span class="p">});</span>
+
+	<span class="n">loginRepository</span><span class="p">.</span><span class="nf">GetUserSaveObservable</span><span class="p">()</span>
+		<span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">state</span> <span class="p">=&gt;</span> <span class="n">state</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+		<span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">state</span> <span class="p">=&gt;</span> <span class="p">{</span>
+			<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"User's cash: </span><span class="p">{</span><span class="n">state</span><span class="p">.</span><span class="n">cash</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">exit</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+		<span class="p">});</span>
+
+	<span class="n">loginRepository</span><span class="p">.</span><span class="nf">fetchToken</span><span class="p">(</span><span class="s">"device id"</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(!</span><span class="n">exit</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">Thread</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Интересные моменты:</p>
+
+<ol>
+  <li>Теперь две отдельные подписки</li>
+  <li>Подписки учитывают, что может прийти null, поэтому фильтруют ивенты</li>
+  <li>Команды на запрос данных могут находиться в любом месте программы, как до подписки, так и после. Завязка на порядок вызова отсутствует.</li>
+</ol>
+
+<h2 id="подводим-итоги">Подводим итоги</h2>
+
+<p>Фух, получилась довольно большая статья. Но основная мысль такова: недостаточно использовать парадигму, нужно полностью понять и принять ее философию. Если мы это не делаем, то сильно себя ограничиваем, тем самым теряя всю пользу от подхода.</p>
+
+<p>Сделаю удобную работу с API можно и нужно. Если утилизировать возможность реактивности по максимуму, разделяя запросы и события, то код будет понятен и предсказуем.</p>
+
+<p>Тем не менее, я хочу предостеречь о сложностях отладки RX стримов. когда что-то не работает, приходится повозится, зарываясь в дебрях колстека. Это один из негативных моментов работы с RX, да и ФП в целом.</p>
+
+<p>Как всегда, если у вас есть мысли по теме — буду рад услышать. Комменты, или ПМ приветствуются.</p>
+
+<p>Исходный код по теме <a href="https://github.com/PoisonousJohn/articles/tree/master/Telegram_Posts/understanding-paradigm">здесь</a>.</p>
+
+
+</div>
+
+<div class="pagination">
+  
+  
+    <a href="/ru/gamedev/debug-tools.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+        </section>
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-10-15 00:33:35 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-34509649-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter16940533 = new Ya.Metrika({
+                        id:16940533,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/16940533" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <script type="text/javascript">!(function(w,d,s,l,x){w[l]=w[l]||[];var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=!0;j.src='//web.tolstoycomments.com/sitejs/app.js?i='+l+'&x='+x+'&t='+(new Date().getTime());f.parentNode.insertBefore(j,f)})(window,document,'script','tolstoycomments','1462');</script>
+    </footer>
+  </body>
+</html>
