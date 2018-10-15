@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2018-10-15T00:37:44+03:00</updated><id>https://fateev.pro/</id><title type="html">Ivan Fateev's Blog</title><subtitle>Learn new things, share your experience</subtitle><entry><title type="html">Важность понимания парадигмы. RX для работы с API</title><link href="https://fateev.pro/ru/programming/understanding-paradigm-rx-for-api.html" rel="alternate" type="text/html" title="Важность понимания парадигмы. RX для работы с API" /><published>2018-10-12T15:00:00+03:00</published><updated>2018-10-12T15:00:00+03:00</updated><id>https://fateev.pro/ru/programming/understanding-paradigm</id><content type="html" xml:base="https://fateev.pro/ru/programming/understanding-paradigm-rx-for-api.html">&lt;p&gt;&lt;img src=&quot;/imgs/paradigm-shift-graphic.jpg&quot; alt=&quot;Paradigm shift - A change from one way thinking to another&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2018-10-15T12:57:15+03:00</updated><id>https://fateev.pro/</id><title type="html">Ivan Fateev's Blog</title><subtitle>Learn new things, share your experience</subtitle><entry><title type="html">Важность понимания парадигмы. RX для работы с API</title><link href="https://fateev.pro/ru/programming/understanding-paradigm-rx-for-api.html" rel="alternate" type="text/html" title="Важность понимания парадигмы. RX для работы с API" /><published>2018-10-12T15:00:00+03:00</published><updated>2018-10-12T15:00:00+03:00</updated><id>https://fateev.pro/ru/programming/understanding-paradigm</id><content type="html" xml:base="https://fateev.pro/ru/programming/understanding-paradigm-rx-for-api.html">&lt;p&gt;&lt;img src=&quot;/imgs/paradigm-shift-graphic.jpg&quot; alt=&quot;Paradigm shift - A change from one way thinking to another&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывает что-то новое для нас. Возможно, что раньше мы не обращали внимание на них, или просто отсутствовала необходимость. Но теперь, когда она появилась, важно открыть свой разум, и освободить его от оков старых устоев.&lt;/p&gt;
 
@@ -301,17 +301,7 @@ Got token: user_stub_token
 
 &lt;p&gt;Итак, интерфейс меняется следующим образом:&lt;/p&gt;
 
-&lt;p&gt;using System;
-using System.Reactive;
-using System.Reactive.Linq;
-using Game.Models;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Reactive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Reactive.Linq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Game.Models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ILoginRepository&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ILoginRepository&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;region&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;
 
 	&lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fetchToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deviceId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
