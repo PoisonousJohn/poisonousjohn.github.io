@@ -340,17 +340,7 @@ RX по сути требует такого же подхода. Как же э
 
 Итак, интерфейс меняется следующим образом:
 
-using System;
-using System.Reactive;
-using System.Reactive.Linq;
-using Game.Models;
-
 {% highlight csharp %}
-using System;
-using System.Reactive;
-using System.Reactive.Linq;
-using Game.Models;
-
 public interface ILoginRepository {
 	#region commands
 
