@@ -14,10 +14,10 @@ permalink: /about/
             <a href="https://github.com/PoisonousJohn/">
                 <img src="/imgs/github.png" alt="Github profile" />
             </a>
-            <a href="https://twitter.com/Poisonous_John">
+            <a href="https://twitter.com/@Poisonous_John">
                 <img src="/imgs/twitter.png" alt="Twitter profile" />
             </a>
-            <a href="https://t.me/Poisonous_John">
+            <a href="https://tglink.ru/poisonous_john">
                 <img src="/imgs/telegram.png" alt="Telegram profile" />
             </a>
             <a href="https://www.linkedin.com/in/poisonousjohn/">
