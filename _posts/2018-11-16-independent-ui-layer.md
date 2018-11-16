@@ -1,6 +1,6 @@
 ---
 title: 'Независимый UI слой &mdash; ускоряем разработку UI'
-date: 2018-11-16T03:00:00+03:00
+date: 2018-11-16T00:00:00+03:00
 author: Poisonous John
 layout: post
 guid: /ru/gamedev/independent-ui-layer.html
