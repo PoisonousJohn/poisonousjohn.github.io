@@ -146,17 +146,17 @@ public class LoadableWindow : MonoBehaviour
 	public void init(ILoadableWindowViewModel model)
 	{
 		var disposable = new CompositeDisposable();
-		disposable.Add(model.buttonTitle.Subscribe(s => buttonText.text = s));
-		disposable.Add(model.error.Subscribe(s => errorText.text = s));
-		disposable.Add(model.content.Subscribe(s => content.text = s));
-		disposable.Add(model.state.Subscribe(s =>
+		model.buttonTitle.Subscribe(s => buttonText.text = s).AddTo(disposable);
+		model.error.Subscribe(s => errorText.text = s).AddTo(disposable);
+		model.content.Subscribe(s => content.text = s).AddTo(disposable);
+		model.state.Subscribe(s =>
 		{
 			spinner.gameObject.SetActive(s == LoadableWindowState.LOADING);
 			content.gameObject.SetActive(s == LoadableWindowState.READY);
 			button.gameObject.SetActive(s != LoadableWindowState.LOADING);
 			errorText.gameObject.SetActive(s == LoadableWindowState.ERROR);
-		}));
-		disposable.Add(button.onClick.AsObservable().Subscribe(u => model.ButtonClicked()));
+		}).AddTo(disposable);
+		button.onClick.AsObservable().Subscribe(u => model.ButtonClicked()).AddTo(disposable);
 		_viewModelSubscription = disposable;
 		_viewModelSubscription.AddTo(gameObject);
 	}
@@ -191,12 +191,11 @@ public class LoadableWindowTest : MonoBehaviour
 		window.init(_viewModel);
 		LoadContent();
 
-		_disposable.Add(_viewModel.buttonClicked.Subscribe(u => ButtonClicked()));
-		_disposable.Add(setErrorButton.onClick.AsObservable().Subscribe(u => SetError()));
-		_disposable.Add(setLoadingButton.onClick.AsObservable().Subscribe(u => SetLoading()));
-		_disposable.Add(setReadyButton.onClick.AsObservable().Subscribe(u => SetContent()));
-		_disposable.Add(loadContentButton.onClick.AsObservable().Subscribe(u => LoadContent()));
-
+		_viewModel.buttonClicked.Subscribe(u => ButtonClicked()).AddTo(_disposable);
+		setErrorButton.onClick.AsObservable().Subscribe(u => SetError()).AddTo(_disposable);
+		setLoadingButton.onClick.AsObservable().Subscribe(u => SetLoading()).AddTo(_disposable);
+		setReadyButton.onClick.AsObservable().Subscribe(u => SetContent()).AddTo(_disposable);
+		loadContentButton.onClick.AsObservable().Subscribe(u => LoadContent()).AddTo(_disposable);
 		_disposable.AddTo(gameObject);
 	}
 
