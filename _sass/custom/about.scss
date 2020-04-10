@@ -1,0 +1,67 @@
+.skills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin-right: 1rem;
+}
+
+section.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.about-pic {
+    min-width: 300px;
+    width: 20%;
+    text-align: center;
+    margin-right: 1rem;
+    grid-column: 2;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.about-name {
+    text-align: center;
+    margin-bottom: 0 !important;
+    font-weight: 600;
+    font-size: xxx-large !important;
+    margin-top: -1rem !important;
+}
+
+.about-position {
+    text-align: center;
+    color: #aaa;
+}
+
+.about-pic-img {
+    clip-path: circle(150px at center);
+}
+
+.social-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
+.social-links img {
+    width: 50px;
+}
+
+.about-details {
+    grid-column: span 3;
+}
+
+.skill-value {
+    margin-top: 0.2rem;
+    border: solid 1px #ccc;
+    height: 0.7rem;
+    max-width: 300px;
+    width: 100%;
+}
+.skill-value div {
+    background-color: #aaa;
+    height: 100%;
+}

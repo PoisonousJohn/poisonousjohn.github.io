@@ -2,13 +2,14 @@
 id: 109
 title: 'SonataAdminBundle: фильтры'
 date: 2012-10-09T01:31:41+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=109
 permalink: /symfony-sonata/sonataadminbundle-filtry.html
 dsq_thread_id:
   - "6094667200"
-image: /wp-content/uploads/2012/10/Screen-Shot-2012-10-09-at-1.32.37-AM.png
+header:
+  teaser:  /wp-content/uploads/2012/10/Screen-Shot-2012-10-09-at-1.32.37-AM.png
 categories:
   - Symfony Sonata
 tags:

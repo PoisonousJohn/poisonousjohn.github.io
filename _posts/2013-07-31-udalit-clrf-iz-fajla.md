@@ -2,13 +2,14 @@
 id: 219
 title: Удалить CLRF из файла
 date: 2013-07-31T12:20:55+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=219
 permalink: /dev-tools/udalit-clrf-iz-fajla.html
 dsq_thread_id:
   - "6095498545"
-image: /wp-content/uploads/2013/07/windows-8-fail.jpeg
+header:
+  teaser:  /wp-content/uploads/2013/07/windows-8-fail.jpeg
 categories:
   - Dev tools
 tags:

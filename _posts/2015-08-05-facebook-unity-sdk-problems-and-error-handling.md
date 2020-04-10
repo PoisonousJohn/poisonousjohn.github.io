@@ -2,13 +2,14 @@
 id: 344
 title: Facebook Unity SDK Problems and Error Handling
 date: 2015-08-05T10:58:45+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=344
 permalink: /gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html
 dsq_thread_id:
   - "6110913687"
-image: /wp-content/uploads/2014/05/67a6bfe5cb2.png
+header:
+  teaser:  /wp-content/uploads/2014/05/67a6bfe5cb2.png
 categories:
   - Unity
 tags:

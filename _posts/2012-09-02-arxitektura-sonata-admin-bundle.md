@@ -2,13 +2,14 @@
 id: 74
 title: Архитектура Sonata Admin Bundle
 date: 2012-09-02T16:35:47+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=74
 permalink: /symfony-sonata/arxitektura-sonata-admin-bundle.html
 dsq_thread_id:
   - "6094530426"
-image: /wp-content/uploads/2012/09/sonata.jpg
+header:
+  teaser:  /wp-content/uploads/2012/09/sonata.jpg
 categories:
   - Symfony Sonata
 tags:

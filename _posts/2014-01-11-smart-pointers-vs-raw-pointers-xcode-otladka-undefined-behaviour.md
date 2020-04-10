@@ -2,13 +2,14 @@
 id: 264
 title: 'Smart pointers vs raw pointers; XCode: отладка undefined behaviour'
 date: 2014-01-11T22:44:28+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=264
 permalink: /c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html
 dsq_thread_id:
   - "6600060489"
-image: /wp-content/uploads/2014/01/icon-lg-speed.png
+header:
+  teaser:  /wp-content/uploads/2014/01/icon-lg-speed.png
 categories:
   - C++
 tags:

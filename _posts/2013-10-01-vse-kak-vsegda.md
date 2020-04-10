@@ -2,13 +2,14 @@
 id: 249
 title: 'Все как всегда&#8230;'
 date: 2013-10-01T11:12:08+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=249
 permalink: /chronicles/vse-kak-vsegda.html
 dsq_thread_id:
   - "6200341522"
-image: /wp-content/uploads/2013/10/bx7fZI4.jpg
+header:
+  teaser:  /wp-content/uploads/2013/10/bx7fZI4.jpg
 categories:
   - Хроники
 ---

@@ -2,8 +2,8 @@
 id: 188
 title: 'Symfony2: Авторизация через соц. сети VKontakte, Facebook, Odnoklassniki. OAuth 2.0'
 date: 2013-04-10T14:35:21+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=188
 permalink: /symfony2/symfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html
 dsq_thread_id:
@@ -97,8 +97,10 @@ categories:
 {% endhighlight %}
 Cсылки для входа и выхода:
 {% highlight php %}
+{% raw %}
 <a href="{{ path('_vk_login') }}">VK</a> | <a href="{{ path('_ok_login') }}">OK</a> | <a href="{{ path('_fb_login') }}">FB</a>
 <a href="{{ path('fos_user_security_logout') }}">Выход</a>
+{% endraw %}
 {% endhighlight %}
 <blockquote>Также бандлы поддаются настройке! Посмотреть параметры можно <a href="https://github.com/ailove-dev/AbstractSocialBundle/blob/master/Classes/AbstractConfiguration.php">здесь</a>.</blockquote>
 &nbsp;

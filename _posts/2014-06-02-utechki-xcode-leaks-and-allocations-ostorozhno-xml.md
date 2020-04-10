@@ -2,13 +2,14 @@
 id: 281
 title: 'Утечки. XCode Leaks &#038; Allocations. Осторожно XML'
 date: 2014-06-02T12:50:39+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=281
 permalink: /gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html
 dsq_thread_id:
   - "6120493662"
-image: /wp-content/uploads/2014/06/crystal_xml.png
+header:
+  teaser:  /wp-content/uploads/2014/06/crystal_xml.png
 categories:
   - Gamedev
 tags:

@@ -2,8 +2,8 @@
 id: 127
 title: 'Genemu jquerydate: Как удалить native datepicker chrome browser`a'
 date: 2012-12-26T14:57:32+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=127
 permalink: /symfony2/genemu-jquerydate-kak-udalit-native-datepicker-chrome-browser-a.html
 dsq_thread_id:

@@ -2,8 +2,8 @@
 id: 389
 title: 'Waveshare 7&#8243; touchscreen showing lines and black screen'
 date: 2017-01-03T15:14:30+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=389
 permalink: /iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html
 vkapi_comments:
@@ -12,7 +12,8 @@ vkapi_buttons:
   - "1"
 dsq_thread_id:
   - "6094488106"
-image: /wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg
+header:
+  teaser:  /wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg
 categories:
   - IoT
   - Raspberry Pi

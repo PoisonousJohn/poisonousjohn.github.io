@@ -2,8 +2,8 @@
 id: 89
 title: StatusMapBundle
 date: 2012-09-06T23:05:45+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=89
 permalink: /chronicles/statusmapbundle.html
 dsq_thread_id:

@@ -1,0 +1,14 @@
+Ivan Fateev:
+  name: "Ivan Fateev"
+  bio: "Software engineer with more than 10 years of experience"
+  avatar: "/wp-content/uploads/2012/09/IMG_9760_final_bw-300x300.jpg"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/PoisonousJohn"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: https://www.linkedin.com/in/poisonousjohn/
+    - label: "Telegram"
+      icon: "fab fa-fw fa-telegram"
+      url: https://teleg.run/poisonous_john

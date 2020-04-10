@@ -2,13 +2,14 @@
 id: 306
 title: Facebook iOS SDK FBSession release message sent to deallocated object
 date: 2014-05-19T10:25:00+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=306
 permalink: /chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html
 dsq_thread_id:
   - "6113015115"
-image: /wp-content/uploads/2014/05/67a6bfe5cb2.png
+header:
+  teaser:  /wp-content/uploads/2014/05/67a6bfe5cb2.png
 categories:
   - ObjectiveC
   - Хроники

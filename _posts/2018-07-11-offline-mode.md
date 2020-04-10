@@ -1,11 +1,12 @@
 ---
 title: 'Оффлайн режим в клиент-серверных приложениях'
 date: 2018-07-11T14:33:30+00:00
-author: Poisonous John
-layout: post
+
+
 guid: /ru/gamedev/offline-mode-in-client-server-apps.html
 permalink: /ru/gamedev/offline-mode-in-client-server-apps.html
-image: /imgs/offline-mode-facade.png
+header:
+  teaser:  /imgs/offline-mode-facade.png
 categories:
   - Gamedev
 tags:

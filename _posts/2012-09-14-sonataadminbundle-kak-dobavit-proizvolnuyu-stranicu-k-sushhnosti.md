@@ -2,8 +2,8 @@
 id: 99
 title: 'SonataAdminBundle: как добавить произвольную страницу к сущности'
 date: 2012-09-14T01:33:24+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=99
 permalink: /symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html
 dsq_thread_id:

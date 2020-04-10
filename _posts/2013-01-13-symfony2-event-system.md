@@ -2,13 +2,14 @@
 id: 136
 title: 'Symfony2: Event system'
 date: 2013-01-13T19:11:44+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=136
 permalink: /php/symfony2-event-system.html
 dsq_thread_id:
   - "6095492892"
-image: /wp-content/uploads/2013/01/PublishSubscribeSolution.gif
+header:
+  teaser:  /wp-content/uploads/2013/01/PublishSubscribeSolution.gif
 categories:
   - PHP
   - Symfony2

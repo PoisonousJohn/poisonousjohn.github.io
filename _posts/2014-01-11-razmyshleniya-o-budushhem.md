@@ -2,8 +2,8 @@
 id: 262
 title: Размышления о будущем
 date: 2014-01-11T22:51:27+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=262
 permalink: /chronicles/razmyshleniya-o-budushhem.html
 vkapi_comments:
@@ -12,7 +12,8 @@ vkapi_buttons:
   - "1"
 dsq_thread_id:
   - "6100328018"
-image: /wp-content/uploads/2014/01/Paper-Money-icon.png
+header:
+  teaser:  /wp-content/uploads/2014/01/Paper-Money-icon.png
 categories:
   - Хроники
 ---

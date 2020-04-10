@@ -2,13 +2,14 @@
 id: 286
 title: Как сократить физический размер ресурсов
 date: 2014-01-23T17:25:47+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=286
 permalink: /gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html
 dsq_thread_id:
   - "6101654417"
-image: /wp-content/uploads/2014/01/archive.png
+header:
+  teaser:  /wp-content/uploads/2014/01/archive.png
 categories:
   - Gamedev
 tags:

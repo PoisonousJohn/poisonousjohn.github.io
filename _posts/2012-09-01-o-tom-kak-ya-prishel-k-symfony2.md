@@ -2,13 +2,14 @@
 id: 47
 title: О том, как я пришел к Symfony2
 date: 2012-09-01T23:44:44+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=47
 permalink: /chronicles/o-tom-kak-ya-prishel-k-symfony2.html
 dsq_thread_id:
   - "6095534844"
-image: /wp-content/uploads/2012/09/logo_symfony_header.png
+header:
+  teaser:  /wp-content/uploads/2012/09/logo_symfony_header.png
 categories:
   - Хроники
 tags:

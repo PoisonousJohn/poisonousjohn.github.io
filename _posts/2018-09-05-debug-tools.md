@@ -1,11 +1,12 @@
 ---
 title: 'Средства отладки'
 date: 2018-09-05T17:50:30+03:00
-author: Poisonous John
-layout: post
+
+
 guid: /ru/gamedev/debug-tools.html
 permalink: /ru/gamedev/debug-tools.html
-image: /imgs/gizmos.jpg
+header:
+  teaser:  /imgs/gizmos.jpg
 categories:
   - Gamedev
 tags:
@@ -15,8 +16,7 @@ tags:
 
 Сколько времени мы тратим в день, разбираясь в коде? Согласно [этой статье](https://blog.codinghorror.com/when-understanding-means-rewriting/) &mdash; 75%.
 
-![График: 75% -- понимание кода; 5% -- написание нового кода; 20% -- изменение существующего кода](/imgs/coding-activity-chart.png)
-Источник: [dmitripavlutin.com](https://dmitripavlutin.com/coding-like-shakespeare-practical-function-naming-conventions/)
+{% include figure image_path="/imgs/coding-activity-chart.png" caption="Источник: [dmitripavlutin.com](https://dmitripavlutin.com/coding-like-shakespeare-practical-function-naming-conventions/)" alt="График: 75% -- понимание кода; 5% -- написание нового кода; 20% -- изменение существующего кода" %}
 
 Это не удивительно. Хотя есть такая тенденция, что за людьми закрепляют какие-то части системы, все равно нам каждый день приходится читать чужой код. Свой код бывает понять сложно, а чужой дается нам еще тяжелее.
 Я уже писал про [командную работу](https://medium.com/gamedev-architecture/%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%B8-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BD%D0%B0%D1%8F-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-fd05952111f8) и про [любителей абстракций](https://medium.com/gamedev-architecture/%D0%B0%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%86%D0%B8%D1%8F%D0%BC%D0%B8-%D1%82%D0%B5%D0%B1%D0%B5-%D0%BF%D0%BE-%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D0%B5-d10655098020) в которых затрагивалась тема когнитивной нагрузки. Каждый день на нашей работе мы грузим свою голову по полной. И чем нагрузка выше, тем больше вероятность, что мы не захотим разбираться в том что есть, и начнем искать другие способы исправить/обойти ситуацию.

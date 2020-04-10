@@ -2,13 +2,14 @@
 id: 201
 title: Установка Boost на Mac OS X
 date: 2013-05-28T12:50:57+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=201
 permalink: /c_plus_plus/ustanovka-boost-na-mac-os-x.html
 dsq_thread_id:
   - "6095032898"
-image: /wp-content/uploads/2013/05/boost.png
+header:
+  teaser:  /wp-content/uploads/2013/05/boost.png
 categories:
   - C++
 tags:

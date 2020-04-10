@@ -2,8 +2,8 @@
 id: 83
 title: Genemu Form Bundle
 date: 2012-09-06T22:25:12+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=83
 permalink: /symfony-sonata/genemu-form-bundle.html
 dsq_thread_id:

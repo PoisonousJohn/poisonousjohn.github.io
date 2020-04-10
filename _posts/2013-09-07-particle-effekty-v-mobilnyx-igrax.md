@@ -2,13 +2,14 @@
 id: 228
 title: Particle эффекты в мобильных играх
 date: 2013-09-07T16:53:42+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=228
 permalink: /gamedev/particle-effekty-v-mobilnyx-igrax.html
 dsq_thread_id:
   - "6137284618"
-image: /wp-content/uploads/2013/09/fig9.png
+header:
+  teaser:  /wp-content/uploads/2013/09/fig9.png
 categories:
   - Gamedev
 tags:

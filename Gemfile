@@ -11,10 +11,11 @@ source "https://rubygems.org"
 gem "jekyll", "~> 3.8.3"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
-gem "tale"
+gem "minimal-mistakes-jekyll"
 gem "rouge"
 gem "kramdown"
 gem "jekyll-paginate-v2"
+gem "jekyll-archives"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.

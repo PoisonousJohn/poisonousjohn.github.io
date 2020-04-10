@@ -2,8 +2,8 @@
 id: 257
 title: Gamedev интересная сфера, но беспощадная
 date: 2013-12-12T16:19:43+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=257
 permalink: /gamedev/gamedev-interesnaya-sfera-no-suka-besposhhadnaya.html
 dsq_thread_id:
@@ -12,7 +12,8 @@ vkapi_comments:
   - "1"
 vkapi_buttons:
   - "1"
-image: /wp-content/uploads/2013/12/original.jpg
+header:
+  teaser:  /wp-content/uploads/2013/12/original.jpg
 categories:
   - Gamedev
 tags:

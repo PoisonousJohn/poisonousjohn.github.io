@@ -2,13 +2,14 @@
 id: 148
 title: 'Sonata Admin Bundle: One-To-Many и sonata_type_collection'
 date: 2013-01-21T15:00:44+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=148
 permalink: /symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html
 dsq_thread_id:
   - "6095480857"
-image: /wp-content/uploads/2013/01/Снимок-экрана-2013-01-21-в-14.52.53.png
+header:
+  teaser:  /wp-content/uploads/2013/01/Снимок-экрана-2013-01-21-в-14.52.53.png
 categories:
   - Symfony Sonata
 tags:

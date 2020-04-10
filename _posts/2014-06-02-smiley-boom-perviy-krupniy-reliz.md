@@ -2,13 +2,14 @@
 id: 301
 title: 'Smiley Boom &#8211; первый крупный релиз'
 date: 2014-06-02T12:52:50+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=301
 permalink: /chronicles/smiley-boom-perviy-krupniy-reliz.html
 dsq_thread_id:
   - "6119440949"
-image: /wp-content/uploads/2014/04/smileyBoom.png
+header:
+  teaser:  /wp-content/uploads/2014/04/smileyBoom.png
 categories:
   - Хроники
 tags:

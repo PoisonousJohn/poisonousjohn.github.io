@@ -1,20 +1,22 @@
 ---
 title: 'Важность понимания парадигмы. RX для работы с API'
 date: 2018-10-12T15:00:00+03:00
-author: Poisonous John
-layout: post
+
 guid: /ru/programming/understanding-paradigm-rx-for-api.html
 permalink: /ru/programming/understanding-paradigm-rx-for-api.html
-image: /imgs/paradigm-shift-graphic.jpg
+header:
+  teaser:  /imgs/paradigm-shift-graphic.jpg
 categories:
   - Programming
 tags:
   - Programming
+excerpt: >
+  Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывает что-то новое для нас. Возможно, что раньше мы не обращали внимание на них, или просто отсутствовала необходимость. Но теперь, когда она появилась, важно открыть свой разум, и освободить его от оков старых устоев.
 ---
 ![Paradigm shift - A change from one way thinking to another](/imgs/paradigm-shift-graphic.jpg)
 
-
 Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывает что-то новое для нас. Возможно, что раньше мы не обращали внимание на них, или просто отсутствовала необходимость. Но теперь, когда она появилась, важно открыть свой разум, и освободить его от оков старых устоев.
+
 
 Когда мы изучаем что-то новое, бывает сложно перестроиться. Что такое парадигма? Это философия, образ мышления. Если его не понять, не придерживаться ему, то использование инструментов парадигмы становится бессмысленным.
 
@@ -39,8 +41,8 @@ using System.Reactive.Linq;
 using Game.Models;
 
 public interface ILoginRepository {
-	IObservable<string> GetToken(string deviceId);
-	IObservable<UserState> GetUserSave(string token);
+    IObservable<string> GetToken(string deviceId);
+    IObservable<UserState> GetUserSave(string token);
 }
 {% endhighlight %}
 
@@ -57,20 +59,20 @@ using Game.Models;
 
 public class LoginRepositoryStub : ILoginRepository
 {
-	public IObservable<string> GetToken(string deviceId)
-	{
-		return Observable.Return("stub_user_token")
-					.Delay(TimeSpan.FromSeconds(1))
-					.SingleAsync();
-	}
+    public IObservable<string> GetToken(string deviceId)
+    {
+        return Observable.Return("stub_user_token")
+                    .Delay(TimeSpan.FromSeconds(1))
+                    .SingleAsync();
+    }
 
-	public IObservable<UserState> GetUserSave(string token)
-	{
-		return Observable
-					.Return(new UserState())
-					.Delay(TimeSpan.FromSeconds(1))
-					.SingleAsync();
-	}
+    public IObservable<UserState> GetUserSave(string token)
+    {
+        return Observable
+                    .Return(new UserState())
+                    .Delay(TimeSpan.FromSeconds(1))
+                    .SingleAsync();
+    }
 }
 {% endhighlight %}
 
@@ -82,9 +84,9 @@ public class LoginRepositoryStub : ILoginRepository
 
 {% highlight csharp %}
 namespace Game.Models {
-	public class UserState {
-		public long cash { get; set; }
-	}
+    public class UserState {
+        public long cash { get; set; }
+    }
 }
 {% endhighlight %}
 
@@ -135,28 +137,28 @@ Finished getting the token
 {% highlight csharp %}
 public class LoginRepositoryStub : ILoginRepository
 {
-	private Func<IObservable<string>> getTokenHandler;
+    private Func<IObservable<string>> getTokenHandler;
 
-	private IObservable<string> ReturnToken() {
-		return Observable.Return("user_stub_token")
-				.Delay(TimeSpan.FromSeconds(1))
-				.SingleAsync();
-	}
+    private IObservable<string> ReturnToken() {
+        return Observable.Return("user_stub_token")
+                .Delay(TimeSpan.FromSeconds(1))
+                .SingleAsync();
+    }
 
-	private IObservable<string> ReturnError() {
-		return Observable.Throw<string>(new Exception("Failed to get token"))
-				.Delay(TimeSpan.FromSeconds(1))
-				.SingleAsync();
-	}
+    private IObservable<string> ReturnError() {
+        return Observable.Throw<string>(new Exception("Failed to get token"))
+                .Delay(TimeSpan.FromSeconds(1))
+                .SingleAsync();
+    }
 
-	public IObservable<string> GetToken(string deviceId)
-	{
-		getTokenHandler = getTokenHandler == null
-							? (Func<IObservable<string>>)ReturnError
-							: ReturnToken;
+    public IObservable<string> GetToken(string deviceId)
+    {
+        getTokenHandler = getTokenHandler == null
+                            ? (Func<IObservable<string>>)ReturnError
+                            : ReturnToken;
 
-		return getTokenHandler();
-	}
+        return getTokenHandler();
+    }
 }
 {% endhighlight %}
 
@@ -173,40 +175,40 @@ Got exception while getting the token: System.Exception: Failed to get token
 
 {% highlight csharp %}
 loginRepository.GetToken("device id")
-	.Finally(() => exit = true)
-	.Subscribe(token => {
-		Console.WriteLine($"Got token: {token}");
-	}, e => {
-		Console.WriteLine($"Got exception while getting the token: {e}");
-	}, () => {
-		Console.WriteLine("Finished getting the token");
-	});
+    .Finally(() => exit = true)
+    .Subscribe(token => {
+        Console.WriteLine($"Got token: {token}");
+    }, e => {
+        Console.WriteLine($"Got exception while getting the token: {e}");
+    }, () => {
+        Console.WriteLine("Finished getting the token");
+    });
 {% endhighlight %}
 
 Теперь, обычная практика, добавить retry и таймаут, мало ли, может плохое соединение, и можно повторить запрос.
 
 {% highlight csharp %}
 loginRepository.GetToken("device id")
-	.Timeout(TimeSpan.FromSeconds(1))
-	.Retry(3)
-	.Finally(() => {
-		exit = true;
-		Console.WriteLine("Finished getting the token");
-	})
-	.Subscribe(token => {
-		Console.WriteLine($"Got token: {token}");
-	}, e => {
-		Console.WriteLine($"Got exception while getting the token: {e}");
-	});
+    .Timeout(TimeSpan.FromSeconds(1))
+    .Retry(3)
+    .Finally(() => {
+        exit = true;
+        Console.WriteLine("Finished getting the token");
+    })
+    .Subscribe(token => {
+        Console.WriteLine($"Got token: {token}");
+    }, e => {
+        Console.WriteLine($"Got exception while getting the token: {e}");
+    });
 {% endhighlight %}
 
 Чтобы поддержать задержку ошибки, нужно немного изменить метод `ReturnError`:
 
 {% highlight csharp %}
 private IObservable<string> ReturnError() {
-	return Observable.Return("empty")
-				.Delay(TimeSpan.FromSeconds(10))
-				.SelectMany(o => Observable.Throw<string>(new Exception("failed to get token")));
+    return Observable.Return("empty")
+                .Delay(TimeSpan.FromSeconds(10))
+                .SelectMany(o => Observable.Throw<string>(new Exception("failed to get token")));
 }
 {% endhighlight %}
 
@@ -217,13 +219,13 @@ private IObservable<string> ReturnError() {
 {% highlight csharp %}
 public IObservable<string> GetToken(string deviceId)
 {
-	return Observable.Create<string>(observer => {
-		Console.WriteLine("GetToken called");
-		getTokenHandler = getTokenHandler == null
-							? (Func<IObservable<string>>)ReturnError
-							: ReturnToken;
-		return getTokenHandler().Subscribe(observer);
-	});
+    return Observable.Create<string>(observer => {
+        Console.WriteLine("GetToken called");
+        getTokenHandler = getTokenHandler == null
+                            ? (Func<IObservable<string>>)ReturnError
+                            : ReturnToken;
+        return getTokenHandler().Subscribe(observer);
+    });
 }
 {% endhighlight %}
 
@@ -253,27 +255,27 @@ Got token: user_stub_token
 
 {% highlight csharp %}
 static class APIRxExtensions {
-	private const int DEFAULT_TIMEOUT_SECS = 10;
-	private const int DEFAULT_RETRY_COUNT = 3;
-	public static IObservable<T> WrapWithRetryAndTimeout<T>(this IObservable<T> observable) {
-		return observable
-				.Retry(DEFAULT_RETRY_COUNT)
-				.Timeout(TimeSpan.FromSeconds(DEFAULT_TIMEOUT_SECS));
-	}
+    private const int DEFAULT_TIMEOUT_SECS = 10;
+    private const int DEFAULT_RETRY_COUNT = 3;
+    public static IObservable<T> WrapWithRetryAndTimeout<T>(this IObservable<T> observable) {
+        return observable
+                .Retry(DEFAULT_RETRY_COUNT)
+                .Timeout(TimeSpan.FromSeconds(DEFAULT_TIMEOUT_SECS));
+    }
 
 }
 
 public class LoginRepositoryStub {
-	public IObservable<string> GetToken(string deviceId)
-	{
-		return Observable.Create<string>(observer => {
-			Console.WriteLine("GetToken called");
-			getTokenHandler = getTokenHandler == null
-								? (Func<IObservable<string>>)ReturnError
-								: ReturnToken;
-			return getTokenHandler().Subscribe(observer);
-		}).WrapWithRetryAndTimeout();
-	}
+    public IObservable<string> GetToken(string deviceId)
+    {
+        return Observable.Create<string>(observer => {
+            Console.WriteLine("GetToken called");
+            getTokenHandler = getTokenHandler == null
+                                ? (Func<IObservable<string>>)ReturnError
+                                : ReturnToken;
+            return getTokenHandler().Subscribe(observer);
+        }).WrapWithRetryAndTimeout();
+    }
 }
 {% endhighlight %}
 
@@ -288,27 +290,27 @@ public class LoginRepositoryStub {
 Финальный стрим будет выглядеть следующим образом:
 {% highlight csharp %}
 IDisposable disposable = loginRepository.GetToken("device id")
-	.SelectMany(token => {
-		Console.WriteLine($"Got token: {token}. Fetching user state");
-		return loginRepository.GetUserSave(token)
-				.Select(state => {
-					Console.WriteLine("state: " + state);
-					return state;
-				});
-	})
-	.Finally(() => {
-		exit = true;
-		Console.WriteLine("Finished getting the token");
-	})
-	.Subscribe(userState => {
-		Console.WriteLine($"User's cash: {userState.cash}");
-	},
-	e => {
-		Console.WriteLine($"Got exception while getting the state: {e}");
-	},
-	() => {
-		Console.WriteLine($"Completed");
-	});
+    .SelectMany(token => {
+        Console.WriteLine($"Got token: {token}. Fetching user state");
+        return loginRepository.GetUserSave(token)
+                .Select(state => {
+                    Console.WriteLine("state: " + state);
+                    return state;
+                });
+    })
+    .Finally(() => {
+        exit = true;
+        Console.WriteLine("Finished getting the token");
+    })
+    .Subscribe(userState => {
+        Console.WriteLine($"User's cash: {userState.cash}");
+    },
+    e => {
+        Console.WriteLine($"Got exception while getting the state: {e}");
+    },
+    () => {
+        Console.WriteLine($"Completed");
+    });
 {% endhighlight %}
 
 ## Соблюдаем философию RX
@@ -342,19 +344,19 @@ RX по сути требует такого же подхода. Как же э
 
 {% highlight csharp %}
 public interface ILoginRepository {
-	#region commands
+    #region commands
 
-	void fetchToken(string deviceId);
-	void fetchUserSave(string token);
+    void fetchToken(string deviceId);
+    void fetchUserSave(string token);
 
-	#endregion
+    #endregion
 
-	#region events
+    #region events
 
-	IObservable<string> GetTokenObservable();
-	IObservable<UserState> GetUserSaveObservable();
+    IObservable<string> GetTokenObservable();
+    IObservable<UserState> GetUserSaveObservable();
 
-	#endregion
+    #endregion
 }
 {% endhighlight %}
 
@@ -367,8 +369,8 @@ public interface ILoginRepository {
 {% highlight csharp %}
 public class LoginRepositoryStub : ILoginRepository
 {
-	private BehaviorSubject<string> _tokenSubject = new BehaviorSubject<string>(null);
-	private BehaviorSubject<UserState> _userStateSubject = new BehaviorSubject<UserState>(null);
+    private BehaviorSubject<string> _tokenSubject = new BehaviorSubject<string>(null);
+    private BehaviorSubject<UserState> _userStateSubject = new BehaviorSubject<UserState>(null);
 }
 {% endhighlight %}
 
@@ -388,44 +390,44 @@ BehaviorSubject &mdash; классная штука. При подписке н�
 public class LoginRepositoryStub : ILoginRepository
 {
 
-	// нужно учитывать, что при подписке может прийти null
-	private BehaviorSubject<string> _tokenSubject = new BehaviorSubject<string>(null);
-	// нужно учитывать, что при подписке может прийти null
-	private BehaviorSubject<UserState> _userStateSubject = new BehaviorSubject<UserState>(null);
+    // нужно учитывать, что при подписке может прийти null
+    private BehaviorSubject<string> _tokenSubject = new BehaviorSubject<string>(null);
+    // нужно учитывать, что при подписке может прийти null
+    private BehaviorSubject<UserState> _userStateSubject = new BehaviorSubject<UserState>(null);
 
-	private Action getTokenHandler;
+    private Action getTokenHandler;
 
-	private void ReturnToken() {
-		_tokenSubject.OnNext("user_stub_token");
-	}
+    private void ReturnToken() {
+        _tokenSubject.OnNext("user_stub_token");
+    }
 
-	public IObservable<string> GetTokenObservable()
-	{
-		return _tokenSubject;
-	}
+    public IObservable<string> GetTokenObservable()
+    {
+        return _tokenSubject;
+    }
 
-	public IObservable<UserState> GetUserSaveObservable()
-	{
-		return _userStateSubject;
-	}
+    public IObservable<UserState> GetUserSaveObservable()
+    {
+        return _userStateSubject;
+    }
 
-	public void fetchToken(string deviceId)
-	{
-		// вся логика работы с транспортом должна уйти на этот слой
-		Observable.Timer(TimeSpan.FromSeconds(1))
-			.Subscribe(__ => {
-				ReturnToken();
-			});
-	}
+    public void fetchToken(string deviceId)
+    {
+        // вся логика работы с транспортом должна уйти на этот слой
+        Observable.Timer(TimeSpan.FromSeconds(1))
+            .Subscribe(__ => {
+                ReturnToken();
+            });
+    }
 
-	public void fetchUserSave(string token)
-	{
-		// вся логика работы с транспортом должна уйти на этот слой
-		Observable.Timer(TimeSpan.FromSeconds(1))
-			.Subscribe(__ => {
-				_userStateSubject.OnNext(new UserState());
-			});
-	}
+    public void fetchUserSave(string token)
+    {
+        // вся логика работы с транспортом должна уйти на этот слой
+        Observable.Timer(TimeSpan.FromSeconds(1))
+            .Subscribe(__ => {
+                _userStateSubject.OnNext(new UserState());
+            });
+    }
 }
 {% endhighlight %}
 
@@ -436,32 +438,32 @@ public class LoginRepositoryStub : ILoginRepository
 {% highlight csharp %}
 static void Main(string[] args)
 {
-	Console.WriteLine("Started the program");
-	bool exit = false;
-	IDisposable disposable = loginRepository.GetTokenObservable()
-		.Finally(() => {
-			Console.WriteLine($"Closing token observable");
-		})
-		.Where(token => token != null)
-		.Subscribe(token => {
-			Console.WriteLine($"Got token {token}");
-			loginRepository.fetchUserSave(token);
-		},
-		e => {
-			Console.WriteLine($"Got exception while getting the token: {e}");
-		});
+    Console.WriteLine("Started the program");
+    bool exit = false;
+    IDisposable disposable = loginRepository.GetTokenObservable()
+        .Finally(() => {
+            Console.WriteLine($"Closing token observable");
+        })
+        .Where(token => token != null)
+        .Subscribe(token => {
+            Console.WriteLine($"Got token {token}");
+            loginRepository.fetchUserSave(token);
+        },
+        e => {
+            Console.WriteLine($"Got exception while getting the token: {e}");
+        });
 
-	loginRepository.GetUserSaveObservable()
-		.Where(state => state != null)
-		.Subscribe(state => {
-			Console.WriteLine($"User's cash: {state.cash}");
-			exit = true;
-		});
+    loginRepository.GetUserSaveObservable()
+        .Where(state => state != null)
+        .Subscribe(state => {
+            Console.WriteLine($"User's cash: {state.cash}");
+            exit = true;
+        });
 
-	loginRepository.fetchToken("device id");
-	while (!exit) {
-		Thread.Sleep(1);
-	}
+    loginRepository.fetchToken("device id");
+    while (!exit) {
+        Thread.Sleep(1);
+    }
 }
 {% endhighlight %}
 

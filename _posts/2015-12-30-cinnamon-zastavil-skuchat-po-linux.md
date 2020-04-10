@@ -2,8 +2,8 @@
 id: 366
 title: Cinnamon заставил скучать по Linux
 date: 2015-12-30T00:21:30+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=366
 permalink: /chronicles/cinnamon-zastavil-skuchat-po-linux.html
 vkapi_comments:
@@ -12,7 +12,8 @@ vkapi_buttons:
   - "1"
 dsq_thread_id:
   - "6143968910"
-image: /wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346.png
+header:
+  teaser:  /wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346.png
 categories:
   - Хроники
 tags:

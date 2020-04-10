@@ -2,13 +2,14 @@
 id: 237
 title: Любители велосипедов
 date: 2013-09-16T03:24:20+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=237
 permalink: /chronicles/lyubiteli-velosipedov.html
 dsq_thread_id:
   - "6200343001"
-image: /wp-content/uploads/2013/09/1678303_565afa6f.jpg
+header:
+  teaser:  /wp-content/uploads/2013/09/1678303_565afa6f.jpg
 categories:
   - Хроники
 tags:

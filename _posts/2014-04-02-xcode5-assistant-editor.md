@@ -2,13 +2,14 @@
 id: 298
 title: 'XCode5: Assistant editor'
 date: 2014-04-02T09:50:19+00:00
-author: Poisonous John
-layout: post
+
+
 guid: http://fateev.pro/?p=298
 permalink: /dev-tools/xcode5-assistant-editor.html
 dsq_thread_id:
   - "6600060260"
-image: /wp-content/uploads/2014/04/xcode-logo.png
+header:
+  teaser:  /wp-content/uploads/2014/04/xcode-logo.png
 categories:
   - Dev tools
 tags:
