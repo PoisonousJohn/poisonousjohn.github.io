@@ -1,267 +1,567 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Все как всегда… - Ivan Fateev’s blog</title>
+<meta name="description" content="Вот только я думал, что все идет хорошо, я наконец то завершу свою первую приложеньку и выложусь в стор, меня апнут, как и обещали, и тут начальница сообщает, что выпуститься мы должны так же на Android, хотя ранее планировалось только iOS. Нет, я, конечно, учитывал такой расклад, старался все ваять как можно более универсально, но все же это отодвинет срок релиза, чего я очень не хотел бы.  ">
+
+
+  <meta name="author" content="Ivan Fateev">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:title" content="Все как всегда…">
+<meta property="og:url" content="/chronicles/vse-kak-vsegda.html">
+
+
+  <meta property="og:description" content="Вот только я думал, что все идет хорошо, я наконец то завершу свою первую приложеньку и выложусь в стор, меня апнут, как и обещали, и тут начальница сообщает, что выпуститься мы должны так же на Android, хотя ранее планировалось только iOS. Нет, я, конечно, учитывал такой расклад, старался все ваять как можно более универсально, но все же это отодвинет срок релиза, чего я очень не хотел бы.  ">
+
+
+
+  <meta property="og:image" content="/wp-content/uploads/2013/10/bx7fZI4.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2013-10-01T06:12:08-05:00">
+
+
+
+
 
   
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
+  
+
+
+<link rel="canonical" href="/chronicles/vse-kak-vsegda.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ivan Fateev",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/headerPixels.js"></script>
+  
+
+
+    <!-- custom -->
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
         
-        Все как всегда&#8230; &middot; Ivan Fateev&#039;s Blog
-        
-    </title>
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Все как всегда&#8230;" />
-    <meta property="og:description" content="Все как всегда&#8230;" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="/assets/main.css">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700"> -->
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/wp-content/uploads/2012/09/favicon.png">
-
-    <style>
-
-
-        .post-title {
-            font-size: 2rem;
-        }
-
-        nav {
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            clear: both;
-        }
-
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 10px;
-            margin-right: 1rem;
-        }
-
-        section.about {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 10px;
-        }
-
-        .about-pic {
-            min-width: 300px;
-            width: 20%;
-            text-align: center;
-            margin-right: 1rem;
-            grid-column: 2;
-
-        }
-
-        .social-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        .social-links img {
-            width: 50px;
-        }
-
-        .about-details {
-            grid-column: span 3;
-        }
-
-        @media (min-width: 600px) {
-            .skills {
-                margin-right: 0px;
-            }
-            .about-details {
-                grid-column: 1 none;
-            }
-        }
-
-
-        .skill-value {
-            margin-top: 0.2rem;
-            border: solid 1px #ccc;
-            height: 0.7rem;
-            max-width: 300px;
-            width: 100%;
-        }
-        .skill-value div {
-            background-color: #aaa;
-            height: 100%;
-        }
-
-
-        .catalogue-item {
-            border: none;
-            padding: 0px;
-        }
-
-        div.tags, div.tags a {
-            /* display: none; */
-            border: 0px;
-            padding: 0px;
-            color: #aaa;
-        }
-
-        div.tags a {
-            text-decoration: underline;
-        }
-
-        div.tags {
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .post img {
-            /* float: left; */
-            padding-bottom: 1rem;
-        }
-
-        .catalogue-item img {
-            /* width: 100px; */
-            margin-right: 1rem;
-            max-width: 100%;
-            max-height: 400px;
-        }
-
-        div.pagination {
-            clear: both;
-        }
-
-        pre {
-            tab-size: 2;
-        }
-
-        html {
-            /* font-family: 'Times New Roman', Roman, serif; */
-            font-size: large;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-        }
-
-    </style>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N8RNTGQ');</script>
-    <!-- End Google Tag Manager -->
-</head>
-
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8RNTGQ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <nav class="nav">
-      <div class="nav-container">
-        <a href="/">
-          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        <a class="site-title" href="/">
+          Ivan Fateev's blog
+          
         </a>
-        <ul>
-          <li><a href="/about">About</a></li>
-        </ul>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Article categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/wp-content/uploads/2012/09/IMG_9760_final_bw-300x300.jpg" alt="Ivan Fateev" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ivan Fateev</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software engineer with more than 10 years of experience</p>
+
       </div>
-    </nav>
-
-    <main>
-        <section id="content">
-            <div class="post">
-  <div class="post-info">
-    <span>Written by</span>
-    
-        Poisonous John
-    
-
-    
-      <br>
-      <span>on&nbsp;</span><time datetime="2013-10-01 15:12:08 +0400">October 01, 2013</time>
     
   </div>
 
-  <h1 class="post-title">Все как всегда&#8230;</h1>
-  <div class="post-line"></div>
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
 
-  <p><img class="alignleft" title="bx7fZI4" src="http://fateev.pro/wp-content/uploads/2013/10/bx7fZI4-300x195.jpg" alt="" width="300" height="195" />Вот только я думал, что все идет хорошо, я наконец то завершу свою первую приложеньку и выложусь в стор, меня апнут, как и обещали, и тут начальница сообщает, что выпуститься мы должны так же на Android, хотя ранее планировалось только iOS. Нет, я, конечно, учитывал такой расклад, старался все ваять как можно более универсально, но все же это отодвинет срок релиза, чего я очень не хотел бы.</p>
+      
+        
+          
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+          
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Все как всегда…">
+    <meta itemprop="description" content="Вот только я думал, что все идет хорошо, я наконец то завершу свою первую приложеньку и выложусь в стор, меня апнут, как и обещали, и тут начальница сообщает, что выпуститься мы должны так же на Android, хотя ранее планировалось только iOS. Нет, я, конечно, учитывал такой расклад, старался все ваять как можно более универсально, но все же это отодвинет срок релиза, чего я очень не хотел бы.">
+    <meta itemprop="datePublished" content="2013-10-01T06:12:08-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Все как всегда…
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><img class="alignleft" title="bx7fZI4" src="http://fateev.pro/wp-content/uploads/2013/10/bx7fZI4-300x195.jpg" alt="" width="300" height="195" />Вот только я думал, что все идет хорошо, я наконец то завершу свою первую приложеньку и выложусь в стор, меня апнут, как и обещали, и тут начальница сообщает, что выпуститься мы должны так же на Android, хотя ранее планировалось только iOS. Нет, я, конечно, учитывал такой расклад, старался все ваять как можно более универсально, но все же это отодвинет срок релиза, чего я очень не хотел бы.</p>
 
 <p>Видимо, вскоре появится статья по порту приложеньки под Android. Смущает, что наше приложение universal, а при разработке под Android приходится учитывать гораздо больше разрешений.</p>
 
 <p>В общем я даже не знаю радоваться или плакать.</p>
 
+        
+      </section>
 
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/%D1%85%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B8" class="page__taxonomy-item" rel="tag">Хроники</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2013-10-01T06:12:08-05:00">October 1, 2013</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%D0%92%D1%81%D0%B5+%D0%BA%D0%B0%D0%BA+%D0%B2%D1%81%D0%B5%D0%B3%D0%B4%D0%B0%26%238230%3B%20%2Fchronicles%2Fvse-kak-vsegda.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fchronicles%2Fvse-kak-vsegda.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fchronicles%2Fvse-kak-vsegda.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/chronicles/lyubiteli-velosipedov.html" class="pagination--pager" title="Любители велосипедов
+">Previous</a>
+    
+    
+      <a href="/gamedev/gamedev-interesnaya-sfera-no-suka-besposhhadnaya.html" class="pagination--pager" title="Gamedev интересная сфера, но беспощадная
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/ui-arch.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/independent-ui-layer.html" rel="permalink">Независимый UI слой — ускоряем разработку UI
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главны...</p>
+  </article>
 </div>
 
-<div class="pagination">
-  
-    <a href="/gamedev/gamedev-interesnaya-sfera-no-suka-besposhhadnaya.html" class="left arrow">&#8592;</a>
-  
-  
-    <a href="/chronicles/lyubiteli-velosipedov.html" class="right arrow">&#8594;</a>
-  
+        
+          
 
-  <a href="#" class="top">Top</a>
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/paradigm-shift-graphic.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/programming/understanding-paradigm-rx-for-api.html" rel="permalink">Важность понимания парадигмы. RX для работы с API
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  11 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывае...</p>
+  </article>
 </div>
 
-        </section>
-    </main>
+        
+          
 
-    <footer>
-      <div class="tolstoycomments-feed"></div>
-      <span>
-        &copy; <time datetime="2018-11-16 19:44:03 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
-      </span>
 
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-34509649-1', 'auto');
-        ga('send', 'pageview');
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/gizmos.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/debug-tools.html" rel="permalink">Средства отладки
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-    </script>
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function (d, w, c) {
-            (w[c] = w[c] || []).push(function() {
-                try {
-                    w.yaCounter16940533 = new Ya.Metrika({
-                        id:16940533,
-                        clickmap:true,
-                        trackLinks:true,
-                        accurateTrackBounce:true,
-                        webvisor:true
-                    });
-                } catch(e) { }
-            });
 
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () { n.parentNode.insertBefore(s, n); };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://mc.yandex.ru/metrika/watch.js";
 
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else { f(); }
-        })(document, window, "yandex_metrika_callbacks");
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/16940533" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <script type="text/javascript">!(function(w,d,s,l,x){w[l]=w[l]||[];var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=!0;j.src='//web.tolstoycomments.com/sitejs/app.js?i='+l+'&x='+x+'&t='+(new Date().getTime());f.parentNode.insertBefore(j,f)})(window,document,'script','tolstoycomments','1462');
-    window.tolstoycomments.config = {
-        desktop_class: 'tolstoycomments-feed'
-    };
-    </script>
-    </footer>
+  4 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Сколько времени мы тратим в день, разбираясь в коде? Согласно этой статье — 75%.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/health-component.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/entity-component-system.html" rel="permalink">Система компонентов cущностей (Entity Component System)
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <noscript>
+    <div><img src="https://mc.yandex.ru/watch/16940533" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8RNTGQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Ivan Fateev. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+    <script src="/assets/js/main.min.js"></script>
+  
+    <script src="/assets/js/footerPixels.js"></script>
+  
+    <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
   </body>
 </html>

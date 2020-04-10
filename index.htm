@@ -1,537 +1,1466 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Ivan Fateev's blog</title>
+<meta name="description" content=" ">
+
+
+  <meta name="author" content="Ivan Fateev">
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:title" content="Ivan Fateev’s blog">
+<meta property="og:url" content="/">
+
+
+  <meta property="og:description" content=" ">
+
+
+
+
+
+
+
+
+
+
 
   
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
+  
+
+
+<link rel="canonical" href="/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ivan Fateev",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/headerPixels.js"></script>
+  
+
+
+    <!-- custom -->
+  </head>
+
+  <body class="layout--home">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
         
-        Ivan Fateev&#039;s Blog &middot; Ivan Fateev&#039;s Blog
-        
-    </title>
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Ivan Fateev&#039;s Blog" />
-    <meta property="og:description" content="Ivan Fateev&#039;s Blog" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="/assets/main.css">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700"> -->
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/wp-content/uploads/2012/09/favicon.png">
-
-    <style>
-
-
-        .post-title {
-            font-size: 2rem;
-        }
-
-        nav {
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            clear: both;
-        }
-
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 10px;
-            margin-right: 1rem;
-        }
-
-        section.about {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 10px;
-        }
-
-        .about-pic {
-            min-width: 300px;
-            width: 20%;
-            text-align: center;
-            margin-right: 1rem;
-            grid-column: 2;
-
-        }
-
-        .social-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        .social-links img {
-            width: 50px;
-        }
-
-        .about-details {
-            grid-column: span 3;
-        }
-
-        @media (min-width: 600px) {
-            .skills {
-                margin-right: 0px;
-            }
-            .about-details {
-                grid-column: 1 none;
-            }
-        }
-
-
-        .skill-value {
-            margin-top: 0.2rem;
-            border: solid 1px #ccc;
-            height: 0.7rem;
-            max-width: 300px;
-            width: 100%;
-        }
-        .skill-value div {
-            background-color: #aaa;
-            height: 100%;
-        }
-
-
-        .catalogue-item {
-            border: none;
-            padding: 0px;
-        }
-
-        div.tags, div.tags a {
-            /* display: none; */
-            border: 0px;
-            padding: 0px;
-            color: #aaa;
-        }
-
-        div.tags a {
-            text-decoration: underline;
-        }
-
-        div.tags {
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .post img {
-            /* float: left; */
-            padding-bottom: 1rem;
-        }
-
-        .catalogue-item img {
-            /* width: 100px; */
-            margin-right: 1rem;
-            max-width: 100%;
-            max-height: 400px;
-        }
-
-        div.pagination {
-            clear: both;
-        }
-
-        pre {
-            tab-size: 2;
-        }
-
-        html {
-            /* font-family: 'Times New Roman', Roman, serif; */
-            font-size: large;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-        }
-
-    </style>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N8RNTGQ');</script>
-    <!-- End Google Tag Manager -->
-</head>
-
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8RNTGQ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <nav class="nav">
-      <div class="nav-container">
-        <a href="/">
-          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        <a class="site-title" href="/">
+          Ivan Fateev's blog
+          
         </a>
-        <ul>
-          <li><a href="/about">About</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <main>
-        <section id="content">
-            <div class="catalogue">
-  
-    <a href="/ru/gamedev/independent-ui-layer.html" class="catalogue-item">
-      <div>
-        <time datetime="2018-11-16 00:00:00 +0300" class="catalogue-time">November 16, 2018</time>
-        <h1 class="catalogue-title">Независимый UI слой &mdash; ускоряем разработку UI</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/imgs/ui-arch.png align="center"/>
-          
-          Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главных головных болей в повседневной...
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/programming">Programming</a>,
-          
-          <a href="/tag/gamedev">Gamedev</a>
-          
-
-      
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Article categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
     </div>
-  
-    <a href="/ru/programming/understanding-paradigm-rx-for-api.html" class="catalogue-item">
-      <div>
-        <time datetime="2018-10-12 15:00:00 +0300" class="catalogue-time">October 12, 2018</time>
-        <h1 class="catalogue-title">Важность понимания парадигмы. RX для работы с API</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/imgs/paradigm-shift-graphic.jpg align="center"/>
-          
-          Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывает что-то новое для нас....
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/programming">Programming</a>
-          
-
-      
-    </div>
-  
-    <a href="/ru/gamedev/debug-tools.html" class="catalogue-item">
-      <div>
-        <time datetime="2018-09-05 17:50:30 +0300" class="catalogue-time">September 05, 2018</time>
-        <h1 class="catalogue-title">Средства отладки</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/imgs/gizmos.jpg align="center"/>
-          
-          Сколько времени мы тратим в день, разбираясь в коде? Согласно этой статье — 75%. Источник: dmitripavlutin.com Это не удивительно. Хотя есть такая тенденция, что за людьми закрепляют какие-то части системы,...
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/gamedev">Gamedev</a>,
-          
-          <a href="/tag/tools">Tools</a>
-          
-
-      
-    </div>
-  
-    <a href="/ru/gamedev/entity-component-system.html" class="catalogue-item">
-      <div>
-        <time datetime="2018-07-20 17:33:30 +0300" class="catalogue-time">July 20, 2018</time>
-        <h1 class="catalogue-title">Система компонентов cущностей (Entity Component System)</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/imgs/health-component.jpg align="center"/>
-          
-          Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню. Когда люди работают над сложными механиками, они пытаются выделить общие части системы, чтобы их...
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/gamedev">Gamedev</a>,
-          
-          <a href="/tag/architecture">Architecture</a>,
-          
-          <a href="/tag/patterns">Patterns</a>
-          
-
-      
-    </div>
-  
-    <a href="/ru/gamedev/offline-mode-in-client-server-apps.html" class="catalogue-item">
-      <div>
-        <time datetime="2018-07-11 17:33:30 +0300" class="catalogue-time">July 11, 2018</time>
-        <h1 class="catalogue-title">Оффлайн режим в клиент-серверных приложениях</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/imgs/offline-mode-facade.png align="center"/>
-          
-          Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют различные социальные составляющие: кланы, чаты, список друзей,...
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/gamedev">Gamedev</a>,
-          
-          <a href="/tag/architecture">Architecture</a>,
-          
-          <a href="/tag/client-server">Client-server</a>,
-          
-          <a href="/tag/patterns">Patterns</a>
-          
-
-      
-    </div>
-  
-    <a href="/chronicles/poisonous_johns_lair_telegram_channel.html" class="catalogue-item">
-      <div>
-        <time datetime="2017-11-08 17:33:30 +0300" class="catalogue-time">November 08, 2017</time>
-        <h1 class="catalogue-title">GameDev Architecture: Telegram Channel</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/wp-content/uploads/2017/11/jp_oss_pirate_small.png align="center"/>
-          
-          Запустил свой телеграм канал GameDev Architecture. На канале я делюсь своими заметками о том, как игровым компаниям строить правильные, эффективные и красивые решения, в основном на C#. От описания сложных...
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/telegram">Telegram</a>
-          
-
-      
-    </div>
-  
-    <a href="/iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html" class="catalogue-item">
-      <div>
-        <time datetime="2017-01-03 18:14:30 +0300" class="catalogue-time">January 03, 2017</time>
-        <h1 class="catalogue-title">Waveshare 7&#8243; touchscreen showing lines and black screen</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg align="center"/>
-          
-          I’ve recently bought a waveshare 7 inch touchscreen, which didn’t work out of the box. It comes with custom raspbian image, which isn’t handy because you can’t upgrade so easily....
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/iot">IoT</a>,
-          
-          <a href="/tag/raspberry-pi">Raspberry Pi</a>
-          
-
-      
-    </div>
-  
-    <a href="/gamedev/unity/unity-4-6-x-doesnt-show-up-when-opening-large-projects-is-it-alive.html" class="catalogue-item">
-      <div>
-        <time datetime="2016-12-19 19:13:54 +0300" class="catalogue-time">December 19, 2016</time>
-        <h1 class="catalogue-title">Unity 4.6.x doesn&#8217;t show up when opening large projects, is it alive?</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/wp-content/uploads/2016/12/977b0ce93a4099143e64ae932e905dc0_e7cdc06072836c64f441c5014ad641f5.jpg align="center"/>
-          
-          Due to single-threaded approach of Unity editor of version 4.x, when opening large project first time, Unity launches importing of files, yet doesn’t show anything on screen. Also CPU activity...
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/osx">OSX</a>,
-          
-          <a href="/tag/unity">unity</a>
-          
-
-      
-    </div>
-  
-    <a href="/chronicles/cinnamon-zastavil-skuchat-po-linux.html" class="catalogue-item">
-      <div>
-        <time datetime="2015-12-30 03:21:30 +0300" class="catalogue-time">December 30, 2015</time>
-        <h1 class="catalogue-title">Cinnamon заставил скучать по Linux</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346.png align="center"/>
-          
-          Не смотря на то, что основная моя рабочая машина - iMac, и она меня вполне устраивает, сердце все равно тоскует по свободе Linux‘a. На домашнем ноуте у меня стоит Linux,...
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/cinnamon">cinnamon</a>,
-          
-          <a href="/tag/linux">linux</a>
-          
-
-      
-    </div>
-  
-    <a href="/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html" class="catalogue-item">
-      <div>
-        <time datetime="2015-08-05 13:58:45 +0300" class="catalogue-time">August 05, 2015</time>
-        <h1 class="catalogue-title">Facebook Unity SDK Problems and Error Handling</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-          
-          <img src=/wp-content/uploads/2014/05/67a6bfe5cb2.png align="center"/>
-          
-          Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong...
-        </p>
-
-
-      </div>
-    </a>
-    <div class="tags">
-      
-      Тэги:&nbsp;
-      
-          
-          <a href="/tag/c">c#</a>,
-          
-          <a href="/tag/facebook">Facebook</a>,
-          
-          <a href="/tag/unity">unity</a>
-          
-
-      
-    </div>
-  
+  </div>
 </div>
 
-<div class="pagination">
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
   
-  
-    <a href="/page/2/index.html" class="right arrow">&#8594;</a>
+  <div class="sidebar sticky">
   
 
-  <span>1</span>
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/wp-content/uploads/2012/09/IMG_9760_final_bw-300x300.jpg" alt="Ivan Fateev" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ivan Fateev</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software engineer with more than 10 years of experience</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+          
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
 </div>
-        </section>
-    </main>
 
-    <footer>
-      <div class="tolstoycomments-feed"></div>
-      <span>
-        &copy; <time datetime="2018-11-16 19:44:03 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
-      </span>
+  
+  </div>
 
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-34509649-1', 'auto');
-        ga('send', 'pageview');
 
-    </script>
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title"></h1>
+    
+    
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function (d, w, c) {
-            (w[c] = w[c] || []).push(function() {
-                try {
-                    w.yaCounter16940533 = new Ya.Metrika({
-                        id:16940533,
-                        clickmap:true,
-                        trackLinks:true,
-                        accurateTrackBounce:true,
-                        webvisor:true
-                    });
-                } catch(e) { }
-            });
 
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () { n.parentNode.insertBefore(s, n); };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://mc.yandex.ru/metrika/watch.js";
+<h3 class="archive__subtitle">Recent Posts</h3>
 
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else { f(); }
-        })(document, window, "yandex_metrika_callbacks");
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/16940533" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <script type="text/javascript">!(function(w,d,s,l,x){w[l]=w[l]||[];var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=!0;j.src='//web.tolstoycomments.com/sitejs/app.js?i='+l+'&x='+x+'&t='+(new Date().getTime());f.parentNode.insertBefore(j,f)})(window,document,'script','tolstoycomments','1462');
-    window.tolstoycomments.config = {
-        desktop_class: 'tolstoycomments-feed'
-    };
-    </script>
-    </footer>
+
+
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/independent-ui-layer.html" rel="permalink">Независимый UI слой — ускоряем разработку UI
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/ru/gamedev/independent-ui-layer.html" rel="permalink">
+            <img src="/assets/images/ui-arch.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главны...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/programming/understanding-paradigm-rx-for-api.html" rel="permalink">Важность понимания парадигмы. RX для работы с API
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/ru/programming/understanding-paradigm-rx-for-api.html" rel="permalink">
+            <img src="/imgs/paradigm-shift-graphic.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывае...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/debug-tools.html" rel="permalink">Средства отладки
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/ru/gamedev/debug-tools.html" rel="permalink">
+            <img src="/imgs/gizmos.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Сколько времени мы тратим в день, разбираясь в коде? Согласно этой статье — 75%.
+
+</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/entity-component-system.html" rel="permalink">Система компонентов cущностей (Entity Component System)
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/ru/gamedev/entity-component-system.html" rel="permalink">
+            <img src="/imgs/health-component.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.
+
+</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/offline-mode-in-client-server-apps.html" rel="permalink">Оффлайн режим в клиент-серверных приложениях
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/ru/gamedev/offline-mode-in-client-server-apps.html" rel="permalink">
+            <img src="/imgs/offline-mode-facade.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют раз...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/poisonous_johns_lair_telegram_channel.html" rel="permalink">GameDev Architecture: Telegram Channel
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/chronicles/poisonous_johns_lair_telegram_channel.html" rel="permalink">
+            <img src="/wp-content/uploads/2017/11/jp_oss_pirate_small.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+Запустил свой телеграм канал GameDev Architecture. На канале я делюсь своими заметками о том, как игровым компаниям строить правильные, эффективные и красив...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html" rel="permalink">Waveshare 7″ touchscreen showing lines and black screen
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html" rel="permalink">
+            <img src="/wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">I’ve recently bought a waveshare 7 inch touchscreen, which didn’t work out of the box. It comes with custom raspbian image, which isn’t handy because you can...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/gamedev/unity/unity-4-6-x-doesnt-show-up-when-opening-large-projects-is-it-alive.html" rel="permalink">Unity 4.6.x doesn’t show up when opening large projects, is it alive?
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/gamedev/unity/unity-4-6-x-doesnt-show-up-when-opening-large-projects-is-it-alive.html" rel="permalink">
+            <img src="/wp-content/uploads/2016/12/977b0ce93a4099143e64ae932e905dc0_e7cdc06072836c64f441c5014ad641f5.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Due to single-threaded approach of Unity editor of version 4.x, when opening large project first time, Unity launches importing of files, yet doesn’t show an...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/cinnamon-zastavil-skuchat-po-linux.html" rel="permalink">Cinnamon заставил скучать по Linux
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/chronicles/cinnamon-zastavil-skuchat-po-linux.html" rel="permalink">
+            <img src="/wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Не смотря на то, что основная моя рабочая машина - iMac, и она меня вполне устраивает, сердце все равно тоскует по свободе Linux‘a. На домашнем ноуте у меня ...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html" rel="permalink">Facebook Unity SDK Problems and Error Handling
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html" rel="permalink">
+            <img src="/wp-content/uploads/2014/05/67a6bfe5cb2.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+
+Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? ...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/smiley-boom-perviy-krupniy-reliz.html" rel="permalink">Smiley Boom – первый крупный релиз
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/chronicles/smiley-boom-perviy-krupniy-reliz.html" rel="permalink">
+            <img src="/wp-content/uploads/2014/04/smileyBoom.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+
+Мы наконец-то зарелизили нашу игру Smiley Boom:
+
+Facebook
+
+iOS
+
+Что хочу заметить:
+
+	Реализация внутриигровых покупок (IAP) заняла больше недели ( хотя я п...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html" rel="permalink">Утечки. XCode Leaks &#038; Allocations. Осторожно XML
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html" rel="permalink">
+            <img src="/wp-content/uploads/2014/06/crystal_xml.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с п...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html" rel="permalink">Facebook iOS SDK FBSession release message sent to deallocated object
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html" rel="permalink">
+            <img src="/wp-content/uploads/2014/05/67a6bfe5cb2.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Каким-то необычайно странным образом столкнулся со следующей проблемой:
+Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапуск...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/dev-tools/xcode5-assistant-editor.html" rel="permalink">XCode5: Assistant editor
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/dev-tools/xcode5-assistant-editor.html" rel="permalink">
+            <img src="/wp-content/uploads/2014/04/xcode-logo.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Задолбало тратить свободное рабочее место в окне, и я занялся поисками как эффективно использовать рабочую область в XCode5. После недолгих поисков наткнулся...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html" rel="permalink">Как сократить физический размер ресурсов
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html" rel="permalink">
+            <img src="/wp-content/uploads/2014/01/archive.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, что...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/razmyshleniya-o-budushhem.html" rel="permalink">Размышления о будущем
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/chronicles/razmyshleniya-o-budushhem.html" rel="permalink">
+            <img src="/wp-content/uploads/2014/01/Paper-Money-icon.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+
+</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" rel="permalink">Smart pointers vs raw pointers; XCode: отладка undefined behaviour
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" rel="permalink">
+            <img src="/wp-content/uploads/2014/01/icon-lg-speed.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Скорость против удобства или Smart pointers не для игр
+
+
+Очень много времени потратил на оптимизацию, все никак не мог понять, что же мне так сильно все торм...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/gamedev/gamedev-interesnaya-sfera-no-suka-besposhhadnaya.html" rel="permalink">Gamedev интересная сфера, но беспощадная
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/gamedev/gamedev-interesnaya-sfera-no-suka-besposhhadnaya.html" rel="permalink">
+            <img src="/wp-content/uploads/2013/12/original.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">В моем детстве многие из друзей грезили вырасти и заниматься играми, я не был исключением, но так вышло, что меня занесло в web. Там я провел довольно много ...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/vse-kak-vsegda.html" rel="permalink">Все как всегда…
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/chronicles/vse-kak-vsegda.html" rel="permalink">
+            <img src="/wp-content/uploads/2013/10/bx7fZI4.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Вот только я думал, что все идет хорошо, я наконец то завершу свою первую приложеньку и выложусь в стор, меня апнут, как и обещали, и тут начальница сообщает...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/lyubiteli-velosipedov.html" rel="permalink">Любители велосипедов
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/chronicles/lyubiteli-velosipedov.html" rel="permalink">
+            <img src="/wp-content/uploads/2013/09/1678303_565afa6f.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+В очередной раз задался вопросом: оправдано ли создание собственного велосипеда и окупится ли оно в дальнейшем? Часто ведь бывает, что приходишь в какую-ниб...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/gamedev/particle-effekty-v-mobilnyx-igrax.html" rel="permalink">Particle эффекты в мобильных играх
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/gamedev/particle-effekty-v-mobilnyx-igrax.html" rel="permalink">
+            <img src="/wp-content/uploads/2013/09/fig9.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">До настоящего момента я особо не сталкивался с задачами визуализации сложных эффектов, в целом все сводилось к примитивным анимациям, но в текущем проекте ну...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/dev-tools/udalit-clrf-iz-fajla.html" rel="permalink">Удалить CLRF из файла
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/dev-tools/udalit-clrf-iz-fajla.html" rel="permalink">
+            <img src="/wp-content/uploads/2013/07/windows-8-fail.jpeg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+Не так часто сталкиваюсь с файлами в windows кодировках, но бывает, и наличие в них некорректных переносов жутко раздражает, XCode, например, от таких перен...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/c_plus_plus/ustanovka-boost-na-mac-os-x.html" rel="permalink">Установка Boost на Mac OS X
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/c_plus_plus/ustanovka-boost-na-mac-os-x.html" rel="permalink">
+            <img src="/wp-content/uploads/2013/05/boost.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description"> Руки наконец дошли до boost. Самый простой способ поставить boost, на мой взгляд, это через mac ports, выполнив команду:
+
+</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/symfony2/symfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html" rel="permalink">Symfony2: Авторизация через соц. сети VKontakte, Facebook, Odnoklassniki. OAuth 2.0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    
+    <p class="archive__item-excerpt" itemprop="description">Update: Рассмотрите в первую очередь https://github.com/hwi/HWIOAuthBundle
+Собственно, так получилось, что я сделал авторизацию через 3 популярные соцсети на...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html" rel="permalink">Sonata Admin Bundle: One-To-Many и sonata_type_collection
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html" rel="permalink">
+            <img src="/wp-content/uploads/2013/01/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0-2013-01-21-%D0%B2-14.52.53.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">На первых порах, в Сонате возникало непонимание того как правильно организовать редактирование связи one-to-many.  На самом деле, есть несколько неочевидных ...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/php/symfony2-event-system.html" rel="permalink">Symfony2: Event system
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/php/symfony2-event-system.html" rel="permalink">
+            <img src="/wp-content/uploads/2013/01/PublishSubscribeSolution.gif" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Недавно в очередной раз столкнулся с задачей ведения рейтинга пользователя и решил ее немного абстрагировать и сделать отдельный бандл. На проекте возникла н...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/symfony2/genemu-jquerydate-kak-udalit-native-datepicker-chrome-browser-a.html" rel="permalink">Genemu jquerydate: Как удалить native datepicker chrome browser`a
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+    <p class="archive__item-excerpt" itemprop="description">Столкнулся с проблемой, что когда используешь genemu jquerydate тип, то хром подставляет свой дейтпикер в поле, что абсолютно неприемлемо. Это происходить по...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/symfony-sonata/sonataadminbundle-filtry.html" rel="permalink">SonataAdminBundle: фильтры
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/symfony-sonata/sonataadminbundle-filtry.html" rel="permalink">
+            <img src="/wp-content/uploads/2012/10/Screen-Shot-2012-10-09-at-1.32.37-AM.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" rel="permalink">SonataAdminBundle: как добавить произвольную страницу к сущности
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    
+    <p class="archive__item-excerpt" itemprop="description">У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/statusmapbundle.html" rel="permalink">StatusMapBundle
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+    <p class="archive__item-excerpt" itemprop="description">В рамках своего проекта начал работать над бандлом, который предоставит возможности для реализации карты статусов с привязкой к роли. За основу взята модель ...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/symfony-sonata/genemu-form-bundle.html" rel="permalink">Genemu Form Bundle
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+    <p class="archive__item-excerpt" itemprop="description">GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/symfony-sonata/arxitektura-sonata-admin-bundle.html" rel="permalink">Архитектура Sonata Admin Bundle
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/symfony-sonata/arxitektura-sonata-admin-bundle.html" rel="permalink">
+            <img src="/wp-content/uploads/2012/09/sonata.jpg" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Sonata Admin Bundle, как и вся концепция symfony2 поддерживает сервисно-ориентированную архитектуру, поэтому, чтобы сделать CRUD для сущности, в первую очере...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/chronicles/o-tom-kak-ya-prishel-k-symfony2.html" rel="permalink">О том, как я пришел к Symfony2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    
+      <div class="archive__item-teaser">
+        <a href="/chronicles/o-tom-kak-ya-prishel-k-symfony2.html" rel="permalink">
+            <img src="/wp-content/uploads/2012/09/logo_symfony_header.png" alt="">
+        </a>
+      </div>
+    
+    <p class="archive__item-excerpt" itemprop="description">Это что-то вроде вступительного слова, а также первый из серии постов про мой инструментарий, про те вещи с которыми я работаю.
+
+За всю свою не очень долгую ...</p>
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/about/author.html" rel="permalink">Автор блога
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    
+    <p class="archive__item-excerpt" itemprop="description">Ivan Fateev
+(Poisonous John)
+Экспертиза:
+Языки: C#, C++, Objective C, PHP
+Фреймворки: Unity 3D, ASP.Net Core, Symfony2
+
+</p>
+  </article>
+</div>
+
+
+
+
+  </div>
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <noscript>
+    <div><img src="https://mc.yandex.ru/watch/16940533" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8RNTGQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Ivan Fateev. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+    <script src="/assets/js/main.min.js"></script>
+  
+    <script src="/assets/js/footerPixels.js"></script>
+  
+    <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
   </body>
 </html>

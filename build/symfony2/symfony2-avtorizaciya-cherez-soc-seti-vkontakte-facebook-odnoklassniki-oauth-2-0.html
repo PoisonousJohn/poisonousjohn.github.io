@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Symfony2: Авторизация через соц. сети VKontakte, Facebook, Odnoklassniki. OAuth 2.0 &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Symfony2: Авторизация через соц. сети VKontakte, Facebook, Odnoklassniki. OAuth 2.0" />
+    <meta property="og:description" content="Symfony2: Авторизация через соц. сети VKontakte, Facebook, Odnoklassniki. OAuth 2.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700"> -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/wp-content/uploads/2012/09/favicon.png">
+
+    <style>
+
+
+        .post-title {
+            font-size: 2rem;
+        }
+
+        nav {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            margin-right: 1rem;
+        }
+
+        section.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        .about-pic {
+            min-width: 300px;
+            width: 20%;
+            text-align: center;
+            margin-right: 1rem;
+            grid-column: 2;
+
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .social-links img {
+            width: 50px;
+        }
+
+        .about-details {
+            grid-column: span 3;
+        }
+
+        @media (min-width: 600px) {
+            .skills {
+                margin-right: 0px;
+            }
+            .about-details {
+                grid-column: 1 none;
+            }
+        }
+
+
+        .skill-value {
+            margin-top: 0.2rem;
+            border: solid 1px #ccc;
+            height: 0.7rem;
+            max-width: 300px;
+            width: 100%;
+        }
+        .skill-value div {
+            background-color: #aaa;
+            height: 100%;
+        }
+
+
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            /* float: left; */
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            /* width: 100px; */
+            margin-right: 1rem;
+            max-width: 100%;
+            max-height: 400px;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+        pre {
+            tab-size: 2;
+        }
+
+        html {
+            /* font-family: 'Times New Roman', Roman, serif; */
+            font-size: large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+
+    </style>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N8RNTGQ');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8RNTGQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+        <section id="content">
+            <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2013-04-10 18:35:21 +0400">April 10, 2013</time>
+    
+  </div>
+
+  <h1 class="post-title">Symfony2: Авторизация через соц. сети VKontakte, Facebook, Odnoklassniki. OAuth 2.0</h1>
+  <div class="post-line"></div>
+
+  <blockquote>Update: Рассмотрите в первую очередь <a href="https://github.com/hwi/HWIOAuthBundle" rel="nofollow">https://github.com/hwi/HWIOAuthBundle</a></blockquote>
+<p>Собственно, так получилось, что я сделал авторизацию через 3 популярные соцсети на OAuth 2.0. Тестировалось все под symfony 2.1:</p>
+
+<p><a title="VKontakte" href="https://github.com/ailove-dev/AbstractSocialBundle">AbstractSocialBundle</a></p>
+
+<p><a title="VKontakte" href="https://github.com/ailove-dev/VKBundle">VKontakte</a></p>
+
+<p><a title="Facebook" href="https://github.com/ailove-dev/FacebookBundle">Facebook</a></p>
+
+<p><a title="Odnoklassniki" href="https://github.com/ailove-dev/OKBundle">Odnoklassniki</a></p>
+
+<p>К сожалению, полной документации по интеграции бандлов у меня пока нет, опишу кратко.</p>
+<h3>Как поставить</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./composer.phar require ailove-dev/vk-bundle dev-master
+./composer.phar require ailove-dev/ok-bundle dev-master
+./composer.phar require ailove-dev/facebook-bundle dev-master
+</code></pre></div></div>
+
+<p>Необходимо в security.yml интегрировать провайдер для нужной соц. сети (если у вас несколько авторизаций будет, то обычно делают chain provider):</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="na">providers</span><span class="pi">:</span><span class="err">
+</span>
+        <span class="na">chain_provider</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">chain</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">providers</span><span class="pi">:</span> <span class="pi">[</span>  <span class="nv">fos_userbundle</span><span class="pi">,</span> <span class="nv">vk_provider</span><span class="pi">,</span> <span class="nv">fb_provider</span><span class="pi">,</span> <span class="nv">ok_provider</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">fos_userbundle</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">fos_user.user_provider.username_email</span><span class="err">
+</span>
+        <span class="na">vk_provider</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">vk.user.provider</span><span class="err">
+</span>
+        <span class="na">ok_provider</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">ok.user.provider</span><span class="err">
+</span>
+        <span class="na">fb_provider</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">fb.user.provider</span></code></pre></figure>
+
+<p>Также необходимо описать файрволы:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="na">firewalls</span><span class="pi">:</span><span class="err">
+</span>
+         <span class="na">main</span><span class="pi">:</span><span class="err">
+</span>
+            <span class="na">pattern</span><span class="pi">:</span> <span class="s">^/</span><span class="err">
+</span>
+            <span class="na">fb_firewall</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">check_path</span><span class="pi">:</span> <span class="s">/fb/login_check/</span><span class="err">
+</span>
+                <span class="na">login_path</span><span class="pi">:</span> <span class="s">/fb/login/</span><span class="err">
+</span>
+                <span class="na">use_forward</span><span class="pi">:</span> <span class="no">false</span><span class="err">
+</span>
+                <span class="na">failure_path</span><span class="pi">:</span> <span class="s">/fail</span><span class="err">
+</span>
+                <span class="na">always_use_default_target_path</span><span class="pi">:</span> <span class="no">true</span><span class="err">
+</span>
+                <span class="na">default_target_path</span><span class="pi">:</span> <span class="s">/user/connect/</span><span class="err">
+</span>
+                <span class="na">provider</span><span class="pi">:</span> <span class="s">chain_provider</span><span class="err">
+</span>
+            <span class="na">vk_firewall</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">check_path</span><span class="pi">:</span> <span class="s">/vk/login_check/</span><span class="err">
+</span>
+                <span class="na">login_path</span><span class="pi">:</span> <span class="s">/vk/login/</span><span class="err">
+</span>
+                <span class="na">use_forward</span><span class="pi">:</span> <span class="no">false</span><span class="err">
+</span>
+                <span class="na">failure_path</span><span class="pi">:</span> <span class="s">/</span><span class="err">
+</span>
+                <span class="na">always_use_default_target_path</span><span class="pi">:</span> <span class="no">true</span><span class="err">
+</span>
+                <span class="na">default_target_path</span><span class="pi">:</span> <span class="s">/user/connect/</span><span class="err">
+</span>
+                <span class="na">provider</span><span class="pi">:</span> <span class="s">chain_provider</span><span class="err">
+</span>
+            <span class="na">ok_firewall</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">check_path</span><span class="pi">:</span> <span class="s">/ok/login_check/</span><span class="err">
+</span>
+                <span class="na">login_path</span><span class="pi">:</span> <span class="s">/ok/login/</span><span class="err">
+</span>
+                <span class="na">use_forward</span><span class="pi">:</span> <span class="no">false</span><span class="err">
+</span>
+                <span class="na">failure_path</span><span class="pi">:</span> <span class="s">/</span><span class="err">
+</span>
+                <span class="na">always_use_default_target_path</span><span class="pi">:</span> <span class="no">true</span><span class="err">
+</span>
+                <span class="na">default_target_path</span><span class="pi">:</span> <span class="s">/user/connect/</span><span class="err">
+</span>
+                <span class="na">provider</span><span class="pi">:</span> <span class="s">chain_provider</span><span class="err">
+</span>
+            <span class="na">anonymous</span><span class="pi">:</span> <span class="no">true</span><span class="err">
+</span>
+            <span class="na">logout</span><span class="pi">:</span><span class="err">
+</span>
+                <span class="na">path</span><span class="pi">:</span> <span class="s">/logout</span><span class="err">
+</span>
+                <span class="na">target</span><span class="pi">:</span> <span class="s">/</span></code></pre></figure>
+
+<blockquote>/user/connect/ здесь - роут для контроллера, который будет обрабатывать авторизовавшегося пользователя (бандлы только создают соответствующий токен). Пример контроллера можно посмотреть <a href="https://github.com/ailove-dev/sf2.1-sonata/blob/master/src/Application/Sonata/UserBundle/Controller/SocialConnectController.php">здесь</a>.</blockquote>
+<p>Доступ к контроллеру стоит ограничить только для авторизованных пользователь (бандлы используют соответствующие роли, поэтому их стоит добавить в ROLES):</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">    <span class="na">role_hierarchy</span><span class="pi">:</span><span class="err">
+</span>
+        <span class="c1"># Social
+</span>
+        <span class="na">ROLE_VK_USER</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_USER</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">ROLE_OK_USER</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_USER</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">ROLE_FACEBOOK_USER</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_USER</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="na">ROLE_REGISTERED</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_VK_USER</span><span class="pi">,</span> <span class="nv">ROLE_OK_USER</span><span class="pi">,</span> <span class="nv">ROLE_FACEBOOK_USER</span><span class="pi">]</span><span class="err">
+</span>
+        <span class="c1"># Admin
+</span>
+        <span class="na">ROLE_ADMIN</span><span class="pi">:</span>       <span class="s">ROLE_REGISTERED</span><span class="err">
+</span>
+        <span class="na">ROLE_SUPER_ADMIN</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">ROLE_USER</span><span class="pi">,</span> <span class="nv">ROLE_SONATA_ADMIN</span><span class="pi">,</span> <span class="nv">ROLE_ADMIN</span><span class="pi">,</span> <span class="nv">ROLE_ALLOWED_TO_SWITCH</span><span class="pi">,</span> <span class="nv">ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT</span><span class="pi">,</span> <span class="nv">ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT</span><span class="pi">,</span> <span class="nv">ROLE_REGISTERED</span><span class="pi">]</span></code></pre></figure>
+
+<p>Cсылки для входа и выхода:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>VK<span class="nt">&lt;/a&gt;</span> | <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/a&gt;</span> | <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>FB<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Выход<span class="nt">&lt;/a&gt;</span></code></pre></figure>
+
+<blockquote>Также бандлы поддаются настройке! Посмотреть параметры можно <a href="https://github.com/ailove-dev/AbstractSocialBundle/blob/master/Classes/AbstractConfiguration.php">здесь</a>.</blockquote>
+<p> </p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/c_plus_plus/ustanovka-boost-na-mac-os-x.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+        </section>
+    </main>
+
+    <footer>
+      <div class="tolstoycomments-feed"></div>
+      <span>
+        &copy; <time datetime="2018-11-16 19:44:03 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-34509649-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter16940533 = new Ya.Metrika({
+                        id:16940533,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/16940533" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <script type="text/javascript">!(function(w,d,s,l,x){w[l]=w[l]||[];var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=!0;j.src='//web.tolstoycomments.com/sitejs/app.js?i='+l+'&x='+x+'&t='+(new Date().getTime());f.parentNode.insertBefore(j,f)})(window,document,'script','tolstoycomments','1462');
+    window.tolstoycomments.config = {
+        desktop_class: 'tolstoycomments-feed'
+    };
+    </script>
+    </footer>
+  </body>
+</html>

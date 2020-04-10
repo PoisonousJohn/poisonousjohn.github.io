@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        
+        Средства отладки &middot; Ivan Fateev&#039;s Blog
+        
+    </title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Средства отладки" />
+    <meta property="og:description" content="Средства отладки" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700"> -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/wp-content/uploads/2012/09/favicon.png">
+
+    <style>
+
+
+        .post-title {
+            font-size: 2rem;
+        }
+
+        nav {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            margin-right: 1rem;
+        }
+
+        section.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        .about-pic {
+            min-width: 300px;
+            width: 20%;
+            text-align: center;
+            margin-right: 1rem;
+            grid-column: 2;
+
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .social-links img {
+            width: 50px;
+        }
+
+        .about-details {
+            grid-column: span 3;
+        }
+
+        @media (min-width: 600px) {
+            .skills {
+                margin-right: 0px;
+            }
+            .about-details {
+                grid-column: 1 none;
+            }
+        }
+
+
+        .skill-value {
+            margin-top: 0.2rem;
+            border: solid 1px #ccc;
+            height: 0.7rem;
+            max-width: 300px;
+            width: 100%;
+        }
+        .skill-value div {
+            background-color: #aaa;
+            height: 100%;
+        }
+
+
+        .catalogue-item {
+            border: none;
+            padding: 0px;
+        }
+
+        div.tags, div.tags a {
+            /* display: none; */
+            border: 0px;
+            padding: 0px;
+            color: #aaa;
+        }
+
+        div.tags a {
+            text-decoration: underline;
+        }
+
+        div.tags {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .post img {
+            /* float: left; */
+            padding-bottom: 1rem;
+        }
+
+        .catalogue-item img {
+            /* width: 100px; */
+            margin-right: 1rem;
+            max-width: 100%;
+            max-height: 400px;
+        }
+
+        div.pagination {
+            clear: both;
+        }
+
+        pre {
+            tab-size: 2;
+        }
+
+        html {
+            /* font-family: 'Times New Roman', Roman, serif; */
+            font-size: large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+
+    </style>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N8RNTGQ');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8RNTGQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">Ivan Fateev&#039;s Blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+        <section id="content">
+            <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Poisonous John
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2018-09-05 17:50:30 +0300">September 05, 2018</time>
+    
+  </div>
+
+  <h1 class="post-title">Средства отладки</h1>
+  <div class="post-line"></div>
+
+  <p>Сколько времени мы тратим в день, разбираясь в коде? Согласно <a href="https://blog.codinghorror.com/when-understanding-means-rewriting/">этой статье</a> — 75%.</p>
+
+<p><img src="/imgs/coding-activity-chart.png" alt="График: 75% -- понимание кода; 5% -- написание нового кода; 20% -- изменение существующего кода" />
+Источник: <a href="https://dmitripavlutin.com/coding-like-shakespeare-practical-function-naming-conventions/">dmitripavlutin.com</a></p>
+
+<p>Это не удивительно. Хотя есть такая тенденция, что за людьми закрепляют какие-то части системы, все равно нам каждый день приходится читать чужой код. Свой код бывает понять сложно, а чужой дается нам еще тяжелее.
+Я уже писал про <a href="https://medium.com/gamedev-architecture/%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%B8-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BD%D0%B0%D1%8F-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-fd05952111f8">командную работу</a> и про <a href="https://medium.com/gamedev-architecture/%D0%B0%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%86%D0%B8%D1%8F%D0%BC%D0%B8-%D1%82%D0%B5%D0%B1%D0%B5-%D0%BF%D0%BE-%D0%B3%D0%BE%D0%BB%D0%BE%D0%B2%D0%B5-d10655098020">любителей абстракций</a> в которых затрагивалась тема когнитивной нагрузки. Каждый день на нашей работе мы грузим свою голову по полной. И чем нагрузка выше, тем больше вероятность, что мы не захотим разбираться в том что есть, и начнем искать другие способы исправить/обойти ситуацию.</p>
+
+<p>Чтобы не прийти к неправильным решениям, вроде поверхностных костылей, переписывания с нуля, и т.п., нужно иметь ввиду способ, который значительно помогает снизить когнитивную нагрузку.</p>
+
+<p>Процесс понимания кода сильно помогает анализ его работы в рантайме. И тут уже, как раз, есть где развернуться воображению.</p>
+
+<h2 id="визуализация-как-способ-снизить-когнитивную-нагрузку">Визуализация как способ снизить когнитивную нагрузку</h2>
+
+<p>Самым простым средством отладки являются логи. При отсутствии возможности использовать нормальный отладчик, мы можем прибегнуть к консоли и логам. Но тут есть нюанс. Разбиратсья в логах – это как проводить расследование.</p>
+
+<ul>
+  <li>логи нужно сопоставлять с кодом, и тогда уже делать умозаключение</li>
+  <li>логи не просто читать, так как там бывает много лишнего, и нужно выцеплять только самое важное</li>
+  <li>логи сложно смотреть и анализировать в реальном времени</li>
+</ul>
+
+<p>все это в комплексе может только увеличить нагрузку на ваш мозг.</p>
+
+<p>Другое дело, если вы можете визуализировать все эти вещи. Человек так устроен, что графику ему воспринимать гораздо проще, чем текст. Именно поэтому консольные интерфейсы были вытеснены графическими. (Вы не подумайте, я все равно фанат консоли).</p>
+
+<p>Gizmos в Unity – очень удобное средство для отладки. Вот вам <a href="https://habr.com/post/279929/">один пример</a>.</p>
+
+<p>Другой пример я приведу из жизни. Я работал над match3 игрой, с довольно сложной бизнес-логикой. Фишки имели кучу статусов, на них могла повлиять куча событий. Во время геймплея на поле уследить за всем сразу невозможно.</p>
+
+<p>В какой-то момент на поле просто все ломалось. Например, фишка залипала в середине поля и никуда не двигалась. Почему это произошло, в какой момент, как это повторить? Выяснить эти вопросы было большой проблемой.</p>
+
+<p>Начинал я с логов. Смотря на логи я прогонял все в голове на предмет возможных ошибок. Но этот способ быстро показал себя неэффективным. На поле происходило слишком много событий, и вычленить что-то важное было довольно сложно.</p>
+
+<p>В редких случаях удавалось понять конкретные шаги по воспроизведению бага, тогда любимый отладчик спасал.</p>
+
+<p>Касательно отсальных случаев, я понял, что без визуального дебага мне не справиться. Поэтому для игрового поля я сделал Gizmos, которые рисовали разную полезную инфу:</p>
+
+<ul>
+  <li>текущий статус фишки</li>
+  <li>заблокирована или не заблокирована ячейка</li>
+  <li>куда посыпятся фишки, если им нужно будет обтекать препятствия и т.д.</li>
+</ul>
+
+<p>Следить за полем в реальном времени стало сразу намного проще. Чтобы понять какая фишка в каком статусе, мне не надо было копать логи или ставить брейкпоинт, я могу просто посмотреть в соседнее окно. Ко всему прочему, я мог ставить игру на паузу, и, шагая по фреймам, видеть что происходит на поле под капотом.</p>
+
+<p>Затем, я добавил краткую очередь/историю обработки команд, из которой было понятно что проиходило/произойдет на поле в ближайшее время.</p>
+
+<p>Визуализация позволяет снизить нагрузку на наш мозг, что позволяет легче интерпретировать работу кода в рантайме. Держать в голове матрицу 8x8 с кучей состояний – то еще удовольствие, я вам скажу. Другое дело – видеть все перед глазами.</p>
+
+<p>Еще, как пример, возьмем стейт-машину в Unity. Если бы она визуально не отображала переходы, в рантайме не показывала текущее состояние, то отладка была бы значительно сложнее.</p>
+
+<h2 id="читы-как-способ-упростить-отладку">Читы как способ упростить отладку</h2>
+
+<p>Читы – тоже мощное средство. Если вы часто делаете какое-либо действие, чтобы что-то отладить, и оно занимает много усилий, то его обязательно надо автоматизировать читом. Возвращаясь к примеру match3, забиндив несколько шорткатов а-ля ctrl+click, shift+click я сделал применение различных бонусов на поле. Это позволило мне создавать тестовые кейсы просто покликав.</p>
+
+<p>Позже я добавил возможность сохранять и загружать какое-либо состояние поле и отсылать его с устройства, чтобы потом можно было загрузить у себя.</p>
+
+<p>Полезных читов может быть очень очень много, никогда не бойтесь тратить на них время. Они окупят себя сторицей. Тестеры вас тоже за них отблагодарят.</p>
+
+<h2 id="слепок-состояния">Слепок состояния</h2>
+
+<p>Я уже писал, что, если игра позволяет, то можно делать слепки состояний, с полными логами команд, как я <a href="https://habr.com/company/microsoft/blog/350630/">описал здесь</a>. Кстати, использование кастомных окон и эдиторов в Unity – это тоже великолепный способ упростить отладку.</p>
+
+<h2 id="удаленная-консоль">Удаленная консоль</h2>
+
+<p>Помните консоль в quake? Бывает так, что баг воспроизводся только на устройстве. Тогда нужно иметь продвинутые средства отладки. Например, полезно посмотреть иерархию объектов сцены, что довольно затруднительно, если вы отлаживаетесь на устройстве.</p>
+
+<p>Или, может, нужно иметь возможность повлиять как-то на объекты сцены: дампануть состояние, передвинуть и т.д. Если встроить в приложение http сервер, которые умеет принимать команды, то можно замутить интересные средства для отладки.</p>
+
+<h2 id="unit-тесты-как-быстрый-способ-проверить-утверждения">Unit-тесты как быстрый способ проверить утверждения</h2>
+
+<p>Unit-тесты полезны не только для того, чтобы следить за тем, что мы что-то поломали. Один из моих любимых способов разбираться в коде – это писать маленькие Unit-тесты для проверки предположений.</p>
+
+<p>Например, если я вижу какой-то кусок кода, который исполняется только у high-level пользователей, обычно мне надо запустить игру, зачитить себе уровень, накидать, например, айтем, который связан с этим кодом, и только тогда я могу его проверить.</p>
+
+<p>Вместо этого пути, я могу по быстрому накидать маленький unit-test и проверить свое предположение. Для меня это работает значительно быстрее, чем проверять все в рантайме игры.</p>
+
+<h2 id="подводим-итоги">Подводим итоги</h2>
+
+<p>На самом деле, список далеко не полный. Он ограничивается только вашей фантазией. Я часто вижу, что люди мучаются, стонут, выполняя одни и те же действия. Жалуются, стонут, но продлжают делать так же.</p>
+
+<p>Мы же с вами программисты, так почему не упростить себе жизнь? Задумайтесь, может и вам можно придумать какое-нибудь средство для отладки, которое сделает вас немножко счастливее. Или, быть может, вы давно откладывали это на потом? Значит вот он знак, пора бы этим заняться ;)</p>
+
+
+</div>
+
+<div class="pagination">
+  
+    <a href="/ru/programming/understanding-paradigm-rx-for-api.html" class="left arrow">&#8592;</a>
+  
+  
+    <a href="/ru/gamedev/entity-component-system.html" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+        </section>
+    </main>
+
+    <footer>
+      <div class="tolstoycomments-feed"></div>
+      <span>
+        &copy; <time datetime="2018-11-16 19:44:03 +0300">2018</time> . Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
+      </span>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-34509649-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter16940533 = new Ya.Metrika({
+                        id:16940533,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/16940533" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <script type="text/javascript">!(function(w,d,s,l,x){w[l]=w[l]||[];var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=!0;j.src='//web.tolstoycomments.com/sitejs/app.js?i='+l+'&x='+x+'&t='+(new Date().getTime());f.parentNode.insertBefore(j,f)})(window,document,'script','tolstoycomments','1462');
+    window.tolstoycomments.config = {
+        desktop_class: 'tolstoycomments-feed'
+    };
+    </script>
+    </footer>
+  </body>
+</html>
