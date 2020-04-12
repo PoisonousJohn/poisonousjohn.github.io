@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Как сократить физический размер ресурсов - Ivan Fateev’s blog</title>
+<!-- begin _includes/seo.html --><title>Как сократить физический размер ресурсов - Fateev.pro</title>
 <meta name="description" content="Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить PNG на два JPG’a или на JPG + PNG, в первом файле будут храниться RGB каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).  Для разбиения текстур из PNG на два JPG я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:  #!/usr/bin/python  import os, fnmatch import Image import argparse import ntpath import ImageFile  ImageFile.MAXBLOCK = 2048*2048# default is 64k  def splitImage(filename):     print &#39;splitting %s\n&#39; % png     originalImage = Image.open(filename)     baseName = ntpath.splitext(filename)[0]     originalImage.save(baseName + &#39;.jpg&#39;, &#39;JPEG&#39;, quality=95, optimize = True)      if len(originalImage.getbands()) == 4:         ir, ig, ib, ia = originalImage.split()         alphaImage = Image.merge(&quot;RGB&quot;, (ia, ia, ia));         alphaImage.save(baseName + &#39;_alpha.jpg&#39;, &#39;JPEG&#39;, quality=90)      os.remove(filename)   def locate(pattern, root=os.curdir):     for path, dirs, files in os.walk(os.path.abspath(root)):         for filename in fnmatch.filter(files, pattern):             yield os.path.join(path, filename)    parser = argparse.ArgumentParser(description=&#39;Pack animations.&#39;) parser.add_argument(&#39;images&#39;, metavar=&#39;I&#39;, help=&#39;Directory with images&#39;)  args = parser.parse_args()  pngDir = args.images  for png in locate(&quot;*.png&quot;, pngDir):     splitImage(png)     Что касается OpenGL, то в итоге происходит загрузка той же RGBA текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива.    ">
 
 
@@ -18,7 +18,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:site_name" content="Fateev.pro">
 <meta property="og:title" content="Как сократить физический размер ресурсов">
 <meta property="og:url" content="https://fateev.pro/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html">
 
@@ -68,7 +68,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,7 +128,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Ivan Fateev's blog
+          Fateev.pro
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">

@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>SonataAdminBundle: как добавить произвольную страницу к сущности - Ivan Fateev’s blog</title>
+<!-- begin _includes/seo.html --><title>SonataAdminBundle: как добавить произвольную страницу к сущности - Fateev.pro</title>
 <meta name="description" content="У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.  Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:  &lt;?php     protected function configureRoutes(RouteCollection $collection)     {         $collection-&gt;add(&#39;members&#39;, $this-&gt;getRouterIdParameter() . &#39;/members&#39;);         $collection-&gt;add(&#39;getProjects&#39;);     }  В примере я рассмотрел два случая:  	Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members 	Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjects  Далее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:    &lt;?php     public function membersAction($id = null)     {         $id = $this-&gt;get(&#39;request&#39;)-&gt;get($this-&gt;admin-&gt;getIdParameter());          $object = $this-&gt;admin-&gt;getObject($id);          if (!$object) {             throw new NotFoundHttpException(sprintf(&#39;unable to find the object with id : %s&#39;, $id));         }         ...     }      public function getProjectsAction()     {          $choice = array();          ...          return $this-&gt;renderJson($choice);      }   Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().  Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод. Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в другой статье. &nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:   \{\% extends &#39;SonataAdminBundle:Core:dashboard.html.twig&#39; %}  \{\% block content%}       blabla \{\% endblock%}   Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.  На этом вроде все =)   &nbsp; ">
 
 
@@ -18,7 +18,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:site_name" content="Fateev.pro">
 <meta property="og:title" content="SonataAdminBundle: как добавить произвольную страницу к сущности">
 <meta property="og:url" content="https://fateev.pro/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">
 
@@ -66,7 +66,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -126,7 +126,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Ivan Fateev's blog
+          Fateev.pro
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">

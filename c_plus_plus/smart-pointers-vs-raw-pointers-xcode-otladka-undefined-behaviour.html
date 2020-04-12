@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Smart pointers vs raw pointers; XCode: отладка undefined behaviour - Ivan Fateev’s blog</title>
+<!-- begin _includes/seo.html --><title>Smart pointers vs raw pointers; XCode: отладка undefined behaviour - Fateev.pro</title>
 <meta name="description" content="Скорость против удобства или Smart pointers не для игр   Очень много времени потратил на оптимизацию, все никак не мог понять, что же мне так сильно все тормозит, рендер вроде уже оптимизировал,  добрался до игровой механики. Проект - игра match3. Давно написал систему для match3 поля, ну и благополучно пользовался ей все это время. В свое время систему сделал на smart pointer’ах, чтобы особо не заморачиваться над жизненным циклом объектов, все работало как часы, пока не дошли до задач, где действительно много вычислений производится, профайлер показал, что довольно много времени уходит на alloc/dealloc shared pointer’ов, и я решил переписать всю систему на raw pointers.  Точнее, прежде чем переписать, я решил провести некоторые тесты, для чего я вытащил эту систему в отдельный проект и погонял ее сначала в том виде, в каком она работает в проекте, а затем переписал на raw pointers и снова проверил. Тест показал, что стало быстрее примерно в 2 раза. Значительная разница, учитывая, что в игре smart pointer’ы гоняются кучу раз в течение одного фрейма. И это еще учитывая, что я у них выключил thread safety. Использовать smart pointer в игровых проектах стоит только в крайних случаях, да и то, лучше в тех местах, где нет активной работы с ним Undefined behaviour: как сэкономить кучу времени Довольный и преисполненный оптимизма, я перенес переписанную систему в проект, пришлось много где поменять куски кода на работу с raw pointers, но на этом дело не закончилось. Во первых, как  и любой человек, я допускаю ошибки, и при переходе на raw pointers возникали краши. Вот честно, я не знал как отлаживать undefined behaviour в XCode, я предполагал, что должна быть какая-нибудь утилита, в MS VS таких проблем нет, уже начал копать в сторону Valgrind, но потом подзабил и провозился со всем еще день, пока не застрял на месте, где ошибку ну совсем не мог выявить. Снова начал искать, и, слава Богу, наткнулся на stackoverflow на решение! Надеюсь кому-нибудь это поможет.  Итак, чтобы иметь возможность отслеживать доступ к уже освобожденной памяти, либо двойное удаление pointer’ов, ну и вообще следить за целостностью кучи, достаточно всего лишь отредактировать Scheme и установить галку “Enable Guard Malloc” на вкладке Diagnostics:      К сожалению, у данного метода есть свои ограничения, он будет работать на iOS только в симуляторе, но оно и понятно почему.    ">
 
 
@@ -18,7 +18,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:site_name" content="Fateev.pro">
 <meta property="og:title" content="Smart pointers vs raw pointers; XCode: отладка undefined behaviour">
 <meta property="og:url" content="https://fateev.pro/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html">
 
@@ -68,7 +68,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,7 +128,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Ivan Fateev's blog
+          Fateev.pro
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">

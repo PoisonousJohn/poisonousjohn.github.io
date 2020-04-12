@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Genemu Form Bundle - Ivan Fateev’s blog</title>
+<!-- begin _includes/seo.html --><title>Genemu Form Bundle - Fateev.pro</title>
 <meta name="description" content="GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen, autocompleter и даже uploadify с jcrop.  На странице репозитория все вполне адекватно описано, встраивается легко и без заморочек. Я его использую как замену для sonata_type_model, да и вообще вместо большинства стандартных типов Sonata.  Большие плюсы:  	Прекрасно работает с сущностями 	Умеет делать ajax запросы для подгрузки списков для выбора 	Можно подствлять query builder для подгрузки списка сущностей  Вот несколько примеров:  &lt;?php      protected function configureFormFields(FormMapper $formMapper)     {         $formMapper                 ...                 -&gt;add(&#39;project&#39;, &#39;genemu_jquerychosen&#39;, array(&#39;label&#39; =&gt; &#39;Проект&#39;,                     &#39;class&#39; =&gt; &#39;Mtools\ProjectBundle\Entity\Project&#39;,                     &#39;widget&#39; =&gt; &#39;entity&#39;,                     &#39;choices&#39; =&gt; $allowedProjects,                     &#39;multiple&#39; =&gt; false,                 ))                 -&gt;add(&#39;projectType&#39;, &#39;genemu_jquerychosen&#39;, array(&#39;label&#39; =&gt; &#39;Тип проекта&#39;,                     &#39;class&#39; =&gt; &#39;Mtools\SystemValuesBundle\Entity\ProjectType&#39;,                     &#39;widget&#39; =&gt; &#39;entity&#39;,                     &#39;multiple&#39; =&gt; false,                     &#39;required&#39; =&gt; false,                 ))                 -&gt;add(&#39;rolesArray&#39;, &#39;genemu_jquerychosen&#39;, array(&#39;label&#39; =&gt; &#39;Доступ&#39;,                     &#39;choices&#39; =&gt; $roles,                     &#39;multiple&#39; =&gt; true,                     &#39;required&#39; =&gt; false,                 ))                 ...  И вот как примерно это выглядит в форме:    Также в бандле есть тип поля для загрузки файлов, но я пока его еще не тестил, не приходилось =) но думаю, что все должно быть на уровне. ">
 
 
@@ -18,7 +18,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:site_name" content="Fateev.pro">
 <meta property="og:title" content="Genemu Form Bundle">
 <meta property="og:url" content="https://fateev.pro/symfony-sonata/genemu-form-bundle.html">
 
@@ -66,7 +66,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -126,7 +126,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Ivan Fateev's blog
+          Fateev.pro
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">

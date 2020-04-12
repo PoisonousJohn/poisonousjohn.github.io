@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Facebook iOS SDK FBSession release message sent to deallocated object - Ivan Fateev’s blog</title>
+<!-- begin _includes/seo.html --><title>Facebook iOS SDK FBSession release message sent to deallocated object - Fateev.pro</title>
 <meta name="description" content="Каким-то необычайно странным образом столкнулся со следующей проблемой: Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапускаем приложениеПолучаем crash на objc_release (двойной релиз) Включив Enable Zombie Objects, локализовал проблему: [FBSession release] message sent to deallocated instance В проекте выключен ARC, код брал из документации FB. Покопавшись еще немного (и приняв во внимание, что, скорее всего, FBSession релизится при logout) нашел функцию, которая приводила к крашу:  void IOSFacebook::logout() { [FBSession.activeSession closeAndClearTokenInformation]; [FBSession.activeSession close]; // [FBSession setActiveSession:nil]; Эта строчка вызывала краш token.clear(); refreshAccount(); } &nbsp; Не знаю что конкретно вызывало краш, обозначенная строчка ничего криминального не делала, но закомментив ее, все заработало ">
 
 
@@ -18,7 +18,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:site_name" content="Fateev.pro">
 <meta property="og:title" content="Facebook iOS SDK FBSession release message sent to deallocated object">
 <meta property="og:url" content="https://fateev.pro/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html">
 
@@ -68,7 +68,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,7 +128,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Ivan Fateev's blog
+          Fateev.pro
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">

@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Sonata Admin Bundle: One-To-Many и sonata_type_collection - Ivan Fateev’s blog</title>
+<!-- begin _includes/seo.html --><title>Sonata Admin Bundle: One-To-Many и sonata_type_collection - Fateev.pro</title>
 <meta name="description" content="На первых порах, в Сонате возникало непонимание того как правильно организовать редактирование связи one-to-many.  На самом деле, есть несколько неочевидных моментов в Сонате, которые могут вызвать проблемы.  Итак, как организовать one-to-many:     ORM сущности   mac:      targetEntity: Mac      mappedBy: device      cascade: [&quot;all&quot;]      orphanRemoval: true  Здесь следует обратить внимание на параметр cascade, который говорит доктрине, что все действия, относящиеся к родителю, должны также влиять на дочерние объекты. Также важен параметр orphanRemove, который облегчит вам жизнь, так как говорит доктрине, что нужно отслеживать объекты, у которых нет привязки к родительскому объекту и удалять их. Это нужно в случаях, когда мы редактируем уже созданную сущность, внутри самой сущности, при редактировании достаточно всего лишь отвязать объект от родительской сущности и доктрина сама удалить его из базы.     Сущность   &lt;?php /** * @var Application\Ailove\EquipBundle\Entity\Mac */ private $mac;  /** * Construct */ public function __construct() {     $this-&gt;mac = new \Doctrine\Common\Collections\ArrayCollection(); }  /** * Set mac * * @param Doctrine\Common\Collections\ArrayCollection $mac */ public function setMac($mac) {     if (!$mac) {         $this-&gt;mac = new \Doctrine\Common\Collections\ArrayCollection();         return;     }      foreach ($mac as $item) {         $item-&gt;setDevice($this);     }      foreach ($this-&gt;getMac() as $item) {         if (!$mac-&gt;contains($item)) {             $this-&gt;getMac()-&gt;removeElement($item);             $item-&gt;setDevice(null);         }     }      $this-&gt;mac = $mac; }  /** * Add mac * * @param Application\Ailove\EquipBundle\Entity\Mac $mac */ public function addMac(\Application\Ailove\EquipBundle\Entity\Mac $mac) {     $mac-&gt;setDevice($this);     $this-&gt;mac[] = $mac; }  /** * Remove mac * * @param Application\Ailove\EquipBundle\Entity\Mac $mac */ public function removeMac(\Application\Ailove\EquipBundle\Entity\Mac $mac) {     $this-&gt;getMac()-&gt;removeElement($mac);     $mac-&gt;setDevice(null); }  /** * Get mac * * @return Doctrine\Common\Collections\Collection */ public function getMac() {     return $this-&gt;mac; }  Здесь нужно обратить внимание, что в первую очередь в one-t0-many поля должны быть обязательно представлены ArrayCollection, для этого нужно добавить соответствующую строчку в конструкторе. Соната требует наличия add и remove методов для свойства, в которых через методы сущности нужно осуществлять привязку или отвязку дочерних объектов, благодаря orphanRemoval доктрина сама определит когда нужно удалять отвязанный объект.     configureFormFields   Внутри админ класса следует добавить следующее поле:  &lt;?php $formBuilder-&gt;add(&#39;mac&#39;, &#39;sonata_type_collection&#39;,     array(&#39;required&#39; =&gt; false, &#39;by_reference&#39; =&gt; false),     array(&#39;edit&#39; =&gt; &#39;inline&#39;, &#39;inline&#39; =&gt; &#39;table&#39;) );  На этом, собственно все. В конечном счете, one-to-many будет выглядеть примерно таким образом:   ">
 
 
@@ -18,7 +18,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:site_name" content="Fateev.pro">
 <meta property="og:title" content="Sonata Admin Bundle: One-To-Many и sonata_type_collection">
 <meta property="og:url" content="https://fateev.pro/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html">
 
@@ -68,7 +68,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,7 +128,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Ivan Fateev's blog
+          Fateev.pro
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">

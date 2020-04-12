@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>SonataAdminBundle: фильтры - Ivan Fateev’s blog</title>
+<!-- begin _includes/seo.html --><title>SonataAdminBundle: фильтры - Fateev.pro</title>
 <meta name="description" content="Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы к фильтрам.  Итак, соната предоставляет несколько возможностей для внедрения фильтрации данных.     Неявные фильтры. Могут понадобится в случае, когда данные нужно фильтровать для пользователя определенным образом, но сам пользователь об этом знать не должен. Как пример: пользователь должен видеть только свои посты.   Стандартное поведение админ классов можно легко модифицировать с помощью AdminExtension’ов. AdminExtension - это сервис, который админ класс запускает после того как сделает свою основную работу по конфигурации. AdminExtension’ов может быть несколько. Они включают в себя основные методы админ класса, такие как configureFormFields, configureDatagridFilters и др. Мы рассмотрим метод configureQuery, с помощью которого можно изменить стандартный запрос, который выполняется, когда мы просматриваем список сущностей. В моем случае я буду выводить только те сущности, в которых поле parent  является пустым, об иных сущностях пользователю знать не стоит   &lt;?php namespace Mtools\RatecardBundle\Admin;  use Sonata\AdminBundle\Admin\AdminExtension; use Sonata\AdminBundle\Admin\AdminInterface; use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;  class RatecardAdminExtension extends AdminExtension {      public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = &#39;list&#39;)     {              $query-&gt;getQueryBuilder()-&gt;where(&#39;o.parent IS NULL&#39;);      }  }  Конечно, наш класс унаследован от AdminExtension  Определение сервиса следующее:  mtools.ratecard.admin.extension:          id: mtools.ratecard.admin.extension          class: Mtools\RatecardBundle\Admin\RatecardAdminExtension          tags:              - { name: sonata.admin.extension, target: mtools.ratecard.admin }     target в секции tag - это id сервиса админ класса, к которому будет присоединен AdminExtension С помощью AdminExtension&#39;ов очень удобно джойнить нужные сущности, чтобы потом фильтровать по этим полям внутри админ класса (это второй способ, рассмотрен ниже)    Часто возникает необходимость реализовать нестандартную логику фильтрации по определнному полю, а времени, чтобы оформлять данный фильтр как отдельный сервис нет, да и такой фильтр может встреаться только в одном месте. Для таких случаев SonataAdminBundle предоставляет тип фильтра doctrine_orm_callback. Здесь все просто как 2 копейки:   &lt;?php ... protected function configureDatagridFilters(DatagridMapper $datagridMapper) {     $datagridMapper         -&gt;add(&#39;codes&#39;, &#39;doctrine_orm_callback&#39;, array(             &#39;label&#39;         =&gt; &#39;Код&#39;,             &#39;callback&#39;      =&gt; array($this, &#39;getCodesFilter&#39;),             &#39;field_type&#39;    =&gt; &#39;genemu_jquerychosen&#39;,             &#39;field_options&#39; =&gt; array(                 &#39;class&#39;     =&gt; &#39;Mtools\ClientBundle\Entity\Client&#39;,                 &#39;widget&#39;    =&gt; &#39;entity&#39;,                 &#39;multiple&#39;  =&gt; false,             )         ); }  public function getCodesFilter($queryBuilder, $alias, $field, $value) {     if (null === $value[&#39;value&#39;]) {         return;     }      $queryBuilder-&gt;leftJoin(sprintf(&#39;%s.codes&#39;, $alias), &#39;c&#39;);     $queryBuilder-&gt;andWhere(&#39;c.code = :code&#39;);     $queryBuilder-&gt;setParameter(&#39;code&#39;, $value[&#39;value&#39;]); } ...  Сам фильтр мы так же, как и обычные, описываем в методе configureDatagridFilters, с той разницей, что тип фильтра указываем doctrine_orm_callback, а в опциях фильтра обязательно указываем callback - метод, который будет вызываться для формирования QueryBuilder’a соответственно нашему фильтру. Иначе говоря, в этот метод передается сам QueryBuilder, $alias - основной алиас сущности, $field - какое то мистическая переменная, я не нашел ей применения, и $value - собственно значение из фильтра, которое ввел пользователь.  Внутри функции callback’a в данном случае добавляется джоин (что, как я и говорил раньше, можно вынести в AdminExtension, и даже нужно, если этих джоинов множество), ну, и само условие для фильтрации.  Еще любопытные опции, на поиск которых я потратил некоторое время:  	field_type - тип поля, которое будет отображаться для ввода пользователем значения 	field_options - опции этого поля, которые обычно идут третьим аргументом в FormMapper&#39;e метода configureFormFields  В итоге, мы получаем миловидный (благодаря GenemuFormBundle) фильтр с произвольной логикой Так выглядят фильтры на одном из проектов:  &nbsp; 3. Есть и третий способ - вынести фильтр в полностью самостоятельный сервис. Актуально, когда этот фильтр часто встречается в вашем проекте. Рассмотрю этот способ в отдельной статье. &nbsp; Значение фильтров по-умолчанию Однажды столкнулся с задачей, что необходимо было явно указать в фильтрах значение по-умолчанию, как если бы пользователь сам его выбрал.  &lt;?php     ...     public function  getFilterParameters()     {         $parameters = parent::getFilterParameters();          $filterUsers = ...;          if (!isset($parameters[&#39;managers&#39;][&#39;value&#39;]) || !sizeof($parameters[&#39;managers&#39;][&#39;value&#39;])) {              $parameters[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;             $this-&gt;datagridValues[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;         }           return $parameters;     }  Ключ ко всему - метод getFilterParameters, который соната вызывает, чтобы составить список сущностей для listAction. Данный метод заполняет свойство datagridValues соответствующими значениями. В данном случае предполагается, что $filterUsers - это массив с id’шками пользователей. ">
 
 
@@ -18,7 +18,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:site_name" content="Fateev.pro">
 <meta property="og:title" content="SonataAdminBundle: фильтры">
 <meta property="og:url" content="https://fateev.pro/symfony-sonata/sonataadminbundle-filtry.html">
 
@@ -68,7 +68,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,7 +128,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Ivan Fateev's blog
+          Fateev.pro
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
