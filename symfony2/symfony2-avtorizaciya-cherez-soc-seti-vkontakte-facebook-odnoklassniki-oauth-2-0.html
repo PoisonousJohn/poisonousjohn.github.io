@@ -20,7 +20,7 @@
 <meta property="og:locale" content="ru">
 <meta property="og:site_name" content="Ivan Fateev's blog">
 <meta property="og:title" content="Symfony2: Авторизация через соц. сети VKontakte, Facebook, Odnoklassniki. OAuth 2.0">
-<meta property="og:url" content="/symfony2/symfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html">
+<meta property="og:url" content="https://fateev.pro/symfony2/symfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html">
 
 
   <meta property="og:description" content="Update: Рассмотрите в первую очередь https://github.com/hwi/HWIOAuthBundle Собственно, так получилось, что я сделал авторизацию через 3 популярные соцсети на OAuth 2.0. Тестировалось все под symfony 2.1:  AbstractSocialBundle  VKontakte  Facebook  Odnoklassniki  К сожалению, полной документации по интеграции бандлов у меня пока нет, опишу кратко. Как поставить ./composer.phar require ailove-dev/vk-bundle dev-master ./composer.phar require ailove-dev/ok-bundle dev-master ./composer.phar require ailove-dev/facebook-bundle dev-master   Необходимо в security.yml интегрировать провайдер для нужной соц. сети (если у вас несколько авторизаций будет, то обычно делают chain provider):      providers:          chain_provider:              chain:                  providers: [  fos_userbundle, vk_provider, fb_provider, ok_provider]          fos_userbundle:              id: fos_user.user_provider.username_email          vk_provider:              id: vk.user.provider          ok_provider:              id: ok.user.provider          fb_provider:              id: fb.user.provider  Также необходимо описать файрволы:      firewalls:           main:              pattern: ^/              fb_firewall:                  check_path: /fb/login_check/                  login_path: /fb/login/                  use_forward: false                  failure_path: /fail                  always_use_default_target_path: true                  default_target_path: /user/connect/                  provider: chain_provider              vk_firewall:                  check_path: /vk/login_check/                  login_path: /vk/login/                  use_forward: false                  failure_path: /                  always_use_default_target_path: true                  default_target_path: /user/connect/                  provider: chain_provider              ok_firewall:                  check_path: /ok/login_check/                  login_path: /ok/login/                  use_forward: false                  failure_path: /                  always_use_default_target_path: true                  default_target_path: /user/connect/                  provider: chain_provider              anonymous: true              logout:                  path: /logout                  target: /  /user/connect/ здесь - роут для контроллера, который будет обрабатывать авторизовавшегося пользователя (бандлы только создают соответствующий токен). Пример контроллера можно посмотреть здесь. Доступ к контроллеру стоит ограничить только для авторизованных пользователь (бандлы используют соответствующие роли, поэтому их стоит добавить в ROLES):      role_hierarchy:          # Social          ROLE_VK_USER: [ROLE_USER]          ROLE_OK_USER: [ROLE_USER]          ROLE_FACEBOOK_USER: [ROLE_USER]          ROLE_REGISTERED: [ROLE_VK_USER, ROLE_OK_USER, ROLE_FACEBOOK_USER]          # Admin          ROLE_ADMIN:       ROLE_REGISTERED          ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT, ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT, ROLE_REGISTERED]  Cсылки для входа и выхода:  &lt;a href=&quot;{{ path(&#39;_vk_login&#39;) }}&quot;&gt;VK&lt;/a&gt; | &lt;a href=&quot;{{ path(&#39;_ok_login&#39;) }}&quot;&gt;OK&lt;/a&gt; | &lt;a href=&quot;{{ path(&#39;_fb_login&#39;) }}&quot;&gt;FB&lt;/a&gt; &lt;a href=&quot;{{ path(&#39;fos_user_security_logout&#39;) }}&quot;&gt;Выход&lt;/a&gt;  Также бандлы поддаются настройке! Посмотреть параметры можно здесь.   ">
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="/symfony2/symfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html">
+<link rel="canonical" href="https://fateev.pro/symfony2/symfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html">
 
 
 
@@ -53,7 +53,7 @@
     
       "@type": "Person",
       "name": "Ivan Fateev",
-      "url": "/"
+      "url": "https://fateev.pro/"
     
   }
 </script>
@@ -465,11 +465,11 @@
     <h4 class="page__share-title">Поделиться</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Symfony2%3A+%D0%90%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D1%87%D0%B5%D1%80%D0%B5%D0%B7+%D1%81%D0%BE%D1%86.+%D1%81%D0%B5%D1%82%D0%B8+VKontakte%2C+Facebook%2C+Odnoklassniki.+OAuth+2.0%20%2Fsymfony2%2Fsymfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Symfony2%3A+%D0%90%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D1%87%D0%B5%D1%80%D0%B5%D0%B7+%D1%81%D0%BE%D1%86.+%D1%81%D0%B5%D1%82%D0%B8+VKontakte%2C+Facebook%2C+Odnoklassniki.+OAuth+2.0%20https%3A%2F%2Ffateev.pro%2Fsymfony2%2Fsymfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fsymfony2%2Fsymfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.pro%2Fsymfony2%2Fsymfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fsymfony2%2Fsymfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.pro%2Fsymfony2%2Fsymfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 

@@ -20,7 +20,7 @@
 <meta property="og:locale" content="ru">
 <meta property="og:site_name" content="Ivan Fateev's blog">
 <meta property="og:title" content="SonataAdminBundle: как добавить произвольную страницу к сущности">
-<meta property="og:url" content="/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">
+<meta property="og:url" content="https://fateev.pro/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">
 
 
   <meta property="og:description" content="У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.  Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:  &lt;?php     protected function configureRoutes(RouteCollection $collection)     {         $collection-&gt;add(&#39;members&#39;, $this-&gt;getRouterIdParameter() . &#39;/members&#39;);         $collection-&gt;add(&#39;getProjects&#39;);     }  В примере я рассмотрел два случая:  	Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members 	Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjects  Далее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:    &lt;?php     public function membersAction($id = null)     {         $id = $this-&gt;get(&#39;request&#39;)-&gt;get($this-&gt;admin-&gt;getIdParameter());          $object = $this-&gt;admin-&gt;getObject($id);          if (!$object) {             throw new NotFoundHttpException(sprintf(&#39;unable to find the object with id : %s&#39;, $id));         }         ...     }      public function getProjectsAction()     {          $choice = array();          ...          return $this-&gt;renderJson($choice);      }   Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().  Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод. Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в другой статье. &nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:   \{\% extends &#39;SonataAdminBundle:Core:dashboard.html.twig&#39; %}  \{\% block content%}       blabla \{\% endblock%}   Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.  На этом вроде все =)   &nbsp; ">
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">
+<link rel="canonical" href="https://fateev.pro/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">
 
 
 
@@ -53,7 +53,7 @@
     
       "@type": "Person",
       "name": "Ivan Fateev",
-      "url": "/"
+      "url": "https://fateev.pro/"
     
   }
 </script>
@@ -421,11 +421,11 @@
     <h4 class="page__share-title">Поделиться</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=SonataAdminBundle%3A+%D0%BA%D0%B0%D0%BA+%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C+%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%BB%D1%8C%D0%BD%D1%83%D1%8E+%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%83+%D0%BA+%D1%81%D1%83%D1%89%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%2Fsymfony-sonata%2Fsonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=SonataAdminBundle%3A+%D0%BA%D0%B0%D0%BA+%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C+%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%BB%D1%8C%D0%BD%D1%83%D1%8E+%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D1%83+%D0%BA+%D1%81%D1%83%D1%89%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20https%3A%2F%2Ffateev.pro%2Fsymfony-sonata%2Fsonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fsymfony-sonata%2Fsonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.pro%2Fsymfony-sonata%2Fsonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fsymfony-sonata%2Fsonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.pro%2Fsymfony-sonata%2Fsonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
