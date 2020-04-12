@@ -1,4 +1,179 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-04-10T10:00:21-05:00</updated><id>/feed.xml</id><title type="html">Ivan Fateev’s blog</title><subtitle></subtitle><entry><title type="html">Независимый UI слой — ускоряем разработку UI</title><link href="/ru/gamedev/independent-ui-layer.html" rel="alternate" type="text/html" title="Независимый UI слой &amp;mdash; ускоряем разработку UI" /><published>2018-11-15T15:00:00-06:00</published><updated>2018-11-15T15:00:00-06:00</updated><id>/ru/gamedev/independent-ui-layer</id><content type="html" xml:base="/ru/gamedev/independent-ui-layer.html">&lt;p&gt;Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главных головных болей в повседневной разработке у нас частенько были UI задачи:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-04-12T11:30:39-05:00</updated><id>/feed.xml</id><title type="html">Ivan Fateev’s blog</title><subtitle></subtitle><entry><title type="html">Правильно ли вы растите своих джунов?</title><link href="/ru/programming/are-you-growing-your-juniors-right.html" rel="alternate" type="text/html" title="Правильно ли вы растите своих джунов?" /><published>2020-04-03T16:00:00-05:00</published><updated>2020-04-03T16:00:00-05:00</updated><id>/ru/programming/are-you-growing-your-juniors-right</id><content type="html" xml:base="/ru/programming/are-you-growing-your-juniors-right.html">&lt;p&gt;А ничего! Буквально – ничего! В том то и дело.&lt;/p&gt;
+
+&lt;p&gt;Когда мой ученик рассказал о том, что происходит у него на работе, я не смог больше терпеть, и решился на эту статью. Вдруг получится помочь хоть нескольким людям.&lt;/p&gt;
+
+&lt;p&gt;Рассмотрим пару проблем. Подобные ситуации возникают не только в нашей индустрии. Вы их можете найти в любом месте, где нанимают стажеров/новичков.&lt;/p&gt;
+
+&lt;h2 id=&quot;проблема-1-джуном-никто-не-занимается&quot;&gt;Проблема №1: Джуном никто не занимается&lt;/h2&gt;
+
+&lt;p&gt;Джун до этого работал в другой сфере, и на этот свитч карьеры решался долго. Он учился в свободное от работы время. Потом поставил на кон все, уволился со старой работы и несколько месяцев продолжал учиться нон-стоп, существуя на накопленные средства. И наконец-то получил свою первую работу программистом с окладом, значительно меньшим, чем у него был до этого.&lt;/p&gt;
+
+&lt;p&gt;В течение года &lt;del&gt;наставники&lt;/del&gt; кураторы Джуна постоянно менялись. Его тупо перекидывали от одного к другому, никто не хотел им заниматься.&lt;/p&gt;
+
+&lt;p&gt;Никаких внятных задач ему не давали. Скидывали какое-то непонятное говно, с которым никто не хотел возиться.&lt;/p&gt;
+
+&lt;p&gt;Потом и говнозадачи кончились. Сказали сиди там читай что-нибудь, развивайся сам.&lt;/p&gt;
+
+&lt;p&gt;Затем ему дали разбираться с продуктом, который ну очень специфический. Опыт работы с ним практически никак не котируется на рынке труда. При этом, ни у кого другого не было ни опыта ни желания заниматься такой фигней. То есть Джуну даже не к кому было обратиться за помощью.&lt;/p&gt;
+
+&lt;p&gt;Это было первое место работы в качестве программиста, и оценить, нормальна такая ситуация или нет – он не мог. Джун боялся, что если не разберется, то его уволят. Вся эта история психологически угнетала, было ощущение, что время уходит зря, а он бессилен что-либо сделать.&lt;/p&gt;
+
+&lt;p&gt;Он поделился этим со мной, и я рекомендовал сменить место работы. Что он и сделал.&lt;/p&gt;
+
+&lt;h2 id=&quot;проблема-2-джуном-занимается-тот-кто-не-умеет-учить-или-не-хочет-этим-заниматься&quot;&gt;Проблема №2: Джуном занимается тот, кто не умеет учить, или не хочет этим заниматься&lt;/h2&gt;
+
+&lt;p&gt;На новом месте работы джуну понравилось больше. Там назначили конкретного ментора, который ставил нормальные задачи, следил за их исполнением, немножко учил. Джун начал прокачиваться.&lt;/p&gt;
+
+&lt;p&gt;Спустя пару месяцев, иногда ментор начинал вести себя странно. В такие моменты появлялось ощущение какой-то личной неприязни, или что-то вроде того.&lt;/p&gt;
+
+&lt;p&gt;Просто посмотрите на пример диалога ниже.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Джун: М, на счёт задачи XXX-413, Вы написали “Переделать: отображение диалога реализовать в классе действия RestoreDbAction” - я что-то не понял, в каком смысле “реализовать”? я сейчас сделал так, что вызывается RestoreDbAction.Confirm вместо IDialogDisplay.Show, но всё остальное получается оставляю как было, или я чего-то не понял?&lt;/li&gt;
+  &lt;li&gt;Ментор: До тебя долго доходит. Понял наконец?&lt;/li&gt;
+  &lt;li&gt;Джун: … я сейчас всё правильно понял?&lt;/li&gt;
+  &lt;li&gt;Ментор: Что?&lt;/li&gt;
+  &lt;li&gt;Джун: просто надо было использовать Confirm от Action?&lt;/li&gt;
+  &lt;li&gt;Ментор: Конечно&lt;/li&gt;
+  &lt;li&gt;Ментор: Почему сразу не догадался? Ещё вопросы?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ментор: Как я и думал, Д, ты опять ничего не понял. Я просто удивляюсь твоей несообразительности….. (sad) Задачу вернул на доработку&lt;/li&gt;
+  &lt;li&gt;Джун: я же спрашивал, правильно ли я понял&lt;/li&gt;
+  &lt;li&gt;Ментор: я тоже спрашивал. 3 раза. И все равно ты понял неправильно&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;зачем-компании-джуны&quot;&gt;Зачем компании джуны?&lt;/h2&gt;
+
+&lt;p&gt;Давайте разберемся, в чем смысл растить джунов?&lt;/p&gt;
+
+&lt;p&gt;Джун – это вклад в будущее. Долгосрочный проект, если хотите.&lt;/p&gt;
+
+&lt;p&gt;Компания дает знания и опыт, а начинающий специалист со временем начинает возвращать инвестиции в виде выполненных задач. Получается такой выгодный симбиоз.&lt;/p&gt;
+
+&lt;p&gt;Джун с огоньком в глазах готов писать код просто потому, что это интересно и прикольно. А если за это еще и деньги платят — тем более.&lt;/p&gt;
+
+&lt;p&gt;Чем быстрее Джун начнет выполнять реальные задачи, приносить пользу, тем выгоднее это для компании.&lt;/p&gt;
+
+&lt;p class=&quot;notice--info&quot;&gt;Стартапы редко берут джунов. Ведь им нужно, чтобы отдача от разработчика была моментальной. Для стартапа, главное – скорость. Большие компании – другое дело. Они могут позволить себе не спешить.&lt;/p&gt;
+
+&lt;p&gt;Для работодателя существует две веских причины растить джунов:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Дешевая рабочая сила&lt;/strong&gt;: они не просят много денег. А если джуна прокачали быстро, то за малые деньги компания получит неплохого специалиста, заточенного именно под ее процессы.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Предсказуемый источник хороших кадров&lt;/strong&gt;.
+Найм – всегда гемор. Поиск миддла может занять много времени и сил.
+Даже если кандидат идеально прошел собеседование, предсказать как он покажет себя в работе – невозможно. В случае ошибки компания терпит убытки.&lt;/p&gt;
+
+    &lt;p&gt;Вместо этого можно нанять пачку джунов. И вероятность найти подходящий кадр выше. Хороший работодатель заметит джунов, выросших в уровне, даст повышение и стимулирует развитие дальше.&lt;/p&gt;
+
+    &lt;p&gt;При этом компания получает нового прокачанного разраба, с известной производительностью, знакомого с процессами и так далее. Ситуация win-win.&lt;/p&gt;
+
+    &lt;p&gt;Если такой формат поставлен на поток, то компания может довольно стабильно расти.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;несколько-простых-советов-по-воспитанию-джунов&quot;&gt;Несколько простых советов по воспитанию джунов&lt;/h2&gt;
+&lt;h3 id=&quot;1-не-берите-джунов-если-ими-некому-заниматься&quot;&gt;1. Не берите джунов, если ими некому заниматься&lt;/h3&gt;
+
+&lt;p&gt;Что можно извлечь из описания проблемы №1? Компания наняла джуна, но при этом им никто нормально не занимался. Он хотел учиться, и цеплялся за любую возможность.&lt;/p&gt;
+
+&lt;p&gt;Но работодателю было явно не до младших разрабов. Джун просто сидел на окладе, не принося компании выгоды, и не прокачивался сам. Ситуация lose-lose.&lt;/p&gt;
+
+&lt;p&gt;Джуны требуют постоянного надзора. Они как дети, которые пробуют ходить. Вначале у них это совсем не получается, но с каждым разом справляются все лучше. Однажды они начинают довольно уверено ходить и почти не требуют присмотра.&lt;/p&gt;
+
+&lt;p&gt;Что будет с ребенком, если его оставить одного? Наверняка случится что-то плохое. Поранится, уползет куда-нибудь не туда, что-нибудь сломает. Так случилось и в описанном случае.&lt;/p&gt;
+
+&lt;p&gt;Начальный этап взращивания джуна — самый сложный. Он требует приличных затрат времени и моральных сил. Нужно понимать, что тот, кто менторит – будет работать медленнее. Но в долгосрочной перспективе все окупится.&lt;/p&gt;
+
+&lt;p&gt;Если вы не готовы пойти на такие затраты, то не надо брать джунов. Не тратьте ресурсы компании зря, уважайте время людей.&lt;/p&gt;
+
+&lt;p&gt;С проблемой №1 покончено. Перейдем к проблеме №2.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-не-надо-перекладывать-ответственность&quot;&gt;2. Не надо перекладывать ответственность&lt;/h3&gt;
+
+&lt;p&gt;В диалоге из проблемы №2 не прав именно ментор. Джун недостаточно квалифицирован, чтобы формализовать задачу, выяснить недостающие требования, спроектировать хорошее решение и так далее.&lt;/p&gt;
+
+&lt;p&gt;То, что Джун неправильно понял задачу – полностью вина ментора. Но он, вместо того, чтобы исправить положение, сложил вину с себя.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-ставьте-джуну-максимально-подробные-задачи&quot;&gt;3. Ставьте Джуну максимально подробные задачи&lt;/h3&gt;
+
+&lt;p&gt;Задача ментора максимально подробно разжевать задачу. Можно подтолкнуть в правильном направлении, но не нужно из этого устраивать шоу “Интуиция”. От этого никто не выиграет. Со временем Джун сам научится задавать правильные вопросы.&lt;/p&gt;
+
+&lt;p&gt;Решение задачи не нужно рассказывать сразу, но постановка должна быть достаточно подробной, чтобы не было вероятности неправильной трактовки.&lt;/p&gt;
+
+&lt;p&gt;Если есть сомнения, еще раз поговорите с Джуном и убедитесь, что вы поняли друг друга верно. И да, лучше разговаривать голосом, а не в чате. Это сильно помогает.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-не-надо-самоутверждаться-за-счет-других&quot;&gt;4. Не надо самоутверждаться за счет других&lt;/h3&gt;
+
+&lt;p&gt;Уффф, тут мое брюзжание будет долгим, потому что от таких примеров бомбит у меня знатно.&lt;/p&gt;
+
+&lt;p&gt;В приведенном диалоге ментор повел себя с Джуном очень грубо и непрофессионально. Я могу предположить следующее:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;У ментора личная неприязнь к Джуну. По одному диалогу сложно судить, но Джун сказал, что у него было именно такое ощущение в нескольких эпизодах. Стоит говорить о том, что это категорически неприемлемо?&lt;/li&gt;
+  &lt;li&gt;Ментор не хочет заниматься менторством. Как бы глупо это не звучало. Не все хотят этим заниматься. Компания должна следить за тем, кто натаскивает джунов. Если человеку не нравится такой род деятельности, ничего хорошего из этого не выйдет.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;У ментора трудности со своими задачами, а тут еще джун. Как бы тебе ни было трудно, не нужно переносить свои проблемы, эмоции на других. Как минимум – это непрофессионально, а просто по-человечески – это свинство.&lt;/p&gt;
+
+    &lt;p&gt;Руководство должно понимать, что работа с джунами отнимает много времени, и делать на это скидку при формировании нагрузки ментора.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ментору не дано учить. Хороший разработчик – не обязательно хороший учитель. Уметь подобрать правильные слова – многого стоит.&lt;/p&gt;
+
+    &lt;p&gt;На какой результат рассчитывал ментор? Что Джун подумает, “Ой какой я несообразительный, буду над этим работать”?&lt;/p&gt;
+
+    &lt;p&gt;Такие слова могут отбить всякую мотивацию напрочь. Могут зародить сомнения в себе, и потом люди рассказывают про синдром самозванца. Могут просто отбить желание задавать вопросы и общаться с коллегами, потому что будет страшно. Но самое плохое, человек, который поставил на кон все, может просто опустить руки и отказаться от своей мечты.&lt;/p&gt;
+
+    &lt;p&gt;Ничего, кроме тупого самоутверждения “ты – дурак, а я – звезда” тут нет.&lt;/p&gt;
+
+    &lt;p&gt;Все мы были в начале пути. Вспомните, как с вами разговаривали коллеги? Поддерживали ли вас? Что вы чувствовали?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ни один из приведенных вариантов не может служить оправданием такого тона. Нельзя так разговаривать с вашими подчиненными, коллегами. Самоутверждаться и унижать других, пользуясь своим положением. Ни у кого нет такого права.&lt;/p&gt;
+
+&lt;p&gt;Если бы ментор так разговаривал с профессионалом своего уровня, то разговор получился бы совершенно другим. Новичок же все проглотит, будет держать в себе. Ни к чему хорошему это не приведет.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-давайте-джунам-не-только-рутинные-задачи&quot;&gt;5. Давайте Джунам не только рутинные задачи&lt;/h3&gt;
+
+&lt;p&gt;На одной рутине не прокачаешься. Да, простые задачи удобно скинуть с себя. Но не нужно воспринимать новичка, как своего раба. Джуну нужно тренировать мышление. Ему нужны сложные испытания.&lt;/p&gt;
+
+&lt;p&gt;Постарайтесь разбавлять скучную работу чем-нибудь интересным. Помните, то что для вас скучно, для новичка может впервой. Главное, чтобы задачи были разнообразными. Обучение будет проходить гораздо бодрее.&lt;/p&gt;
+
+&lt;h3 id=&quot;6-давайте-не-только-негативную-обратную-связь&quot;&gt;6. Давайте не только негативную обратную связь&lt;/h3&gt;
+
+&lt;p&gt;Помните, кроме кнута есть еще и пряник. Не бывает универсального подхода для всех людей. Но все любят, когда их искренне хвалят. Такое поощрение может быть великим стимулом.&lt;/p&gt;
+
+&lt;p&gt;Начинающие менторы частенько концентрируют внимание только на ошибках, но совершенно не отмечают то, в чем новичок проявил себя хорошо.&lt;/p&gt;
+
+&lt;p&gt;Все хорошо в меру, поэтому между кнутом и пряником должен быть баланс.&lt;/p&gt;
+
+&lt;h3 id=&quot;7-давайте-совершать-ошибки&quot;&gt;7. Давайте совершать ошибки&lt;/h3&gt;
+
+&lt;p&gt;Именно благодаря ошибкам мы учимся. Когда Джун оспаривает ваши слова, не нужно воспринимать это на свой счет. Если вы злитесь – в вас играет ваше эго.&lt;/p&gt;
+
+&lt;p&gt;Если говорить “делай вот так”, но не объяснять почему – новичок ничему не научится.&lt;/p&gt;
+
+&lt;p&gt;Уберите ваше самолюбие подальше. Дайте новичку проверить свою гипотезу, идею. Затем уже предметно, объективно, спокойно покажите в чем именно ошибка и как можно было бы сделать лучше.&lt;/p&gt;
+
+&lt;p&gt;Джун сравнит до/после, поразмыслит над аргументами и сделает выводы. Вот увидите, при таком подходе он будет расти гораздо быстрее.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Подведем итог. Воспитание джуна – непростое дело. Руководство должно учитывать, что это будет требовать много времени и распределять нагрузку на менторов соответственно. Это должно быть частью процессов компании.&lt;/p&gt;
+
+&lt;p&gt;Не все способны учить. Назначайте менторами тех, кто этого хочет, и кто способен на это.&lt;/p&gt;
+
+&lt;p&gt;Джуны – тоже люди. Они очень неуверены в себе. Не нужно пользоваться своим статусом и культивировать в них комплексы. Наоборот, вспомните себя и окажите нужную поддержку новичкам.&lt;/p&gt;
+
+&lt;p&gt;Найм джунов будет выгоден для компании только если этот процесс будет проходить быстро и эффективно. Общение с джунами отличается от общения с коллегами вашего уровня. Это нужно учитывать и следовать советам, которые я описал.&lt;/p&gt;
+
+&lt;p&gt;Если у вас в компании есть человек, подходящий на роль ментора, дайте ему возможность. Оно однозначного того стоит.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="Programming" /><category term="Soft skills" /><category term="Management" /><summary type="html">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите...</summary></entry><entry><title type="html">Независимый UI слой — ускоряем разработку UI</title><link href="/ru/gamedev/independent-ui-layer.html" rel="alternate" type="text/html" title="Независимый UI слой &amp;mdash; ускоряем разработку UI" /><published>2018-11-15T15:00:00-06:00</published><updated>2018-11-15T15:00:00-06:00</updated><id>/ru/gamedev/independent-ui-layer</id><content type="html" xml:base="/ru/gamedev/independent-ui-layer.html">&lt;p&gt;Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главных головных болей в повседневной разработке у нас частенько были UI задачи:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;UI, как правило, пишется не изолировано, поэтому протестировать его, например, на отдельной сцене, может быть проблематично&lt;/li&gt;
@@ -990,132 +1165,4 @@ Got token: user_stub_token
 
 &lt;p&gt;&lt;a href=&quot;http://fateev.pro/wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346.png&quot; rel=&quot;attachment wp-att-367&quot;&gt;&lt;img class=&quot;alignleft size-medium_large wp-image-367&quot; src=&quot;http://fateev.pro/wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346-768x252.png&quot; alt=&quot;Screenshot from 2015-12-30 00:13:46&quot; width=&quot;768&quot; height=&quot;252&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Cinnamon поддерживает различные расширения. Крайне полезным для себя я нашел &lt;strong&gt;gTile&lt;/strong&gt;, позволяющий удобно позиционировать окна по хоткеям. Хотя и сам cinnamon позволяет Win+arrows позиционировать окна. Так же полезная настройка - убрать title bar при максимизировании окна, что экономит прилично места на экране.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="cinnamon" /><category term="linux" /><summary type="html">Не смотря на то, что основная моя рабочая машина - iMac, и она меня вполне устраивает, сердце все равно тоскует по свободе Linux‘a. На домашнем ноуте у меня стоит Linux, на котором недавно я попробовал Cinnamon. И… он потрясающий! Невероятно легкая и простая оболочка, с большими возможностями для кастомизации. На удивление, багов я, практически, не встретил. Теперь, работая на Mac OS X, невольно хочется вернуться в, теперь уже любимый, Cinnamon.</summary></entry><entry><title type="html">Facebook Unity SDK Problems and Error Handling</title><link href="/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html" rel="alternate" type="text/html" title="Facebook Unity SDK Problems and Error Handling" /><published>2015-08-05T05:58:45-05:00</published><updated>2015-08-05T05:58:45-05:00</updated><id>/gamedev/unity/facebook-unity-sdk-problems-and-error-handling</id><content type="html" xml:base="/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html">&lt;p&gt;&lt;a href=&quot;http://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2.png&quot;&gt;&lt;img class=&quot;alignleft wp-image-307 size-medium&quot; src=&quot;http://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2-300x300.png&quot; alt=&quot;Facebook Unity SDK&quot; width=&quot;300&quot; height=&quot;300&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? It’s quite handy!”. Yes, it is, till you need to work with some kind of REST API.&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;Most of the REST services and also OAuth 2.0 spec using http error codes to inform user about some kind of error. But along with error code service provides response that contains details about an error because just an error code is not enough to understand what to do with such error. Facebook Open Graph API is one of such services. &lt;a href=&quot;https://developers.facebook.com/docs/graph-api/using-graph-api/v2.4#errors&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;Documentation states&lt;/a&gt; that in case of error we should parse JSON response and look to the error code and other error details to understand what’s wrong.
-Common error response looks like this:&lt;/p&gt;
-&lt;pre&gt; 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-       &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-         &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Message describing the error&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;OAuthException&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;190&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;error_subcode&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;460&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;error_user_title&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;A title&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-         &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;error_user_msg&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;A message&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-       &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
- &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;/pre&gt;
-&lt;p&gt;The most important error in my case is &lt;strong&gt;invalid token&lt;/strong&gt;. In that case we should reauthorize user in our app. If it won’t be done, all queries to API will fail. This breaks all the things. Facebook Unity SDK provides &lt;strong&gt;FBResult&lt;/strong&gt; class to read repsonse from facebook’s API. Problem that I’m talking about is that&lt;/p&gt;
-&lt;blockquote&gt;&lt;strong&gt; You can't use FBResult to handle facebook API errors.&lt;/strong&gt;&lt;/blockquote&gt;
-&lt;p&gt;You might say: Why? It has an &lt;strong&gt;FBResult.Error&lt;/strong&gt; property for that”. But what that property is for? It has a string type and all you can get from it is a text description of an error like “400 Bad Response”. Is that informative for you? Neither for me. Open graph API returns 400 http error code if ANY error occurs. I assumed that &lt;strong&gt;FBResult.Text&lt;/strong&gt; property should contain a JSON describing the error like stated in documentation. It’s not! You can’t retrieve error’s JSON! Why?&lt;/p&gt;
-&lt;blockquote&gt;&lt;strong&gt;Unity's WWW class doesn't allow you to get response if error code not equals 200 (Success). &lt;/strong&gt;&lt;/blockquote&gt;
-&lt;p&gt;If you look at FBResult class in a debugger while receiving a response you see that FBResult’s contains a data member which value is a WWW object. That’s why the FBResult.Text property is empty when an error occurs. You might see an error in unity’s console in such case: &lt;strong&gt;“You are trying to load data from a www stream which had the following error when downloading. 400 Bad Request”.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It’s absolutely pointless to forbid read a response if the response code not equals 200. It violates OAuth specifications. It’s a bug and it exists in unity for years. Facebook developers that worked with Facebook Unity SDK knew it for sure and just ignored it. They just don’t care about it. Facebook Unity SDK is outdated and updated rarely. Features like Share Dialog isn’t supported.&lt;/p&gt;
-
-&lt;p&gt;Fortunately Open Graph SDK provides error details in HTTP Headers! To solve problem with error handling I use some hack. I would avoid it if situation wouldn’t be so awful. I use reflection to get protected FBResult.data field. As I mentioned before that field contains WWW object that I can use to retrieve http headers. Here is a part of my class:&lt;/p&gt;
-&lt;pre&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Linq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Text.RegularExpressions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Collections.Generic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Reflection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;LitJson&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Glu.ContractKiller3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Glu.Localization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Glu.JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Glu.Facebook&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SDKError&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error_subcode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error_user_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error_user_msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDKError&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CreateFromHeaders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ContainsKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;WWW-AUTHENTICATE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;header&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;WWW-AUTHENTICATE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-                &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;components&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;Regex&lt;/span&gt;
-                        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Matches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&quot;(?[^\s&quot;&quot;]+)|&quot;&quot;(?[^&quot;&quot;]*)&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Cast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Groups&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;components&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Count&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;OAuth&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Facebook Platform&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SDKError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;SetOAuthError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;SetReloginRequired&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error_user_title&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Facebook Error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error_user_msg&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SDKErrorExtensions&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDKError&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ToSDKError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FBResult&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;SDKError&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_fbResultDataField&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;_fbResultDataField&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetField&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NonPublic&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-
-                &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_fbResultDataField&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UnityEngine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WWW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bytesDownloaded&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;responseHeaders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Count&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDKError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;CreateNetworkError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SDKError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;CreateFromHeaders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;www&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;responseHeaders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-
-
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FieldInfo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_fbResultDataField&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;/pre&gt;
-&lt;p&gt;I cache FieldInfo to make reflection queries a little bit faster. Also I check bytesDownloaded and response headers to know if error caused by network problems. If not I check WWW-AUTHENTICATE header that facebook fills with error details. Regular expression required to parse a data in the header. Example of a Header’s data:&lt;/p&gt;
-&lt;pre&gt;OAuth &quot;Facebook Platform&quot; &quot;invalid_token&quot; &quot;Token is invalid because user logged out.&quot;
-&lt;/pre&gt;
-&lt;p&gt;As you see the data format is kind of odd. But I retrieve data by sentences (a single word OR a statement between double quotes). Last part of a header is a message that we can log or display to user. invalid_token chunk looks like error type, so we can use it to decide how to deal with this error.&lt;/p&gt;
-
-&lt;p&gt;As an alternative to my hack you can use WebRequest but I wouldn’t recommend rely on it.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="c#" /><category term="Facebook" /><category term="unity" /><summary type="html">Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? It’s quite handy!”. Yes, it is, till you need to work with some kind of REST API. Most of the REST services and also OAuth 2.0 spec using http error codes to inform user about some kind of error. But along with error code service provides response that contains details about an error because just an error code is not enough to understand what to do with such error. Facebook Open Graph API is one of such services. Documentation states that in case of error we should parse JSON response and look to the error code and other error details to understand what’s wrong. Common error response looks like this: { &quot;error&quot;: { &quot;message&quot;: &quot;Message describing the error&quot;, &quot;type&quot;: &quot;OAuthException&quot;, &quot;code&quot;: 190, &quot;error_subcode&quot;: 460, &quot;error_user_title&quot;: &quot;A title&quot;, &quot;error_user_msg&quot;: &quot;A message&quot; } } The most important error in my case is invalid token. In that case we should reauthorize user in our app. If it won’t be done, all queries to API will fail. This breaks all the things. Facebook Unity SDK provides FBResult class to read repsonse from facebook’s API. Problem that I’m talking about is that You can't use FBResult to handle facebook API errors. You might say: Why? It has an FBResult.Error property for that”. But what that property is for? It has a string type and all you can get from it is a text description of an error like “400 Bad Response”. Is that informative for you? Neither for me. Open graph API returns 400 http error code if ANY error occurs. I assumed that FBResult.Text property should contain a JSON describing the error like stated in documentation. It’s not! You can’t retrieve error’s JSON! Why? Unity's WWW class doesn't allow you to get response if error code not equals 200 (Success). If you look at FBResult class in a debugger while receiving a response you see that FBResult’s contains a data member which value is a WWW object. That’s why the FBResult.Text property is empty when an error occurs. You might see an error in unity’s console in such case: “You are trying to load data from a www stream which had the following error when downloading. 400 Bad Request”. It’s absolutely pointless to forbid read a response if the response code not equals 200. It violates OAuth specifications. It’s a bug and it exists in unity for years. Facebook developers that worked with Facebook Unity SDK knew it for sure and just ignored it. They just don’t care about it. Facebook Unity SDK is outdated and updated rarely. Features like Share Dialog isn’t supported. Fortunately Open Graph SDK provides error details in HTTP Headers! To solve problem with error handling I use some hack. I would avoid it if situation wouldn’t be so awful. I use reflection to get protected FBResult.data field. As I mentioned before that field contains WWW object that I can use to retrieve http headers. Here is a part of my class: using System; using System.Linq; using System.Text.RegularExpressions; using System.Collections.Generic; using System.Reflection; using LitJson; using Glu.ContractKiller3; using Glu.Localization; using Glu.JSON; namespace Glu.Facebook { public class SDKError { public string message; public string type; public int code; public int error_subcode; public string error_user_title; public string error_user_msg; public static SDKError CreateFromHeaders(Dictionary&amp;amp;lt;string, string&amp;amp;gt; headers) { if (headers.ContainsKey(&quot;WWW-AUTHENTICATE&quot;)) { string header = headers[&quot;WWW-AUTHENTICATE&quot;]; var components = Regex .Matches(header, @&quot;(?[^\s&quot;&quot;]+)|&quot;&quot;(?[^&quot;&quot;]*)&quot;&quot;&quot;) .Cast().ToList() .Select(m =&amp;amp;gt; m.Groups[&quot;match&quot;].Value) .ToList(); if (components != null &amp;amp;amp;&amp;amp;amp; components.Count == 4 &amp;amp;amp;&amp;amp;amp; components[0] == &quot;OAuth&quot; &amp;amp;amp;&amp;amp;amp; components[1] == &quot;Facebook Platform&quot;) { var err = new SDKError(); err.SetOAuthError(); err.SetReloginRequired(); err.message = components[3]; err.error_user_title = &quot;Facebook Error&quot;; err.error_user_msg = err.message; return err; } } return null; } } static class SDKErrorExtensions { public static SDKError ToSDKError(this FBResult result) { SDKError err = null; if (result != null) { if (_fbResultDataField == null) { _fbResultDataField = result.GetType().GetField(&quot;data&quot;, BindingFlags.NonPublic | BindingFlags.Instance); } var www = _fbResultDataField.GetValue(result) as UnityEngine.WWW; if (www != null) { if (www.bytesDownloaded == 0 || www.responseHeaders.Count == 0) { err = SDKError.CreateNetworkError(); } else { err = SDKError.CreateFromHeaders(www.responseHeaders); } } } return err; } private static FieldInfo _fbResultDataField; } } I cache FieldInfo to make reflection queries a little bit faster. Also I check bytesDownloaded and response headers to know if error caused by network problems. If not I check WWW-AUTHENTICATE header that facebook fills with error details. Regular expression required to parse a data in the header. Example of a Header’s data: OAuth &quot;Facebook Platform&quot; &quot;invalid_token&quot; &quot;Token is invalid because user logged out.&quot; As you see the data format is kind of odd. But I retrieve data by sentences (a single word OR a statement between double quotes). Last part of a header is a message that we can log or display to user. invalid_token chunk looks like error type, so we can use it to decide how to deal with this error. As an alternative to my hack you can use WebRequest but I wouldn’t recommend rely on it.</summary></entry></feed>
+&lt;p&gt;Cinnamon поддерживает различные расширения. Крайне полезным для себя я нашел &lt;strong&gt;gTile&lt;/strong&gt;, позволяющий удобно позиционировать окна по хоткеям. Хотя и сам cinnamon позволяет Win+arrows позиционировать окна. Так же полезная настройка - убрать title bar при максимизировании окна, что экономит прилично места на экране.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="cinnamon" /><category term="linux" /><summary type="html">Не смотря на то, что основная моя рабочая машина - iMac, и она меня вполне устраивает, сердце все равно тоскует по свободе Linux‘a. На домашнем ноуте у меня стоит Linux, на котором недавно я попробовал Cinnamon. И… он потрясающий! Невероятно легкая и простая оболочка, с большими возможностями для кастомизации. На удивление, багов я, практически, не встретил. Теперь, работая на Mac OS X, невольно хочется вернуться в, теперь уже любимый, Cinnamon.</summary></entry></feed>

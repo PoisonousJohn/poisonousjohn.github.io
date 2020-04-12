@@ -1,0 +1,795 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ru" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Правильно ли вы растите своих джунов? - Ivan Fateev’s blog</title>
+<meta name="description" content="У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите… ">
+
+
+  <meta name="author" content="Ivan Fateev">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru">
+<meta property="og:site_name" content="Ivan Fateev's blog">
+<meta property="og:title" content="Правильно ли вы растите своих джунов?">
+<meta property="og:url" content="/ru/programming/are-you-growing-your-juniors-right.html">
+
+
+  <meta property="og:description" content="У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите… ">
+
+
+
+  <meta property="og:image" content="/assets/images/pair-programming.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-04-03T16:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/ru/programming/are-you-growing-your-juniors-right.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ivan Fateev",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ivan Fateev's blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/headerPixels.js"></script>
+  
+
+
+    <!-- custom -->
+<link rel="icon" type="image/png" href="/wp-content/uploads/2012/09/favicon.png">
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ivan Fateev's blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Категории статей</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Теги</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Выпадающее меню</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/assets/images/pair-programming.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Правильно ли вы растите своих джунов?
+
+        
+      </h1>
+      
+        <p class="page__lead">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
+</p>
+      
+      
+        <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  8 мин на чтение
+
+</p>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/wp-content/uploads/2012/09/IMG_9760_final_bw-300x300.jpg" alt="Ivan Fateev" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ivan Fateev</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software engineer with more <br />than 10 years of experience</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Связаться со мной</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+          
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Правильно ли вы растите своих джунов?">
+    <meta itemprop="description" content="У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…">
+    <meta itemprop="datePublished" content="2020-04-03T16:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>А ничего! Буквально – ничего! В том то и дело.</p>
+
+<p>Когда мой ученик рассказал о том, что происходит у него на работе, я не смог больше терпеть, и решился на эту статью. Вдруг получится помочь хоть нескольким людям.</p>
+
+<p>Рассмотрим пару проблем. Подобные ситуации возникают не только в нашей индустрии. Вы их можете найти в любом месте, где нанимают стажеров/новичков.</p>
+
+<h2 id="проблема-1-джуном-никто-не-занимается">Проблема №1: Джуном никто не занимается</h2>
+
+<p>Джун до этого работал в другой сфере, и на этот свитч карьеры решался долго. Он учился в свободное от работы время. Потом поставил на кон все, уволился со старой работы и несколько месяцев продолжал учиться нон-стоп, существуя на накопленные средства. И наконец-то получил свою первую работу программистом с окладом, значительно меньшим, чем у него был до этого.</p>
+
+<p>В течение года <del>наставники</del> кураторы Джуна постоянно менялись. Его тупо перекидывали от одного к другому, никто не хотел им заниматься.</p>
+
+<p>Никаких внятных задач ему не давали. Скидывали какое-то непонятное говно, с которым никто не хотел возиться.</p>
+
+<p>Потом и говнозадачи кончились. Сказали сиди там читай что-нибудь, развивайся сам.</p>
+
+<p>Затем ему дали разбираться с продуктом, который ну очень специфический. Опыт работы с ним практически никак не котируется на рынке труда. При этом, ни у кого другого не было ни опыта ни желания заниматься такой фигней. То есть Джуну даже не к кому было обратиться за помощью.</p>
+
+<p>Это было первое место работы в качестве программиста, и оценить, нормальна такая ситуация или нет – он не мог. Джун боялся, что если не разберется, то его уволят. Вся эта история психологически угнетала, было ощущение, что время уходит зря, а он бессилен что-либо сделать.</p>
+
+<p>Он поделился этим со мной, и я рекомендовал сменить место работы. Что он и сделал.</p>
+
+<h2 id="проблема-2-джуном-занимается-тот-кто-не-умеет-учить-или-не-хочет-этим-заниматься">Проблема №2: Джуном занимается тот, кто не умеет учить, или не хочет этим заниматься</h2>
+
+<p>На новом месте работы джуну понравилось больше. Там назначили конкретного ментора, который ставил нормальные задачи, следил за их исполнением, немножко учил. Джун начал прокачиваться.</p>
+
+<p>Спустя пару месяцев, иногда ментор начинал вести себя странно. В такие моменты появлялось ощущение какой-то личной неприязни, или что-то вроде того.</p>
+
+<p>Просто посмотрите на пример диалога ниже.</p>
+
+<ul>
+  <li>Джун: М, на счёт задачи XXX-413, Вы написали “Переделать: отображение диалога реализовать в классе действия RestoreDbAction” - я что-то не понял, в каком смысле “реализовать”? я сейчас сделал так, что вызывается RestoreDbAction.Confirm вместо IDialogDisplay.Show, но всё остальное получается оставляю как было, или я чего-то не понял?</li>
+  <li>Ментор: До тебя долго доходит. Понял наконец?</li>
+  <li>Джун: … я сейчас всё правильно понял?</li>
+  <li>Ментор: Что?</li>
+  <li>Джун: просто надо было использовать Confirm от Action?</li>
+  <li>Ментор: Конечно</li>
+  <li>Ментор: Почему сразу не догадался? Ещё вопросы?</li>
+</ul>
+
+<hr />
+
+<ul>
+  <li>Ментор: Как я и думал, Д, ты опять ничего не понял. Я просто удивляюсь твоей несообразительности….. (sad) Задачу вернул на доработку</li>
+  <li>Джун: я же спрашивал, правильно ли я понял</li>
+  <li>Ментор: я тоже спрашивал. 3 раза. И все равно ты понял неправильно</li>
+</ul>
+
+<h2 id="зачем-компании-джуны">Зачем компании джуны?</h2>
+
+<p>Давайте разберемся, в чем смысл растить джунов?</p>
+
+<p>Джун – это вклад в будущее. Долгосрочный проект, если хотите.</p>
+
+<p>Компания дает знания и опыт, а начинающий специалист со временем начинает возвращать инвестиции в виде выполненных задач. Получается такой выгодный симбиоз.</p>
+
+<p>Джун с огоньком в глазах готов писать код просто потому, что это интересно и прикольно. А если за это еще и деньги платят — тем более.</p>
+
+<p>Чем быстрее Джун начнет выполнять реальные задачи, приносить пользу, тем выгоднее это для компании.</p>
+
+<p class="notice--info">Стартапы редко берут джунов. Ведь им нужно, чтобы отдача от разработчика была моментальной. Для стартапа, главное – скорость. Большие компании – другое дело. Они могут позволить себе не спешить.</p>
+
+<p>Для работодателя существует две веских причины растить джунов:</p>
+
+<ol>
+  <li><strong>Дешевая рабочая сила</strong>: они не просят много денег. А если джуна прокачали быстро, то за малые деньги компания получит неплохого специалиста, заточенного именно под ее процессы.</li>
+  <li>
+    <p><strong>Предсказуемый источник хороших кадров</strong>.
+Найм – всегда гемор. Поиск миддла может занять много времени и сил.
+Даже если кандидат идеально прошел собеседование, предсказать как он покажет себя в работе – невозможно. В случае ошибки компания терпит убытки.</p>
+
+    <p>Вместо этого можно нанять пачку джунов. И вероятность найти подходящий кадр выше. Хороший работодатель заметит джунов, выросших в уровне, даст повышение и стимулирует развитие дальше.</p>
+
+    <p>При этом компания получает нового прокачанного разраба, с известной производительностью, знакомого с процессами и так далее. Ситуация win-win.</p>
+
+    <p>Если такой формат поставлен на поток, то компания может довольно стабильно расти.</p>
+  </li>
+</ol>
+
+<h2 id="несколько-простых-советов-по-воспитанию-джунов">Несколько простых советов по воспитанию джунов</h2>
+<h3 id="1-не-берите-джунов-если-ими-некому-заниматься">1. Не берите джунов, если ими некому заниматься</h3>
+
+<p>Что можно извлечь из описания проблемы №1? Компания наняла джуна, но при этом им никто нормально не занимался. Он хотел учиться, и цеплялся за любую возможность.</p>
+
+<p>Но работодателю было явно не до младших разрабов. Джун просто сидел на окладе, не принося компании выгоды, и не прокачивался сам. Ситуация lose-lose.</p>
+
+<p>Джуны требуют постоянного надзора. Они как дети, которые пробуют ходить. Вначале у них это совсем не получается, но с каждым разом справляются все лучше. Однажды они начинают довольно уверено ходить и почти не требуют присмотра.</p>
+
+<p>Что будет с ребенком, если его оставить одного? Наверняка случится что-то плохое. Поранится, уползет куда-нибудь не туда, что-нибудь сломает. Так случилось и в описанном случае.</p>
+
+<p>Начальный этап взращивания джуна — самый сложный. Он требует приличных затрат времени и моральных сил. Нужно понимать, что тот, кто менторит – будет работать медленнее. Но в долгосрочной перспективе все окупится.</p>
+
+<p>Если вы не готовы пойти на такие затраты, то не надо брать джунов. Не тратьте ресурсы компании зря, уважайте время людей.</p>
+
+<p>С проблемой №1 покончено. Перейдем к проблеме №2.</p>
+
+<h3 id="2-не-надо-перекладывать-ответственность">2. Не надо перекладывать ответственность</h3>
+
+<p>В диалоге из проблемы №2 не прав именно ментор. Джун недостаточно квалифицирован, чтобы формализовать задачу, выяснить недостающие требования, спроектировать хорошее решение и так далее.</p>
+
+<p>То, что Джун неправильно понял задачу – полностью вина ментора. Но он, вместо того, чтобы исправить положение, сложил вину с себя.</p>
+
+<h3 id="3-ставьте-джуну-максимально-подробные-задачи">3. Ставьте Джуну максимально подробные задачи</h3>
+
+<p>Задача ментора максимально подробно разжевать задачу. Можно подтолкнуть в правильном направлении, но не нужно из этого устраивать шоу “Интуиция”. От этого никто не выиграет. Со временем Джун сам научится задавать правильные вопросы.</p>
+
+<p>Решение задачи не нужно рассказывать сразу, но постановка должна быть достаточно подробной, чтобы не было вероятности неправильной трактовки.</p>
+
+<p>Если есть сомнения, еще раз поговорите с Джуном и убедитесь, что вы поняли друг друга верно. И да, лучше разговаривать голосом, а не в чате. Это сильно помогает.</p>
+
+<h3 id="4-не-надо-самоутверждаться-за-счет-других">4. Не надо самоутверждаться за счет других</h3>
+
+<p>Уффф, тут мое брюзжание будет долгим, потому что от таких примеров бомбит у меня знатно.</p>
+
+<p>В приведенном диалоге ментор повел себя с Джуном очень грубо и непрофессионально. Я могу предположить следующее:</p>
+
+<ol>
+  <li>У ментора личная неприязнь к Джуну. По одному диалогу сложно судить, но Джун сказал, что у него было именно такое ощущение в нескольких эпизодах. Стоит говорить о том, что это категорически неприемлемо?</li>
+  <li>Ментор не хочет заниматься менторством. Как бы глупо это не звучало. Не все хотят этим заниматься. Компания должна следить за тем, кто натаскивает джунов. Если человеку не нравится такой род деятельности, ничего хорошего из этого не выйдет.</li>
+  <li>
+    <p>У ментора трудности со своими задачами, а тут еще джун. Как бы тебе ни было трудно, не нужно переносить свои проблемы, эмоции на других. Как минимум – это непрофессионально, а просто по-человечески – это свинство.</p>
+
+    <p>Руководство должно понимать, что работа с джунами отнимает много времени, и делать на это скидку при формировании нагрузки ментора.</p>
+  </li>
+  <li>
+    <p>Ментору не дано учить. Хороший разработчик – не обязательно хороший учитель. Уметь подобрать правильные слова – многого стоит.</p>
+
+    <p>На какой результат рассчитывал ментор? Что Джун подумает, “Ой какой я несообразительный, буду над этим работать”?</p>
+
+    <p>Такие слова могут отбить всякую мотивацию напрочь. Могут зародить сомнения в себе, и потом люди рассказывают про синдром самозванца. Могут просто отбить желание задавать вопросы и общаться с коллегами, потому что будет страшно. Но самое плохое, человек, который поставил на кон все, может просто опустить руки и отказаться от своей мечты.</p>
+
+    <p>Ничего, кроме тупого самоутверждения “ты – дурак, а я – звезда” тут нет.</p>
+
+    <p>Все мы были в начале пути. Вспомните, как с вами разговаривали коллеги? Поддерживали ли вас? Что вы чувствовали?</p>
+  </li>
+</ol>
+
+<p>Ни один из приведенных вариантов не может служить оправданием такого тона. Нельзя так разговаривать с вашими подчиненными, коллегами. Самоутверждаться и унижать других, пользуясь своим положением. Ни у кого нет такого права.</p>
+
+<p>Если бы ментор так разговаривал с профессионалом своего уровня, то разговор получился бы совершенно другим. Новичок же все проглотит, будет держать в себе. Ни к чему хорошему это не приведет.</p>
+
+<h3 id="5-давайте-джунам-не-только-рутинные-задачи">5. Давайте Джунам не только рутинные задачи</h3>
+
+<p>На одной рутине не прокачаешься. Да, простые задачи удобно скинуть с себя. Но не нужно воспринимать новичка, как своего раба. Джуну нужно тренировать мышление. Ему нужны сложные испытания.</p>
+
+<p>Постарайтесь разбавлять скучную работу чем-нибудь интересным. Помните, то что для вас скучно, для новичка может впервой. Главное, чтобы задачи были разнообразными. Обучение будет проходить гораздо бодрее.</p>
+
+<h3 id="6-давайте-не-только-негативную-обратную-связь">6. Давайте не только негативную обратную связь</h3>
+
+<p>Помните, кроме кнута есть еще и пряник. Не бывает универсального подхода для всех людей. Но все любят, когда их искренне хвалят. Такое поощрение может быть великим стимулом.</p>
+
+<p>Начинающие менторы частенько концентрируют внимание только на ошибках, но совершенно не отмечают то, в чем новичок проявил себя хорошо.</p>
+
+<p>Все хорошо в меру, поэтому между кнутом и пряником должен быть баланс.</p>
+
+<h3 id="7-давайте-совершать-ошибки">7. Давайте совершать ошибки</h3>
+
+<p>Именно благодаря ошибкам мы учимся. Когда Джун оспаривает ваши слова, не нужно воспринимать это на свой счет. Если вы злитесь – в вас играет ваше эго.</p>
+
+<p>Если говорить “делай вот так”, но не объяснять почему – новичок ничему не научится.</p>
+
+<p>Уберите ваше самолюбие подальше. Дайте новичку проверить свою гипотезу, идею. Затем уже предметно, объективно, спокойно покажите в чем именно ошибка и как можно было бы сделать лучше.</p>
+
+<p>Джун сравнит до/после, поразмыслит над аргументами и сделает выводы. Вот увидите, при таком подходе он будет расти гораздо быстрее.</p>
+
+<hr />
+
+<p>Подведем итог. Воспитание джуна – непростое дело. Руководство должно учитывать, что это будет требовать много времени и распределять нагрузку на менторов соответственно. Это должно быть частью процессов компании.</p>
+
+<p>Не все способны учить. Назначайте менторами тех, кто этого хочет, и кто способен на это.</p>
+
+<p>Джуны – тоже люди. Они очень неуверены в себе. Не нужно пользоваться своим статусом и культивировать в них комплексы. Наоборот, вспомните себя и окажите нужную поддержку новичкам.</p>
+
+<p>Найм джунов будет выгоден для компании только если этот процесс будет проходить быстро и эффективно. Общение с джунами отличается от общения с коллегами вашего уровня. Это нужно учитывать и следовать советам, которые я описал.</p>
+
+<p>Если у вас в компании есть человек, подходящий на роль ментора, дайте ему возможность. Оно однозначного того стоит.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Метки: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/management" class="page__taxonomy-item" rel="tag">Management</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/programming" class="page__taxonomy-item" rel="tag">Programming</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/soft-skills" class="page__taxonomy-item" rel="tag">Soft skills</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Разделы: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/programming" class="page__taxonomy-item" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2020-04-03T16:00:00-05:00">April 3, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Поделиться</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE+%D0%BB%D0%B8+%D0%B2%D1%8B+%D1%80%D0%B0%D1%81%D1%82%D0%B8%D1%82%D0%B5+%D1%81%D0%B2%D0%BE%D0%B8%D1%85+%D0%B4%D0%B6%D1%83%D0%BD%D0%BE%D0%B2%3F%20%2Fru%2Fprogramming%2Fare-you-growing-your-juniors-right.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fru%2Fprogramming%2Fare-you-growing-your-juniors-right.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fru%2Fprogramming%2Fare-you-growing-your-juniors-right.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ru/gamedev/independent-ui-layer.html" class="pagination--pager" title="Независимый UI слой — ускоряем разработку UI
+">Предыдущая</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Следующая</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">Вам также может понравиться</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/ui-arch.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/independent-ui-layer.html" rel="permalink">Независимый UI слой — ускоряем разработку UI
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главны...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/paradigm-shift-graphic.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/programming/understanding-paradigm-rx-for-api.html" rel="permalink">Важность понимания парадигмы. RX для работы с API
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывае...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/gizmos.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/debug-tools.html" rel="permalink">Средства отладки
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Сколько времени мы тратим в день, разбираясь в коде? Согласно этой статье — 75%.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/health-component.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/entity-component-system.html" rel="permalink">Система компонентов cущностей (Entity Component System)
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <noscript>
+    <div><img src="https://mc.yandex.ru/watch/16940533" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8RNTGQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Связаться со мной:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Ivan Fateev. Сайт работает на <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+    <script src="/assets/js/main.min.js"></script>
+  
+    <script src="/assets/js/footerPixels.js"></script>
+  
+    <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
