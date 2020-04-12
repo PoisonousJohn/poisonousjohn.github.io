@@ -22,8 +22,8 @@ cd ..
 rm -rf build/*
 cp -r _site/* build/
 cd build
-rm build-and-publish.sh
-rm -rf .jekyll-cache
+#rm build-and-publish.sh
+#rm -rf .jekyll-cache
 git add .
 git commit -am 'regenerated files'
 # git push
