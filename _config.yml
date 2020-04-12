@@ -15,7 +15,7 @@ theme                  : "minimal-mistakes-jekyll"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "en-US"
+locale                   : "ru"
 title                    : "Ivan Fateev's blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
@@ -149,6 +149,10 @@ exclude:
 keep_files:
   - .git
   - .svn
+  # - assets/images
+  - imgs
+  - wp-content/uploads
+exclude: [build, docker-compose.yml, build-and-publish.sh, .gitignore]
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 

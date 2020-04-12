@@ -1,4 +1,3 @@
-@import "custom/variables";
 @import "custom/about";
 
 /* ======
@@ -25,4 +24,27 @@ figure img {
 
 pre {
     white-space: pre-wrap;
+}
+
+hr {
+   border: 0 !important;
+   margin-bottom: $indent-var;
+   text-align: center;
+}
+
+hr::before {
+   content: "...";
+   font-size: $type-size-4;
+   letter-spacing: 0.6em;
+   color: $text-color;
+   font-weight: 800;
+}
+
+a {
+    text-decoration: none;
+}
+
+h3, h4, h5, h6 {
+    margin-bottom: $indent-var;
+    margin-top: $indent-var * 2;
 }

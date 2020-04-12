@@ -4,9 +4,7 @@ date: 2018-11-16T00:00:00+03:00
 guid: /ru/gamedev/independent-ui-layer.html
 permalink: /ru/gamedev/independent-ui-layer.html
 header:
-  header:
   teaser:  /imgs/ui-arch.png
-  teaser: /assets/images/ui-arch.png
 categories:
   - Programming
   - Gamedev
