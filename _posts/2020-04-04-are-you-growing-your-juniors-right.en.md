@@ -16,12 +16,12 @@ tags:
   - Soft skills
   - Management
 excerpt: >
-  I have a student. At the beginning of his path I helped him to comprehend our craft. Then he got into a quite big company. What they did to him...
+  I have a student. At the beginning of his path, I helped him to comprehend our craft. Then he got into a quite big company. What they did to him...
 ---
 
-Nothing! Literally -- nothing. And that's a point.
+Nothing! Literally -- nothing. And that's the point.
 
-When my student told me about what's happening on his job, I couldn't take it anymore and decided to write this article. I hope to help at least some people with it.
+When my student told me about what's happening in his job, I couldn't take it anymore and decided to write this article. I hope to help at least some people with it.
 
 Let's look at a couple of problems. Such situations happen not only in our industry. You can find them in any place where they hire interns/beginners.
 
@@ -76,7 +76,7 @@ Junior is ready to write code just for fun. But if you pay money for it -- just 
 
 Faster Junior starts completing real tasks, bring value, more profitable it would be for a company.
 
-Startups rarely hire juniors. Because they need an instant result. For a startup speed is the most important aspect. Large companies are different. They can afford a slower pace.
+Startups rarely hire juniors. Because they need an instant result. For a startup, speed is the most important aspect. Large companies are different. They can afford a slower pace.
 {: .notice--info}
 
 There are two big points to hire juniors:
