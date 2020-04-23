@@ -203,10 +203,10 @@ var store = [{
         "url": "https://fateev.pro/ru/gamedev/independent-ui-layer.html",
         "teaser": "https://fateev.pro/imgs/ui-arch.png"
       },{
-        "title": "Are you growing your juniours right?",
-        "excerpt":"Nothing! Literally – nothing. And that’s a point. When my student told me about what’s happening on his job, I couldn’t take it anymore and decided to write this article. I hope to help at least some people with it. Let’s look at a couple of problems. Such situations happen...","categories": ["Programming"],
+        "title": "Are you growing your juniors right?",
+        "excerpt":"Nothing! Literally – nothing. And that’s the point. When my student told me about what’s happening in his job, I couldn’t take it anymore and decided to write this article. I hope to help at least some people with it. Let’s look at a couple of problems. Such situations happen...","categories": ["Programming"],
         "tags": ["Programming","Soft skills","Management"],
-        "url": "https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html",
+        "url": "https://fateev.pro/en/programming/are-you-growing-your-juniors-right.html",
         "teaser": "https://fateev.pro/assets/images/growing_junior.png"
       },{
         "title": "Правильно ли вы растите своих джунов?",
