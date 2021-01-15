@@ -214,4 +214,10 @@ var store = [{
         "tags": ["Programming","Soft skills","Management"],
         "url": "https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html",
         "teaser": "https://fateev.pro/assets/images/growing_junior.png"
+      },{
+        "title": "How to clean a legacy code: stop complaining, start doing",
+        "excerpt":"Blue or Red pill? When it happens to join a project with a poor codebase, usually you have two options: Complain about the code Search for another job Start doing everything right The first two options are easy and crystal clear. But the last one is not so simple. I...","categories": ["Programming"],
+        "tags": ["Programming","Management"],
+        "url": "https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html",
+        "teaser": "https://fateev.pro/assets/images/abstract-code.jpg"
       }]

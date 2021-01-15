@@ -1,4 +1,155 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2020-11-19T04:54:00-06:00</updated><id>https://fateev.pro/feed.xml</id><title type="html">Fateev.pro</title><subtitle></subtitle><entry><title type="html">Правильно ли вы растите своих джунов?</title><link href="https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html" rel="alternate" type="text/html" title="Правильно ли вы растите своих джунов?" /><published>2020-04-03T16:00:00-05:00</published><updated>2020-04-03T16:00:00-05:00</updated><id>https://fateev.pro/ru/programming/are-you-growing-your-juniors-right</id><content type="html" xml:base="https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html">&lt;p&gt;А ничего! Буквально – ничего! В том то и дело.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2021-01-15T10:30:39-06:00</updated><id>https://fateev.pro/feed.xml</id><title type="html">Fateev.pro</title><subtitle></subtitle><entry><title type="html">How to clean a legacy code: stop complaining, start doing</title><link href="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="alternate" type="text/html" title="How to clean a legacy code: stop complaining, start doing" /><published>2021-01-14T15:00:00-06:00</published><updated>2021-01-14T15:00:00-06:00</updated><id>https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing</id><content type="html" xml:base="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html">&lt;h2 id=&quot;blue-or-red-pill&quot;&gt;Blue or Red pill?&lt;/h2&gt;
+
+&lt;p&gt;When it happens to join a project with a poor codebase, usually you have two options:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Complain about the code&lt;/li&gt;
+  &lt;li&gt;Search for another job&lt;/li&gt;
+  &lt;li&gt;Start doing everything right&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first two options are easy and crystal clear. But the last one is not so simple.&lt;/p&gt;
+
+&lt;p&gt;I was in the same situation a bunch of times, and always chose the last one. And here what worked for me:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Plan changes&lt;/li&gt;
+  &lt;li&gt;Isolate legacy&lt;/li&gt;
+  &lt;li&gt;Lead by example&lt;/li&gt;
+  &lt;li&gt;Teach&lt;/li&gt;
+  &lt;li&gt;Scale&lt;/li&gt;
+  &lt;li&gt;Clean the shit in small and quick iterations&lt;/li&gt;
+  &lt;li&gt;Document the code as you refactor&lt;/li&gt;
+  &lt;li&gt;Write tests&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now, before getting into more details, let’s think a bit.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-does-this-happen&quot;&gt;Why does this happen?&lt;/h2&gt;
+
+&lt;p&gt;The poor state of the codebase is a result of previously made decisions. It’s hard to tell if they were right or wrong. But the point is that “clean code” is not always a good option for business.&lt;/p&gt;
+
+&lt;p&gt;Nobody expects you to write a clean and neat code for a prototype. You should make the prototype as fast as you can, check your hypothesis, and throw it away.&lt;/p&gt;
+
+&lt;p&gt;Yes, some people CAN write code fast and clean, but it’s hard to find them. And startups, for example, do not have time and money for that.&lt;/p&gt;
+
+&lt;p&gt;As the company grows, priorities change, and businesses need larger teams, more features etc. It’s impossible to continue in a paradigm where speed is the only priority.&lt;/p&gt;
+
+&lt;p&gt;So, being an experienced developer, you likely may find yourself in a project which was written by less experienced people. And that’s fine.&lt;/p&gt;
+
+&lt;p&gt;My point is that complaining and blaming people for being dumb is not professional.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s move to the points of healing the project in more details&lt;/p&gt;
+
+&lt;h2 id=&quot;plan-changes&quot;&gt;Plan changes&lt;/h2&gt;
+
+&lt;p&gt;All changes for the good should start with a plan. Usually I identify what needs to be improved, break it down for tasks, roughly estimate them, and also assess benefits this task can bring to the codebase in a 5-star scale.&lt;/p&gt;
+
+&lt;p&gt;Then I prioritize a backlog by the highest benefit and the smallest size.&lt;/p&gt;
+
+&lt;h2 id=&quot;isolate-legacy&quot;&gt;Isolate legacy&lt;/h2&gt;
+
+&lt;p&gt;To start refactoring without blocking feature development, you need to commit changes in small chunks and predictable deadlines.&lt;/p&gt;
+
+&lt;p&gt;One of the handiest ways to run smooth ongoing refactoring in huge and dynamic projects is to isolate legacy parts.&lt;/p&gt;
+
+&lt;p&gt;This means before rebuilding all of the “legacy” internals, you need to hide them behind a “clean” abstraction layer.&lt;/p&gt;
+
+&lt;p&gt;So you have to have a clear vision of the architecture you want to get to. Then you need to build that “clean” abstraction interface and put it before the “legacy” part. So all the code users will see only a new, clean interface, and already may start building a better code.&lt;/p&gt;
+
+&lt;p&gt;It’s done with the help of the “Adapter” pattern.&lt;/p&gt;
+
+&lt;p&gt;Meanwhile, the legacy part may be ugly, but the adapter connects it to the clean world.&lt;/p&gt;
+
+&lt;p&gt;Once it’s done, you can start reworking the legacy code. Since the legacy code is isolated, your changes won’t affect anybody else. It literally unties your hands.&lt;/p&gt;
+
+&lt;h2 id=&quot;lead-by-example&quot;&gt;Lead by example&lt;/h2&gt;
+
+&lt;p&gt;It might be helpful to lead changes by example. This means you need to show your teammates how changes may be executed. It’s absolutely unnecessary to have a “Lead” position to do this.&lt;/p&gt;
+
+&lt;p&gt;Not everybody will agree with changes, but if you did your planning well, it should be easy to “sell” them.&lt;/p&gt;
+
+&lt;p&gt;The next possible step might be selling these changes to your manager, or whoever decides what team should be working on.&lt;/p&gt;
+
+&lt;p&gt;After you’re done with it, you might start with actual leading by example.&lt;/p&gt;
+
+&lt;p&gt;You need to take the first task from the backlog, and do it as you see it. It will be an example of how people can take steps towards a bright future.&lt;/p&gt;
+
+&lt;p&gt;The “Lead by example” strategy helped me a bunch of times where other strategies failed. Being skeptical for a programmer is pretty normal. But when you do not only say that it’s possible to make things better, you actually DO it, and do it well, people start changing their minds.&lt;/p&gt;
+
+&lt;p&gt;They see that you’ve managed to do this, and it means that they can do it too. You gain trust, and future changes will go smoother.&lt;/p&gt;
+
+&lt;h2 id=&quot;teach&quot;&gt;Teach&lt;/h2&gt;
+
+&lt;p&gt;The “Lead by example” strategy is also a good opportunity to teach people. You can walk through your teammates over your solution and ideas, and show them improvements using Before/After contrast.&lt;/p&gt;
+
+&lt;p&gt;People always understand concepts better, having real-world examples rather than some abstract philosophic statements.&lt;/p&gt;
+
+&lt;p&gt;Make people feel comfortable to ask questions, share ideas, etc.&lt;/p&gt;
+
+&lt;h2 id=&quot;scale&quot;&gt;Scale&lt;/h2&gt;
+
+&lt;p&gt;Once you proved that your plan is good, and you’re on the same page with the team, it’s time to scale it out.&lt;/p&gt;
+
+&lt;p&gt;Recruit more team members to help you out. Guide them through this process. After a few iterations, everybody will see fruits of labor and be happy to help more.&lt;/p&gt;
+
+&lt;h2 id=&quot;clean-the-code-in-small-and-quick-iterations&quot;&gt;Clean the code in small and quick iterations&lt;/h2&gt;
+
+&lt;p&gt;It should not be necessary to say why you would need to execute refactoring in small iterations, but yet.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Large refactoring is hard to review&lt;/li&gt;
+  &lt;li&gt;If large refactoring got declined by the team, a lot of manhours be wasted. Doing small iterations is much less risky&lt;/li&gt;
+  &lt;li&gt;More you spend time on refactoring, the more complex merge will be for you and your teammates. You might find yourself solving conflicts over and over, and something will likely break&lt;/li&gt;
+  &lt;li&gt;We are bad at estimations, so if a refactoring slips the deadline, you might likely be forced to cancel it&lt;/li&gt;
+  &lt;li&gt;Focused changes are always easier to deliver&lt;/li&gt;
+  &lt;li&gt;Small changes have fewer risks to break something and are easier to test&lt;/li&gt;
+  &lt;li&gt;Never mix the code refactoring with the feature development. You will have a huge mess in this case. You won’t be able to release a feature without finishing refactoring before it, or rollback refactoring separately.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Focus is the most important part. It’s so easy to deep dive in the shit, and start cleaning it from the bottom.&lt;/p&gt;
+
+&lt;p&gt;But you should force yourself to stop and limit the scope only to what’s is relevant for the current iteration.&lt;/p&gt;
+
+&lt;p&gt;If you do, the team will be happy to work that way, and eventually, you’ll get to the final point.&lt;/p&gt;
+
+&lt;p&gt;If you don’t, well… massive refactoring won’t be finished at all, or it will break too many things.&lt;/p&gt;
+
+&lt;h2 id=&quot;document-the-code-as-you-refactor&quot;&gt;Document the code as you refactor&lt;/h2&gt;
+
+&lt;p&gt;Refactoring is also a good opportunity to clarify things. I rarely see a documented code, but often find myself questioning parts of the code, as it’s hard to tell what this code is doing and why.&lt;/p&gt;
+
+&lt;p&gt;If you managed to find out business requirements or some details about it, document it! This will help you or anybody else who will get back to this part later.&lt;/p&gt;
+
+&lt;p&gt;Also, it’s helpful to document your thoughts on your vision on the refactoring approach.&lt;/p&gt;
+
+&lt;p&gt;For example, I add code comments advising what can be done next to improve this or that part, and how to do it better. So if my colleagues stumble on it, they understand how to move forward.&lt;/p&gt;
+
+&lt;h2 id=&quot;write-tests&quot;&gt;Write tests&lt;/h2&gt;
+
+&lt;p&gt;You’re lucky if the subject of the refactoring has any tests at all. But most likely it’s not.&lt;/p&gt;
+
+&lt;p&gt;Ideally, before refactoring, you should write tests, to make sure, that after refactoring behavior remained the same.&lt;/p&gt;
+
+&lt;p&gt;But we’re not in the ideal world. Often there’s no test infrastructure at all.&lt;/p&gt;
+
+&lt;p&gt;Here what I usually do:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Provide testability for the new “clean” code first.&lt;/li&gt;
+  &lt;li&gt;Test all of the new features which should be clean.&lt;/li&gt;
+  &lt;li&gt;Then you can start bringing testability to the legacy code, step by step, small chunks, remember?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;final-thoughts&quot;&gt;Final thoughts&lt;/h2&gt;
+
+&lt;p&gt;Reworking a legacy code is a tough and long task. But it’s possible. It’s easy to say that we need to rewrite everything from scratch. But structured and planned refactoring is a much better way.&lt;/p&gt;
+
+&lt;p&gt;Refactoring has a cumulative effect. With each iteration, it will be easier and easier to work with the code. So be the leader, take the hardest steps, show how this can be done.&lt;/p&gt;
+
+&lt;p&gt;–&lt;/p&gt;
+
+&lt;p&gt;What works for me, might not work for you, but still, I believe you might give it a try.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="Programming" /><category term="Management" /><summary type="html">Most of the articles and books tell you how to write a &quot;good code&quot;. But in real life, you often find yourself deep in the shit after joining some company or project.</summary></entry><entry><title type="html">Правильно ли вы растите своих джунов?</title><link href="https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html" rel="alternate" type="text/html" title="Правильно ли вы растите своих джунов?" /><published>2020-04-03T16:00:00-05:00</published><updated>2020-04-03T16:00:00-05:00</updated><id>https://fateev.pro/ru/programming/are-you-growing-your-juniors-right</id><content type="html" xml:base="https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html">&lt;p&gt;А ничего! Буквально – ничего! В том то и дело.&lt;/p&gt;
 
 &lt;p&gt;Когда мой ученик рассказал о том, что происходит у него на работе, я не смог больше терпеть, и решился на эту статью. Вдруг получится помочь хоть нескольким людям.&lt;/p&gt;
 
@@ -1317,8 +1468,4 @@ Got token: user_stub_token
 
 &lt;p&gt;Also I couldn’t get touch capabilities working on Raspberry Pi, yet touch worked on Ubuntu. So I’ve made a fork of a driver I found on github: https://github.com/JohnPoison/waveshare-7inch-touchscreen-driver . And added support for right button on hold and scroll by two fingers.&lt;/p&gt;
 
-&lt;script src=&quot;https://gist.github.com/JohnPoison/ed544f07da72568fc60074a4566560b8.js&quot;&gt;&lt;/script&gt;</content><author><name>Ivan Fateev</name></author><category term="IoT" /><category term="Raspberry Pi" /><summary type="html">I’ve recently bought a waveshare 7 inch touchscreen, which didn’t work out of the box. It comes with custom raspbian image, which isn’t handy because you can’t upgrade so easily. So actually this display is able to work on stock raspbian with slight modifications to config.txt as you can see below.</summary></entry><entry><title type="html">Unity 4.6.x doesn’t show up when opening large projects, is it alive?</title><link href="https://fateev.pro/gamedev/unity/unity-4-6-x-doesnt-show-up-when-opening-large-projects-is-it-alive.html" rel="alternate" type="text/html" title="Unity 4.6.x doesn&amp;#8217;t show up when opening large projects, is it alive?" /><published>2016-12-19T10:13:54-06:00</published><updated>2016-12-19T10:13:54-06:00</updated><id>https://fateev.pro/gamedev/unity/unity-4-6-x-doesnt-show-up-when-opening-large-projects-is-it-alive</id><content type="html" xml:base="https://fateev.pro/gamedev/unity/unity-4-6-x-doesnt-show-up-when-opening-large-projects-is-it-alive.html">&lt;p&gt;&lt;a href=&quot;http://fateev.pro/wp-content/uploads/2016/12/977b0ce93a4099143e64ae932e905dc0_e7cdc06072836c64f441c5014ad641f5.jpg&quot; rel=&quot;attachment wp-att-383&quot;&gt;&lt;img class=&quot;alignleft size-full wp-image-383&quot; src=&quot;http://fateev.pro/wp-content/uploads/2016/12/977b0ce93a4099143e64ae932e905dc0_e7cdc06072836c64f441c5014ad641f5.jpg&quot; alt=&quot;977b0ce93a4099143e64ae932e905dc0_e7cdc06072836c64f441c5014ad641f5&quot; width=&quot;300&quot; height=&quot;195&quot; /&gt;&lt;/a&gt;Due to single-threaded approach of Unity editor of version 4.x, when opening large project first time, Unity launches importing of files, yet doesn’t show anything on screen. Also CPU activity keeps at low rate.  On Mac OS X it is possible to track Unity’s background activity when it is reading files using following command:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo fs_usage | grep Unity | grep /&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This command shows which files are being opened by Unity at the time. This should give you enough information on its current activity and make a rough estimation of process complete time.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="OSX" /><category term="unity" /><summary type="html">Due to single-threaded approach of Unity editor of version 4.x, when opening large project first time, Unity launches importing of files, yet doesn’t show anything on screen. Also CPU activity keeps at low rate.  On Mac OS X it is possible to track Unity’s background activity when it is reading files using following command:</summary></entry></feed>
+&lt;script src=&quot;https://gist.github.com/JohnPoison/ed544f07da72568fc60074a4566560b8.js&quot;&gt;&lt;/script&gt;</content><author><name>Ivan Fateev</name></author><category term="IoT" /><category term="Raspberry Pi" /><summary type="html">I’ve recently bought a waveshare 7 inch touchscreen, which didn’t work out of the box. It comes with custom raspbian image, which isn’t handy because you can’t upgrade so easily. So actually this display is able to work on stock raspbian with slight modifications to config.txt as you can see below.</summary></entry></feed>

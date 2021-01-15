@@ -1,0 +1,776 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ru" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to clean a legacy code: stop complaining, start doing - Fateev.pro</title>
+<meta name="description" content="Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or project. ">
+
+
+  <meta name="author" content="Ivan Fateev">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru">
+<meta property="og:site_name" content="Fateev.pro">
+<meta property="og:title" content="How to clean a legacy code: stop complaining, start doing">
+<meta property="og:url" content="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html">
+
+
+  <meta property="og:description" content="Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or project. ">
+
+
+
+  <meta property="og:image" content="https://fateev.pro/assets/images/abstract-code.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-01-14T15:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ivan Fateev",
+      "url": "https://fateev.pro/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/headerPixels.js"></script>
+  
+
+
+    <!-- custom -->
+<link rel="icon" type="image/png" href="/wp-content/uploads/2012/09/favicon.png">
+<meta data-rh="true" property="al:android:app_name" content="Medium" />
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Fateev.pro
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Категории статей</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Теги</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Выпадающее меню</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/assets/images/abstract-code.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          How to clean a legacy code: stop complaining, start doing
+
+        
+      </h1>
+      
+        <p class="page__lead">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or project.
+</p>
+      
+      
+        <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 мин на чтение
+
+</p>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/wp-content/uploads/2012/09/IMG_9760_final_bw-300x300.jpg" alt="Ivan Fateev" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ivan Fateev</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software engineer with more <br />than 10 years of experience</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Связаться со мной</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+          
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to clean a legacy code: stop complaining, start doing">
+    <meta itemprop="description" content="Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or project.">
+    <meta itemprop="datePublished" content="2021-01-14T15:00:00-06:00">
+    
+
+    <div class="page__inner-wrap">
+        <header  style="display: none;" >
+          <h1 id="page-title" class="page__title" itemprop="headline">How to clean a legacy code: stop complaining, start doing
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 мин на чтение
+
+</p>
+          
+        </header>
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="blue-or-red-pill">Blue or Red pill?</h2>
+
+<p>When it happens to join a project with a poor codebase, usually you have two options:</p>
+
+<ol>
+  <li>Complain about the code</li>
+  <li>Search for another job</li>
+  <li>Start doing everything right</li>
+</ol>
+
+<p>The first two options are easy and crystal clear. But the last one is not so simple.</p>
+
+<p>I was in the same situation a bunch of times, and always chose the last one. And here what worked for me:</p>
+
+<ol>
+  <li>Plan changes</li>
+  <li>Isolate legacy</li>
+  <li>Lead by example</li>
+  <li>Teach</li>
+  <li>Scale</li>
+  <li>Clean the shit in small and quick iterations</li>
+  <li>Document the code as you refactor</li>
+  <li>Write tests</li>
+</ol>
+
+<p>Now, before getting into more details, let’s think a bit.</p>
+
+<h2 id="why-does-this-happen">Why does this happen?</h2>
+
+<p>The poor state of the codebase is a result of previously made decisions. It’s hard to tell if they were right or wrong. But the point is that “clean code” is not always a good option for business.</p>
+
+<p>Nobody expects you to write a clean and neat code for a prototype. You should make the prototype as fast as you can, check your hypothesis, and throw it away.</p>
+
+<p>Yes, some people CAN write code fast and clean, but it’s hard to find them. And startups, for example, do not have time and money for that.</p>
+
+<p>As the company grows, priorities change, and businesses need larger teams, more features etc. It’s impossible to continue in a paradigm where speed is the only priority.</p>
+
+<p>So, being an experienced developer, you likely may find yourself in a project which was written by less experienced people. And that’s fine.</p>
+
+<p>My point is that complaining and blaming people for being dumb is not professional.</p>
+
+<p>Now, let’s move to the points of healing the project in more details</p>
+
+<h2 id="plan-changes">Plan changes</h2>
+
+<p>All changes for the good should start with a plan. Usually I identify what needs to be improved, break it down for tasks, roughly estimate them, and also assess benefits this task can bring to the codebase in a 5-star scale.</p>
+
+<p>Then I prioritize a backlog by the highest benefit and the smallest size.</p>
+
+<h2 id="isolate-legacy">Isolate legacy</h2>
+
+<p>To start refactoring without blocking feature development, you need to commit changes in small chunks and predictable deadlines.</p>
+
+<p>One of the handiest ways to run smooth ongoing refactoring in huge and dynamic projects is to isolate legacy parts.</p>
+
+<p>This means before rebuilding all of the “legacy” internals, you need to hide them behind a “clean” abstraction layer.</p>
+
+<p>So you have to have a clear vision of the architecture you want to get to. Then you need to build that “clean” abstraction interface and put it before the “legacy” part. So all the code users will see only a new, clean interface, and already may start building a better code.</p>
+
+<p>It’s done with the help of the “Adapter” pattern.</p>
+
+<p>Meanwhile, the legacy part may be ugly, but the adapter connects it to the clean world.</p>
+
+<p>Once it’s done, you can start reworking the legacy code. Since the legacy code is isolated, your changes won’t affect anybody else. It literally unties your hands.</p>
+
+<h2 id="lead-by-example">Lead by example</h2>
+
+<p>It might be helpful to lead changes by example. This means you need to show your teammates how changes may be executed. It’s absolutely unnecessary to have a “Lead” position to do this.</p>
+
+<p>Not everybody will agree with changes, but if you did your planning well, it should be easy to “sell” them.</p>
+
+<p>The next possible step might be selling these changes to your manager, or whoever decides what team should be working on.</p>
+
+<p>After you’re done with it, you might start with actual leading by example.</p>
+
+<p>You need to take the first task from the backlog, and do it as you see it. It will be an example of how people can take steps towards a bright future.</p>
+
+<p>The “Lead by example” strategy helped me a bunch of times where other strategies failed. Being skeptical for a programmer is pretty normal. But when you do not only say that it’s possible to make things better, you actually DO it, and do it well, people start changing their minds.</p>
+
+<p>They see that you’ve managed to do this, and it means that they can do it too. You gain trust, and future changes will go smoother.</p>
+
+<h2 id="teach">Teach</h2>
+
+<p>The “Lead by example” strategy is also a good opportunity to teach people. You can walk through your teammates over your solution and ideas, and show them improvements using Before/After contrast.</p>
+
+<p>People always understand concepts better, having real-world examples rather than some abstract philosophic statements.</p>
+
+<p>Make people feel comfortable to ask questions, share ideas, etc.</p>
+
+<h2 id="scale">Scale</h2>
+
+<p>Once you proved that your plan is good, and you’re on the same page with the team, it’s time to scale it out.</p>
+
+<p>Recruit more team members to help you out. Guide them through this process. After a few iterations, everybody will see fruits of labor and be happy to help more.</p>
+
+<h2 id="clean-the-code-in-small-and-quick-iterations">Clean the code in small and quick iterations</h2>
+
+<p>It should not be necessary to say why you would need to execute refactoring in small iterations, but yet.</p>
+
+<ol>
+  <li>Large refactoring is hard to review</li>
+  <li>If large refactoring got declined by the team, a lot of manhours be wasted. Doing small iterations is much less risky</li>
+  <li>More you spend time on refactoring, the more complex merge will be for you and your teammates. You might find yourself solving conflicts over and over, and something will likely break</li>
+  <li>We are bad at estimations, so if a refactoring slips the deadline, you might likely be forced to cancel it</li>
+  <li>Focused changes are always easier to deliver</li>
+  <li>Small changes have fewer risks to break something and are easier to test</li>
+  <li>Never mix the code refactoring with the feature development. You will have a huge mess in this case. You won’t be able to release a feature without finishing refactoring before it, or rollback refactoring separately.</li>
+</ol>
+
+<p>Focus is the most important part. It’s so easy to deep dive in the shit, and start cleaning it from the bottom.</p>
+
+<p>But you should force yourself to stop and limit the scope only to what’s is relevant for the current iteration.</p>
+
+<p>If you do, the team will be happy to work that way, and eventually, you’ll get to the final point.</p>
+
+<p>If you don’t, well… massive refactoring won’t be finished at all, or it will break too many things.</p>
+
+<h2 id="document-the-code-as-you-refactor">Document the code as you refactor</h2>
+
+<p>Refactoring is also a good opportunity to clarify things. I rarely see a documented code, but often find myself questioning parts of the code, as it’s hard to tell what this code is doing and why.</p>
+
+<p>If you managed to find out business requirements or some details about it, document it! This will help you or anybody else who will get back to this part later.</p>
+
+<p>Also, it’s helpful to document your thoughts on your vision on the refactoring approach.</p>
+
+<p>For example, I add code comments advising what can be done next to improve this or that part, and how to do it better. So if my colleagues stumble on it, they understand how to move forward.</p>
+
+<h2 id="write-tests">Write tests</h2>
+
+<p>You’re lucky if the subject of the refactoring has any tests at all. But most likely it’s not.</p>
+
+<p>Ideally, before refactoring, you should write tests, to make sure, that after refactoring behavior remained the same.</p>
+
+<p>But we’re not in the ideal world. Often there’s no test infrastructure at all.</p>
+
+<p>Here what I usually do:</p>
+
+<ol>
+  <li>Provide testability for the new “clean” code first.</li>
+  <li>Test all of the new features which should be clean.</li>
+  <li>Then you can start bringing testability to the legacy code, step by step, small chunks, remember?</li>
+</ol>
+
+<h2 id="final-thoughts">Final thoughts</h2>
+
+<p>Reworking a legacy code is a tough and long task. But it’s possible. It’s easy to say that we need to rewrite everything from scratch. But structured and planned refactoring is a much better way.</p>
+
+<p>Refactoring has a cumulative effect. With each iteration, it will be easier and easier to work with the code. So be the leader, take the hardest steps, show how this can be done.</p>
+
+<p>–</p>
+
+<p>What works for me, might not work for you, but still, I believe you might give it a try.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Метки: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/management" class="page__taxonomy-item" rel="tag">Management</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/programming" class="page__taxonomy-item" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Разделы: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/programming" class="page__taxonomy-item" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2021-01-14T15:00:00-06:00">January 14, 2021</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Поделиться</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=How+to+clean+a+legacy+code%3A+stop+complaining%2C+start+doing%20https%3A%2F%2Ffateev.pro%2Fen%2Fprogramming%2Fhow-to-clean-a-legacy-code-stop-complaining-start-doing.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.pro%2Fen%2Fprogramming%2Fhow-to-clean-a-legacy-code-stop-complaining-start-doing.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.pro%2Fen%2Fprogramming%2Fhow-to-clean-a-legacy-code-stop-complaining-start-doing.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ru/programming/are-you-growing-your-juniors-right.html" class="pagination--pager" title="Правильно ли вы растите своих джунов?
+">Предыдущая</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Следующая</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">Вам также может понравиться</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/growing_junior.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  8 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/growing_junior.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/en/programming/are-you-growing-your-juniors-right.html" rel="permalink">Are you growing your juniors right?
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">I have a student. At the beginning of his path, I helped him to comprehend our craft. Then he got into a quite big company. What they did to him…
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/ui-arch.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/gamedev/independent-ui-layer.html" rel="permalink">Независимый UI слой — ускоряем разработку UI
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главны...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/paradigm-shift-graphic.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ru/programming/understanding-paradigm-rx-for-api.html" rel="permalink">Важность понимания парадигмы. RX для работы с API
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывае...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8RNTGQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Связаться со мной:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Ivan Fateev. Сайт работает на <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  
+    <script src="/assets/js/main.min.js"></script>
+  
+    <script src="/assets/js/footerPixels.js"></script>
+  
+    <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
