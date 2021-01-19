@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2021-01-15T10:30:39-06:00</updated><id>https://fateev.pro/feed.xml</id><title type="html">Fateev.pro</title><subtitle></subtitle><entry><title type="html">How to clean a legacy code: stop complaining, start doing</title><link href="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="alternate" type="text/html" title="How to clean a legacy code: stop complaining, start doing" /><published>2021-01-14T15:00:00-06:00</published><updated>2021-01-14T15:00:00-06:00</updated><id>https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing</id><content type="html" xml:base="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html">&lt;h2 id=&quot;blue-or-red-pill&quot;&gt;Blue or Red pill?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2021-01-19T06:47:06-06:00</updated><id>https://fateev.pro/feed.xml</id><title type="html">Fateev.pro</title><subtitle></subtitle><entry><title type="html">How to clean a legacy code: stop complaining, start doing</title><link href="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="alternate" type="text/html" title="How to clean a legacy code: stop complaining, start doing" /><published>2021-01-14T15:00:00-06:00</published><updated>2021-01-14T15:00:00-06:00</updated><id>https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing</id><content type="html" xml:base="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html">&lt;h2 id=&quot;blue-or-red-pill&quot;&gt;Blue or Red pill?&lt;/h2&gt;
 
 &lt;p&gt;When it happens to join a project with a poor codebase, usually you have two options:&lt;/p&gt;
 
@@ -140,6 +140,14 @@
   &lt;li&gt;Test all of the new features which should be clean.&lt;/li&gt;
   &lt;li&gt;Then you can start bringing testability to the legacy code, step by step, small chunks, remember?&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h2 id=&quot;any-decent-programmer-should-be-able-to-do-both-at-the-same-time&quot;&gt;Any decent programmer should be able to do both at the same time&lt;/h2&gt;
+
+&lt;p&gt;Though this is true, and I didn’t say that the one shouldn’t, but I personally, find it a bad idea, if the refactoring is not tiny. In this article I meant huge refactoring activities, which can’t be done in a single day and by a single person.&lt;/p&gt;
+
+&lt;p&gt;The point of the article is just to show a structured and predictable way of cleaning up the code, that everybody can understand.&lt;/p&gt;
+
+&lt;p&gt;As a programmer, you see what needs to be done, a pool of tasks. As a manager, you understand that refactoring can be mixed into the daily work, and you won’t be spending development resources for weeks with no visible result.&lt;/p&gt;
 
 &lt;h2 id=&quot;final-thoughts&quot;&gt;Final thoughts&lt;/h2&gt;
 
