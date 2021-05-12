@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2021-01-19T06:47:06-06:00</updated><id>https://fateev.pro/feed.xml</id><title type="html">Fateev.pro</title><subtitle></subtitle><entry><title type="html">How to clean a legacy code: stop complaining, start doing</title><link href="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="alternate" type="text/html" title="How to clean a legacy code: stop complaining, start doing" /><published>2021-01-14T15:00:00-06:00</published><updated>2021-01-14T15:00:00-06:00</updated><id>https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing</id><content type="html" xml:base="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html">&lt;h2 id=&quot;blue-or-red-pill&quot;&gt;Blue or Red pill?&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2021-05-12T13:45:51-05:00</updated><id>https://fateev.pro/feed.xml</id><title type="html">Fateev.pro</title><subtitle></subtitle><entry><title type="html">Startup challenges: Ensuring the quality with Appium</title><link href="https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html" rel="alternate" type="text/html" title="Startup challenges: Ensuring the quality with Appium" /><published>2021-05-11T16:00:00-05:00</published><updated>2021-05-11T16:00:00-05:00</updated><id>https://fateev.pro/en/startup-challenges/appium</id><content type="html" xml:base="https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html">&lt;p&gt;Our backend team writes &lt;a href=&quot;https://www.geeksforgeeks.org/agile-testing-methods-behavior-driven-testing/&quot;&gt;Behavior Driven Tests&lt;/a&gt; with &lt;a href=&quot;https://behave.readthedocs.io/en/stable/&quot;&gt;Behave&lt;/a&gt; to check their integration with external clients.&lt;/p&gt;
+
+&lt;p&gt;But since these tests can only emulate external clients (like mobile apps), they didn’t check end-to-end integration.&lt;/p&gt;
+
+&lt;p&gt;We thought that having an honest end-to-end check will guarantee the correctness of the basic product scenarios.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://appium.io&quot;&gt;Appium&lt;/a&gt; is easy to set up and use. We piloted it in conjunction with &lt;a href=&quot;https://saucelabs.com&quot;&gt;Sauce Labs&lt;/a&gt; for launching and recording test results.&lt;/p&gt;
+
+&lt;p&gt;We assumed that any team/role (backend dev, mobile dev, QA engineer, etc.) could use a universal tool like Appium. We hoped the backend team would primarily use them as they are familiar with the Python language.&lt;/p&gt;
+
+&lt;h2 id=&quot;experiment-results&quot;&gt;Experiment results&lt;/h2&gt;
+
+&lt;p&gt;We integrated Appium tests into CI/CD pipelines of the backend and mobile apps. We piloted the solution for half a year. Through this time, it caught few major bugs.&lt;/p&gt;
+
+&lt;h3 id=&quot;tests-writing-experience&quot;&gt;Tests writing experience&lt;/h3&gt;
+
+&lt;p&gt;After setting up some test infrastructure, they were easy to write.&lt;/p&gt;
+
+&lt;p&gt;Here’s the excerpt from one of the tests:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataclass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;frozen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PreviewAndShareScreen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CloseableScreen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;share_button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestObject&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;assert_has_share_button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wait_for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;share_button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;share&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_ios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wait_and_click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;share_button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;staticmethod&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_ios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PreviewAndShareScreen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;share_button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ios_button_by_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Share'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PreviewAndShareScreen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;share_button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;obj_by_text_and_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Share'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'com.anna.money.app.dev:id/buttonPrimary'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestAccountStatement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pytest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mark&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;regress&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pytest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mark&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;statement&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_account_statement_share&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;registered_user_app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;preview_screen&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PreviewAndShareScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;registered_user_app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;system_popups&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SystemPopups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;registered_user_app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;chat_screen&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ChatScreen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;registered_user_app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# wait for suggest to appear
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;chat_screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_suggest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Create an invoice'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;chat_screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Account statement'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;chat_screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click_suggest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Full history'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;check_sharing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;registered_user_app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_ios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;preview_screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assert_has_share_button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;preview_screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;share&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;system_popups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wait_for_share_popup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;# cancel native share popup
+&lt;/span&gt;                &lt;span class=&quot;n&quot;&gt;system_popups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cancel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;preview_screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# check PDF
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;account_statement_card&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;registered_user_app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;account_statement_card&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click_second_button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'PDF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;check_sharing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# check CSV
+&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;account_statement_card&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click_first_button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'CSV'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;check_sharing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see, it required platform-specific queries. So it could take quite a while to write a new test completely since you need to check it on Android and iOS separately.&lt;/p&gt;
+
+&lt;h3 id=&quot;false-positive-results&quot;&gt;False-positive results&lt;/h3&gt;
+
+&lt;p&gt;Since our backend utilizes a microservice architecture, it has a lot of moving parts. It means every time this and that may get broken. It resulted in unstable test results.&lt;/p&gt;
+
+&lt;p&gt;Though we provided quite convenient tools to track down the problem, it was quite hard to find the source of the problem. Most of the time, the tests were false-positive. It made Appium tests noisy. After some time, everybody lost attention to the alerts.&lt;/p&gt;
+
+&lt;h3 id=&quot;no-integration-in-the-process&quot;&gt;No integration in the process&lt;/h3&gt;
+
+&lt;p&gt;We failed to integrate Appium tests in the development processes of teams.&lt;/p&gt;
+
+&lt;p&gt;The Backend team was more familiar with Behave, so they didn’t see a lot of benefit in using Appium. They were not ready to invest more time in Appium infrastructure, as they were fine with Behave tests.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Since we didn’t get much interest in this tool from developers, we decided to close the experiment.&lt;/p&gt;
+
+&lt;p&gt;Teams are more effective with platform-specific tools, like Behave, XCTest, Espresso, etc.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="Programming" /><summary type="html">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.</summary></entry><entry><title type="html">How to clean a legacy code: stop complaining, start doing</title><link href="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="alternate" type="text/html" title="How to clean a legacy code: stop complaining, start doing" /><published>2021-01-14T15:00:00-06:00</published><updated>2021-01-14T15:00:00-06:00</updated><id>https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing</id><content type="html" xml:base="https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html">&lt;h2 id=&quot;blue-or-red-pill&quot;&gt;Blue or Red pill?&lt;/h2&gt;
 
 &lt;p&gt;When it happens to join a project with a poor codebase, usually you have two options:&lt;/p&gt;
 
@@ -1454,26 +1552,4 @@ Got token: user_stub_token
 &lt;p&gt;Надеюсь статья натолкнула вас на интересные мысли :). Пишите, всегда рад поболтать и услышать про другие решения, которые работают для вас.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="Gamedev" /><category term="Architecture" /><category term="Client-server" /><category term="Patterns" /><summary type="html">Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют различные социальные составляющие: кланы, чаты, список друзей, да что угодно. И каждый пук уходит в аналитику.</summary></entry><entry><title type="html">GameDev Architecture: Telegram Channel</title><link href="https://fateev.pro/chronicles/poisonous_johns_lair_telegram_channel.html" rel="alternate" type="text/html" title="GameDev Architecture: Telegram Channel" /><published>2017-11-08T08:33:30-06:00</published><updated>2017-11-08T08:33:30-06:00</updated><id>https://fateev.pro/chronicles/poisonous_johns_lair_telegram_channel</id><content type="html" xml:base="https://fateev.pro/chronicles/poisonous_johns_lair_telegram_channel.html">&lt;p&gt;&lt;img class=&quot;size-full wp-image-411 alignleft&quot; src=&quot;http://fateev.pro/wp-content/uploads/2017/11/jp_oss_pirate.png&quot; alt=&quot;&quot; width=&quot;300&quot; height=&quot;216&quot; /&gt;
 Запустил свой телеграм канал &lt;a href=&quot;https://t.me/gamedev_architecture&quot;&gt;GameDev Architecture&lt;/a&gt;. На канале я делюсь своими заметками о том, как игровым компаниям строить правильные, эффективные и красивые решения, в основном на C#.
 От описания сложных архитектурных решений, до простых туториалов.
-Всегда рад услышать ваши мысли.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="Telegram" /><summary type="html">Запустил свой телеграм канал GameDev Architecture. На канале я делюсь своими заметками о том, как игровым компаниям строить правильные, эффективные и красивые решения, в основном на C#. От описания сложных архитектурных решений, до простых туториалов. Всегда рад услышать ваши мысли.</summary></entry><entry><title type="html">Waveshare 7″ touchscreen showing lines and black screen</title><link href="https://fateev.pro/iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html" rel="alternate" type="text/html" title="Waveshare 7&amp;#8243; touchscreen showing lines and black screen" /><published>2017-01-03T09:14:30-06:00</published><updated>2017-01-03T09:14:30-06:00</updated><id>https://fateev.pro/iot/waveshare-7-touchscreen-showing-lines-and-black-screen</id><content type="html" xml:base="https://fateev.pro/iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html">&lt;p&gt;&lt;a href=&quot;http://fateev.pro/wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg&quot; rel=&quot;attachment wp-att-390&quot;&gt;&lt;img class=&quot;alignleft wp-image-390 size-full&quot; src=&quot;http://fateev.pro/wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg&quot; alt=&quot;Waveshare touchscreen 7inch&quot; width=&quot;300&quot; height=&quot;225&quot; /&gt;&lt;/a&gt;I’ve recently bought a waveshare 7 inch touchscreen, which didn’t work out of the box. It comes with custom raspbian image, which isn’t handy because you can’t upgrade so easily. So actually this display is able to work on stock raspbian with slight modifications to config.txt as you can see below.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-config&quot; data-lang=&quot;config&quot;&gt;&lt;span class=&quot;c&quot;&gt;# set current over USB to 1.2A
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_usb_current&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# overscan to adjust image position
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;overscan_left&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;overscan_right&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;overscan_top&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;overscan_bottom&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# HDMI config
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hdmi_drive&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;hdmi_ignore_edid&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xa5000080&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;hdmi_group&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;hdmi_mode&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;87&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 1024x600 display
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hdmi_cvt&lt;/span&gt;=&lt;span class=&quot;m&quot;&gt;1024&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;600&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Also I couldn’t get touch capabilities working on Raspberry Pi, yet touch worked on Ubuntu. So I’ve made a fork of a driver I found on github: https://github.com/JohnPoison/waveshare-7inch-touchscreen-driver . And added support for right button on hold and scroll by two fingers.&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/JohnPoison/ed544f07da72568fc60074a4566560b8.js&quot;&gt;&lt;/script&gt;</content><author><name>Ivan Fateev</name></author><category term="IoT" /><category term="Raspberry Pi" /><summary type="html">I’ve recently bought a waveshare 7 inch touchscreen, which didn’t work out of the box. It comes with custom raspbian image, which isn’t handy because you can’t upgrade so easily. So actually this display is able to work on stock raspbian with slight modifications to config.txt as you can see below.</summary></entry></feed>
+Всегда рад услышать ваши мысли.&lt;/p&gt;</content><author><name>Ivan Fateev</name></author><category term="Telegram" /><summary type="html">Запустил свой телеграм канал GameDev Architecture. На канале я делюсь своими заметками о том, как игровым компаниям строить правильные, эффективные и красивые решения, в основном на C#. От описания сложных архитектурных решений, до простых туториалов. Всегда рад услышать ваши мысли.</summary></entry></feed>

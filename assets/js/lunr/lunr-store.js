@@ -220,4 +220,10 @@ var store = [{
         "tags": ["Programming","Management"],
         "url": "https://fateev.pro/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html",
         "teaser": "https://fateev.pro/assets/images/abstract-code.jpg"
+      },{
+        "title": "Startup challenges: Ensuring the quality with Appium",
+        "excerpt":"Our backend team writes Behavior Driven Tests with Behave to check their integration with external clients. But since these tests can only emulate external clients (like mobile apps), they didn’t check end-to-end integration. We thought that having an honest end-to-end check will guarantee the correctness of the basic product scenarios....","categories": ["Programming"],
+        "tags": ["Programming"],
+        "url": "https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html",
+        "teaser": "https://fateev.pro/assets/images/testing-pyramid.jpg"
       }]
