@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Startup challenges: Ensuring the quality with Appium - Fateev.pro</title>
-<meta name="description" content="One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios. ">
+<!-- begin _includes/seo.html --><title>Startup challenges: Lost bugs, anxiety and burnout - Fateev.pro</title>
+<meta name="description" content="Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Here’s what we learned. ">
 
 
   <meta name="author" content="Ivan Fateev">
@@ -19,21 +19,21 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
 <meta property="og:site_name" content="Fateev.pro">
-<meta property="og:title" content="Startup challenges: Ensuring the quality with Appium">
+<meta property="og:title" content="Startup challenges: Lost bugs, anxiety and burnout">
 <meta property="og:url" content="https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html">
 
 
-  <meta property="og:description" content="One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios. ">
+  <meta property="og:description" content="Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Here’s what we learned. ">
 
 
 
-  <meta property="og:image" content="https://fateev.pro/assets/images/testing-pyramid.jpg">
+  <meta property="og:image" content="https://fateev.pro/assets/images/bug-prioritization-matrix.png">
 
 
 
 
 
-  <meta property="article:published_time" content="2021-05-11T16:00:00-05:00">
+  <meta property="article:published_time" content="2022-04-22T16:00:00-05:00">
 
 
 
@@ -177,18 +177,18 @@
 
 
 <div class="page__hero--overlay"
-  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/assets/images/testing-pyramid.jpg');"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/assets/images/bug-prioritization-matrix.png');"
 >
   
     <div class="wrapper">
       <h1 id="page-title" class="page__title" itemprop="headline">
         
-          Startup challenges: Ensuring the quality with Appium
+          Startup challenges: Lost bugs, anxiety and burnout
 
         
       </h1>
       
-        <p class="page__lead">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
+        <p class="page__lead">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Here’s what we learned.
 </p>
       
       
@@ -197,7 +197,7 @@
 
 
 
-  2 мин на чтение
+  5 мин на чтение
 
 </p>
       
@@ -326,14 +326,14 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Startup challenges: Ensuring the quality with Appium">
-    <meta itemprop="description" content="One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.">
-    <meta itemprop="datePublished" content="2021-05-11T16:00:00-05:00">
+    <meta itemprop="headline" content="Startup challenges: Lost bugs, anxiety and burnout">
+    <meta itemprop="description" content="Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Here’s what we learned.">
+    <meta itemprop="datePublished" content="2022-04-22T16:00:00-05:00">
     
 
     <div class="page__inner-wrap">
         <header  style="display: none;" >
-          <h1 id="page-title" class="page__title" itemprop="headline">Startup challenges: Ensuring the quality with Appium
+          <h1 id="page-title" class="page__title" itemprop="headline">Startup challenges: Lost bugs, anxiety and burnout
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -341,7 +341,7 @@
 
 
 
-  2 мин на чтение
+  5 мин на чтение
 
 </p>
           
@@ -349,105 +349,122 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>Our backend team writes <a href="https://www.geeksforgeeks.org/agile-testing-methods-behavior-driven-testing/">Behavior Driven Tests</a> with <a href="https://behave.readthedocs.io/en/stable/">Behave</a> to check their integration with external clients.</p>
+        <h2 id="first-heres-the-solution-that-worked-for-us-tl-dr">First, here’s the solution that worked for us (TL; DR;)</h2>
 
-<p>But since these tests can only emulate external clients (like mobile apps), they didn’t check end-to-end integration.</p>
+<ol>
+  <li>Start by creating a doc on the QA process</li>
+  <li>Split the process of registering bugs and fixing them</li>
+  <li>Create a dedicated role for registering bug reports</li>
+  <li>Assign duty schedule for the role</li>
+  <li>Start registering ALL of the bugs in the task tracker, even if engineers are unhappy with it</li>
+  <li>Each bug should be assigned a priority depending on the criticality level</li>
+  <li>Track metrics with your task tracker</li>
+</ol>
 
-<p>We thought that having an honest end-to-end check will guarantee the correctness of the basic product scenarios.</p>
+<h2 id="reasons-to-change-the-process">Reasons to change the process</h2>
 
-<p><a href="https://appium.io">Appium</a> is easy to set up and use. We piloted it in conjunction with <a href="https://saucelabs.com">Sauce Labs</a> for launching and recording test results.</p>
+<p>We’ve run a performance review that uncovered a bunch of issues in our development processes.</p>
 
-<p>We assumed that any team/role (backend dev, mobile dev, QA engineer, etc.) could use a universal tool like Appium. We hoped the backend team would primarily use them as they are familiar with the Python language.</p>
+<p>The major issue raised by devs was the inability to stay in the flow due to constant distractions on bug reports.</p>
 
-<h2 id="experiment-results">Experiment results</h2>
+<p>They had to change focus during the feature development to identify the bug, its priority, etc. There was no specific duty process, so people dealt with the bugs sporadically.</p>
 
-<p>We integrated Appium tests into CI/CD pipelines of the backend and mobile apps. We piloted the solution for half a year. Through this time, it caught few major bugs.</p>
+<p>As a result, devs said they were in a constant anxiety state. The feeling that something is wrong with the product. The urge to fix it instantly as the bug arrives.</p>
 
-<h3 id="tests-writing-experience">Tests writing experience</h3>
+<p>The planned release date also slipped due to these issues.</p>
 
-<p>After setting up some test infrastructure, they were easy to write.</p>
+<p>And devs didn’t feel right to tell the team they were working on the bugs instead of the feature.</p>
 
-<p>Here’s the excerpt from one of the tests:</p>
+<h2 id="a-doc-on-the-qa-process">A doc on the QA process</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">PreviewAndShareScreen</span><span class="p">(</span><span class="n">CloseableScreen</span><span class="p">):</span>
-    <span class="n">share_button</span><span class="p">:</span> <span class="n">TestObject</span>
+<p>We didn’t have any doc on how to handle bug reports. People did it differently. Creating a doc and keeping it up-to-date helped to align the process between teams and people. Everybody acts the same. Not to mention people onboarding now goes much faster.</p>
 
-    <span class="k">def</span> <span class="nf">assert_has_share_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">share_button</span><span class="p">)</span>
+<h2 id="split-the-process-of-registering-bugs-and-fixing-them">Split the process of registering bugs and fixing them</h2>
 
-    <span class="k">def</span> <span class="nf">share</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">is_ios</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">wait_and_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">share_button</span><span class="p">)</span>
+<p>QA department in mature companies usually keeps track of all bug reports by registering them in a task tracking system. In our startup, we believe the devs own the quality of their outcome, so the responsibility to track bugs is on them.</p>
 
-    <span class="o">@</span><span class="nb">staticmethod</span>
-    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">App</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">is_ios</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">PreviewAndShareScreen</span><span class="p">(</span>
-                <span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span>
-                <span class="n">share_button</span><span class="o">=</span><span class="n">ios_button_by_text</span><span class="p">(</span><span class="s">'Share'</span><span class="p">)</span>
-            <span class="p">)</span>
-        <span class="k">return</span> <span class="n">PreviewAndShareScreen</span><span class="p">(</span>
-            <span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span>
-            <span class="n">share_button</span><span class="o">=</span><span class="n">obj_by_text_and_id</span><span class="p">(</span><span class="s">'Share'</span><span class="p">,</span> <span class="s">'com.anna.money.app.dev:id/buttonPrimary'</span><span class="p">)</span>
-        <span class="p">)</span>
+<p>We didn’t have the former process documented. Devs usually started fixing the bug as soon as they had time for that.</p>
 
+<p>Devs spent much time fixing minor issues while critical stuff awaited in the queue.</p>
 
-<span class="k">class</span> <span class="nc">TestAccountStatement</span><span class="p">:</span>
-    <span class="o">@</span><span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">regress</span>
-    <span class="o">@</span><span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">statement</span>
-    <span class="k">def</span> <span class="nf">test_account_statement_share</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">registered_user_app</span><span class="p">:</span> <span class="n">App</span><span class="p">):</span>
-        <span class="n">preview_screen</span> <span class="o">=</span> <span class="n">PreviewAndShareScreen</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">registered_user_app</span><span class="p">)</span>
-        <span class="n">system_popups</span> <span class="o">=</span> <span class="n">SystemPopups</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">registered_user_app</span><span class="p">)</span>
-        <span class="n">chat_screen</span> <span class="o">=</span> <span class="n">ChatScreen</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">registered_user_app</span><span class="p">)</span>
+<p>We split the former process into two phases. The first one is to register the bug in the task tracker. The second one is the fixing itself.</p>
 
-        <span class="c1"># wait for suggest to appear
-</span>        <span class="n">chat_screen</span><span class="o">.</span><span class="n">get_suggest</span><span class="p">(</span><span class="s">'Create an invoice'</span><span class="p">)</span>
-        <span class="n">chat_screen</span><span class="o">.</span><span class="n">send_text</span><span class="p">(</span><span class="s">'Account statement'</span><span class="p">)</span>
-        <span class="n">chat_screen</span><span class="o">.</span><span class="n">click_suggest</span><span class="p">(</span><span class="s">'Full history'</span><span class="p">)</span>
+<p>The most important part of the registration process is assigning bug priority. If it’s not critical, a developer puts the bug into the queue.</p>
 
-        <span class="k">def</span> <span class="nf">check_sharing</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">registered_user_app</span><span class="o">.</span><span class="n">is_ios</span><span class="p">:</span>
-                <span class="n">preview_screen</span><span class="o">.</span><span class="n">assert_has_share_button</span><span class="p">()</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">preview_screen</span><span class="o">.</span><span class="n">share</span><span class="p">()</span>
-                <span class="n">system_popups</span><span class="o">.</span><span class="n">wait_for_share_popup</span><span class="p">()</span>
-                <span class="c1"># cancel native share popup
-</span>                <span class="n">system_popups</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+<p>A developer should fix critical bugs ASAP.</p>
 
-            <span class="n">preview_screen</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<p>On the next planning iteration, devs get bugs from the queue to fix according to priority. They plan what bug to fix in the current iteration, considering the workload.</p>
 
-        <span class="c1"># check PDF
-</span>        <span class="n">account_statement_card</span> <span class="o">=</span> <span class="n">T5</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">registered_user_app</span><span class="p">)</span>
-        <span class="n">account_statement_card</span><span class="o">.</span><span class="n">click_second_button</span><span class="p">(</span><span class="s">'PDF'</span><span class="p">)</span>
+<p>Everybody’s now happy to know that they can reduce distractions on bug reports and plan their work.</p>
 
-        <span class="n">check_sharing</span><span class="p">()</span>
+<h2 id="create-a-dedicated-role-for-registering-bug-reports">Create a dedicated role for registering bug reports</h2>
 
-        <span class="c1"># check CSV
-</span>
-        <span class="n">account_statement_card</span><span class="o">.</span><span class="n">click_first_button</span><span class="p">(</span><span class="s">'CSV'</span><span class="p">)</span>
-        <span class="n">check_sharing</span><span class="p">()</span>
-</code></pre></div></div>
+<p>In our company, we call it “Bug Hunter.” Devs are wearing the hat of this role. But in any other company, it can be, for instance, QA.</p>
 
-<p>As you can see, it required platform-specific queries. So it could take quite a while to write a new test completely since you need to check it on Android and iOS separately.</p>
+<p>Having a dedicated person dealing with bug reports keep others focused on their job. They don’t feel anxiety anymore since they know somebody is on duty.</p>
 
-<h3 id="false-positive-results">False-positive results</h3>
+<h2 id="assign-duty-schedule-for-the-role">Assign duty schedule for the role</h2>
 
-<p>Since our backend utilizes a microservice architecture, it has a lot of moving parts. It means every time this and that may get broken. It resulted in unstable test results.</p>
+<p>The duty schedule is really important. We let people self-organize to decide who’s on duty. But the general recommendations are:</p>
 
-<p>Though we provided quite convenient tools to track down the problem, it was quite hard to find the source of the problem. Most of the time, the tests were false-positive. It made Appium tests noisy. After some time, everybody lost attention to the alerts.</p>
+<ul>
+  <li>make sure the team passes the torch since nobody wants to be the “Bug Hunter” forever</li>
+  <li>for mobile devs, it’s enough to check bug reports one or two times a day. The possibility of missing the critical bug is quite low. Besides mobile app release cycle is pretty slow. The person wearing the “Bug Hunter” hat is not 100% consumed by that role, so it’s possible to do other tasks as well</li>
+  <li>organize the process of passing the context between the last duty person and the current one. It can be some unfinished tasks, actions, etc.</li>
+</ul>
 
-<h3 id="no-integration-in-the-process">No integration in the process</h3>
+<h2 id="start-registering-all-of-the-bugs-in-the-task-tracker-even-if-engineers-are-unhappy-with-it">Start registering ALL of the bugs in the task tracker, even if engineers are unhappy with it</h2>
 
-<p>We failed to integrate Appium tests in the development processes of teams.</p>
+<p>Unless you have all bugs registered, you have no idea how good or bad your product quality is.</p>
 
-<p>The Backend team was more familiar with Behave, so they didn’t see a lot of benefit in using Appium. They were not ready to invest more time in Appium infrastructure, as they were fine with Behave tests.</p>
+<p>Having the broader picture helps to make the right decisions. For example, you can have a lot of minor bugs and a few critical ones. It’s reasonable to start fixing critical ones first.</p>
 
-<h2 id="summary">Summary</h2>
+<p>The other insight might be discovering a cluster of bugs. For example, having a bunch of bugs in the authorization module might mean there’s a technical debt to pay. It’s better to plan a refactoring instead of applying minor patches.</p>
 
-<p>Since we didn’t get much interest in this tool from developers, we decided to close the experiment.</p>
+<p>We asked our devs to choose the “Bug Hunter” and start registering all the problems they observe in the task tracker. We provided the template for bug tickets to unify and simplify the process.</p>
 
-<p>Teams are more effective with platform-specific tools, like Behave, XCTest, Espresso, etc.</p>
+<p>At first, our devs were not happy about it. But after a month, they saw the benefit. They identified parts of the system needing more attention and care and adjusted plans for technical improvements accordingly.</p>
+
+<p>By bounding all PRs to tickets, we’ve got another benefit. Besides the standard commit message, git blame could tell you the complete story. <strong>The test case</strong> of the problem, <strong>expected result</strong> and <strong>actual result</strong> before the fix.</p>
+
+<h2 id="each-bug-should-be-assigned-a-priority-depending-on-the-criticality-level">Each bug should be assigned a priority depending on the criticality level</h2>
+
+<p>The next challenge is to deal with the growing queue of bugs. We’ve adopted the standard way of prioritizing issues via the matrix, where the X-axis is the bug severity, Y-axis is the number of users affected. The resulting value is the ticket’s priority. W/F stands for “Won’t fix”</p>
+
+<p><img src="/assets/images/bug-prioritization-matrix.png" alt="Bug prioritization matrix" /></p>
+
+<p>The matrix is easily adjustable for the company’s needs.</p>
+
+<p>Our bug severities are:</p>
+
+<ol>
+  <li>The security issue</li>
+  <li>
+    <p>Problem with onboarding where CX can’t help manually and requires effort from devs (otherwise it should be severity 7).</p>
+
+    <p>The bug affects a primary feature. But only if (all of below true):</p>
+
+    <ul>
+      <li>a bug appeared in recent releases</li>
+      <li>customer have no alternative ways to do the action or can’t be sorted out by the Customer Support team and devs (otherwise it should be Severity 7)</li>
+    </ul>
+
+    <p><strong>If it was in prod for a long time</strong> (a few weeks or more), then it should be Severity 3</p>
+  </li>
+  <li>The “Severity 2” bug existing in prod for a long time (a few weeks or more)  but has been discovered recently</li>
+  <li>Application crash</li>
+  <li>The client cannot perform secondary functions (all but severity 2), but the Customer Support  team or devs can’t help resolve it manually, or there is no alternative way to do it (otherwise it should be Severity 7)</li>
+  <li>UI is not correct, or UX problem</li>
+  <li>There’s a bug not covered by previous severities, but the Customer Support team can resolve it manually or with little to no effort from devs</li>
+  <li>The speed of the application suffers</li>
+  <li>The application does not support phone model</li>
+</ol>
+
+<h2 id="track-metrics-with-your-task-tracker">Track metrics with your task tracker</h2>
+
+<p>In our task tracker, we use tags to assign a priority. Each month we look at the report and see the trends. For example, you should expect the high-priority bugs queue to be processed faster than others.</p>
+
+<p>We didn’t set any concrete numbers as a target metric for the team. Instead, we expect a declining trend in the bugs queue.</p>
 
         
       </section>
@@ -468,7 +485,11 @@
     
       
       
-      <a href="/tags/programming" class="page__taxonomy-item" rel="tag">Programming</a>
+      <a href="/tags/management" class="page__taxonomy-item" rel="tag">Management</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/processes" class="page__taxonomy-item" rel="tag">Processes</a>
     
     </span>
   </p>
@@ -489,14 +510,14 @@
     
       
       
-      <a href="/categories/programming" class="page__taxonomy-item" rel="tag">Programming</a>
+      <a href="/categories/processes" class="page__taxonomy-item" rel="tag">Processes</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2021-05-11T16:00:00-05:00">May 11, 2021</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2022-04-22T16:00:00-05:00">April 22, 2022</time></p>
         
       </footer>
 
@@ -505,7 +526,7 @@
     <h4 class="page__share-title">Поделиться</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Startup+challenges%3A+Ensuring+the+quality+with+Appium%20https%3A%2F%2Ffateev.pro%2Fen%2Fstartup-challenges%2Fensuring-the-quality-appium.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Startup+challenges%3A+Lost+bugs%2C+anxiety+and+burnout%20https%3A%2F%2Ffateev.pro%2Fen%2Fstartup-challenges%2Fensuring-the-quality-appium.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.pro%2Fen%2Fstartup-challenges%2Fensuring-the-quality-appium.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -516,7 +537,7 @@
       
   <nav class="pagination">
     
-      <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" class="pagination--pager" title="How to clean a legacy code: stop complaining, start doing
+      <a href="/en/startup-challenges/ensuring-the-quality-appium.html" class="pagination--pager" title="Startup challenges: Ensuring the quality with Appium
 ">Предыдущая</a>
     
     
@@ -534,6 +555,39 @@
     <div class="page__related">
       <h4 class="page__related-title">Вам также может понравиться</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/testing-pyramid.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Ensuring the quality with Appium
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 мин на чтение
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
+</p>
+  </article>
+</div>
+
         
           
 
@@ -629,38 +683,6 @@
     
     <p class="archive__item-excerpt" itemprop="description">I have a student. At the beginning of his path, I helped him to comprehend our craft. Then he got into a quite big company. What they did to him…
 </p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src="/imgs/ui-arch.png" alt="">
-      </div>
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/ru/gamedev/independent-ui-layer.html" rel="permalink">Независимый UI слой — ускоряем разработку UI
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  5 мин на чтение
-
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главны...</p>
   </article>
 </div>
 

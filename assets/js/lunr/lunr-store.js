@@ -226,4 +226,10 @@ var store = [{
         "tags": ["Programming"],
         "url": "https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html",
         "teaser": "https://fateev.pro/assets/images/testing-pyramid.jpg"
+      },{
+        "title": "Startup challenges: Lost bugs, anxiety and burnout",
+        "excerpt":"First, here’s the solution that worked for us (TL; DR;) Start by creating a doc on the QA process Split the process of registering bugs and fixing them Create a dedicated role for registering bug reports Assign duty schedule for the role Start registering ALL of the bugs in the...","categories": ["Processes"],
+        "tags": ["Management","Processes"],
+        "url": "https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html",
+        "teaser": "https://fateev.pro/assets/images/bug-prioritization-matrix.png"
       }]
