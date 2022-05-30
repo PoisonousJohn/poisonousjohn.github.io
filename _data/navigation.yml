@@ -3,5 +3,7 @@ main:
       url: /categories/
     - title: "Теги"
       url: /tags/
-    - title: "About"
+    - title: "https://fateev.studio/?utm_source=blog"
+      url: /services/
+    - title: "Обо мне"
       url: /about/
