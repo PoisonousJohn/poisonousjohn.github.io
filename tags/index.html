@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -10,10 +10,11 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Fateev.pro</title>
-<meta name="description" content="Иван Фатеев разработка мобильных приложений ">
+<meta name="description" content="Иван Фатеев разработка мобильных приложений">
 
 
   <meta name="author" content="Ivan Fateev">
+  
 
 
 <meta property="og:type" content="website">
@@ -23,7 +24,7 @@
 <meta property="og:url" content="https://fateev.pro/tags/">
 
 
-  <meta property="og:description" content="Иван Фатеев разработка мобильных приложений ">
+  <meta property="og:description" content="Иван Фатеев разработка мобильных приложений">
 
 
 
@@ -61,10 +62,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,21 +79,8 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
   
@@ -120,7 +111,6 @@
 
   <body class="layout--tags">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -203,15 +193,15 @@
       
         
           
-            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
           
         
       
@@ -1149,6 +1139,7 @@
 </ul>
 
 
+
   
     
   
@@ -1164,22 +1155,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html" rel="permalink">Sonata Admin Bundle: One-To-Many и sonata_type_collection
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">На первых порах, в Сонате возникало непонимание того как правильно организовать редактирование связи one-to-many.  На самом деле, есть несколько неочевидных ...</p>
   </article>
 </div>
@@ -1192,22 +1194,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony2/genemu-jquerydate-kak-udalit-native-datepicker-chrome-browser-a.html" rel="permalink">Genemu jquerydate: Как удалить native datepicker chrome browser`a
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Столкнулся с проблемой, что когда используешь genemu jquerydate тип, то хром подставляет свой дейтпикер в поле, что абсолютно неприемлемо. Это происходить по...</p>
   </article>
 </div>
@@ -1220,22 +1233,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonataadminbundle-filtry.html" rel="permalink">SonataAdminBundle: фильтры
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  3 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы...</p>
   </article>
 </div>
@@ -1248,22 +1272,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" rel="permalink">SonataAdminBundle: как добавить произвольную страницу к сущности
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей...</p>
   </article>
 </div>
@@ -1276,22 +1311,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/genemu-form-bundle.html" rel="permalink">Genemu Form Bundle
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen...</p>
   </article>
 </div>
@@ -1304,22 +1350,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/arxitektura-sonata-admin-bundle.html" rel="permalink">Архитектура Sonata Admin Bundle
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Sonata Admin Bundle, как и вся концепция symfony2 поддерживает сервисно-ориентированную архитектуру, поэтому, чтобы сделать CRUD для сущности, в первую очере...</p>
   </article>
 </div>
@@ -1332,22 +1389,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/o-tom-kak-ya-prishel-k-symfony2.html" rel="permalink">О том, как я пришел к Symfony2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Это что-то вроде вступительного слова, а также первый из серии постов про мой инструментарий, про те вещи с которыми я работаю.
 
 За всю свою не очень долгую ...</p>
@@ -1374,22 +1442,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html" rel="permalink">Sonata Admin Bundle: One-To-Many и sonata_type_collection
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">На первых порах, в Сонате возникало непонимание того как правильно организовать редактирование связи one-to-many.  На самом деле, есть несколько неочевидных ...</p>
   </article>
 </div>
@@ -1402,22 +1481,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony2/genemu-jquerydate-kak-udalit-native-datepicker-chrome-browser-a.html" rel="permalink">Genemu jquerydate: Как удалить native datepicker chrome browser`a
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Столкнулся с проблемой, что когда используешь genemu jquerydate тип, то хром подставляет свой дейтпикер в поле, что абсолютно неприемлемо. Это происходить по...</p>
   </article>
 </div>
@@ -1430,22 +1520,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonataadminbundle-filtry.html" rel="permalink">SonataAdminBundle: фильтры
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  3 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы...</p>
   </article>
 </div>
@@ -1458,22 +1559,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" rel="permalink">SonataAdminBundle: как добавить произвольную страницу к сущности
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей...</p>
   </article>
 </div>
@@ -1486,22 +1598,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/genemu-form-bundle.html" rel="permalink">Genemu Form Bundle
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen...</p>
   </article>
 </div>
@@ -1514,22 +1637,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/arxitektura-sonata-admin-bundle.html" rel="permalink">Архитектура Sonata Admin Bundle
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Sonata Admin Bundle, как и вся концепция symfony2 поддерживает сервисно-ориентированную архитектуру, поэтому, чтобы сделать CRUD для сущности, в первую очере...</p>
   </article>
 </div>
@@ -1542,22 +1676,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/o-tom-kak-ya-prishel-k-symfony2.html" rel="permalink">О том, как я пришел к Symfony2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Это что-то вроде вступительного слова, а также первый из серии постов про мой инструментарий, про те вещи с которыми я работаю.
 
 За всю свою не очень долгую ...</p>
@@ -1664,22 +1809,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html" rel="permalink">Sonata Admin Bundle: One-To-Many и sonata_type_collection
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">На первых порах, в Сонате возникало непонимание того как правильно организовать редактирование связи one-to-many.  На самом деле, есть несколько неочевидных ...</p>
   </article>
 </div>
@@ -1692,22 +1848,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonataadminbundle-filtry.html" rel="permalink">SonataAdminBundle: фильтры
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  3 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы...</p>
   </article>
 </div>
@@ -1720,22 +1887,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html" rel="permalink">SonataAdminBundle: как добавить произвольную страницу к сущности
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей...</p>
   </article>
 </div>
@@ -1748,22 +1926,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/genemu-form-bundle.html" rel="permalink">Genemu Form Bundle
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen...</p>
   </article>
 </div>
@@ -1776,22 +1965,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/arxitektura-sonata-admin-bundle.html" rel="permalink">Архитектура Sonata Admin Bundle
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Sonata Admin Bundle, как и вся концепция symfony2 поддерживает сервисно-ориентированную архитектуру, поэтому, чтобы сделать CRUD для сущности, в первую очере...</p>
   </article>
 </div>
@@ -1804,22 +2004,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/o-tom-kak-ya-prishel-k-symfony2.html" rel="permalink">О том, как я пришел к Symfony2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Это что-то вроде вступительного слова, а также первый из серии постов про мой инструментарий, про те вещи с которыми я работаю.
 
 За всю свою не очень долгую ...</p>
@@ -1864,22 +2075,33 @@
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/smiley-boom-perviy-krupniy-reliz.html" rel="permalink">Smiley Boom – первый крупный релиз
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 
 Мы наконец-то зарелизили нашу игру Smiley Boom:
@@ -1902,22 +2124,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html" rel="permalink">Утечки. XCode Leaks &#038; Allocations. Осторожно XML
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с п...</p>
   </article>
 </div>
@@ -1930,22 +2163,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html" rel="permalink">Как сократить физический размер ресурсов
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, что...</p>
   </article>
 </div>
@@ -1958,22 +2202,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" rel="permalink">Smart pointers vs raw pointers; XCode: отладка undefined behaviour
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Скорость против удобства или Smart pointers не для игр
 
 
@@ -1989,22 +2244,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/gamedev-interesnaya-sfera-no-suka-besposhhadnaya.html" rel="permalink">Gamedev интересная сфера, но беспощадная
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">В моем детстве многие из друзей грезили вырасти и заниматься играми, я не был исключением, но так вышло, что меня занесло в web. Там я провел довольно много ...</p>
   </article>
 </div>
@@ -2017,22 +2283,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/particle-effekty-v-mobilnyx-igrax.html" rel="permalink">Particle эффекты в мобильных играх
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">До настоящего момента я особо не сталкивался с задачами визуализации сложных эффектов, в целом все сводилось к примитивным анимациям, но в текущем проекте ну...</p>
   </article>
 </div>
@@ -2103,22 +2380,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Ensuring the quality with Appium
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
 </p>
   </article>
@@ -2132,22 +2420,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="permalink">How to clean a legacy code: stop complaining, start doing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  7 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or ...</p>
   </article>
 </div>
@@ -2160,22 +2459,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
@@ -2189,22 +2499,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/are-you-growing-your-juniors-right.html" rel="permalink">Are you growing your juniors right?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  10 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">I have a student. At the beginning of his path, I helped him to comprehend our craft. Then he got into a quite big company. What they did to him…
 </p>
   </article>
@@ -2218,22 +2539,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/independent-ui-layer.html" rel="permalink">Независимый UI слой — ускоряем разработку UI
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главны...</p>
   </article>
 </div>
@@ -2246,22 +2578,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/understanding-paradigm-rx-for-api.html" rel="permalink">Важность понимания парадигмы. RX для работы с API
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  10 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Каждый день в нашей работе мы сталкиваемся с различными парадигмами. Не смотря на то, что большинство парадигм стары как мир (ООП, ФП и т.д.), часто всплывае...</p>
   </article>
 </div>
@@ -2444,22 +2787,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/independent-ui-layer.html" rel="permalink">Независимый UI слой — ускоряем разработку UI
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главны...</p>
   </article>
 </div>
@@ -2472,22 +2826,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/debug-tools.html" rel="permalink">Средства отладки
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Сколько времени мы тратим в день, разбираясь в коде? Согласно этой статье — 75%.
 
 </p>
@@ -2502,22 +2867,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/entity-component-system.html" rel="permalink">Система компонентов cущностей (Entity Component System)
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.
 
 </p>
@@ -2532,22 +2908,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/offline-mode-in-client-server-apps.html" rel="permalink">Оффлайн режим в клиент-серверных приложениях
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют раз...</p>
   </article>
 </div>
@@ -2582,22 +2969,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Lost bugs, anxiety and burnout
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Her...</p>
   </article>
 </div>
@@ -2610,22 +3008,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="permalink">How to clean a legacy code: stop complaining, start doing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  7 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or ...</p>
   </article>
 </div>
@@ -2638,22 +3047,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
@@ -2667,22 +3087,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/are-you-growing-your-juniors-right.html" rel="permalink">Are you growing your juniors right?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  10 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">I have a student. At the beginning of his path, I helped him to comprehend our craft. Then he got into a quite big company. What they did to him…
 </p>
   </article>
@@ -2724,22 +3155,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html" rel="permalink">Утечки. XCode Leaks &#038; Allocations. Осторожно XML
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с п...</p>
   </article>
 </div>
@@ -2752,22 +3194,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" rel="permalink">Smart pointers vs raw pointers; XCode: отладка undefined behaviour
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Скорость против удобства или Smart pointers не для игр
 
 
@@ -2783,22 +3236,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/c_plus_plus/ustanovka-boost-na-mac-os-x.html" rel="permalink">Установка Boost на Mac OS X
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description"> Руки наконец дошли до boost. Самый простой способ поставить boost, на мой взгляд, это через mac ports, выполнив команду:
 
 </p>
@@ -2823,22 +3287,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/dev-tools/xcode5-assistant-editor.html" rel="permalink">XCode5: Assistant editor
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Задолбало тратить свободное рабочее место в окне, и я занялся поисками как эффективно использовать рабочую область в XCode5. После недолгих поисков наткнулся...</p>
   </article>
 </div>
@@ -2851,22 +3326,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html" rel="permalink">Как сократить физический размер ресурсов
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, что...</p>
   </article>
 </div>
@@ -2879,22 +3365,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/dev-tools/udalit-clrf-iz-fajla.html" rel="permalink">Удалить CLRF из файла
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 Не так часто сталкиваюсь с файлами в windows кодировках, но бывает, и наличие в них некорректных переносов жутко раздражает, XCode, например, от таких перен...</p>
   </article>
@@ -2922,22 +3419,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/dev-tools/xcode5-assistant-editor.html" rel="permalink">XCode5: Assistant editor
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Задолбало тратить свободное рабочее место в окне, и я занялся поисками как эффективно использовать рабочую область в XCode5. После недолгих поисков наткнулся...</p>
   </article>
 </div>
@@ -2950,22 +3458,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" rel="permalink">Smart pointers vs raw pointers; XCode: отладка undefined behaviour
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Скорость против удобства или Smart pointers не для игр
 
 
@@ -2981,22 +3500,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/dev-tools/udalit-clrf-iz-fajla.html" rel="permalink">Удалить CLRF из файла
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 Не так часто сталкиваюсь с файлами в windows кодировках, но бывает, и наличие в них некорректных переносов жутко раздражает, XCode, например, от таких перен...</p>
   </article>
@@ -3090,22 +3620,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony2/genemu-jquerydate-kak-udalit-native-datepicker-chrome-browser-a.html" rel="permalink">Genemu jquerydate: Как удалить native datepicker chrome browser`a
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Столкнулся с проблемой, что когда используешь genemu jquerydate тип, то хром подставляет свой дейтпикер в поле, что абсолютно неприемлемо. Это происходить по...</p>
   </article>
 </div>
@@ -3118,22 +3659,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/genemu-form-bundle.html" rel="permalink">Genemu Form Bundle
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen...</p>
   </article>
 </div>
@@ -3166,22 +3718,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html" rel="permalink">Как сократить физический размер ресурсов
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, что...</p>
   </article>
 </div>
@@ -3194,22 +3757,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/dev-tools/udalit-clrf-iz-fajla.html" rel="permalink">Удалить CLRF из файла
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 Не так часто сталкиваюсь с файлами в windows кодировках, но бывает, и наличие в них некорректных переносов жутко раздражает, XCode, например, от таких перен...</p>
   </article>
@@ -3239,22 +3813,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/smiley-boom-perviy-krupniy-reliz.html" rel="permalink">Smiley Boom – первый крупный релиз
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 
 Мы наконец-то зарелизили нашу игру Smiley Boom:
@@ -3277,22 +3862,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/particle-effekty-v-mobilnyx-igrax.html" rel="permalink">Particle эффекты в мобильных играх
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">До настоящего момента я особо не сталкивался с задачами визуализации сложных эффектов, в целом все сводилось к примитивным анимациям, но в текущем проекте ну...</p>
   </article>
 </div>
@@ -3315,22 +3911,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/dev-tools/xcode5-assistant-editor.html" rel="permalink">XCode5: Assistant editor
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Задолбало тратить свободное рабочее место в окне, и я занялся поисками как эффективно использовать рабочую область в XCode5. После недолгих поисков наткнулся...</p>
   </article>
 </div>
@@ -3343,22 +3950,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/lyubiteli-velosipedov.html" rel="permalink">Любители велосипедов
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 В очередной раз задался вопросом: оправдано ли создание собственного велосипеда и окупится ли оно в дальнейшем? Часто ведь бывает, что приходишь в какую-ниб...</p>
   </article>
@@ -3392,22 +4010,33 @@ iOS
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html" rel="permalink">Facebook Unity SDK Problems and Error Handling
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 
 Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? ...</p>
@@ -3422,22 +4051,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html" rel="permalink">Facebook iOS SDK FBSession release message sent to deallocated object
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Каким-то необычайно странным образом столкнулся со следующей проблемой:
 Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапуск...</p>
   </article>
@@ -3469,22 +4109,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/unity/unity-4-6-x-doesnt-show-up-when-opening-large-projects-is-it-alive.html" rel="permalink">Unity 4.6.x doesn’t show up when opening large projects, is it alive?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Due to single-threaded approach of Unity editor of version 4.x, when opening large project first time, Unity launches importing of files, yet doesn’t show an...</p>
   </article>
 </div>
@@ -3497,22 +4148,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html" rel="permalink">Facebook Unity SDK Problems and Error Handling
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 
 Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? ...</p>
@@ -3551,22 +4213,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/entity-component-system.html" rel="permalink">Система компонентов cущностей (Entity Component System)
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.
 
 </p>
@@ -3581,22 +4254,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/offline-mode-in-client-server-apps.html" rel="permalink">Оффлайн режим в клиент-серверных приложениях
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют раз...</p>
   </article>
 </div>
@@ -3621,22 +4305,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/entity-component-system.html" rel="permalink">Система компонентов cущностей (Entity Component System)
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.
 
 </p>
@@ -3651,22 +4346,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/offline-mode-in-client-server-apps.html" rel="permalink">Оффлайн режим в клиент-серверных приложениях
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют раз...</p>
   </article>
 </div>
@@ -3693,22 +4399,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
@@ -3722,22 +4439,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/are-you-growing-your-juniors-right.html" rel="permalink">Are you growing your juniors right?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  10 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">I have a student. At the beginning of his path, I helped him to comprehend our craft. Then he got into a quite big company. What they did to him…
 </p>
   </article>
@@ -3767,22 +4495,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/o-tom-kak-ya-prishel-k-symfony2.html" rel="permalink">О том, как я пришел к Symfony2
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Это что-то вроде вступительного слова, а также первый из серии постов про мой инструментарий, про те вещи с которыми я работаю.
 
 За всю свою не очень долгую ...</p>
@@ -3815,22 +4554,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/symfony-sonata/genemu-form-bundle.html" rel="permalink">Genemu Form Bundle
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">GenemuFormBundle, на мой взгляд один из must have бандлов. Что из себя представляет? Набор очень удобных типов полей для формы с использованием jquery chosen...</p>
   </article>
 </div>
@@ -3853,22 +4603,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/c_plus_plus/ustanovka-boost-na-mac-os-x.html" rel="permalink">Установка Boost на Mac OS X
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description"> Руки наконец дошли до boost. Самый простой способ поставить boost, на мой взгляд, это через mac ports, выполнив команду:
 
 </p>
@@ -3897,22 +4658,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/dev-tools/udalit-clrf-iz-fajla.html" rel="permalink">Удалить CLRF из файла
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 Не так часто сталкиваюсь с файлами в windows кодировках, но бывает, и наличие в них некорректных переносов жутко раздражает, XCode, например, от таких перен...</p>
   </article>
@@ -3940,22 +4712,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/particle-effekty-v-mobilnyx-igrax.html" rel="permalink">Particle эффекты в мобильных играх
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">До настоящего момента я особо не сталкивался с задачами визуализации сложных эффектов, в целом все сводилось к примитивным анимациям, но в текущем проекте ну...</p>
   </article>
 </div>
@@ -3984,22 +4767,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/lyubiteli-velosipedov.html" rel="permalink">Любители велосипедов
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 В очередной раз задался вопросом: оправдано ли создание собственного велосипеда и окупится ли оно в дальнейшем? Часто ведь бывает, что приходишь в какую-ниб...</p>
   </article>
@@ -4023,22 +4817,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/lyubiteli-velosipedov.html" rel="permalink">Любители велосипедов
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 В очередной раз задался вопросом: оправдано ли создание собственного велосипеда и окупится ли оно в дальнейшем? Часто ведь бывает, что приходишь в какую-ниб...</p>
   </article>
@@ -4062,22 +4867,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html" rel="permalink">Как сократить физический размер ресурсов
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, что...</p>
   </article>
 </div>
@@ -4100,22 +4916,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html" rel="permalink">Как сократить физический размер ресурсов
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, что...</p>
   </article>
 </div>
@@ -4138,22 +4965,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html" rel="permalink">Facebook iOS SDK FBSession release message sent to deallocated object
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Каким-то необычайно странным образом столкнулся со следующей проблемой:
 Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапуск...</p>
   </article>
@@ -4179,22 +5017,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html" rel="permalink">Facebook iOS SDK FBSession release message sent to deallocated object
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Каким-то необычайно странным образом столкнулся со следующей проблемой:
 Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапуск...</p>
   </article>
@@ -4218,22 +5067,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html" rel="permalink">Facebook iOS SDK FBSession release message sent to deallocated object
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Каким-то необычайно странным образом столкнулся со следующей проблемой:
 Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапуск...</p>
   </article>
@@ -4257,22 +5117,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/facebook-ios-sdk-fbsession-release-message-sent-to-deallocated-object.html" rel="permalink">Facebook iOS SDK FBSession release message sent to deallocated object
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Каким-то необычайно странным образом столкнулся со следующей проблемой:
 Запускаем приложениеЗапрашиваем права на publish_actionsДаем отказ в правахПерезапуск...</p>
   </article>
@@ -4296,22 +5167,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html" rel="permalink">Facebook Unity SDK Problems and Error Handling
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 
 Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? ...</p>
@@ -4338,22 +5220,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/cinnamon-zastavil-skuchat-po-linux.html" rel="permalink">Cinnamon заставил скучать по Linux
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Не смотря на то, что основная моя рабочая машина - iMac, и она меня вполне устраивает, сердце все равно тоскует по свободе Linux‘a. На домашнем ноуте у меня ...</p>
   </article>
 </div>
@@ -4376,22 +5269,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/cinnamon-zastavil-skuchat-po-linux.html" rel="permalink">Cinnamon заставил скучать по Linux
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Не смотря на то, что основная моя рабочая машина - iMac, и она меня вполне устраивает, сердце все равно тоскует по свободе Linux‘a. На домашнем ноуте у меня ...</p>
   </article>
 </div>
@@ -4414,22 +5318,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/gamedev/unity/unity-4-6-x-doesnt-show-up-when-opening-large-projects-is-it-alive.html" rel="permalink">Unity 4.6.x doesn’t show up when opening large projects, is it alive?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Due to single-threaded approach of Unity editor of version 4.x, when opening large project first time, Unity launches importing of files, yet doesn’t show an...</p>
   </article>
 </div>
@@ -4452,22 +5367,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html" rel="permalink">Waveshare 7″ touchscreen showing lines and black screen
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">I’ve recently bought a waveshare 7 inch touchscreen, which didn’t work out of the box. It comes with custom raspbian image, which isn’t handy because you can...</p>
   </article>
 </div>
@@ -4490,22 +5416,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html" rel="permalink">Waveshare 7″ touchscreen showing lines and black screen
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">I’ve recently bought a waveshare 7 inch touchscreen, which didn’t work out of the box. It comes with custom raspbian image, which isn’t handy because you can...</p>
   </article>
 </div>
@@ -4528,22 +5465,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/chronicles/poisonous_johns_lair_telegram_channel.html" rel="permalink">GameDev Architecture: Telegram Channel
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  менее 1 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          менее 1 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">
 Запустил свой телеграм канал GameDev Architecture. На канале я делюсь своими заметками о том, как игровым компаниям строить правильные, эффективные и красив...</p>
   </article>
@@ -4571,22 +5519,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/offline-mode-in-client-server-apps.html" rel="permalink">Оффлайн режим в клиент-серверных приложениях
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют раз...</p>
   </article>
 </div>
@@ -4611,22 +5570,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/gamedev/debug-tools.html" rel="permalink">Средства отладки
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  4 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Сколько времени мы тратим в день, разбираясь в коде? Согласно этой статье — 75%.
 
 </p>
@@ -4657,22 +5627,33 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Lost bugs, anxiety and burnout
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  5 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Her...</p>
   </article>
 </div>
@@ -4716,7 +5697,9 @@ Unity is quite useful. But every tool has its own cons. One of that cons is a WW
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
   </ul>
 </div>
 

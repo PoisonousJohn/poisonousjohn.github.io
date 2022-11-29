@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -10,10 +10,13 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Утечки. XCode Leaks &#038; Allocations. Осторожно XML - Fateev.pro</title>
-<meta name="description" content="Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с памятью: после загрузки и выгрузки игровой сцены есть большая утечка порядка 20Мб, что, мягко говоря, много. Изначально я пробовал пользоваться инструментом Leaks, но он не показывал практически ничего. Тогда  я обратил свое внимание на инструмент Allocations. Разобраться в том как с ним работать в моем случае было довольно большой головной болью.  Итак принцип по которому я работал был следующим:  	Загружаю главный экран. Делаю снимок. 	Загружаю игровой экран, загружаю главный экран, делаю снимок. 	Повторяю пункт 2 еще несколько раз. 	Открываю один из средних снимков и смотрю из-за каких объектов выросла куча 	Устраняю те проблемы, причина которых стала очевидной 	Повторяю все с пункта 1 до тех пор, пока результат работы приложения меня не устроит  А теперь в кратце о неожиданных результатах, с которыми я столкнулся. XML очень дорогой формат Итак, я начну с минусов:  	Слишком большие файлы - много избыточной информации 	Довольно долгий парсинг 	Требует довольно большого объема памяти  Плюсы:  	Удобочитаемость - важно особенно на этапе активной разработки, когда нужно что то поменять на лету 	Можно сжать в архив  Большие файлы для меня проблема, так как максимальный размер бандла ограничен, а xml файлов у меня много. Скорость парсинга, конечно, зависит от библиотеки для работы с xml, но, конечно, она несравнима, например, с обработкой бинарного формата. А вот проблема с памятью для меня оказалась большой неожиданностью. Я работаю c xml при помощи tinyxml. Ранее ресурсы были организованы таким образом, что хранился распарсенный xml, и, каждый раз применяя ресурс, я проходил по дереву для получения нужных мне параметров. Здесь открылись две проблемы: один XMLElement в памяти занимал 4Кб, а теперь, если представить сколько этих элементов в среднего размера xml’ке, то можно понять, что это катастрофично. Первым делом я перделал логику таким образом, чтобы парсить xml только при загрузке ресурса, а затем создавать объекты из заранее заполненных структур данных. Это не только освободило изрядный кусок памяти, но и дало большой прирост в производительности. Как показала практика, поиск по элементам в xml намного медленнее, чем, скажем, поиск по unordered_map’у. В итоге, избавившись от постоянной работы с xml, я только выиграл. Следующим шагом, я думаю, стоит перейти с xml на бинарный формат.    ">
+<meta name="description" content="Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с памятью: после загрузки и выгрузки игровой сцены есть большая утечка порядка 20Мб, что, мягко говоря, много. Изначально я пробовал пользоваться инструментом Leaks, но он не показывал практически ничего. Тогда  я обратил свое внимание на инструмент Allocations. Разобраться в том как с ним работать в моем случае было довольно большой головной болью.  Итак принцип по которому я работал был следующим:  	Загружаю главный экран. Делаю снимок. 	Загружаю игровой экран, загружаю главный экран, делаю снимок. 	Повторяю пункт 2 еще несколько раз. 	Открываю один из средних снимков и смотрю из-за каких объектов выросла куча 	Устраняю те проблемы, причина которых стала очевидной 	Повторяю все с пункта 1 до тех пор, пока результат работы приложения меня не устроит  А теперь в кратце о неожиданных результатах, с которыми я столкнулся. XML очень дорогой формат Итак, я начну с минусов:  	Слишком большие файлы - много избыточной информации 	Довольно долгий парсинг 	Требует довольно большого объема памяти  Плюсы:  	Удобочитаемость - важно особенно на этапе активной разработки, когда нужно что то поменять на лету 	Можно сжать в архив  Большие файлы для меня проблема, так как максимальный размер бандла ограничен, а xml файлов у меня много. Скорость парсинга, конечно, зависит от библиотеки для работы с xml, но, конечно, она несравнима, например, с обработкой бинарного формата. А вот проблема с памятью для меня оказалась большой неожиданностью. Я работаю c xml при помощи tinyxml. Ранее ресурсы были организованы таким образом, что хранился распарсенный xml, и, каждый раз применяя ресурс, я проходил по дереву для получения нужных мне параметров. Здесь открылись две проблемы: один XMLElement в памяти занимал 4Кб, а теперь, если представить сколько этих элементов в среднего размера xml’ке, то можно понять, что это катастрофично. Первым делом я перделал логику таким образом, чтобы парсить xml только при загрузке ресурса, а затем создавать объекты из заранее заполненных структур данных. Это не только освободило изрядный кусок памяти, но и дало большой прирост в производительности. Как показала практика, поиск по элементам в xml намного медленнее, чем, скажем, поиск по unordered_map’у. В итоге, избавившись от постоянной работы с xml, я только выиграл. Следующим шагом, я думаю, стоит перейти с xml на бинарный формат.   ">
 
 
   <meta name="author" content="Ivan Fateev">
+  
+  <meta property="article:author" content="Ivan Fateev">
+  
 
 
 <meta property="og:type" content="article">
@@ -23,7 +26,7 @@
 <meta property="og:url" content="https://fateev.pro/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html">
 
 
-  <meta property="og:description" content="Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с памятью: после загрузки и выгрузки игровой сцены есть большая утечка порядка 20Мб, что, мягко говоря, много. Изначально я пробовал пользоваться инструментом Leaks, но он не показывал практически ничего. Тогда  я обратил свое внимание на инструмент Allocations. Разобраться в том как с ним работать в моем случае было довольно большой головной болью.  Итак принцип по которому я работал был следующим:  	Загружаю главный экран. Делаю снимок. 	Загружаю игровой экран, загружаю главный экран, делаю снимок. 	Повторяю пункт 2 еще несколько раз. 	Открываю один из средних снимков и смотрю из-за каких объектов выросла куча 	Устраняю те проблемы, причина которых стала очевидной 	Повторяю все с пункта 1 до тех пор, пока результат работы приложения меня не устроит  А теперь в кратце о неожиданных результатах, с которыми я столкнулся. XML очень дорогой формат Итак, я начну с минусов:  	Слишком большие файлы - много избыточной информации 	Довольно долгий парсинг 	Требует довольно большого объема памяти  Плюсы:  	Удобочитаемость - важно особенно на этапе активной разработки, когда нужно что то поменять на лету 	Можно сжать в архив  Большие файлы для меня проблема, так как максимальный размер бандла ограничен, а xml файлов у меня много. Скорость парсинга, конечно, зависит от библиотеки для работы с xml, но, конечно, она несравнима, например, с обработкой бинарного формата. А вот проблема с памятью для меня оказалась большой неожиданностью. Я работаю c xml при помощи tinyxml. Ранее ресурсы были организованы таким образом, что хранился распарсенный xml, и, каждый раз применяя ресурс, я проходил по дереву для получения нужных мне параметров. Здесь открылись две проблемы: один XMLElement в памяти занимал 4Кб, а теперь, если представить сколько этих элементов в среднего размера xml’ке, то можно понять, что это катастрофично. Первым делом я перделал логику таким образом, чтобы парсить xml только при загрузке ресурса, а затем создавать объекты из заранее заполненных структур данных. Это не только освободило изрядный кусок памяти, но и дало большой прирост в производительности. Как показала практика, поиск по элементам в xml намного медленнее, чем, скажем, поиск по unordered_map’у. В итоге, избавившись от постоянной работы с xml, я только выиграл. Следующим шагом, я думаю, стоит перейти с xml на бинарный формат.    ">
+  <meta property="og:description" content="Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с памятью: после загрузки и выгрузки игровой сцены есть большая утечка порядка 20Мб, что, мягко говоря, много. Изначально я пробовал пользоваться инструментом Leaks, но он не показывал практически ничего. Тогда  я обратил свое внимание на инструмент Allocations. Разобраться в том как с ним работать в моем случае было довольно большой головной болью.  Итак принцип по которому я работал был следующим:  	Загружаю главный экран. Делаю снимок. 	Загружаю игровой экран, загружаю главный экран, делаю снимок. 	Повторяю пункт 2 еще несколько раз. 	Открываю один из средних снимков и смотрю из-за каких объектов выросла куча 	Устраняю те проблемы, причина которых стала очевидной 	Повторяю все с пункта 1 до тех пор, пока результат работы приложения меня не устроит  А теперь в кратце о неожиданных результатах, с которыми я столкнулся. XML очень дорогой формат Итак, я начну с минусов:  	Слишком большие файлы - много избыточной информации 	Довольно долгий парсинг 	Требует довольно большого объема памяти  Плюсы:  	Удобочитаемость - важно особенно на этапе активной разработки, когда нужно что то поменять на лету 	Можно сжать в архив  Большие файлы для меня проблема, так как максимальный размер бандла ограничен, а xml файлов у меня много. Скорость парсинга, конечно, зависит от библиотеки для работы с xml, но, конечно, она несравнима, например, с обработкой бинарного формата. А вот проблема с памятью для меня оказалась большой неожиданностью. Я работаю c xml при помощи tinyxml. Ранее ресурсы были организованы таким образом, что хранился распарсенный xml, и, каждый раз применяя ресурс, я проходил по дереву для получения нужных мне параметров. Здесь открылись две проблемы: один XMLElement в памяти занимал 4Кб, а теперь, если представить сколько этих элементов в среднего размера xml’ке, то можно понять, что это катастрофично. Первым делом я перделал логику таким образом, чтобы парсить xml только при загрузке ресурса, а затем создавать объекты из заранее заполненных структур данных. Это не только освободило изрядный кусок памяти, но и дало большой прирост в производительности. Как показала практика, поиск по элементам в xml намного медленнее, чем, скажем, поиск по unordered_map’у. В итоге, избавившись от постоянной работы с xml, я только выиграл. Следующим шагом, я думаю, стоит перейти с xml на бинарный формат.   ">
 
 
 
@@ -65,10 +68,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,21 +85,8 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
   
@@ -124,7 +117,6 @@
 
   <body class="layout--single wide">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -207,15 +199,15 @@
       
         
           
-            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
           
         
       
@@ -285,26 +277,20 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
     <meta itemprop="headline" content="Утечки. XCode Leaks &#038; Allocations. Осторожно XML">
+    
     <meta itemprop="description" content="Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с памятью: после загрузки и выгрузки игровой сцены есть большая утечка порядка 20Мб, что, мягко говоря, много. Изначально я пробовал пользоваться инструментом Leaks, но он не показывал практически ничего. Тогда  я обратил свое внимание на инструмент Allocations. Разобраться в том как с ним работать в моем случае было довольно большой головной болью.Итак принцип по которому я работал был следующим:	Загружаю главный экран. Делаю снимок.	Загружаю игровой экран, загружаю главный экран, делаю снимок.	Повторяю пункт 2 еще несколько раз.	Открываю один из средних снимков и смотрю из-за каких объектов выросла куча	Устраняю те проблемы, причина которых стала очевидной	Повторяю все с пункта 1 до тех пор, пока результат работы приложения меня не устроитА теперь в кратце о неожиданных результатах, с которыми я столкнулся.XML очень дорогой форматИтак, я начну с минусов:	Слишком большие файлы - много избыточной информации	Довольно долгий парсинг	Требует довольно большого объема памятиПлюсы:	Удобочитаемость - важно особенно на этапе активной разработки, когда нужно что то поменять на лету	Можно сжать в архивБольшие файлы для меня проблема, так как максимальный размер бандла ограничен, а xml файлов у меня много. Скорость парсинга, конечно, зависит от библиотеки для работы с xml, но, конечно, она несравнима, например, с обработкой бинарного формата. А вот проблема с памятью для меня оказалась большой неожиданностью. Я работаю c xml при помощи tinyxml. Ранее ресурсы были организованы таким образом, что хранился распарсенный xml, и, каждый раз применяя ресурс, я проходил по дереву для получения нужных мне параметров. Здесь открылись две проблемы: один XMLElement в памяти занимал 4Кб, а теперь, если представить сколько этих элементов в среднего размера xml’ке, то можно понять, что это катастрофично. Первым делом я перделал логику таким образом, чтобы парсить xml только при загрузке ресурса, а затем создавать объекты из заранее заполненных структур данных. Это не только освободило изрядный кусок памяти, но и дало большой прирост в производительности. Как показала практика, поиск по элементам в xml намного медленнее, чем, скажем, поиск по unordered_map’у. В итоге, избавившись от постоянной работы с xml, я только выиграл. Следующим шагом, я думаю, стоит перейти с xml на бинарный формат. ">
+    
+    
     <meta itemprop="datePublished" content="2014-06-02T07:50:39-05:00">
     
 
     <div class="page__inner-wrap">
-        <header >
-          <h1 id="page-title" class="page__title" itemprop="headline">Утечки. XCode Leaks &#038; Allocations. Осторожно XML
+      <header >
+        <h1 id="page-title" class="page__title" itemprop="headline">Утечки. XCode Leaks &#038; Allocations. Осторожно XML
 </h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  1 мин на чтение
-
-</p>
-          
-        </header>
+      </header>
 
       <section class="page__content" itemprop="text">
         
@@ -346,19 +332,13 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Метки: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/tags/c" class="page__taxonomy-item" rel="tag">c++</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/gamedev" class="page__taxonomy-item" rel="tag">gamedev</a>
     
     </span>
@@ -371,15 +351,11 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Разделы: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/categories/gamedev" class="page__taxonomy-item" rel="tag">Gamedev</a>
     
     </span>
@@ -387,7 +363,8 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2014-06-02T07:50:39-05:00">June 2, 2014</time></p>
+        <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time
+            datetime="2014-06-02T07:50:39-05:00">June 2, 2014</time></p>
         
       </footer>
 
@@ -423,11 +400,12 @@
 
   
   
-    <div class="page__related">
-      <h4 class="page__related-title">Вам также может понравиться</h4>
-      <div class="grid__wrapper">
-        
-          
+  <div class="page__related">
+    <h4 class="page__related-title">Вам также может понравиться
+    </h4>
+    <div class="grid__wrapper">
+      
+      
 
 
 
@@ -438,28 +416,39 @@
         <img src="/assets/images/bug-prioritization-matrix.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Lost bugs, anxiety and burnout
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  6 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Her...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -470,29 +459,40 @@
         <img src="/assets/images/testing-pyramid.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Ensuring the quality with Appium
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
 </p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -503,28 +503,39 @@
         <img src="/assets/images/abstract-code.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="permalink">How to clean a legacy code: stop complaining, start doing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  7 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or ...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -535,34 +546,44 @@
         <img src="/assets/images/growing_junior.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
 </div>
 
-        
-      </div>
+      
     </div>
+  </div>
   
   
 </div>
-
     </div>
 
     
@@ -592,7 +613,9 @@
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
   </ul>
 </div>
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -10,10 +10,13 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Facebook Unity SDK Problems and Error Handling - Fateev.pro</title>
-<meta name="description" content="  Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? It’s quite handy!”. Yes, it is, till you need to work with some kind of REST API.  Most of the REST services and also OAuth 2.0 spec using http error codes to inform user about some kind of error. But along with error code service provides response that contains details about an error because just an error code is not enough to understand what to do with such error. Facebook Open Graph API is one of such services. Documentation states that in case of error we should parse JSON response and look to the error code and other error details to understand what’s wrong. Common error response looks like this:         {        &quot;error&quot;: {          &quot;message&quot;: &quot;Message describing the error&quot;,          &quot;type&quot;: &quot;OAuthException&quot;,          &quot;code&quot;: 190,          &quot;error_subcode&quot;: 460,          &quot;error_user_title&quot;: &quot;A title&quot;,          &quot;error_user_msg&quot;: &quot;A message&quot;        }      }     The most important error in my case is invalid token. In that case we should reauthorize user in our app. If it won’t be done, all queries to API will fail. This breaks all the things. Facebook Unity SDK provides FBResult class to read repsonse from facebook’s API. Problem that I’m talking about is that  You can&#39;t use FBResult to handle facebook API errors. You might say: Why? It has an FBResult.Error property for that”. But what that property is for? It has a string type and all you can get from it is a text description of an error like “400 Bad Response”. Is that informative for you? Neither for me. Open graph API returns 400 http error code if ANY error occurs. I assumed that FBResult.Text property should contain a JSON describing the error like stated in documentation. It’s not! You can’t retrieve error’s JSON! Why? Unity&#39;s WWW class doesn&#39;t allow you to get response if error code not equals 200 (Success).  If you look at FBResult class in a debugger while receiving a response you see that FBResult’s contains a data member which value is a WWW object. That’s why the FBResult.Text property is empty when an error occurs. You might see an error in unity’s console in such case: “You are trying to load data from a www stream which had the following error when downloading. 400 Bad Request”.  It’s absolutely pointless to forbid read a response if the response code not equals 200. It violates OAuth specifications. It’s a bug and it exists in unity for years. Facebook developers that worked with Facebook Unity SDK knew it for sure and just ignored it. They just don’t care about it. Facebook Unity SDK is outdated and updated rarely. Features like Share Dialog isn’t supported.  Fortunately Open Graph SDK provides error details in HTTP Headers! To solve problem with error handling I use some hack. I would avoid it if situation wouldn’t be so awful. I use reflection to get protected FBResult.data field. As I mentioned before that field contains WWW object that I can use to retrieve http headers. Here is a part of my class:  using System; using System.Linq; using System.Text.RegularExpressions; using System.Collections.Generic; using System.Reflection;  using LitJson;  using Glu.ContractKiller3; using Glu.Localization; using Glu.JSON;  namespace Glu.Facebook {     public class SDKError     {         public string message;         public string type;         public int code;         public int error_subcode;         public string error_user_title;         public string error_user_msg;          public static SDKError CreateFromHeaders(Dictionary&amp;lt;string, string&amp;gt; headers)         {             if (headers.ContainsKey(&quot;WWW-AUTHENTICATE&quot;))             {                 string header = headers[&quot;WWW-AUTHENTICATE&quot;];                 var components =                     Regex                         .Matches(header, @&quot;(?[^\s&quot;&quot;]+)|&quot;&quot;(?[^&quot;&quot;]*)&quot;&quot;&quot;)                         .Cast().ToList()                     .Select(m =&amp;gt; m.Groups[&quot;match&quot;].Value)                     .ToList();                 if (components != null &amp;amp;&amp;amp;                     components.Count == 4 &amp;amp;&amp;amp;                     components[0] == &quot;OAuth&quot; &amp;amp;&amp;amp;                     components[1] == &quot;Facebook Platform&quot;)                 {                     var err = new SDKError();                     err.SetOAuthError();                     err.SetReloginRequired();                     err.message = components[3];                     err.error_user_title = &quot;Facebook Error&quot;;                     err.error_user_msg = err.message;                     return err;                 }             }             return null;         }      }      static class SDKErrorExtensions     {         public static SDKError ToSDKError(this FBResult result)         {             SDKError err = null;              if (result != null)             {                 if (_fbResultDataField == null)                 {                     _fbResultDataField = result.GetType().GetField(&quot;data&quot;, BindingFlags.NonPublic | BindingFlags.Instance);                 }                   var www = _fbResultDataField.GetValue(result) as UnityEngine.WWW;                 if (www != null)                 {                     if (www.bytesDownloaded == 0 || www.responseHeaders.Count == 0)                     {                         err = SDKError.CreateNetworkError();                     }                     else                     {                         err = SDKError.CreateFromHeaders(www.responseHeaders);                     }                 }              }                return err;         }          private static FieldInfo _fbResultDataField;      } }   I cache FieldInfo to make reflection queries a little bit faster. Also I check bytesDownloaded and response headers to know if error caused by network problems. If not I check WWW-AUTHENTICATE header that facebook fills with error details. Regular expression required to parse a data in the header. Example of a Header’s data: OAuth &quot;Facebook Platform&quot; &quot;invalid_token&quot; &quot;Token is invalid because user logged out.&quot;  As you see the data format is kind of odd. But I retrieve data by sentences (a single word OR a statement between double quotes). Last part of a header is a message that we can log or display to user. invalid_token chunk looks like error type, so we can use it to decide how to deal with this error.  As an alternative to my hack you can use WebRequest but I wouldn’t recommend rely on it. ">
+<meta name="description" content="Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? It’s quite handy!”. Yes, it is, till you need to work with some kind of REST API.  Most of the REST services and also OAuth 2.0 spec using http error codes to inform user about some kind of error. But along with error code service provides response that contains details about an error because just an error code is not enough to understand what to do with such error. Facebook Open Graph API is one of such services. Documentation states that in case of error we should parse JSON response and look to the error code and other error details to understand what’s wrong. Common error response looks like this:         {        &quot;error&quot;: {          &quot;message&quot;: &quot;Message describing the error&quot;,          &quot;type&quot;: &quot;OAuthException&quot;,          &quot;code&quot;: 190,          &quot;error_subcode&quot;: 460,          &quot;error_user_title&quot;: &quot;A title&quot;,          &quot;error_user_msg&quot;: &quot;A message&quot;        }      }     The most important error in my case is invalid token. In that case we should reauthorize user in our app. If it won’t be done, all queries to API will fail. This breaks all the things. Facebook Unity SDK provides FBResult class to read repsonse from facebook’s API. Problem that I’m talking about is that  You can&#39;t use FBResult to handle facebook API errors. You might say: Why? It has an FBResult.Error property for that”. But what that property is for? It has a string type and all you can get from it is a text description of an error like “400 Bad Response”. Is that informative for you? Neither for me. Open graph API returns 400 http error code if ANY error occurs. I assumed that FBResult.Text property should contain a JSON describing the error like stated in documentation. It’s not! You can’t retrieve error’s JSON! Why? Unity&#39;s WWW class doesn&#39;t allow you to get response if error code not equals 200 (Success).  If you look at FBResult class in a debugger while receiving a response you see that FBResult’s contains a data member which value is a WWW object. That’s why the FBResult.Text property is empty when an error occurs. You might see an error in unity’s console in such case: “You are trying to load data from a www stream which had the following error when downloading. 400 Bad Request”.  It’s absolutely pointless to forbid read a response if the response code not equals 200. It violates OAuth specifications. It’s a bug and it exists in unity for years. Facebook developers that worked with Facebook Unity SDK knew it for sure and just ignored it. They just don’t care about it. Facebook Unity SDK is outdated and updated rarely. Features like Share Dialog isn’t supported.  Fortunately Open Graph SDK provides error details in HTTP Headers! To solve problem with error handling I use some hack. I would avoid it if situation wouldn’t be so awful. I use reflection to get protected FBResult.data field. As I mentioned before that field contains WWW object that I can use to retrieve http headers. Here is a part of my class:  using System; using System.Linq; using System.Text.RegularExpressions; using System.Collections.Generic; using System.Reflection;  using LitJson;  using Glu.ContractKiller3; using Glu.Localization; using Glu.JSON;  namespace Glu.Facebook {     public class SDKError     {         public string message;         public string type;         public int code;         public int error_subcode;         public string error_user_title;         public string error_user_msg;          public static SDKError CreateFromHeaders(Dictionary&amp;lt;string, string&amp;gt; headers)         {             if (headers.ContainsKey(&quot;WWW-AUTHENTICATE&quot;))             {                 string header = headers[&quot;WWW-AUTHENTICATE&quot;];                 var components =                     Regex                         .Matches(header, @&quot;(?[^\s&quot;&quot;]+)|&quot;&quot;(?[^&quot;&quot;]*)&quot;&quot;&quot;)                         .Cast().ToList()                     .Select(m =&amp;gt; m.Groups[&quot;match&quot;].Value)                     .ToList();                 if (components != null &amp;amp;&amp;amp;                     components.Count == 4 &amp;amp;&amp;amp;                     components[0] == &quot;OAuth&quot; &amp;amp;&amp;amp;                     components[1] == &quot;Facebook Platform&quot;)                 {                     var err = new SDKError();                     err.SetOAuthError();                     err.SetReloginRequired();                     err.message = components[3];                     err.error_user_title = &quot;Facebook Error&quot;;                     err.error_user_msg = err.message;                     return err;                 }             }             return null;         }      }      static class SDKErrorExtensions     {         public static SDKError ToSDKError(this FBResult result)         {             SDKError err = null;              if (result != null)             {                 if (_fbResultDataField == null)                 {                     _fbResultDataField = result.GetType().GetField(&quot;data&quot;, BindingFlags.NonPublic | BindingFlags.Instance);                 }                   var www = _fbResultDataField.GetValue(result) as UnityEngine.WWW;                 if (www != null)                 {                     if (www.bytesDownloaded == 0 || www.responseHeaders.Count == 0)                     {                         err = SDKError.CreateNetworkError();                     }                     else                     {                         err = SDKError.CreateFromHeaders(www.responseHeaders);                     }                 }              }                return err;         }          private static FieldInfo _fbResultDataField;      } }   I cache FieldInfo to make reflection queries a little bit faster. Also I check bytesDownloaded and response headers to know if error caused by network problems. If not I check WWW-AUTHENTICATE header that facebook fills with error details. Regular expression required to parse a data in the header. Example of a Header’s data: OAuth &quot;Facebook Platform&quot; &quot;invalid_token&quot; &quot;Token is invalid because user logged out.&quot;  As you see the data format is kind of odd. But I retrieve data by sentences (a single word OR a statement between double quotes). Last part of a header is a message that we can log or display to user. invalid_token chunk looks like error type, so we can use it to decide how to deal with this error.  As an alternative to my hack you can use WebRequest but I wouldn’t recommend rely on it.">
 
 
   <meta name="author" content="Ivan Fateev">
+  
+  <meta property="article:author" content="Ivan Fateev">
+  
 
 
 <meta property="og:type" content="article">
@@ -23,7 +26,7 @@
 <meta property="og:url" content="https://fateev.pro/gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html">
 
 
-  <meta property="og:description" content="  Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? It’s quite handy!”. Yes, it is, till you need to work with some kind of REST API.  Most of the REST services and also OAuth 2.0 spec using http error codes to inform user about some kind of error. But along with error code service provides response that contains details about an error because just an error code is not enough to understand what to do with such error. Facebook Open Graph API is one of such services. Documentation states that in case of error we should parse JSON response and look to the error code and other error details to understand what’s wrong. Common error response looks like this:         {        &quot;error&quot;: {          &quot;message&quot;: &quot;Message describing the error&quot;,          &quot;type&quot;: &quot;OAuthException&quot;,          &quot;code&quot;: 190,          &quot;error_subcode&quot;: 460,          &quot;error_user_title&quot;: &quot;A title&quot;,          &quot;error_user_msg&quot;: &quot;A message&quot;        }      }     The most important error in my case is invalid token. In that case we should reauthorize user in our app. If it won’t be done, all queries to API will fail. This breaks all the things. Facebook Unity SDK provides FBResult class to read repsonse from facebook’s API. Problem that I’m talking about is that  You can&#39;t use FBResult to handle facebook API errors. You might say: Why? It has an FBResult.Error property for that”. But what that property is for? It has a string type and all you can get from it is a text description of an error like “400 Bad Response”. Is that informative for you? Neither for me. Open graph API returns 400 http error code if ANY error occurs. I assumed that FBResult.Text property should contain a JSON describing the error like stated in documentation. It’s not! You can’t retrieve error’s JSON! Why? Unity&#39;s WWW class doesn&#39;t allow you to get response if error code not equals 200 (Success).  If you look at FBResult class in a debugger while receiving a response you see that FBResult’s contains a data member which value is a WWW object. That’s why the FBResult.Text property is empty when an error occurs. You might see an error in unity’s console in such case: “You are trying to load data from a www stream which had the following error when downloading. 400 Bad Request”.  It’s absolutely pointless to forbid read a response if the response code not equals 200. It violates OAuth specifications. It’s a bug and it exists in unity for years. Facebook developers that worked with Facebook Unity SDK knew it for sure and just ignored it. They just don’t care about it. Facebook Unity SDK is outdated and updated rarely. Features like Share Dialog isn’t supported.  Fortunately Open Graph SDK provides error details in HTTP Headers! To solve problem with error handling I use some hack. I would avoid it if situation wouldn’t be so awful. I use reflection to get protected FBResult.data field. As I mentioned before that field contains WWW object that I can use to retrieve http headers. Here is a part of my class:  using System; using System.Linq; using System.Text.RegularExpressions; using System.Collections.Generic; using System.Reflection;  using LitJson;  using Glu.ContractKiller3; using Glu.Localization; using Glu.JSON;  namespace Glu.Facebook {     public class SDKError     {         public string message;         public string type;         public int code;         public int error_subcode;         public string error_user_title;         public string error_user_msg;          public static SDKError CreateFromHeaders(Dictionary&amp;lt;string, string&amp;gt; headers)         {             if (headers.ContainsKey(&quot;WWW-AUTHENTICATE&quot;))             {                 string header = headers[&quot;WWW-AUTHENTICATE&quot;];                 var components =                     Regex                         .Matches(header, @&quot;(?[^\s&quot;&quot;]+)|&quot;&quot;(?[^&quot;&quot;]*)&quot;&quot;&quot;)                         .Cast().ToList()                     .Select(m =&amp;gt; m.Groups[&quot;match&quot;].Value)                     .ToList();                 if (components != null &amp;amp;&amp;amp;                     components.Count == 4 &amp;amp;&amp;amp;                     components[0] == &quot;OAuth&quot; &amp;amp;&amp;amp;                     components[1] == &quot;Facebook Platform&quot;)                 {                     var err = new SDKError();                     err.SetOAuthError();                     err.SetReloginRequired();                     err.message = components[3];                     err.error_user_title = &quot;Facebook Error&quot;;                     err.error_user_msg = err.message;                     return err;                 }             }             return null;         }      }      static class SDKErrorExtensions     {         public static SDKError ToSDKError(this FBResult result)         {             SDKError err = null;              if (result != null)             {                 if (_fbResultDataField == null)                 {                     _fbResultDataField = result.GetType().GetField(&quot;data&quot;, BindingFlags.NonPublic | BindingFlags.Instance);                 }                   var www = _fbResultDataField.GetValue(result) as UnityEngine.WWW;                 if (www != null)                 {                     if (www.bytesDownloaded == 0 || www.responseHeaders.Count == 0)                     {                         err = SDKError.CreateNetworkError();                     }                     else                     {                         err = SDKError.CreateFromHeaders(www.responseHeaders);                     }                 }              }                return err;         }          private static FieldInfo _fbResultDataField;      } }   I cache FieldInfo to make reflection queries a little bit faster. Also I check bytesDownloaded and response headers to know if error caused by network problems. If not I check WWW-AUTHENTICATE header that facebook fills with error details. Regular expression required to parse a data in the header. Example of a Header’s data: OAuth &quot;Facebook Platform&quot; &quot;invalid_token&quot; &quot;Token is invalid because user logged out.&quot;  As you see the data format is kind of odd. But I retrieve data by sentences (a single word OR a statement between double quotes). Last part of a header is a message that we can log or display to user. invalid_token chunk looks like error type, so we can use it to decide how to deal with this error.  As an alternative to my hack you can use WebRequest but I wouldn’t recommend rely on it. ">
+  <meta property="og:description" content="Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? It’s quite handy!”. Yes, it is, till you need to work with some kind of REST API.  Most of the REST services and also OAuth 2.0 spec using http error codes to inform user about some kind of error. But along with error code service provides response that contains details about an error because just an error code is not enough to understand what to do with such error. Facebook Open Graph API is one of such services. Documentation states that in case of error we should parse JSON response and look to the error code and other error details to understand what’s wrong. Common error response looks like this:         {        &quot;error&quot;: {          &quot;message&quot;: &quot;Message describing the error&quot;,          &quot;type&quot;: &quot;OAuthException&quot;,          &quot;code&quot;: 190,          &quot;error_subcode&quot;: 460,          &quot;error_user_title&quot;: &quot;A title&quot;,          &quot;error_user_msg&quot;: &quot;A message&quot;        }      }     The most important error in my case is invalid token. In that case we should reauthorize user in our app. If it won’t be done, all queries to API will fail. This breaks all the things. Facebook Unity SDK provides FBResult class to read repsonse from facebook’s API. Problem that I’m talking about is that  You can&#39;t use FBResult to handle facebook API errors. You might say: Why? It has an FBResult.Error property for that”. But what that property is for? It has a string type and all you can get from it is a text description of an error like “400 Bad Response”. Is that informative for you? Neither for me. Open graph API returns 400 http error code if ANY error occurs. I assumed that FBResult.Text property should contain a JSON describing the error like stated in documentation. It’s not! You can’t retrieve error’s JSON! Why? Unity&#39;s WWW class doesn&#39;t allow you to get response if error code not equals 200 (Success).  If you look at FBResult class in a debugger while receiving a response you see that FBResult’s contains a data member which value is a WWW object. That’s why the FBResult.Text property is empty when an error occurs. You might see an error in unity’s console in such case: “You are trying to load data from a www stream which had the following error when downloading. 400 Bad Request”.  It’s absolutely pointless to forbid read a response if the response code not equals 200. It violates OAuth specifications. It’s a bug and it exists in unity for years. Facebook developers that worked with Facebook Unity SDK knew it for sure and just ignored it. They just don’t care about it. Facebook Unity SDK is outdated and updated rarely. Features like Share Dialog isn’t supported.  Fortunately Open Graph SDK provides error details in HTTP Headers! To solve problem with error handling I use some hack. I would avoid it if situation wouldn’t be so awful. I use reflection to get protected FBResult.data field. As I mentioned before that field contains WWW object that I can use to retrieve http headers. Here is a part of my class:  using System; using System.Linq; using System.Text.RegularExpressions; using System.Collections.Generic; using System.Reflection;  using LitJson;  using Glu.ContractKiller3; using Glu.Localization; using Glu.JSON;  namespace Glu.Facebook {     public class SDKError     {         public string message;         public string type;         public int code;         public int error_subcode;         public string error_user_title;         public string error_user_msg;          public static SDKError CreateFromHeaders(Dictionary&amp;lt;string, string&amp;gt; headers)         {             if (headers.ContainsKey(&quot;WWW-AUTHENTICATE&quot;))             {                 string header = headers[&quot;WWW-AUTHENTICATE&quot;];                 var components =                     Regex                         .Matches(header, @&quot;(?[^\s&quot;&quot;]+)|&quot;&quot;(?[^&quot;&quot;]*)&quot;&quot;&quot;)                         .Cast().ToList()                     .Select(m =&amp;gt; m.Groups[&quot;match&quot;].Value)                     .ToList();                 if (components != null &amp;amp;&amp;amp;                     components.Count == 4 &amp;amp;&amp;amp;                     components[0] == &quot;OAuth&quot; &amp;amp;&amp;amp;                     components[1] == &quot;Facebook Platform&quot;)                 {                     var err = new SDKError();                     err.SetOAuthError();                     err.SetReloginRequired();                     err.message = components[3];                     err.error_user_title = &quot;Facebook Error&quot;;                     err.error_user_msg = err.message;                     return err;                 }             }             return null;         }      }      static class SDKErrorExtensions     {         public static SDKError ToSDKError(this FBResult result)         {             SDKError err = null;              if (result != null)             {                 if (_fbResultDataField == null)                 {                     _fbResultDataField = result.GetType().GetField(&quot;data&quot;, BindingFlags.NonPublic | BindingFlags.Instance);                 }                   var www = _fbResultDataField.GetValue(result) as UnityEngine.WWW;                 if (www != null)                 {                     if (www.bytesDownloaded == 0 || www.responseHeaders.Count == 0)                     {                         err = SDKError.CreateNetworkError();                     }                     else                     {                         err = SDKError.CreateFromHeaders(www.responseHeaders);                     }                 }              }                return err;         }          private static FieldInfo _fbResultDataField;      } }   I cache FieldInfo to make reflection queries a little bit faster. Also I check bytesDownloaded and response headers to know if error caused by network problems. If not I check WWW-AUTHENTICATE header that facebook fills with error details. Regular expression required to parse a data in the header. Example of a Header’s data: OAuth &quot;Facebook Platform&quot; &quot;invalid_token&quot; &quot;Token is invalid because user logged out.&quot;  As you see the data format is kind of odd. But I retrieve data by sentences (a single word OR a statement between double quotes). Last part of a header is a message that we can log or display to user. invalid_token chunk looks like error type, so we can use it to decide how to deal with this error.  As an alternative to my hack you can use WebRequest but I wouldn’t recommend rely on it.">
 
 
 
@@ -65,10 +68,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,21 +85,8 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
   
@@ -124,7 +117,6 @@
 
   <body class="layout--single wide">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -207,15 +199,15 @@
       
         
           
-            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
           
         
       
@@ -285,26 +277,20 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
     <meta itemprop="headline" content="Facebook Unity SDK Problems and Error Handling">
+    
     <meta itemprop="description" content="Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: “What’s wrong with it? It’s quite handy!”. Yes, it is, till you need to work with some kind of REST API.Most of the REST services and also OAuth 2.0 spec using http error codes to inform user about some kind of error. But along with error code service provides response that contains details about an error because just an error code is not enough to understand what to do with such error. Facebook Open Graph API is one of such services. Documentation states that in case of error we should parse JSON response and look to the error code and other error details to understand what’s wrong.Common error response looks like this:       {       &quot;error&quot;: {         &quot;message&quot;: &quot;Message describing the error&quot;,         &quot;type&quot;: &quot;OAuthException&quot;,         &quot;code&quot;: 190,         &quot;error_subcode&quot;: 460,         &quot;error_user_title&quot;: &quot;A title&quot;,         &quot;error_user_msg&quot;: &quot;A message&quot;       }     } The most important error in my case is invalid token. In that case we should reauthorize user in our app. If it won’t be done, all queries to API will fail. This breaks all the things. Facebook Unity SDK provides FBResult class to read repsonse from facebook’s API. Problem that I’m talking about is that You can&#39;t use FBResult to handle facebook API errors.You might say: Why? It has an FBResult.Error property for that”. But what that property is for? It has a string type and all you can get from it is a text description of an error like “400 Bad Response”. Is that informative for you? Neither for me. Open graph API returns 400 http error code if ANY error occurs. I assumed that FBResult.Text property should contain a JSON describing the error like stated in documentation. It’s not! You can’t retrieve error’s JSON! Why?Unity&#39;s WWW class doesn&#39;t allow you to get response if error code not equals 200 (Success). If you look at FBResult class in a debugger while receiving a response you see that FBResult’s contains a data member which value is a WWW object. That’s why the FBResult.Text property is empty when an error occurs. You might see an error in unity’s console in such case: “You are trying to load data from a www stream which had the following error when downloading. 400 Bad Request”.It’s absolutely pointless to forbid read a response if the response code not equals 200. It violates OAuth specifications. It’s a bug and it exists in unity for years. Facebook developers that worked with Facebook Unity SDK knew it for sure and just ignored it. They just don’t care about it. Facebook Unity SDK is outdated and updated rarely. Features like Share Dialog isn’t supported.Fortunately Open Graph SDK provides error details in HTTP Headers! To solve problem with error handling I use some hack. I would avoid it if situation wouldn’t be so awful. I use reflection to get protected FBResult.data field. As I mentioned before that field contains WWW object that I can use to retrieve http headers. Here is a part of my class:using System;using System.Linq;using System.Text.RegularExpressions;using System.Collections.Generic;using System.Reflection;using LitJson;using Glu.ContractKiller3;using Glu.Localization;using Glu.JSON;namespace Glu.Facebook{    public class SDKError    {        public string message;        public string type;        public int code;        public int error_subcode;        public string error_user_title;        public string error_user_msg;        public static SDKError CreateFromHeaders(Dictionary&amp;lt;string, string&amp;gt; headers)        {            if (headers.ContainsKey(&quot;WWW-AUTHENTICATE&quot;))            {                string header = headers[&quot;WWW-AUTHENTICATE&quot;];                var components =                    Regex                        .Matches(header, @&quot;(?[^\s&quot;&quot;]+)|&quot;&quot;(?[^&quot;&quot;]*)&quot;&quot;&quot;)                        .Cast().ToList()                    .Select(m =&amp;gt; m.Groups[&quot;match&quot;].Value)                    .ToList();                if (components != null &amp;amp;&amp;amp;                    components.Count == 4 &amp;amp;&amp;amp;                    components[0] == &quot;OAuth&quot; &amp;amp;&amp;amp;                    components[1] == &quot;Facebook Platform&quot;)                {                    var err = new SDKError();                    err.SetOAuthError();                    err.SetReloginRequired();                    err.message = components[3];                    err.error_user_title = &quot;Facebook Error&quot;;                    err.error_user_msg = err.message;                    return err;                }            }            return null;        }    }    static class SDKErrorExtensions    {        public static SDKError ToSDKError(this FBResult result)        {            SDKError err = null;            if (result != null)            {                if (_fbResultDataField == null)                {                    _fbResultDataField = result.GetType().GetField(&quot;data&quot;, BindingFlags.NonPublic | BindingFlags.Instance);                }                var www = _fbResultDataField.GetValue(result) as UnityEngine.WWW;                if (www != null)                {                    if (www.bytesDownloaded == 0 || www.responseHeaders.Count == 0)                    {                        err = SDKError.CreateNetworkError();                    }                    else                    {                        err = SDKError.CreateFromHeaders(www.responseHeaders);                    }                }            }            return err;        }        private static FieldInfo _fbResultDataField;    }}I cache FieldInfo to make reflection queries a little bit faster. Also I check bytesDownloaded and response headers to know if error caused by network problems. If not I check WWW-AUTHENTICATE header that facebook fills with error details. Regular expression required to parse a data in the header. Example of a Header’s data:OAuth &quot;Facebook Platform&quot; &quot;invalid_token&quot; &quot;Token is invalid because user logged out.&quot;As you see the data format is kind of odd. But I retrieve data by sentences (a single word OR a statement between double quotes). Last part of a header is a message that we can log or display to user. invalid_token chunk looks like error type, so we can use it to decide how to deal with this error.As an alternative to my hack you can use WebRequest but I wouldn’t recommend rely on it.">
+    
+    
     <meta itemprop="datePublished" content="2015-08-05T05:58:45-05:00">
     
 
     <div class="page__inner-wrap">
-        <header >
-          <h1 id="page-title" class="page__title" itemprop="headline">Facebook Unity SDK Problems and Error Handling
+      <header >
+        <h1 id="page-title" class="page__title" itemprop="headline">Facebook Unity SDK Problems and Error Handling
 </h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  4 мин на чтение
-
-</p>
-          
-        </header>
+      </header>
 
       <section class="page__content" itemprop="text">
         
@@ -448,23 +434,15 @@ Common error response looks like this:</p>
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Метки: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/tags/c" class="page__taxonomy-item" rel="tag">c#</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/facebook" class="page__taxonomy-item" rel="tag">Facebook</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/unity" class="page__taxonomy-item" rel="tag">unity</a>
     
     </span>
@@ -477,15 +455,11 @@ Common error response looks like this:</p>
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Разделы: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/categories/unity" class="page__taxonomy-item" rel="tag">Unity</a>
     
     </span>
@@ -493,7 +467,8 @@ Common error response looks like this:</p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2015-08-05T05:58:45-05:00">August 5, 2015</time></p>
+        <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time
+            datetime="2015-08-05T05:58:45-05:00">August 5, 2015</time></p>
         
       </footer>
 
@@ -529,11 +504,12 @@ Common error response looks like this:</p>
 
   
   
-    <div class="page__related">
-      <h4 class="page__related-title">Вам также может понравиться</h4>
-      <div class="grid__wrapper">
-        
-          
+  <div class="page__related">
+    <h4 class="page__related-title">Вам также может понравиться
+    </h4>
+    <div class="grid__wrapper">
+      
+      
 
 
 
@@ -544,28 +520,39 @@ Common error response looks like this:</p>
         <img src="/assets/images/bug-prioritization-matrix.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Lost bugs, anxiety and burnout
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  6 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Her...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -576,29 +563,40 @@ Common error response looks like this:</p>
         <img src="/assets/images/testing-pyramid.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Ensuring the quality with Appium
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
 </p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -609,28 +607,39 @@ Common error response looks like this:</p>
         <img src="/assets/images/abstract-code.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="permalink">How to clean a legacy code: stop complaining, start doing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  7 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or ...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -641,34 +650,44 @@ Common error response looks like this:</p>
         <img src="/assets/images/growing_junior.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
 </div>
 
-        
-      </div>
+      
     </div>
+  </div>
   
   
 </div>
-
     </div>
 
     
@@ -698,7 +717,9 @@ Common error response looks like this:</p>
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
   </ul>
 </div>
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -10,10 +10,13 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Система компонентов cущностей (Entity Component System) - Fateev.pro</title>
-<meta name="description" content="Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.  ">
+<meta name="description" content="Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.">
 
 
   <meta name="author" content="Ivan Fateev">
+  
+  <meta property="article:author" content="Ivan Fateev">
+  
 
 
 <meta property="og:type" content="article">
@@ -23,7 +26,7 @@
 <meta property="og:url" content="https://fateev.pro/ru/gamedev/entity-component-system.html">
 
 
-  <meta property="og:description" content="Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.  ">
+  <meta property="og:description" content="Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.">
 
 
 
@@ -65,10 +68,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,21 +85,8 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
   
@@ -124,7 +117,6 @@
 
   <body class="layout--single wide">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -207,15 +199,15 @@
       
         
           
-            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
           
         
       
@@ -285,26 +277,20 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
     <meta itemprop="headline" content="Система компонентов cущностей (Entity Component System)">
+    
     <meta itemprop="description" content="Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.">
+    
+    
     <meta itemprop="datePublished" content="2018-07-20T09:33:30-05:00">
     
 
     <div class="page__inner-wrap">
-        <header >
-          <h1 id="page-title" class="page__title" itemprop="headline">Система компонентов cущностей (Entity Component System)
+      <header >
+        <h1 id="page-title" class="page__title" itemprop="headline">Система компонентов cущностей (Entity Component System)
 </h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  4 мин на чтение
-
-</p>
-          
-        </header>
+      </header>
 
       <section class="page__content" itemprop="text">
         
@@ -314,7 +300,7 @@
 
 <p>Частая ошибка – пытаться объединить то, что должно лежать раздельно. Из-за того, что общий функционал нужен в двух несвязанных ветках наследования, а большинство языков не поддерижвают множественное наследование, то люди извращаются как могут. Впиливают куда-нибудь наверх еще уровень наследования, чтобы где-то через несколько уровней вниз, 2 класса использовали 1-2 метода.</p>
 
-<p><img src="/imgs/inheritance-problem.png" alt="Inheritnace-problem-diagram" /></p>
+<p><img src="/imgs/inheritance-problem.png" alt="Inheritance-problem-diagram" /></p>
 
 <p>Часто еще бывает, что этот Common класс не используется целиком, и среди всей иерархии тащатся бесполезные части.</p>
 
@@ -376,11 +362,18 @@
 
 <p>В чем здесь выгода?</p>
 
-<p>Попробуйте в Unity отключить все компоненты определенного типа. Это возможно, но будет проблематично:</p>
+<h3 id="порядок-обработки-компонентов-системами-четко-регламентирован">Порядок обработки компонентов системами четко регламентирован</h3>
+
+<p>В каком порядке системы были зарегистрированы в ECS, в таком они и обработают компонент. Это дает высокую предсказуемость кода. Когда отлаживаешь баги, то почти сразу можно локализовать место, где данные поломались.</p>
+
+<h3 id="легко-включать-и-выключать-логику">Легко включать и выключать логику</h3>
+
+<p>Попробуйте в Unity отключить все MonoBehavior определенного типа. Это возможно, но будет проблематично:</p>
 
 <ul>
   <li>Найти все компоненты типа T и выключить их: FindObjectsOfType<T>, который по сути итерируется по всем объектам в сцене.</T></li>
   <li>Сделать статическую переменную в классе компонента и проверять ее внутри Update и других методов, т.е. по сути исполнять N раз одну и ту же работу в каждом компоненте.</li>
+  <li>Прикреплять компоненты одного типа к одному game object и включать/выключать его</li>
 </ul>
 
 <p>Если у вас есть система физики, которая работает с рядом физических компонентов, обновляя их, то выключить физику можно простейшим выключением апдейта самой системы.</p>
@@ -391,9 +384,172 @@
 
 <p>Система может манипулировать несколькими типами компонентов и эффективно их обрабатывать, решая проблему зависимостей и взаимодействия. Даже если у вас несколько типов компонентов, код логично сгруппирован в системе.</p>
 
-<p>А самое главное – порядок обработки компонентов системами строго определен, так как системы обрабатывают компоненты последовательно.</p>
+<h3 id="легко-писать-тесты">Легко писать тесты</h3>
 
-<p>Кстати, Unity уже сделали <a href="https://github.com/Unity-Technologies/EntityComponentSystemSamples">свою реализацию ECS</a></p>
+<p>Так как системы сосредоточены на одной задаче, слабо связаны и оперируют только данными в компонентах, то писать тесты – сущая легкотня.</p>
+
+<p>Фикстуры – это просто набор компонентов-данных.
+Мокать ничего практически не нужно.
+Проверять вход и выход системы в тестах – элементарно!</p>
+
+<h3 id="модульность-кода">Модульность кода</h3>
+
+<p>ECS позволяет организовывать модульный код. Имеется ввиду, что какая-то фича может состоять из ряда компонентов и группы систем по их обработке. Они должны быть связаны вместе, потому что не могут работать друг без друга (вспоминаем high cohesion). Вместе они образуют фича-модуль.</p>
+
+<p>Если правильно организовать код и держать связанные вещи рядом, организуя их в модули, а между модулями выстроить границы (вспоминаем loose coupling), то получится классная архитектура.</p>
+
+<p>К примеру, начиная новый прототип, можно легко перетаскивать и подключать целые модули. Здесь мы хотим модуль стрельбы от первого лица, а вот здесь мы хотим NAVMeshAI для мобов, а вот здесь мы подключим модуль с индикаторами здоровья врагов.</p>
+
+<p>А если мы резко передумали и решили что-то выпилить – тоже не проблема, не нужно перелопачивать весть код удаляя там-сям.</p>
+
+<p>Вот, например, пачка систем оружия из реального проекта, которы могут быть объединены в модуль:</p>
+<pre>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#">      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">FireIfWeaponReadySystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">WeaponReloadTriggerSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">UpdateReloadTimer</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">UpdatePostReloadTimer</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">StartReloadTimerSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">UpdateThrowingGrenadeSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">UpdateSpitSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">WeaponShootSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">ModifyDamageSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">ApplyHitSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">WeaponRecoilSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span>
+      <span class="n">systems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">WeaponUpdateRecoilSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">));</span></code></pre></figure>
+
+</pre>
+
+<h2 id="практический-кейс-используем-плюшки-низкой-связности-ecs-для-привязки-аналитики">Практический кейс: используем плюшки низкой связности ECS для привязки аналитики</h2>
+
+<p>Интеграция аналитики в проект – всегда геморная задача. Нет, дело не в сложности, а в том, что красиво аналитику в проект вставить сложно. Она часто “размазана” по коду то там, то здесь. Она редко ложится в архитектуру.</p>
+
+<p>Хорошая новость! С ECS вставить аналитику можно красиво! Не зря же я заговорил про модули.</p>
+
+<p>Приведу пример из проекта на Entitas.</p>
+
+<p>Во-первых, я решил отвязать системы геймплея от аналитики. Для этого создал отдельный датакласс для колбеков из геймплея.</p>
+
+<pre>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#">  <span class="k">public</span> <span class="k">class</span> <span class="nc">EntitasEvents</span>
+  <span class="p">{</span>
+    <span class="p">[</span><span class="n">CanBeNull</span><span class="p">]</span> <span class="k">public</span> <span class="n">Action</span> <span class="n">onLevelCleared</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">CanBeNull</span><span class="p">]</span> <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">Vector3</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&gt;</span> <span class="n">onCharacterLocationHeartbeat</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">CanBeNull</span><span class="p">]</span> <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">TutorialStep</span><span class="p">&gt;</span> <span class="n">onTutorialStepStarted</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">CanBeNull</span><span class="p">]</span> <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">AbilityRef</span><span class="p">&gt;&gt;</span> <span class="n">onAbilitySelected</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">CanBeNull</span><span class="p">]</span> <span class="k">public</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">DamageDescriptor</span><span class="p">,</span> <span class="kt">float</span><span class="p">&gt;&gt;</span> <span class="n">onReportDamageStatistics</span><span class="p">;</span>
+  <span class="p">}</span></code></pre></figure>
+
+</pre>
+
+<p>Это позволит отвязаться от конкретного интерфейса аналитики и предоставить API для подписки на конкретные события внутри геймплея.</p>
+
+<p>Тогда изменения геймплея не будут затрагивать аналитику, и наоборот.</p>
+
+<p>Сами системы аналитики создаются отдельно от игровых систем, по принципу модуля.</p>
+
+<pre>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#">    <span class="k">private</span> <span class="k">void</span> <span class="nf">CreateAnalyticsSystems</span><span class="p">()</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">_events</span><span class="p">?.</span><span class="n">onLevelCleared</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">_coreSystems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">LevelClearedAnalyticsSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">,</span> <span class="n">_events</span><span class="p">.</span><span class="n">onLevelCleared</span><span class="p">));</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">_events</span><span class="p">?.</span><span class="n">onCharacterLocationHeartbeat</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">_coreSystems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span>
+          <span class="k">new</span> <span class="nf">CharacterLocationHeartbeatSystem</span><span class="p">(</span>
+            <span class="n">_superContext</span><span class="p">.</span><span class="n">gameContext</span><span class="p">,</span>
+            <span class="n">_uniqueEntity</span><span class="p">.</span><span class="n">serviceLocator</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">characterLocationHeartbeatInterval</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">isAlive</span><span class="p">)</span> <span class="p">=&gt;</span>
+              <span class="n">_events</span><span class="p">.</span><span class="n">onCharacterLocationHeartbeat</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">isAlive</span><span class="p">)</span>
+          <span class="p">)</span>
+        <span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">_events</span><span class="p">?.</span><span class="n">onReportDamageStatistics</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">_coreSystems</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">DamageStatisticsSystem</span><span class="p">(</span><span class="n">_superContext</span><span class="p">,</span> <span class="n">_events</span><span class="p">.</span><span class="n">onReportDamageStatistics</span><span class="p">));</span>
+      <span class="p">}</span>
+    <span class="p">}</span></code></pre></figure>
+
+</pre>
+
+<p>Для примера, рассмотрим систему для сборки статистики урона от мобов.</p>
+
+<pre>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#">    <span class="k">public</span> <span class="k">class</span> <span class="nc">DamageStatisticsSystem</span> <span class="p">:</span> <span class="n">IExecuteSystem</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">DamageDescriptor</span><span class="p">,</span> <span class="kt">float</span><span class="p">&gt;&gt;</span> <span class="n">_onReportDamageStatistics</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">SingletonEntity</span> <span class="n">_uniqueEntity</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IGroup</span><span class="p">&lt;</span><span class="n">EventsEntity</span><span class="p">&gt;</span> <span class="n">_damageEvents</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">readonly</span> <span class="n">IGroup</span><span class="p">&lt;</span><span class="n">GameEntity</span><span class="p">&gt;</span> <span class="n">_activeCharacterGroup</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="nf">DamageStatisticsSystem</span><span class="p">(</span>
+            <span class="n">SuperContext</span> <span class="n">superContext</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">CanBeNull</span><span class="p">]</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">DamageDescriptor</span><span class="p">,</span> <span class="kt">float</span><span class="p">&gt;&gt;</span> <span class="n">onReportDamageStatistics</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_onReportDamageStatistics</span> <span class="p">=</span> <span class="n">onReportDamageStatistics</span><span class="p">;</span>
+            <span class="n">_uniqueEntity</span> <span class="p">=</span> <span class="n">superContext</span><span class="p">.</span><span class="n">uniqueEntity</span><span class="p">;</span>
+            <span class="n">_uniqueEntity</span><span class="p">.</span><span class="n">isDamageStatistics</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="n">_damageEvents</span> <span class="p">=</span> <span class="n">superContext</span><span class="p">.</span><span class="n">eventsContext</span><span class="p">.</span><span class="nf">GetGroup</span><span class="p">(</span><span class="n">EventsMatcher</span><span class="p">.</span><span class="n">DamageEvent</span><span class="p">);</span>
+            <span class="n">_activeCharacterGroup</span> <span class="p">=</span> <span class="n">superContext</span><span class="p">.</span><span class="n">gameContext</span>
+                    <span class="p">.</span><span class="nf">GetGroup</span><span class="p">(</span><span class="n">GameMatcher</span><span class="p">.</span><span class="nf">AllOf</span><span class="p">(</span><span class="n">GameMatcher</span><span class="p">.</span><span class="n">ActiveCharacter</span><span class="p">,</span> <span class="n">GameMatcher</span><span class="p">.</span><span class="n">Character</span><span class="p">));</span>
+            <span class="n">_uniqueEntity</span><span class="p">.</span><span class="n">runData</span><span class="p">.</span><span class="n">runData</span><span class="p">.</span><span class="n">damageStatistics</span><span class="p">.</span><span class="nf">Clear</span><span class="p">();</span> <span class="c1">// make sure each room has clean stats</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Execute</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">_uniqueEntity</span><span class="p">.</span><span class="n">isDamageStatistics</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="kt">var</span> <span class="n">activeCharacterEntity</span> <span class="p">=</span> <span class="n">_activeCharacterGroup</span><span class="p">.</span><span class="nf">GetSingleEntity</span><span class="p">();</span>
+
+
+            <span class="kt">var</span> <span class="n">statistics</span> <span class="p">=</span> <span class="n">_uniqueEntity</span><span class="p">.</span><span class="n">runData</span><span class="p">.</span><span class="n">runData</span><span class="p">.</span><span class="n">damageStatistics</span><span class="p">;</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">damageEvent</span> <span class="k">in</span> <span class="n">_damageEvents</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">isActiveCharacterDamage</span> <span class="p">=</span> <span class="n">damageEvent</span><span class="p">.</span><span class="n">damageEvent</span><span class="p">.</span><span class="n">targetId</span> <span class="p">==</span> <span class="n">activeCharacterEntity</span><span class="p">.</span><span class="n">character</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(!</span><span class="n">isActiveCharacterDamage</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+
+                <span class="kt">var</span> <span class="n">damageDescriptor</span> <span class="p">=</span> <span class="nf">GetDamageDescriptor</span><span class="p">(</span><span class="n">damageEvent</span><span class="p">.</span><span class="n">damageEvent</span><span class="p">);</span>
+                <span class="kt">var</span> <span class="n">damage</span> <span class="p">=</span> <span class="n">statistics</span><span class="p">.</span><span class="nf">GetValueOrDefault</span><span class="p">(</span><span class="n">damageDescriptor</span><span class="p">,</span> <span class="m">0L</span><span class="p">);</span>
+                <span class="n">statistics</span><span class="p">[</span><span class="n">damageDescriptor</span><span class="p">]</span> <span class="p">=</span> <span class="n">damage</span> <span class="p">+</span> <span class="n">damageEvent</span><span class="p">.</span><span class="n">damageEvent</span><span class="p">.</span><span class="n">damage</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(!</span><span class="n">_uniqueEntity</span><span class="p">.</span><span class="n">hasScenarioCompleted</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">activeCharacterEntity</span><span class="p">.</span><span class="n">isDead</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="n">_onReportDamageStatistics</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">_uniqueEntity</span><span class="p">.</span><span class="n">runData</span><span class="p">.</span><span class="n">runData</span><span class="p">.</span><span class="n">damageStatistics</span><span class="p">);</span>
+            <span class="n">_uniqueEntity</span><span class="p">.</span><span class="n">isDamageStatistics</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">static</span> <span class="n">DamageDescriptor</span> <span class="nf">GetDamageDescriptor</span><span class="p">(</span><span class="n">DamageEventComponent</span> <span class="n">damageEventComponent</span><span class="p">)</span> <span class="p">=&gt;</span>
+            <span class="k">new</span> <span class="nf">DamageDescriptor</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="n">botAttack</span> <span class="p">=</span> <span class="n">damageEventComponent</span><span class="p">.</span><span class="n">botAttackRef</span><span class="p">,</span>
+                <span class="n">botPrototype</span> <span class="p">=</span> <span class="n">damageEventComponent</span><span class="p">.</span><span class="n">botPrototypeRef</span><span class="p">,</span>
+                <span class="n">damageZone</span> <span class="p">=</span> <span class="n">damageEventComponent</span><span class="p">.</span><span class="n">damageZoneRef</span>
+            <span class="p">};</span>
+
+    <span class="p">}</span></code></pre></figure>
+
+</pre>
+
+<p>Ключевое в этой системе, что она использует компоненты из других систем, такие как DamageEvent или ActiveCharacter, но никак не влияет на сами эти системы.</p>
+
+<p>Просто делает свое дело, накапливая статистику в RunData – это контекст забега в игре.</p>
+
+<p>А когда уровень завершен (опять же, логика завершения уровня лежит где-то в других системах), то дергает соответствующий колбек, отдавая данные вовне.</p>
+
+<p>Итак, что же такого хорошего в таком подходе?</p>
+
+<ol>
+  <li>Аналитика разбита между отдельными системами. Каждая система делает только одну вещь и делает ее хорошо – Single responsibility principle</li>
+  <li>Системы аналитики не имеют своего состояния. Они используют общедоступные данные в компонентах ECS. Другие системы ничего не знают об аналитике – Loose coupling</li>
+  <li>Системы аналитики никак напрямую не привязаны к отправке этой самой аналитике. Т.е. условный транспорт может быть любой и может меняться независимо.</li>
+  <li>Системы аналитики организованы в отдельный “модуль” и могут легко подключаться и отключаться</li>
+</ol>
 
 <h2 id="подводим-итоги">Подводим итоги</h2>
 
@@ -403,7 +559,7 @@
 
 <ul>
   <li><a href="https://github.com/junkdog/artemis-odb/wiki/Introduction-to-Entity-Systems">Introduction to Entity Systems</a></li>
-  <li><a href="https://github.com/sschmid/Entitas-CSharp">Entitas: Entity Compoent System Framework specifically made for C# &amp; Unity</a></li>
+  <li><a href="https://github.com/sschmid/Entitas-CSharp">Entitas: Entity Component System Framework specifically made for C# &amp; Unity</a></li>
   <li><a href="https://habr.com/post/343778/">Шаблон проектирования Entity-Component-System — реализация и пример игры</a></li>
   <li><a href="http://www.davidpol.com/2018/03/28/survival-shooter-ecs/">Survival Shooter using Unity’s Entity Component System</a></li>
 </ul>
@@ -418,23 +574,15 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Метки: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/tags/architecture" class="page__taxonomy-item" rel="tag">Architecture</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/gamedev" class="page__taxonomy-item" rel="tag">Gamedev</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/patterns" class="page__taxonomy-item" rel="tag">Patterns</a>
     
     </span>
@@ -447,15 +595,11 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Разделы: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/categories/gamedev" class="page__taxonomy-item" rel="tag">Gamedev</a>
     
     </span>
@@ -463,7 +607,8 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2018-07-20T09:33:30-05:00">July 20, 2018</time></p>
+        <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time
+            datetime="2018-07-20T09:33:30-05:00">July 20, 2018</time></p>
         
       </footer>
 
@@ -499,11 +644,12 @@
 
   
   
-    <div class="page__related">
-      <h4 class="page__related-title">Вам также может понравиться</h4>
-      <div class="grid__wrapper">
-        
-          
+  <div class="page__related">
+    <h4 class="page__related-title">Вам также может понравиться
+    </h4>
+    <div class="grid__wrapper">
+      
+      
 
 
 
@@ -514,28 +660,39 @@
         <img src="/assets/images/bug-prioritization-matrix.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Lost bugs, anxiety and burnout
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  6 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Her...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -546,29 +703,40 @@
         <img src="/assets/images/testing-pyramid.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Ensuring the quality with Appium
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
 </p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -579,28 +747,39 @@
         <img src="/assets/images/abstract-code.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="permalink">How to clean a legacy code: stop complaining, start doing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  7 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or ...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -611,34 +790,44 @@
         <img src="/assets/images/growing_junior.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
 </div>
 
-        
-      </div>
+      
     </div>
+  </div>
   
   
 </div>
-
     </div>
 
     
@@ -668,7 +857,9 @@
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
   </ul>
 </div>
 

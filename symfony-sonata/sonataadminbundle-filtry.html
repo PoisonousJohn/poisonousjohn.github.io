@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -10,10 +10,13 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>SonataAdminBundle: фильтры - Fateev.pro</title>
-<meta name="description" content="Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы к фильтрам.  Итак, соната предоставляет несколько возможностей для внедрения фильтрации данных.     Неявные фильтры. Могут понадобится в случае, когда данные нужно фильтровать для пользователя определенным образом, но сам пользователь об этом знать не должен. Как пример: пользователь должен видеть только свои посты.   Стандартное поведение админ классов можно легко модифицировать с помощью AdminExtension’ов. AdminExtension - это сервис, который админ класс запускает после того как сделает свою основную работу по конфигурации. AdminExtension’ов может быть несколько. Они включают в себя основные методы админ класса, такие как configureFormFields, configureDatagridFilters и др. Мы рассмотрим метод configureQuery, с помощью которого можно изменить стандартный запрос, который выполняется, когда мы просматриваем список сущностей. В моем случае я буду выводить только те сущности, в которых поле parent  является пустым, об иных сущностях пользователю знать не стоит   &lt;?php namespace Mtools\RatecardBundle\Admin;  use Sonata\AdminBundle\Admin\AdminExtension; use Sonata\AdminBundle\Admin\AdminInterface; use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;  class RatecardAdminExtension extends AdminExtension {      public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = &#39;list&#39;)     {              $query-&gt;getQueryBuilder()-&gt;where(&#39;o.parent IS NULL&#39;);      }  }  Конечно, наш класс унаследован от AdminExtension  Определение сервиса следующее:  mtools.ratecard.admin.extension:          id: mtools.ratecard.admin.extension          class: Mtools\RatecardBundle\Admin\RatecardAdminExtension          tags:              - { name: sonata.admin.extension, target: mtools.ratecard.admin }     target в секции tag - это id сервиса админ класса, к которому будет присоединен AdminExtension С помощью AdminExtension&#39;ов очень удобно джойнить нужные сущности, чтобы потом фильтровать по этим полям внутри админ класса (это второй способ, рассмотрен ниже)    Часто возникает необходимость реализовать нестандартную логику фильтрации по определнному полю, а времени, чтобы оформлять данный фильтр как отдельный сервис нет, да и такой фильтр может встреаться только в одном месте. Для таких случаев SonataAdminBundle предоставляет тип фильтра doctrine_orm_callback. Здесь все просто как 2 копейки:   &lt;?php ... protected function configureDatagridFilters(DatagridMapper $datagridMapper) {     $datagridMapper         -&gt;add(&#39;codes&#39;, &#39;doctrine_orm_callback&#39;, array(             &#39;label&#39;         =&gt; &#39;Код&#39;,             &#39;callback&#39;      =&gt; array($this, &#39;getCodesFilter&#39;),             &#39;field_type&#39;    =&gt; &#39;genemu_jquerychosen&#39;,             &#39;field_options&#39; =&gt; array(                 &#39;class&#39;     =&gt; &#39;Mtools\ClientBundle\Entity\Client&#39;,                 &#39;widget&#39;    =&gt; &#39;entity&#39;,                 &#39;multiple&#39;  =&gt; false,             )         ); }  public function getCodesFilter($queryBuilder, $alias, $field, $value) {     if (null === $value[&#39;value&#39;]) {         return;     }      $queryBuilder-&gt;leftJoin(sprintf(&#39;%s.codes&#39;, $alias), &#39;c&#39;);     $queryBuilder-&gt;andWhere(&#39;c.code = :code&#39;);     $queryBuilder-&gt;setParameter(&#39;code&#39;, $value[&#39;value&#39;]); } ...  Сам фильтр мы так же, как и обычные, описываем в методе configureDatagridFilters, с той разницей, что тип фильтра указываем doctrine_orm_callback, а в опциях фильтра обязательно указываем callback - метод, который будет вызываться для формирования QueryBuilder’a соответственно нашему фильтру. Иначе говоря, в этот метод передается сам QueryBuilder, $alias - основной алиас сущности, $field - какое то мистическая переменная, я не нашел ей применения, и $value - собственно значение из фильтра, которое ввел пользователь.  Внутри функции callback’a в данном случае добавляется джоин (что, как я и говорил раньше, можно вынести в AdminExtension, и даже нужно, если этих джоинов множество), ну, и само условие для фильтрации.  Еще любопытные опции, на поиск которых я потратил некоторое время:  	field_type - тип поля, которое будет отображаться для ввода пользователем значения 	field_options - опции этого поля, которые обычно идут третьим аргументом в FormMapper&#39;e метода configureFormFields  В итоге, мы получаем миловидный (благодаря GenemuFormBundle) фильтр с произвольной логикой Так выглядят фильтры на одном из проектов:  &nbsp; 3. Есть и третий способ - вынести фильтр в полностью самостоятельный сервис. Актуально, когда этот фильтр часто встречается в вашем проекте. Рассмотрю этот способ в отдельной статье. &nbsp; Значение фильтров по-умолчанию Однажды столкнулся с задачей, что необходимо было явно указать в фильтрах значение по-умолчанию, как если бы пользователь сам его выбрал.  &lt;?php     ...     public function  getFilterParameters()     {         $parameters = parent::getFilterParameters();          $filterUsers = ...;          if (!isset($parameters[&#39;managers&#39;][&#39;value&#39;]) || !sizeof($parameters[&#39;managers&#39;][&#39;value&#39;])) {              $parameters[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;             $this-&gt;datagridValues[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;         }           return $parameters;     }  Ключ ко всему - метод getFilterParameters, который соната вызывает, чтобы составить список сущностей для listAction. Данный метод заполняет свойство datagridValues соответствующими значениями. В данном случае предполагается, что $filterUsers - это массив с id’шками пользователей. ">
+<meta name="description" content="Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы к фильтрам.  Итак, соната предоставляет несколько возможностей для внедрения фильтрации данных.     Неявные фильтры. Могут понадобится в случае, когда данные нужно фильтровать для пользователя определенным образом, но сам пользователь об этом знать не должен. Как пример: пользователь должен видеть только свои посты.   Стандартное поведение админ классов можно легко модифицировать с помощью AdminExtension’ов. AdminExtension - это сервис, который админ класс запускает после того как сделает свою основную работу по конфигурации. AdminExtension’ов может быть несколько. Они включают в себя основные методы админ класса, такие как configureFormFields, configureDatagridFilters и др. Мы рассмотрим метод configureQuery, с помощью которого можно изменить стандартный запрос, который выполняется, когда мы просматриваем список сущностей. В моем случае я буду выводить только те сущности, в которых поле parent  является пустым, об иных сущностях пользователю знать не стоит   &lt;?php namespace Mtools\RatecardBundle\Admin;  use Sonata\AdminBundle\Admin\AdminExtension; use Sonata\AdminBundle\Admin\AdminInterface; use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;  class RatecardAdminExtension extends AdminExtension {      public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = &#39;list&#39;)     {              $query-&gt;getQueryBuilder()-&gt;where(&#39;o.parent IS NULL&#39;);      }  }  Конечно, наш класс унаследован от AdminExtension  Определение сервиса следующее:  mtools.ratecard.admin.extension:          id: mtools.ratecard.admin.extension          class: Mtools\RatecardBundle\Admin\RatecardAdminExtension          tags:              - { name: sonata.admin.extension, target: mtools.ratecard.admin }     target в секции tag - это id сервиса админ класса, к которому будет присоединен AdminExtension С помощью AdminExtension&#39;ов очень удобно джойнить нужные сущности, чтобы потом фильтровать по этим полям внутри админ класса (это второй способ, рассмотрен ниже)    Часто возникает необходимость реализовать нестандартную логику фильтрации по определнному полю, а времени, чтобы оформлять данный фильтр как отдельный сервис нет, да и такой фильтр может встреаться только в одном месте. Для таких случаев SonataAdminBundle предоставляет тип фильтра doctrine_orm_callback. Здесь все просто как 2 копейки:   &lt;?php ... protected function configureDatagridFilters(DatagridMapper $datagridMapper) {     $datagridMapper         -&gt;add(&#39;codes&#39;, &#39;doctrine_orm_callback&#39;, array(             &#39;label&#39;         =&gt; &#39;Код&#39;,             &#39;callback&#39;      =&gt; array($this, &#39;getCodesFilter&#39;),             &#39;field_type&#39;    =&gt; &#39;genemu_jquerychosen&#39;,             &#39;field_options&#39; =&gt; array(                 &#39;class&#39;     =&gt; &#39;Mtools\ClientBundle\Entity\Client&#39;,                 &#39;widget&#39;    =&gt; &#39;entity&#39;,                 &#39;multiple&#39;  =&gt; false,             )         ); }  public function getCodesFilter($queryBuilder, $alias, $field, $value) {     if (null === $value[&#39;value&#39;]) {         return;     }      $queryBuilder-&gt;leftJoin(sprintf(&#39;%s.codes&#39;, $alias), &#39;c&#39;);     $queryBuilder-&gt;andWhere(&#39;c.code = :code&#39;);     $queryBuilder-&gt;setParameter(&#39;code&#39;, $value[&#39;value&#39;]); } ...  Сам фильтр мы так же, как и обычные, описываем в методе configureDatagridFilters, с той разницей, что тип фильтра указываем doctrine_orm_callback, а в опциях фильтра обязательно указываем callback - метод, который будет вызываться для формирования QueryBuilder’a соответственно нашему фильтру. Иначе говоря, в этот метод передается сам QueryBuilder, $alias - основной алиас сущности, $field - какое то мистическая переменная, я не нашел ей применения, и $value - собственно значение из фильтра, которое ввел пользователь.  Внутри функции callback’a в данном случае добавляется джоин (что, как я и говорил раньше, можно вынести в AdminExtension, и даже нужно, если этих джоинов множество), ну, и само условие для фильтрации.  Еще любопытные опции, на поиск которых я потратил некоторое время:  	field_type - тип поля, которое будет отображаться для ввода пользователем значения 	field_options - опции этого поля, которые обычно идут третьим аргументом в FormMapper&#39;e метода configureFormFields  В итоге, мы получаем миловидный (благодаря GenemuFormBundle) фильтр с произвольной логикой Так выглядят фильтры на одном из проектов:  &nbsp; 3. Есть и третий способ - вынести фильтр в полностью самостоятельный сервис. Актуально, когда этот фильтр часто встречается в вашем проекте. Рассмотрю этот способ в отдельной статье. &nbsp; Значение фильтров по-умолчанию Однажды столкнулся с задачей, что необходимо было явно указать в фильтрах значение по-умолчанию, как если бы пользователь сам его выбрал.  &lt;?php     ...     public function  getFilterParameters()     {         $parameters = parent::getFilterParameters();          $filterUsers = ...;          if (!isset($parameters[&#39;managers&#39;][&#39;value&#39;]) || !sizeof($parameters[&#39;managers&#39;][&#39;value&#39;])) {              $parameters[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;             $this-&gt;datagridValues[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;         }           return $parameters;     }  Ключ ко всему - метод getFilterParameters, который соната вызывает, чтобы составить список сущностей для listAction. Данный метод заполняет свойство datagridValues соответствующими значениями. В данном случае предполагается, что $filterUsers - это массив с id’шками пользователей.">
 
 
   <meta name="author" content="Ivan Fateev">
+  
+  <meta property="article:author" content="Ivan Fateev">
+  
 
 
 <meta property="og:type" content="article">
@@ -23,7 +26,7 @@
 <meta property="og:url" content="https://fateev.pro/symfony-sonata/sonataadminbundle-filtry.html">
 
 
-  <meta property="og:description" content="Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы к фильтрам.  Итак, соната предоставляет несколько возможностей для внедрения фильтрации данных.     Неявные фильтры. Могут понадобится в случае, когда данные нужно фильтровать для пользователя определенным образом, но сам пользователь об этом знать не должен. Как пример: пользователь должен видеть только свои посты.   Стандартное поведение админ классов можно легко модифицировать с помощью AdminExtension’ов. AdminExtension - это сервис, который админ класс запускает после того как сделает свою основную работу по конфигурации. AdminExtension’ов может быть несколько. Они включают в себя основные методы админ класса, такие как configureFormFields, configureDatagridFilters и др. Мы рассмотрим метод configureQuery, с помощью которого можно изменить стандартный запрос, который выполняется, когда мы просматриваем список сущностей. В моем случае я буду выводить только те сущности, в которых поле parent  является пустым, об иных сущностях пользователю знать не стоит   &lt;?php namespace Mtools\RatecardBundle\Admin;  use Sonata\AdminBundle\Admin\AdminExtension; use Sonata\AdminBundle\Admin\AdminInterface; use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;  class RatecardAdminExtension extends AdminExtension {      public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = &#39;list&#39;)     {              $query-&gt;getQueryBuilder()-&gt;where(&#39;o.parent IS NULL&#39;);      }  }  Конечно, наш класс унаследован от AdminExtension  Определение сервиса следующее:  mtools.ratecard.admin.extension:          id: mtools.ratecard.admin.extension          class: Mtools\RatecardBundle\Admin\RatecardAdminExtension          tags:              - { name: sonata.admin.extension, target: mtools.ratecard.admin }     target в секции tag - это id сервиса админ класса, к которому будет присоединен AdminExtension С помощью AdminExtension&#39;ов очень удобно джойнить нужные сущности, чтобы потом фильтровать по этим полям внутри админ класса (это второй способ, рассмотрен ниже)    Часто возникает необходимость реализовать нестандартную логику фильтрации по определнному полю, а времени, чтобы оформлять данный фильтр как отдельный сервис нет, да и такой фильтр может встреаться только в одном месте. Для таких случаев SonataAdminBundle предоставляет тип фильтра doctrine_orm_callback. Здесь все просто как 2 копейки:   &lt;?php ... protected function configureDatagridFilters(DatagridMapper $datagridMapper) {     $datagridMapper         -&gt;add(&#39;codes&#39;, &#39;doctrine_orm_callback&#39;, array(             &#39;label&#39;         =&gt; &#39;Код&#39;,             &#39;callback&#39;      =&gt; array($this, &#39;getCodesFilter&#39;),             &#39;field_type&#39;    =&gt; &#39;genemu_jquerychosen&#39;,             &#39;field_options&#39; =&gt; array(                 &#39;class&#39;     =&gt; &#39;Mtools\ClientBundle\Entity\Client&#39;,                 &#39;widget&#39;    =&gt; &#39;entity&#39;,                 &#39;multiple&#39;  =&gt; false,             )         ); }  public function getCodesFilter($queryBuilder, $alias, $field, $value) {     if (null === $value[&#39;value&#39;]) {         return;     }      $queryBuilder-&gt;leftJoin(sprintf(&#39;%s.codes&#39;, $alias), &#39;c&#39;);     $queryBuilder-&gt;andWhere(&#39;c.code = :code&#39;);     $queryBuilder-&gt;setParameter(&#39;code&#39;, $value[&#39;value&#39;]); } ...  Сам фильтр мы так же, как и обычные, описываем в методе configureDatagridFilters, с той разницей, что тип фильтра указываем doctrine_orm_callback, а в опциях фильтра обязательно указываем callback - метод, который будет вызываться для формирования QueryBuilder’a соответственно нашему фильтру. Иначе говоря, в этот метод передается сам QueryBuilder, $alias - основной алиас сущности, $field - какое то мистическая переменная, я не нашел ей применения, и $value - собственно значение из фильтра, которое ввел пользователь.  Внутри функции callback’a в данном случае добавляется джоин (что, как я и говорил раньше, можно вынести в AdminExtension, и даже нужно, если этих джоинов множество), ну, и само условие для фильтрации.  Еще любопытные опции, на поиск которых я потратил некоторое время:  	field_type - тип поля, которое будет отображаться для ввода пользователем значения 	field_options - опции этого поля, которые обычно идут третьим аргументом в FormMapper&#39;e метода configureFormFields  В итоге, мы получаем миловидный (благодаря GenemuFormBundle) фильтр с произвольной логикой Так выглядят фильтры на одном из проектов:  &nbsp; 3. Есть и третий способ - вынести фильтр в полностью самостоятельный сервис. Актуально, когда этот фильтр часто встречается в вашем проекте. Рассмотрю этот способ в отдельной статье. &nbsp; Значение фильтров по-умолчанию Однажды столкнулся с задачей, что необходимо было явно указать в фильтрах значение по-умолчанию, как если бы пользователь сам его выбрал.  &lt;?php     ...     public function  getFilterParameters()     {         $parameters = parent::getFilterParameters();          $filterUsers = ...;          if (!isset($parameters[&#39;managers&#39;][&#39;value&#39;]) || !sizeof($parameters[&#39;managers&#39;][&#39;value&#39;])) {              $parameters[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;             $this-&gt;datagridValues[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;         }           return $parameters;     }  Ключ ко всему - метод getFilterParameters, который соната вызывает, чтобы составить список сущностей для listAction. Данный метод заполняет свойство datagridValues соответствующими значениями. В данном случае предполагается, что $filterUsers - это массив с id’шками пользователей. ">
+  <meta property="og:description" content="Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы к фильтрам.  Итак, соната предоставляет несколько возможностей для внедрения фильтрации данных.     Неявные фильтры. Могут понадобится в случае, когда данные нужно фильтровать для пользователя определенным образом, но сам пользователь об этом знать не должен. Как пример: пользователь должен видеть только свои посты.   Стандартное поведение админ классов можно легко модифицировать с помощью AdminExtension’ов. AdminExtension - это сервис, который админ класс запускает после того как сделает свою основную работу по конфигурации. AdminExtension’ов может быть несколько. Они включают в себя основные методы админ класса, такие как configureFormFields, configureDatagridFilters и др. Мы рассмотрим метод configureQuery, с помощью которого можно изменить стандартный запрос, который выполняется, когда мы просматриваем список сущностей. В моем случае я буду выводить только те сущности, в которых поле parent  является пустым, об иных сущностях пользователю знать не стоит   &lt;?php namespace Mtools\RatecardBundle\Admin;  use Sonata\AdminBundle\Admin\AdminExtension; use Sonata\AdminBundle\Admin\AdminInterface; use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;  class RatecardAdminExtension extends AdminExtension {      public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = &#39;list&#39;)     {              $query-&gt;getQueryBuilder()-&gt;where(&#39;o.parent IS NULL&#39;);      }  }  Конечно, наш класс унаследован от AdminExtension  Определение сервиса следующее:  mtools.ratecard.admin.extension:          id: mtools.ratecard.admin.extension          class: Mtools\RatecardBundle\Admin\RatecardAdminExtension          tags:              - { name: sonata.admin.extension, target: mtools.ratecard.admin }     target в секции tag - это id сервиса админ класса, к которому будет присоединен AdminExtension С помощью AdminExtension&#39;ов очень удобно джойнить нужные сущности, чтобы потом фильтровать по этим полям внутри админ класса (это второй способ, рассмотрен ниже)    Часто возникает необходимость реализовать нестандартную логику фильтрации по определнному полю, а времени, чтобы оформлять данный фильтр как отдельный сервис нет, да и такой фильтр может встреаться только в одном месте. Для таких случаев SonataAdminBundle предоставляет тип фильтра doctrine_orm_callback. Здесь все просто как 2 копейки:   &lt;?php ... protected function configureDatagridFilters(DatagridMapper $datagridMapper) {     $datagridMapper         -&gt;add(&#39;codes&#39;, &#39;doctrine_orm_callback&#39;, array(             &#39;label&#39;         =&gt; &#39;Код&#39;,             &#39;callback&#39;      =&gt; array($this, &#39;getCodesFilter&#39;),             &#39;field_type&#39;    =&gt; &#39;genemu_jquerychosen&#39;,             &#39;field_options&#39; =&gt; array(                 &#39;class&#39;     =&gt; &#39;Mtools\ClientBundle\Entity\Client&#39;,                 &#39;widget&#39;    =&gt; &#39;entity&#39;,                 &#39;multiple&#39;  =&gt; false,             )         ); }  public function getCodesFilter($queryBuilder, $alias, $field, $value) {     if (null === $value[&#39;value&#39;]) {         return;     }      $queryBuilder-&gt;leftJoin(sprintf(&#39;%s.codes&#39;, $alias), &#39;c&#39;);     $queryBuilder-&gt;andWhere(&#39;c.code = :code&#39;);     $queryBuilder-&gt;setParameter(&#39;code&#39;, $value[&#39;value&#39;]); } ...  Сам фильтр мы так же, как и обычные, описываем в методе configureDatagridFilters, с той разницей, что тип фильтра указываем doctrine_orm_callback, а в опциях фильтра обязательно указываем callback - метод, который будет вызываться для формирования QueryBuilder’a соответственно нашему фильтру. Иначе говоря, в этот метод передается сам QueryBuilder, $alias - основной алиас сущности, $field - какое то мистическая переменная, я не нашел ей применения, и $value - собственно значение из фильтра, которое ввел пользователь.  Внутри функции callback’a в данном случае добавляется джоин (что, как я и говорил раньше, можно вынести в AdminExtension, и даже нужно, если этих джоинов множество), ну, и само условие для фильтрации.  Еще любопытные опции, на поиск которых я потратил некоторое время:  	field_type - тип поля, которое будет отображаться для ввода пользователем значения 	field_options - опции этого поля, которые обычно идут третьим аргументом в FormMapper&#39;e метода configureFormFields  В итоге, мы получаем миловидный (благодаря GenemuFormBundle) фильтр с произвольной логикой Так выглядят фильтры на одном из проектов:  &nbsp; 3. Есть и третий способ - вынести фильтр в полностью самостоятельный сервис. Актуально, когда этот фильтр часто встречается в вашем проекте. Рассмотрю этот способ в отдельной статье. &nbsp; Значение фильтров по-умолчанию Однажды столкнулся с задачей, что необходимо было явно указать в фильтрах значение по-умолчанию, как если бы пользователь сам его выбрал.  &lt;?php     ...     public function  getFilterParameters()     {         $parameters = parent::getFilterParameters();          $filterUsers = ...;          if (!isset($parameters[&#39;managers&#39;][&#39;value&#39;]) || !sizeof($parameters[&#39;managers&#39;][&#39;value&#39;])) {              $parameters[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;             $this-&gt;datagridValues[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;         }           return $parameters;     }  Ключ ко всему - метод getFilterParameters, который соната вызывает, чтобы составить список сущностей для listAction. Данный метод заполняет свойство datagridValues соответствующими значениями. В данном случае предполагается, что $filterUsers - это массив с id’шками пользователей.">
 
 
 
@@ -65,10 +68,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,21 +85,8 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
   
@@ -124,7 +117,6 @@
 
   <body class="layout--single wide">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -207,15 +199,15 @@
       
         
           
-            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
           
         
       
@@ -285,26 +277,20 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
     <meta itemprop="headline" content="SonataAdminBundle: фильтры">
+    
     <meta itemprop="description" content="Лично для меня - фильтры один из самых краеугольных камней, ибо это любимое требование заказчика, и очень часто у этого заказчика очень нестандартные запросы к фильтрам.Итак, соната предоставляет несколько возможностей для внедрения фильтрации данных.  Неявные фильтры. Могут понадобится в случае, когда данные нужно фильтровать для пользователя определенным образом, но сам пользователь об этом знать не должен. Как пример: пользователь должен видеть только свои посты.Стандартное поведение админ классов можно легко модифицировать с помощью AdminExtension’ов. AdminExtension - это сервис, который админ класс запускает после того как сделает свою основную работу по конфигурации. AdminExtension’ов может быть несколько. Они включают в себя основные методы админ класса, такие как configureFormFields, configureDatagridFilters и др. Мы рассмотрим метод configureQuery, с помощью которого можно изменить стандартный запрос, который выполняется, когда мы просматриваем список сущностей. В моем случае я буду выводить только те сущности, в которых поле parent  является пустым, об иных сущностях пользователю знать не стоит &lt;?phpnamespace Mtools\RatecardBundle\Admin;use Sonata\AdminBundle\Admin\AdminExtension;use Sonata\AdminBundle\Admin\AdminInterface;use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;class RatecardAdminExtension extends AdminExtension{    public function configureQuery(AdminInterface $admin, ProxyQueryInterface $query, $context = &#39;list&#39;)    {            $query-&gt;getQueryBuilder()-&gt;where(&#39;o.parent IS NULL&#39;);    }}Конечно, наш класс унаследован от AdminExtensionОпределение сервиса следующее:mtools.ratecard.admin.extension:        id: mtools.ratecard.admin.extension        class: Mtools\RatecardBundle\Admin\RatecardAdminExtension        tags:            - { name: sonata.admin.extension, target: mtools.ratecard.admin } target в секции tag - это id сервиса админ класса, к которому будет присоединен AdminExtensionС помощью AdminExtension&#39;ов очень удобно джойнить нужные сущности, чтобы потом фильтровать по этим полям внутри админ класса (это второй способ, рассмотрен ниже)  Часто возникает необходимость реализовать нестандартную логику фильтрации по определнному полю, а времени, чтобы оформлять данный фильтр как отдельный сервис нет, да и такой фильтр может встреаться только в одном месте. Для таких случаев SonataAdminBundle предоставляет тип фильтра doctrine_orm_callback. Здесь все просто как 2 копейки:&lt;?php...protected function configureDatagridFilters(DatagridMapper $datagridMapper){    $datagridMapper        -&gt;add(&#39;codes&#39;, &#39;doctrine_orm_callback&#39;, array(            &#39;label&#39;         =&gt; &#39;Код&#39;,            &#39;callback&#39;      =&gt; array($this, &#39;getCodesFilter&#39;),            &#39;field_type&#39;    =&gt; &#39;genemu_jquerychosen&#39;,            &#39;field_options&#39; =&gt; array(                &#39;class&#39;     =&gt; &#39;Mtools\ClientBundle\Entity\Client&#39;,                &#39;widget&#39;    =&gt; &#39;entity&#39;,                &#39;multiple&#39;  =&gt; false,            )        );}public function getCodesFilter($queryBuilder, $alias, $field, $value){    if (null === $value[&#39;value&#39;]) {        return;    }    $queryBuilder-&gt;leftJoin(sprintf(&#39;%s.codes&#39;, $alias), &#39;c&#39;);    $queryBuilder-&gt;andWhere(&#39;c.code = :code&#39;);    $queryBuilder-&gt;setParameter(&#39;code&#39;, $value[&#39;value&#39;]);}...Сам фильтр мы так же, как и обычные, описываем в методе configureDatagridFilters, с той разницей, что тип фильтра указываем doctrine_orm_callback, а в опциях фильтра обязательно указываем callback - метод, который будет вызываться для формирования QueryBuilder’a соответственно нашему фильтру. Иначе говоря, в этот метод передается сам QueryBuilder, $alias - основной алиас сущности, $field - какое то мистическая переменная, я не нашел ей применения, и $value - собственно значение из фильтра, которое ввел пользователь.Внутри функции callback’a в данном случае добавляется джоин (что, как я и говорил раньше, можно вынести в AdminExtension, и даже нужно, если этих джоинов множество), ну, и само условие для фильтрации.Еще любопытные опции, на поиск которых я потратил некоторое время:	field_type - тип поля, которое будет отображаться для ввода пользователем значения	field_options - опции этого поля, которые обычно идут третьим аргументом в FormMapper&#39;e метода configureFormFieldsВ итоге, мы получаем миловидный (благодаря GenemuFormBundle) фильтр с произвольной логикойТак выглядят фильтры на одном из проектов:&nbsp;3. Есть и третий способ - вынести фильтр в полностью самостоятельный сервис. Актуально, когда этот фильтр часто встречается в вашем проекте. Рассмотрю этот способ в отдельной статье.&nbsp;Значение фильтров по-умолчаниюОднажды столкнулся с задачей, что необходимо было явно указать в фильтрах значение по-умолчанию, как если бы пользователь сам его выбрал.&lt;?php    ...    public function  getFilterParameters()    {        $parameters = parent::getFilterParameters();        $filterUsers = ...;        if (!isset($parameters[&#39;managers&#39;][&#39;value&#39;]) || !sizeof($parameters[&#39;managers&#39;][&#39;value&#39;])) {            $parameters[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;            $this-&gt;datagridValues[&#39;managers&#39;][&#39;value&#39;] = $filterUsers;        }        return $parameters;    }Ключ ко всему - метод getFilterParameters, который соната вызывает, чтобы составить список сущностей для listAction. Данный метод заполняет свойство datagridValues соответствующими значениями. В данном случае предполагается, что $filterUsers - это массив с id’шками пользователей.">
+    
+    
     <meta itemprop="datePublished" content="2012-10-08T20:31:41-05:00">
     
 
     <div class="page__inner-wrap">
-        <header >
-          <h1 id="page-title" class="page__title" itemprop="headline">SonataAdminBundle: фильтры
+      <header >
+        <h1 id="page-title" class="page__title" itemprop="headline">SonataAdminBundle: фильтры
 </h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  3 мин на чтение
-
-</p>
-          
-        </header>
+      </header>
 
       <section class="page__content" itemprop="text">
         
@@ -321,17 +307,17 @@
 <figure class="highlight"><pre><code class="language-php" data-lang="php"> <span class="cp">&lt;?php</span>
 <span class="kn">namespace</span> <span class="nn">Mtools\RatecardBundle\Admin</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Sonata\AdminBundle\Admin\AdminExtension</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Sonata\AdminBundle\Admin\AdminInterface</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nn">Sonata\AdminBundle\Datagrid\ProxyQueryInterface</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Sonata\AdminBundle\Admin\AdminExtension</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Sonata\AdminBundle\Admin\AdminInterface</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Sonata\AdminBundle\Datagrid\ProxyQueryInterface</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">RatecardAdminExtension</span> <span class="k">extends</span> <span class="nx">AdminExtension</span>
+<span class="kd">class</span> <span class="nc">RatecardAdminExtension</span> <span class="kd">extends</span> <span class="nc">AdminExtension</span>
 <span class="p">{</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">configureQuery</span><span class="p">(</span><span class="nx">AdminInterface</span> <span class="nv">$admin</span><span class="p">,</span> <span class="nx">ProxyQueryInterface</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$context</span> <span class="o">=</span> <span class="s1">'list'</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">configureQuery</span><span class="p">(</span><span class="kt">AdminInterface</span> <span class="nv">$admin</span><span class="p">,</span> <span class="kt">ProxyQueryInterface</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$context</span> <span class="o">=</span> <span class="s1">'list'</span><span class="p">)</span>
     <span class="p">{</span>
 
-            <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">getQueryBuilder</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">'o.parent IS NULL'</span><span class="p">);</span>
+            <span class="nv">$query</span><span class="o">-&gt;</span><span class="nf">getQueryBuilder</span><span class="p">()</span><span class="o">-&gt;</span><span class="nf">where</span><span class="p">(</span><span class="s1">'o.parent IS NULL'</span><span class="p">);</span>
 
     <span class="p">}</span>
 
@@ -341,15 +327,15 @@
 
 <p>Определение сервиса следующее:</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">mtools.ratecard.admin.extension</span><span class="err">:
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">mtools.ratecard.admin.extension</span><span class="pi">:</span><span class="err">
 </span>
-        <span class="s">id</span><span class="pi">:</span> <span class="s">mtools.ratecard.admin.extension</span><span class="err">
+        <span class="na">id</span><span class="pi">:</span> <span class="s">mtools.ratecard.admin.extension</span><span class="err">
 </span>
-        <span class="s">class</span><span class="pi">:</span> <span class="s">Mtools\RatecardBundle\Admin\RatecardAdminExtension</span><span class="err">
+        <span class="na">class</span><span class="pi">:</span> <span class="s">Mtools\RatecardBundle\Admin\RatecardAdminExtension</span><span class="err">
 </span>
-        <span class="s">tags</span><span class="err">:
+        <span class="na">tags</span><span class="pi">:</span><span class="err">
 </span>
-            <span class="s">- { name</span><span class="pi">:</span> <span class="s">sonata.admin.extension, target</span><span class="pi">:</span> <span class="s">mtools.ratecard.admin }</span><span class="err">
+            <span class="pi">-</span> <span class="pi">{</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">sonata.admin.extension</span><span class="pi">,</span> <span class="nv">target</span><span class="pi">:</span> <span class="nv">mtools.ratecard.admin</span> <span class="pi">}</span><span class="err">
 </span>
  </code></pre></figure>
 
@@ -360,11 +346,11 @@
 </ol>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="o">...</span>
-<span class="k">protected</span> <span class="k">function</span> <span class="nf">configureDatagridFilters</span><span class="p">(</span><span class="nx">DatagridMapper</span> <span class="nv">$datagridMapper</span><span class="p">)</span>
+<span class="mf">...</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="n">configureDatagridFilters</span><span class="p">(</span><span class="kt">DatagridMapper</span> <span class="nv">$datagridMapper</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nv">$datagridMapper</span>
-        <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'codes'</span><span class="p">,</span> <span class="s1">'doctrine_orm_callback'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+        <span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="s1">'codes'</span><span class="p">,</span> <span class="s1">'doctrine_orm_callback'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
             <span class="s1">'label'</span>         <span class="o">=&gt;</span> <span class="s1">'Код'</span><span class="p">,</span>
             <span class="s1">'callback'</span>      <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">'getCodesFilter'</span><span class="p">),</span>
             <span class="s1">'field_type'</span>    <span class="o">=&gt;</span> <span class="s1">'genemu_jquerychosen'</span><span class="p">,</span>
@@ -376,17 +362,17 @@
         <span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="k">function</span> <span class="nf">getCodesFilter</span><span class="p">(</span><span class="nv">$queryBuilder</span><span class="p">,</span> <span class="nv">$alias</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
+<span class="k">public</span> <span class="k">function</span> <span class="n">getCodesFilter</span><span class="p">(</span><span class="nv">$queryBuilder</span><span class="p">,</span> <span class="nv">$alias</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="kc">null</span> <span class="o">===</span> <span class="nv">$value</span><span class="p">[</span><span class="s1">'value'</span><span class="p">])</span> <span class="p">{</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="na">leftJoin</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%s.codes'</span><span class="p">,</span> <span class="nv">$alias</span><span class="p">),</span> <span class="s1">'c'</span><span class="p">);</span>
-    <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="na">andWhere</span><span class="p">(</span><span class="s1">'c.code = :code'</span><span class="p">);</span>
-    <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="na">setParameter</span><span class="p">(</span><span class="s1">'code'</span><span class="p">,</span> <span class="nv">$value</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]);</span>
+    <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="nf">leftJoin</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%s.codes'</span><span class="p">,</span> <span class="nv">$alias</span><span class="p">),</span> <span class="s1">'c'</span><span class="p">);</span>
+    <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="nf">andWhere</span><span class="p">(</span><span class="s1">'c.code = :code'</span><span class="p">);</span>
+    <span class="nv">$queryBuilder</span><span class="o">-&gt;</span><span class="nf">setParameter</span><span class="p">(</span><span class="s1">'code'</span><span class="p">,</span> <span class="nv">$value</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]);</span>
 <span class="p">}</span>
-<span class="o">...</span></code></pre></figure>
+<span class="mf">...</span></code></pre></figure>
 
 <p>Сам фильтр мы так же, как и обычные, описываем в методе configureDatagridFilters, с той разницей, что тип фильтра указываем doctrine_orm_callback, а в опциях фильтра обязательно указываем callback - метод, который будет вызываться для формирования QueryBuilder’a соответственно нашему фильтру. Иначе говоря, в этот метод передается сам QueryBuilder, $alias - основной алиас сущности, $field - какое то мистическая переменная, я не нашел ей применения, и $value - собственно значение из фильтра, которое ввел пользователь.</p>
 
@@ -407,17 +393,17 @@
 <p>Однажды столкнулся с задачей, что необходимо было явно указать в фильтрах значение по-умолчанию, как если бы пользователь сам его выбрал.</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-    <span class="o">...</span>
-    <span class="k">public</span> <span class="k">function</span>  <span class="nf">getFilterParameters</span><span class="p">()</span>
+    <span class="mf">...</span>
+    <span class="k">public</span> <span class="k">function</span>  <span class="n">getFilterParameters</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nv">$parameters</span> <span class="o">=</span> <span class="k">parent</span><span class="o">::</span><span class="na">getFilterParameters</span><span class="p">();</span>
+        <span class="nv">$parameters</span> <span class="o">=</span> <span class="k">parent</span><span class="o">::</span><span class="nf">getFilterParameters</span><span class="p">();</span>
 
-        <span class="nv">$filterUsers</span> <span class="o">=</span> <span class="o">...</span><span class="p">;</span>
+        <span class="nv">$filterUsers</span> <span class="o">=</span> <span class="mf">...</span><span class="p">;</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$parameters</span><span class="p">[</span><span class="s1">'managers'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">])</span> <span class="o">||</span> <span class="o">!</span><span class="nb">sizeof</span><span class="p">(</span><span class="nv">$parameters</span><span class="p">[</span><span class="s1">'managers'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">isset</span><span class="p">(</span><span class="nv">$parameters</span><span class="p">[</span><span class="s1">'managers'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">])</span> <span class="o">||</span> <span class="o">!</span><span class="nb">sizeof</span><span class="p">(</span><span class="nv">$parameters</span><span class="p">[</span><span class="s1">'managers'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">]))</span> <span class="p">{</span>
 
             <span class="nv">$parameters</span><span class="p">[</span><span class="s1">'managers'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$filterUsers</span><span class="p">;</span>
-            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">datagridValues</span><span class="p">[</span><span class="s1">'managers'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$filterUsers</span><span class="p">;</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">datagridValues</span><span class="p">[</span><span class="s1">'managers'</span><span class="p">][</span><span class="s1">'value'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$filterUsers</span><span class="p">;</span>
         <span class="p">}</span>
 
 
@@ -436,23 +422,15 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Метки: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/tags/php" class="page__taxonomy-item" rel="tag">php</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/symfony-sonata" class="page__taxonomy-item" rel="tag">symfony-sonata</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/symfony2" class="page__taxonomy-item" rel="tag">symfony2</a>
     
     </span>
@@ -465,15 +443,11 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Разделы: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/categories/symfony-sonata" class="page__taxonomy-item" rel="tag">Symfony Sonata</a>
     
     </span>
@@ -481,7 +455,8 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2012-10-08T20:31:41-05:00">October 8, 2012</time></p>
+        <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time
+            datetime="2012-10-08T20:31:41-05:00">October 8, 2012</time></p>
         
       </footer>
 
@@ -517,11 +492,12 @@
 
   
   
-    <div class="page__related">
-      <h4 class="page__related-title">Вам также может понравиться</h4>
-      <div class="grid__wrapper">
-        
-          
+  <div class="page__related">
+    <h4 class="page__related-title">Вам также может понравиться
+    </h4>
+    <div class="grid__wrapper">
+      
+      
 
 
 
@@ -532,28 +508,39 @@
         <img src="/assets/images/bug-prioritization-matrix.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Lost bugs, anxiety and burnout
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  6 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Her...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -564,29 +551,40 @@
         <img src="/assets/images/testing-pyramid.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Ensuring the quality with Appium
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
 </p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -597,28 +595,39 @@
         <img src="/assets/images/abstract-code.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="permalink">How to clean a legacy code: stop complaining, start doing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  7 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or ...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -629,34 +638,44 @@
         <img src="/assets/images/growing_junior.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
 </div>
 
-        
-      </div>
+      
     </div>
+  </div>
   
   
 </div>
-
     </div>
 
     
@@ -686,7 +705,9 @@
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
   </ul>
 </div>
 

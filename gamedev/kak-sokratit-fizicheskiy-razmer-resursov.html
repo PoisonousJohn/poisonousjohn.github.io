@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -10,10 +10,13 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Как сократить физический размер ресурсов - Fateev.pro</title>
-<meta name="description" content="Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить PNG на два JPG’a или на JPG + PNG, в первом файле будут храниться RGB каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).  Для разбиения текстур из PNG на два JPG я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:  #!/usr/bin/python  import os, fnmatch import Image import argparse import ntpath import ImageFile  ImageFile.MAXBLOCK = 2048*2048# default is 64k  def splitImage(filename):     print &#39;splitting %s\n&#39; % png     originalImage = Image.open(filename)     baseName = ntpath.splitext(filename)[0]     originalImage.save(baseName + &#39;.jpg&#39;, &#39;JPEG&#39;, quality=95, optimize = True)      if len(originalImage.getbands()) == 4:         ir, ig, ib, ia = originalImage.split()         alphaImage = Image.merge(&quot;RGB&quot;, (ia, ia, ia));         alphaImage.save(baseName + &#39;_alpha.jpg&#39;, &#39;JPEG&#39;, quality=90)      os.remove(filename)   def locate(pattern, root=os.curdir):     for path, dirs, files in os.walk(os.path.abspath(root)):         for filename in fnmatch.filter(files, pattern):             yield os.path.join(path, filename)    parser = argparse.ArgumentParser(description=&#39;Pack animations.&#39;) parser.add_argument(&#39;images&#39;, metavar=&#39;I&#39;, help=&#39;Directory with images&#39;)  args = parser.parse_args()  pngDir = args.images  for png in locate(&quot;*.png&quot;, pngDir):     splitImage(png)     Что касается OpenGL, то в итоге происходит загрузка той же RGBA текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива.    ">
+<meta name="description" content="Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить PNG на два JPG’a или на JPG + PNG, в первом файле будут храниться RGB каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).  Для разбиения текстур из PNG на два JPG я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:  #!/usr/bin/python  import os, fnmatch import Image import argparse import ntpath import ImageFile  ImageFile.MAXBLOCK = 2048*2048# default is 64k  def splitImage(filename):     print &#39;splitting %s\n&#39; % png     originalImage = Image.open(filename)     baseName = ntpath.splitext(filename)[0]     originalImage.save(baseName + &#39;.jpg&#39;, &#39;JPEG&#39;, quality=95, optimize = True)      if len(originalImage.getbands()) == 4:         ir, ig, ib, ia = originalImage.split()         alphaImage = Image.merge(&quot;RGB&quot;, (ia, ia, ia));         alphaImage.save(baseName + &#39;_alpha.jpg&#39;, &#39;JPEG&#39;, quality=90)      os.remove(filename)   def locate(pattern, root=os.curdir):     for path, dirs, files in os.walk(os.path.abspath(root)):         for filename in fnmatch.filter(files, pattern):             yield os.path.join(path, filename)    parser = argparse.ArgumentParser(description=&#39;Pack animations.&#39;) parser.add_argument(&#39;images&#39;, metavar=&#39;I&#39;, help=&#39;Directory with images&#39;)  args = parser.parse_args()  pngDir = args.images  for png in locate(&quot;*.png&quot;, pngDir):     splitImage(png)     Что касается OpenGL, то в итоге происходит загрузка той же RGBA текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива.   ">
 
 
   <meta name="author" content="Ivan Fateev">
+  
+  <meta property="article:author" content="Ivan Fateev">
+  
 
 
 <meta property="og:type" content="article">
@@ -23,7 +26,7 @@
 <meta property="og:url" content="https://fateev.pro/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html">
 
 
-  <meta property="og:description" content="Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить PNG на два JPG’a или на JPG + PNG, в первом файле будут храниться RGB каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).  Для разбиения текстур из PNG на два JPG я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:  #!/usr/bin/python  import os, fnmatch import Image import argparse import ntpath import ImageFile  ImageFile.MAXBLOCK = 2048*2048# default is 64k  def splitImage(filename):     print &#39;splitting %s\n&#39; % png     originalImage = Image.open(filename)     baseName = ntpath.splitext(filename)[0]     originalImage.save(baseName + &#39;.jpg&#39;, &#39;JPEG&#39;, quality=95, optimize = True)      if len(originalImage.getbands()) == 4:         ir, ig, ib, ia = originalImage.split()         alphaImage = Image.merge(&quot;RGB&quot;, (ia, ia, ia));         alphaImage.save(baseName + &#39;_alpha.jpg&#39;, &#39;JPEG&#39;, quality=90)      os.remove(filename)   def locate(pattern, root=os.curdir):     for path, dirs, files in os.walk(os.path.abspath(root)):         for filename in fnmatch.filter(files, pattern):             yield os.path.join(path, filename)    parser = argparse.ArgumentParser(description=&#39;Pack animations.&#39;) parser.add_argument(&#39;images&#39;, metavar=&#39;I&#39;, help=&#39;Directory with images&#39;)  args = parser.parse_args()  pngDir = args.images  for png in locate(&quot;*.png&quot;, pngDir):     splitImage(png)     Что касается OpenGL, то в итоге происходит загрузка той же RGBA текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива.    ">
+  <meta property="og:description" content="Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить PNG на два JPG’a или на JPG + PNG, в первом файле будут храниться RGB каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).  Для разбиения текстур из PNG на два JPG я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:  #!/usr/bin/python  import os, fnmatch import Image import argparse import ntpath import ImageFile  ImageFile.MAXBLOCK = 2048*2048# default is 64k  def splitImage(filename):     print &#39;splitting %s\n&#39; % png     originalImage = Image.open(filename)     baseName = ntpath.splitext(filename)[0]     originalImage.save(baseName + &#39;.jpg&#39;, &#39;JPEG&#39;, quality=95, optimize = True)      if len(originalImage.getbands()) == 4:         ir, ig, ib, ia = originalImage.split()         alphaImage = Image.merge(&quot;RGB&quot;, (ia, ia, ia));         alphaImage.save(baseName + &#39;_alpha.jpg&#39;, &#39;JPEG&#39;, quality=90)      os.remove(filename)   def locate(pattern, root=os.curdir):     for path, dirs, files in os.walk(os.path.abspath(root)):         for filename in fnmatch.filter(files, pattern):             yield os.path.join(path, filename)    parser = argparse.ArgumentParser(description=&#39;Pack animations.&#39;) parser.add_argument(&#39;images&#39;, metavar=&#39;I&#39;, help=&#39;Directory with images&#39;)  args = parser.parse_args()  pngDir = args.images  for png in locate(&quot;*.png&quot;, pngDir):     splitImage(png)     Что касается OpenGL, то в итоге происходит загрузка той же RGBA текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива.   ">
 
 
 
@@ -65,10 +68,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,21 +85,8 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
   
@@ -124,7 +117,6 @@
 
   <body class="layout--single wide">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -207,15 +199,15 @@
       
         
           
-            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
           
         
       
@@ -285,26 +277,20 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
     <meta itemprop="headline" content="Как сократить физический размер ресурсов">
+    
     <meta itemprop="description" content="Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить PNG на два JPG’a или на JPG + PNG, в первом файле будут храниться RGB каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).Для разбиения текстур из PNG на два JPG я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:#!/usr/bin/pythonimport os, fnmatchimport Imageimport argparseimport ntpathimport ImageFileImageFile.MAXBLOCK = 2048*2048# default is 64kdef splitImage(filename):    print &#39;splitting %s\n&#39; % png    originalImage = Image.open(filename)    baseName = ntpath.splitext(filename)[0]    originalImage.save(baseName + &#39;.jpg&#39;, &#39;JPEG&#39;, quality=95, optimize = True)    if len(originalImage.getbands()) == 4:        ir, ig, ib, ia = originalImage.split()        alphaImage = Image.merge(&quot;RGB&quot;, (ia, ia, ia));        alphaImage.save(baseName + &#39;_alpha.jpg&#39;, &#39;JPEG&#39;, quality=90)    os.remove(filename)def locate(pattern, root=os.curdir):    for path, dirs, files in os.walk(os.path.abspath(root)):        for filename in fnmatch.filter(files, pattern):            yield os.path.join(path, filename)parser = argparse.ArgumentParser(description=&#39;Pack animations.&#39;)parser.add_argument(&#39;images&#39;, metavar=&#39;I&#39;, help=&#39;Directory with images&#39;)args = parser.parse_args()pngDir = args.imagesfor png in locate(&quot;*.png&quot;, pngDir):    splitImage(png) Что касается OpenGL, то в итоге происходит загрузка той же RGBA текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива. ">
+    
+    
     <meta itemprop="datePublished" content="2014-01-23T11:25:47-06:00">
     
 
     <div class="page__inner-wrap">
-        <header >
-          <h1 id="page-title" class="page__title" itemprop="headline">Как сократить физический размер ресурсов
+      <header >
+        <h1 id="page-title" class="page__title" itemprop="headline">Как сократить физический размер ресурсов
 </h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  1 мин на чтение
-
-</p>
-          
-        </header>
+      </header>
 
       <section class="page__content" itemprop="text">
         
@@ -320,35 +306,35 @@
 <span class="kn">import</span> <span class="nn">ntpath</span>
 <span class="kn">import</span> <span class="nn">ImageFile</span>
 
-<span class="n">ImageFile</span><span class="o">.</span><span class="n">MAXBLOCK</span> <span class="o">=</span> <span class="mi">2048</span><span class="o">*</span><span class="mi">2048</span><span class="c1"># default is 64k
+<span class="n">ImageFile</span><span class="p">.</span><span class="n">MAXBLOCK</span> <span class="o">=</span> <span class="mi">2048</span><span class="o">*</span><span class="mi">2048</span><span class="c1"># default is 64k
 </span>
 <span class="k">def</span> <span class="nf">splitImage</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="k">print</span> <span class="s">'splitting </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">'</span> <span class="o">%</span> <span class="n">png</span>
-    <span class="n">originalImage</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">baseName</span> <span class="o">=</span> <span class="n">ntpath</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">originalImage</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">baseName</span> <span class="o">+</span> <span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'JPEG'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">optimize</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">'splitting %s</span><span class="se">\n</span><span class="s">'</span> <span class="o">%</span> <span class="n">png</span>
+    <span class="n">originalImage</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">baseName</span> <span class="o">=</span> <span class="n">ntpath</span><span class="p">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">originalImage</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">baseName</span> <span class="o">+</span> <span class="s">'.jpg'</span><span class="p">,</span> <span class="s">'JPEG'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">optimize</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">originalImage</span><span class="o">.</span><span class="n">getbands</span><span class="p">())</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="n">ir</span><span class="p">,</span> <span class="n">ig</span><span class="p">,</span> <span class="n">ib</span><span class="p">,</span> <span class="n">ia</span> <span class="o">=</span> <span class="n">originalImage</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-        <span class="n">alphaImage</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="s">"RGB"</span><span class="p">,</span> <span class="p">(</span><span class="n">ia</span><span class="p">,</span> <span class="n">ia</span><span class="p">,</span> <span class="n">ia</span><span class="p">));</span>
-        <span class="n">alphaImage</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">baseName</span> <span class="o">+</span> <span class="s">'_alpha.jpg'</span><span class="p">,</span> <span class="s">'JPEG'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">originalImage</span><span class="p">.</span><span class="n">getbands</span><span class="p">())</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">ir</span><span class="p">,</span> <span class="n">ig</span><span class="p">,</span> <span class="n">ib</span><span class="p">,</span> <span class="n">ia</span> <span class="o">=</span> <span class="n">originalImage</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">alphaImage</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="s">"RGB"</span><span class="p">,</span> <span class="p">(</span><span class="n">ia</span><span class="p">,</span> <span class="n">ia</span><span class="p">,</span> <span class="n">ia</span><span class="p">));</span>
+        <span class="n">alphaImage</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">baseName</span> <span class="o">+</span> <span class="s">'_alpha.jpg'</span><span class="p">,</span> <span class="s">'JPEG'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">locate</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">root</span><span class="p">)):</span>
-        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">fnmatch</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
 
+<span class="k">def</span> <span class="nf">locate</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">curdir</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">root</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">fnmatch</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'Pack animations.'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'images'</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s">'I'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Directory with images'</span><span class="p">)</span>
 
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-<span class="n">pngDir</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">images</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'Pack animations.'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'images'</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s">'I'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Directory with images'</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">pngDir</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">images</span>
 
 <span class="k">for</span> <span class="n">png</span> <span class="ow">in</span> <span class="n">locate</span><span class="p">(</span><span class="s">"*.png"</span><span class="p">,</span> <span class="n">pngDir</span><span class="p">):</span>
     <span class="n">splitImage</span><span class="p">(</span><span class="n">png</span><span class="p">)</span></code></pre></figure>
@@ -369,31 +355,19 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Метки: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/tags/gamedev" class="page__taxonomy-item" rel="tag">gamedev</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/opengl" class="page__taxonomy-item" rel="tag">OpenGL</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/python" class="page__taxonomy-item" rel="tag">python</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/tools" class="page__taxonomy-item" rel="tag">tools</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/useful" class="page__taxonomy-item" rel="tag">useful</a>
     
     </span>
@@ -406,15 +380,11 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Разделы: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/categories/gamedev" class="page__taxonomy-item" rel="tag">Gamedev</a>
     
     </span>
@@ -422,7 +392,8 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2014-01-23T11:25:47-06:00">January 23, 2014</time></p>
+        <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time
+            datetime="2014-01-23T11:25:47-06:00">January 23, 2014</time></p>
         
       </footer>
 
@@ -458,11 +429,12 @@
 
   
   
-    <div class="page__related">
-      <h4 class="page__related-title">Вам также может понравиться</h4>
-      <div class="grid__wrapper">
-        
-          
+  <div class="page__related">
+    <h4 class="page__related-title">Вам также может понравиться
+    </h4>
+    <div class="grid__wrapper">
+      
+      
 
 
 
@@ -473,28 +445,39 @@
         <img src="/assets/images/bug-prioritization-matrix.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Lost bugs, anxiety and burnout
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  6 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Her...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -505,29 +488,40 @@
         <img src="/assets/images/testing-pyramid.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Ensuring the quality with Appium
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
 </p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -538,28 +532,39 @@
         <img src="/assets/images/abstract-code.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="permalink">How to clean a legacy code: stop complaining, start doing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  7 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or ...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -570,34 +575,44 @@
         <img src="/assets/images/growing_junior.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
 </div>
 
-        
-      </div>
+      
     </div>
+  </div>
   
   
 </div>
-
     </div>
 
     
@@ -627,7 +642,9 @@
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
   </ul>
 </div>
 

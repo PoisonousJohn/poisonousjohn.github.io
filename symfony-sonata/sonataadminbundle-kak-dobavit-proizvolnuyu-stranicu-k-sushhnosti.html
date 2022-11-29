@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -10,10 +10,13 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>SonataAdminBundle: как добавить произвольную страницу к сущности - Fateev.pro</title>
-<meta name="description" content="У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.  Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:  &lt;?php     protected function configureRoutes(RouteCollection $collection)     {         $collection-&gt;add(&#39;members&#39;, $this-&gt;getRouterIdParameter() . &#39;/members&#39;);         $collection-&gt;add(&#39;getProjects&#39;);     }  В примере я рассмотрел два случая:  	Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members 	Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjects  Далее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:    &lt;?php     public function membersAction($id = null)     {         $id = $this-&gt;get(&#39;request&#39;)-&gt;get($this-&gt;admin-&gt;getIdParameter());          $object = $this-&gt;admin-&gt;getObject($id);          if (!$object) {             throw new NotFoundHttpException(sprintf(&#39;unable to find the object with id : %s&#39;, $id));         }         ...     }      public function getProjectsAction()     {          $choice = array();          ...          return $this-&gt;renderJson($choice);      }   Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().  Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод. Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в другой статье. &nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:   \{\% extends &#39;SonataAdminBundle:Core:dashboard.html.twig&#39; %}  \{\% block content%}       blabla \{\% endblock%}   Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.  На этом вроде все =)   &nbsp; ">
+<meta name="description" content="У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.  Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:  &lt;?php     protected function configureRoutes(RouteCollection $collection)     {         $collection-&gt;add(&#39;members&#39;, $this-&gt;getRouterIdParameter() . &#39;/members&#39;);         $collection-&gt;add(&#39;getProjects&#39;);     }  В примере я рассмотрел два случая:  	Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members 	Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjects  Далее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:    &lt;?php     public function membersAction($id = null)     {         $id = $this-&gt;get(&#39;request&#39;)-&gt;get($this-&gt;admin-&gt;getIdParameter());          $object = $this-&gt;admin-&gt;getObject($id);          if (!$object) {             throw new NotFoundHttpException(sprintf(&#39;unable to find the object with id : %s&#39;, $id));         }         ...     }      public function getProjectsAction()     {          $choice = array();          ...          return $this-&gt;renderJson($choice);      }   Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().  Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод. Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в другой статье. &nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:   \{\% extends &#39;SonataAdminBundle:Core:dashboard.html.twig&#39; %}  \{\% block content%}       blabla \{\% endblock%}   Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.  На этом вроде все =)   &nbsp;">
 
 
   <meta name="author" content="Ivan Fateev">
+  
+  <meta property="article:author" content="Ivan Fateev">
+  
 
 
 <meta property="og:type" content="article">
@@ -23,7 +26,7 @@
 <meta property="og:url" content="https://fateev.pro/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">
 
 
-  <meta property="og:description" content="У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.  Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:  &lt;?php     protected function configureRoutes(RouteCollection $collection)     {         $collection-&gt;add(&#39;members&#39;, $this-&gt;getRouterIdParameter() . &#39;/members&#39;);         $collection-&gt;add(&#39;getProjects&#39;);     }  В примере я рассмотрел два случая:  	Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members 	Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjects  Далее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:    &lt;?php     public function membersAction($id = null)     {         $id = $this-&gt;get(&#39;request&#39;)-&gt;get($this-&gt;admin-&gt;getIdParameter());          $object = $this-&gt;admin-&gt;getObject($id);          if (!$object) {             throw new NotFoundHttpException(sprintf(&#39;unable to find the object with id : %s&#39;, $id));         }         ...     }      public function getProjectsAction()     {          $choice = array();          ...          return $this-&gt;renderJson($choice);      }   Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().  Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод. Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в другой статье. &nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:   \{\% extends &#39;SonataAdminBundle:Core:dashboard.html.twig&#39; %}  \{\% block content%}       blabla \{\% endblock%}   Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.  На этом вроде все =)   &nbsp; ">
+  <meta property="og:description" content="У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.  Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:  &lt;?php     protected function configureRoutes(RouteCollection $collection)     {         $collection-&gt;add(&#39;members&#39;, $this-&gt;getRouterIdParameter() . &#39;/members&#39;);         $collection-&gt;add(&#39;getProjects&#39;);     }  В примере я рассмотрел два случая:  	Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members 	Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjects  Далее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:    &lt;?php     public function membersAction($id = null)     {         $id = $this-&gt;get(&#39;request&#39;)-&gt;get($this-&gt;admin-&gt;getIdParameter());          $object = $this-&gt;admin-&gt;getObject($id);          if (!$object) {             throw new NotFoundHttpException(sprintf(&#39;unable to find the object with id : %s&#39;, $id));         }         ...     }      public function getProjectsAction()     {          $choice = array();          ...          return $this-&gt;renderJson($choice);      }   Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().  Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод. Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в другой статье. &nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:   \{\% extends &#39;SonataAdminBundle:Core:dashboard.html.twig&#39; %}  \{\% block content%}       blabla \{\% endblock%}   Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.  На этом вроде все =)   &nbsp;">
 
 
 
@@ -63,10 +66,13 @@
 
 
 
+
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,21 +83,8 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if IE]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
 
 
   
@@ -122,7 +115,6 @@
 
   <body class="layout--single wide">
     <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
     <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
@@ -205,15 +197,15 @@
       
         
           
-            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li><a href="https://github.com/PoisonousJohn" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
           
         
           
-            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/poisonousjohn/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
           
         
           
-            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+            <li><a href="https://teleg.run/poisonous_john" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-telegram" aria-hidden="true"></i><span class="label">Telegram</span></a></li>
           
         
       
@@ -283,26 +275,20 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
     <meta itemprop="headline" content="SonataAdminBundle: как добавить произвольную страницу к сущности">
+    
     <meta itemprop="description" content="У меня часто возникает необходимость добавлять произвольные страницы (например для ajax’a), связанные с конкретной сущностью, или для целого класса сущностей.Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:&lt;?php    protected function configureRoutes(RouteCollection $collection)    {        $collection-&gt;add(&#39;members&#39;, $this-&gt;getRouterIdParameter() . &#39;/members&#39;);        $collection-&gt;add(&#39;getProjects&#39;);    }В примере я рассмотрел два случая:	Роут привязан к конкретной сущности, о чем свидетельствует наличие метода $this-&gt;getRouterIdParameter() в роуте, на место которого будет подставлен id сущности, в итоге на страницу можно будет попасть по роуту вида bla/bla/12/members	Роут привязан не к конкретной сущности, а к админ классу, на страницу можно попасть по роуту вида bla/bla/getProjectsДалее в дело вступает контроллер для админ класса, в котором необходимо добавить соответствующий action:&lt;?php    public function membersAction($id = null)    {        $id = $this-&gt;get(&#39;request&#39;)-&gt;get($this-&gt;admin-&gt;getIdParameter());        $object = $this-&gt;admin-&gt;getObject($id);        if (!$object) {            throw new NotFoundHttpException(sprintf(&#39;unable to find the object with id : %s&#39;, $id));        }        ...    }    public function getProjectsAction()    {        $choice = array();        ...        return $this-&gt;renderJson($choice);    }Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод.Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в другой статье.&nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:\{\% extends &#39;SonataAdminBundle:Core:dashboard.html.twig&#39; %}\{\% block content%}      blabla\{\% endblock%}Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.На этом вроде все =)&nbsp;">
+    
+    
     <meta itemprop="datePublished" content="2012-09-13T20:33:24-05:00">
     
 
     <div class="page__inner-wrap">
-        <header >
-          <h1 id="page-title" class="page__title" itemprop="headline">SonataAdminBundle: как добавить произвольную страницу к сущности
+      <header >
+        <h1 id="page-title" class="page__title" itemprop="headline">SonataAdminBundle: как добавить произвольную страницу к сущности
 </h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  1 мин на чтение
-
-</p>
-          
-        </header>
+      </header>
 
       <section class="page__content" itemprop="text">
         
@@ -311,10 +297,10 @@
 <p>Добавление страницы начинается с добавления роута в админ классе. За это отвечает метод configureRoutes:</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">configureRoutes</span><span class="p">(</span><span class="nx">RouteCollection</span> <span class="nv">$collection</span><span class="p">)</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="n">configureRoutes</span><span class="p">(</span><span class="kt">RouteCollection</span> <span class="nv">$collection</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'members'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getRouterIdParameter</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/members'</span><span class="p">);</span>
-        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="s1">'getProjects'</span><span class="p">);</span>
+        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="s1">'members'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getRouterIdParameter</span><span class="p">()</span> <span class="mf">.</span> <span class="s1">'/members'</span><span class="p">);</span>
+        <span class="nv">$collection</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="s1">'getProjects'</span><span class="p">);</span>
     <span class="p">}</span></code></pre></figure>
 
 <p>В примере я рассмотрел два случая:</p>
@@ -327,26 +313,26 @@
 
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">membersAction</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">membersAction</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">admin</span><span class="o">-&gt;</span><span class="na">getIdParameter</span><span class="p">());</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">admin</span><span class="o">-&gt;</span><span class="nf">getIdParameter</span><span class="p">());</span>
 
-        <span class="nv">$object</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">admin</span><span class="o">-&gt;</span><span class="na">getObject</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+        <span class="nv">$object</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">admin</span><span class="o">-&gt;</span><span class="nf">getObject</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$object</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">NotFoundHttpException</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'unable to find the object with id : %s'</span><span class="p">,</span> <span class="nv">$id</span><span class="p">));</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nc">NotFoundHttpException</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'unable to find the object with id : %s'</span><span class="p">,</span> <span class="nv">$id</span><span class="p">));</span>
         <span class="p">}</span>
-        <span class="o">...</span>
+        <span class="mf">...</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProjectsAction</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getProjectsAction</span><span class="p">()</span>
     <span class="p">{</span>
 
         <span class="nv">$choice</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
 
-        <span class="o">...</span>
+        <span class="mf">...</span>
 
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">renderJson</span><span class="p">(</span><span class="nv">$choice</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">renderJson</span><span class="p">(</span><span class="nv">$choice</span><span class="p">);</span>
 
     <span class="p">}</span></code></pre></figure>
 
@@ -360,9 +346,9 @@
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="k">extends</span> <span class="s1">'SonataAdminBundle:Core:dashboard.html.twig'</span> <span class="o">%</span><span class="p">}</span>
 
-<span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="nx">block</span> <span class="nx">content</span><span class="o">%</span><span class="p">}</span>
-      <span class="nx">blabla</span>
-<span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="nx">endblock</span><span class="o">%</span><span class="p">}</span></code></pre></figure>
+<span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="n">block</span> <span class="n">content</span><span class="o">%</span><span class="p">}</span>
+      <span class="n">blabla</span>
+<span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="o">%</span> <span class="n">endblock</span><span class="o">%</span><span class="p">}</span></code></pre></figure>
 
 
 Разумеется, вы можете свободно переопределять такие блоки как javascripts и stylesheets.
@@ -382,23 +368,15 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Метки: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/tags/php" class="page__taxonomy-item" rel="tag">php</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/symfony-sonata" class="page__taxonomy-item" rel="tag">symfony-sonata</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/symfony2" class="page__taxonomy-item" rel="tag">symfony2</a>
     
     </span>
@@ -411,15 +389,11 @@
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Разделы: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/categories/symfony-sonata" class="page__taxonomy-item" rel="tag">Symfony Sonata</a>
     
     </span>
@@ -427,7 +401,8 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time datetime="2012-09-13T20:33:24-05:00">September 13, 2012</time></p>
+        <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Дата изменения:</strong> <time
+            datetime="2012-09-13T20:33:24-05:00">September 13, 2012</time></p>
         
       </footer>
 
@@ -463,11 +438,12 @@
 
   
   
-    <div class="page__related">
-      <h4 class="page__related-title">Вам также может понравиться</h4>
-      <div class="grid__wrapper">
-        
-          
+  <div class="page__related">
+    <h4 class="page__related-title">Вам также может понравиться
+    </h4>
+    <div class="grid__wrapper">
+      
+      
 
 
 
@@ -478,28 +454,39 @@
         <img src="/assets/images/bug-prioritization-matrix.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Lost bugs, anxiety and burnout
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  6 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Bugs in your company get lost in the chat, users leave, management blames engineers, engineers feel guilty and anxious, get burned out? We’ve been there. Her...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -510,29 +497,40 @@
         <img src="/assets/images/testing-pyramid.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/startup-challenges/ensuring-the-quality-appium.html" rel="permalink">Startup challenges: Ensuring the quality with Appium
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">One of the main challenges in our startup is to ensure that our product is of good quality. We decided to try Appium to test end-to-end scenarios.
 </p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -543,28 +541,39 @@
         <img src="/assets/images/abstract-code.jpg" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/en/programming/how-to-clean-a-legacy-code-stop-complaining-start-doing.html" rel="permalink">How to clean a legacy code: stop complaining, start doing
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  7 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Most of the articles and books tell you how to write a “good code”. But in real life, you often find yourself deep in the shit after joining some company or ...</p>
   </article>
 </div>
 
-        
-          
+      
+      
 
 
 
@@ -575,34 +584,44 @@
         <img src="/assets/images/growing_junior.png" alt="">
       </div>
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ru/programming/are-you-growing-your-juniors-right.html" rel="permalink">Правильно ли вы растите своих джунов?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  8 мин на чтение
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 мин на чтение
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите…
 </p>
   </article>
 </div>
 
-        
-      </div>
+      
     </div>
+  </div>
   
   
 </div>
-
     </div>
 
     
@@ -632,7 +651,9 @@
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> RSS-лента</a></li>
+    
   </ul>
 </div>
 
