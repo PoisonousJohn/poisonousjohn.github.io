@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   jekyll:
-    image: jekyll/jekyll:latest
+    image: jekyll/jekyll:4.2.0
     volumes:
       - ./:/srv/jekyll
       - ./vendor/bundle:/usr/local/bundle"
