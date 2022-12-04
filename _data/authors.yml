@@ -1,7 +1,8 @@
 Ivan Fateev:
   name: "Ivan Fateev"
   bio: >
-    Software engineer with more <br/>than 10 years of experience
+    Software engineer with more <br/>than 10 years of experience<br/>
+    Currently working as Deputy CTO @ WhaleKit (My.Games)
   avatar: "/wp-content/uploads/2012/09/IMG_9760_final_bw-300x300.jpg"
   links:
     - label: "GitHub"
