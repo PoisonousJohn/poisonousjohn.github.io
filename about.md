@@ -42,7 +42,7 @@ My preferred way of communication on professional matters is LinkedIn or email. 
 ## CV
 
 **Deputy CTO -- [WhaleKit (My.Games)](https://my.games/studios/7)**
-<span class="cv-date">Sept 2018 - Jul 2022</span>
+<span class="cv-date">Oct 2022 - Present time</span>
 
 Responsibilities:
 - Speed up teams development
