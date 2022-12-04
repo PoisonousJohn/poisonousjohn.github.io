@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 set -x
+
+rm -rf .sass-cache/
+rm -rf _site/
+
 if [ ! -d "build" ]; then
     mkdir build
     cp -r .git build
