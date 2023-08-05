@@ -1,4 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2022-12-04T08:16:35-06:00</updated><id>https://fateev.pro/feed.xml</id><title type="html">Fateev.pro</title><subtitle>Иван Фатеев разработка мобильных приложений</subtitle><entry><title type="html">Startup challenges: Lost bugs, anxiety and burnout</title><link href="https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html" rel="alternate" type="text/html" title="Startup challenges: Lost bugs, anxiety and burnout" /><published>2022-04-22T16:00:00-05:00</published><updated>2022-04-22T16:00:00-05:00</updated><id>https://fateev.pro/en/startup-challenges/startup-challenges-bug-tracking</id><content type="html" xml:base="https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html"><![CDATA[<h2 id="first-heres-the-solution-that-worked-for-us-tl-dr">First, here’s the solution that worked for us (TL; DR;)</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="https://fateev.pro/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fateev.pro/" rel="alternate" type="text/html" /><updated>2023-08-05T13:42:05-05:00</updated><id>https://fateev.pro/feed.xml</id><title type="html">Fateev.pro</title><subtitle>Иван Фатеев разработка мобильных приложений</subtitle><entry><title type="html">Испытательный срок для работодателя. Или как понять в какую компанию ты попал?</title><link href="https://fateev.pro/ru/probation-period-for-employer.html" rel="alternate" type="text/html" title="Испытательный срок для работодателя. Или как понять в какую компанию ты попал?" /><published>2023-08-04T16:00:00-05:00</published><updated>2023-08-04T16:00:00-05:00</updated><id>https://fateev.pro/ru/probation-period-for-employer</id><content type="html" xml:base="https://fateev.pro/ru/probation-period-for-employer.html"><![CDATA[<p>Работать в среде, где вам что-то не нравится — чревато выгоранием и другими проблемами.</p>
+
+<p>Несколько простых советов помогут вам определиться с решением.</p>
+
+<h1 id="как-относятся-к-новичкам">Как относятся к новичкам?</h1>
+
+<p>Не зависимо от вашего уровня опыта — после трудоустройства вам должны помочь освоиться. Обычно, на испытательный срок новичкам выделяется куратор. Тот кто будет отвечать на все вопросы по процессам или непосредственно по вашей работе.</p>
+
+<p>Если вас бросили в одиночестве и сказали разбираться самому — это очень плохой знак. Это значит, что работодатель не ценит ни своего, ни вашего времени. Такое может быть, если новички нужны совсем “для галочки”, или “на будущее”.</p>
+
+<p>В нормальных компаниях ценят время, поэтому чем быстрее вы освоитесь, тем для всех лучше.</p>
+
+<p>Хорошим знаком будет, если в первые несколько дней помимо куратора, вам сразу же выдали задачи. Причем эти задачи должны быть средней сложности, чтобы быть по силам новичку, но при этом дать возможность вам проявить себя.</p>
+
+<h1 id="как-относятся-к-обратной-связи">Как относятся к обратной связи?</h1>
+
+<p>Новички — лучший источник обратной связи для компании. Именно новички свежим взглядом обращают внимание на проблемы, которые старожилы не могут заметить.</p>
+
+<p>Во время вашего онбординга вы будете задавать кучу вопросов.</p>
+
+<blockquote>
+  <p>“Почему у вас в компании так, а не иначе?”
+“Может лучше делать вот так?.”
+и т.д.</p>
+
+</blockquote>
+
+<p>В хороших компаниях всегда рады обратной связи. Ее не просто воспринимают, но и обязательно фиксируют, чтобы проработать позже.</p>
+
+<p>Нормальным вариантом так же будет, если в компании есть конкретное мнение по поднятому вопросу, а так же адекватное разъяснение причин, приведших к нему.</p>
+
+<p>Если вам говорят “делай как у нас принято” без подробностей, игнорируют рациональные предложения, то это сигнал больших проблем в компании.</p>
+
+<p>В таком случае можно ожидать, что любые предложения от сотрудников могут игнорироваться.</p>
+
+<p>Хотите ли вы работать в таком месте?</p>
+
+<h1 id="прогрессирует-ли-компания">Прогрессирует ли компания?</h1>
+
+<p>Хуже всего — компании, которые зависли в своей скорлупе и в них годами ничего не меняется. Это связано с предыдущим пунктом. Игнорирование обратной связи ведет к отсутствию прогресса.</p>
+
+<p>Лучше всего спросить своих коллег про то как было в компании год-два назад. Что изменилось? В лучшую ли сторону?</p>
+
+<ul>
+  <li>Прогрессирует ли технический стек?</li>
+  <li>Следят ли за лучшими практиками в индустрии?</li>
+</ul>
+
+<p>Если годами ничего не меняется — это очень тревожный знак. Если коллег, которые так долго работают нет в принципе — еще хуже.</p>
+
+<p>Нормальные компании наблюдают за процессами на постоянной основе, постоянно что-то меняют и оптимизируют. Причем на всех фронтах, как процессуально, так и технологически.</p>
+
+<p>В больших компаниях бывает такое, что они зависают на каком-то определенном неплохом уровне и их это устраивает. Возможно этот уровень подойдет и вам, но нужно понимать, что с годами вряд ли что-то изменится.</p>
+
+<h1 id="есть-ли-планы-на-будущее">Есть ли планы на будущее?</h1>
+
+<p>Из предыдущего пункта вытекает вопрос про планы компании. Если дорожная карта развития отсутствует и компания двигается вслепую — плохой знак.</p>
+
+<p>Хотите ли вы работать в компании, которая возможно загнется через год, потому что у нее нет планов?</p>
+
+<p>Если про планы не рассказывают, и говорят что тебе нужно знать только то, что нужно для твоей работы — плохой знак.</p>
+
+<p>В хороших компаниях — планы транслируются публично и (снова к предыдущим пунктам) рады обратной связи.</p>
+
+<h1 id="может-ли-человек-раскрыть-свой-потенциал">Может ли человек раскрыть свой потенциал?</h1>
+
+<p>Стоит узнать какие есть перспективы развития в вашей роли. Что если вы захотите перейти на роль выше? Что если вы хотите остаться на текущей роли и стать лучше в своей специализации?</p>
+
+<p>Можно узнать у коллег их мнение на этот счет. Давали ли им такую возможность? Были ли повышения? Как используют сильные стороны людей?</p>
+
+<p>В хороших компаниях — людям помогают расти, а не ставят палки в колеса.</p>]]></content><author><name>Ivan Fateev</name></author><category term="Career" /><category term="Career" /><summary type="html"><![CDATA[Принято считать, что испытательный срок — для сотрудников. Вы приходите на новую работу и чувствуете себя не в своей тарелке, ведь вы пока не уверены, что справитесь своей работой. А если уверены — то вам нужно это доказать. Но важно понимать, что ближайшие пару месяцев можно и нужно использовать, чтобы понять подходит ли работодатель вам?]]></summary></entry><entry><title type="html">Startup challenges: Lost bugs, anxiety and burnout</title><link href="https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html" rel="alternate" type="text/html" title="Startup challenges: Lost bugs, anxiety and burnout" /><published>2022-04-22T16:00:00-05:00</published><updated>2022-04-22T16:00:00-05:00</updated><id>https://fateev.pro/en/startup-challenges/startup-challenges-bug-tracking</id><content type="html" xml:base="https://fateev.pro/en/startup-challenges/ensuring-the-quality-appium.html"><![CDATA[<h2 id="first-heres-the-solution-that-worked-for-us-tl-dr">First, here’s the solution that worked for us (TL; DR;)</h2>
 
 <ol>
   <li>Start by creating a doc on the QA process</li>
@@ -370,169 +440,7 @@
 
 <p>–</p>
 
-<p>What works for me, might not work for you, but still, I believe you might give it a try.</p>]]></content><author><name>Ivan Fateev</name></author><category term="Programming" /><category term="Programming" /><category term="Management" /><summary type="html"><![CDATA[Most of the articles and books tell you how to write a "good code". But in real life, you often find yourself deep in the shit after joining some company or project.]]></summary></entry><entry><title type="html">Are you growing your juniors right?</title><link href="https://fateev.pro/en/programming/are-you-growing-your-juniors-right.html" rel="alternate" type="text/html" title="Are you growing your juniors right?" /><published>2020-04-03T16:00:00-05:00</published><updated>2020-04-03T16:00:00-05:00</updated><id>https://fateev.pro/en/programming/are-you-growing-your-juniors-right.en</id><content type="html" xml:base="https://fateev.pro/en/programming/are-you-growing-your-juniors-right.html"><![CDATA[<p>Nothing! Literally – nothing. And that’s the point.</p>
-
-<p>When my student told me about what’s happening in his job, I couldn’t take it anymore and decided to write this article. I hope to help at least some people with it.</p>
-
-<p>Let’s look at a couple of problems. Such situations happen not only in our industry. You can find them in any place where they hire interns/beginners.</p>
-
-<h2 id="problem-1-nobody-cares-about-junior">Problem #1: Nobody cares about junior</h2>
-
-<p>Junior worked in a different industry before. It took a long time to decide on a career switch. He learned programming in his spare time. Then he put all stakes on it, quit his old job, and spent several months learning non-stop, living on saved money. Finally, he’s got a new job as an intern programmer, but with a salary much less than he had before.</p>
-
-<p>During the year Junior’s <del>mentors</del> curators changed all the time. They dumbly threw him from one to another, nobody wanted to take care of him.</p>
-
-<p>They didn’t give any meaningful task. Just dumped on him some weird shit, which nobody wanted to deal with.</p>
-
-<p>Later even those shitty tasks came to an end. They said to him to sit and read something, learn yourself.</p>
-
-<p>Then they let him work with some “specific” product. You know, this kind of corporate product which has a really tiny niche. Such experience means nothing on the job market. Nobody else had either desire or experience with it. So he couldn’t even ask anybody to help out.</p>
-
-<p>It was a first programmer job for him, so he couldn’t evaluate whether such a situation is normal or not. Junior was afraid that if he couldn’t figure out something, they would fire him. It depressed him, he had a feeling that he’s wasting time, but there’s nothing to do about that.</p>
-
-<p>He shared it with me, and I recommended to change the job. And he did it.</p>
-
-<h2 id="problem-2-junior-is-trained-by-someone-whos-not-able-to-teach-or-dont-want-to-do-that">Problem #2: Junior is trained by someone who’s not able to teach, or don’t want to do that</h2>
-
-<p>Junior liked the new job. They assigned a specific mentor, which gave appropriate tasks, kept an eye on their status, taught a bit. Junior started to improve his skills.</p>
-
-<p>A couple of months later, the mentor started to behave strangely. In such moments there was a feeling of some personal dislike from his side.</p>
-
-<p>Just look at the dialog below:</p>
-
-<ul>
-  <li>Junior: Mentor, in regards of the task XXX-413, you said: “Change: implement dialog presentation in class RestoreDbAction” - I didn’t get it, What do you mean by “implement”? Now I just made that it calls RestoreDbAction.Confirm instead of IDialogDisplay.Show. Everything else I leave as is, am I right or I missed something?</li>
-  <li>Mentor: It took so long for you to understand. Got it finally?</li>
-  <li>Junior: … so I got it right?</li>
-  <li>Mentor: What?</li>
-  <li>Junior: I needed to use Action.Confirm?</li>
-  <li>Mentor: Of course</li>
-  <li>Mentor: Why didn’t you get it right away? Any questions??</li>
-</ul>
-
-<hr />
-
-<ul>
-  <li>Mentor: Just as I expected, Junior, you didn’t get ANYTHING again. I’m just surprised at how you’re slow-witted….. (sad) I returned the task back to you</li>
-  <li>Junior: But I asked if I got it right</li>
-  <li>Mentor: I also asked. 3 times. And you didn’t get it anyway</li>
-</ul>
-
-<h2 id="why-a-company-needs-juniors">Why a company needs juniors?</h2>
-
-<p>Let’s see what’s the point in growing juniors?</p>
-
-<p>Junior is an investment in the future. Long-term project if you want.</p>
-
-<p>The company gives knowledge and experience, and beginner specialist starts returning investments in the form of completed tasks. So it’s like an effective symbiosis.</p>
-
-<p>Junior is ready to write code just for fun. But if you pay money for it – just perfect.</p>
-
-<p>Faster Junior starts completing real tasks, bring value, more profitable it would be for a company.</p>
-
-<p class="notice--info">Startups rarely hire juniors. Because they need an instant result. For a startup, speed is the most important aspect. Large companies are different. They can afford a slower pace.</p>
-
-<p>There are two big points to hire juniors:</p>
-
-<ol>
-  <li><strong>Cheap workforce</strong>: they do not ask much. And if you trained your junior quickly, then you get a fair specialist which brings value, familiar with the company’s processes, and does not cost much.</li>
-  <li>
-    <p><strong>Predictable source of advanced specialists</strong>.
-Hiring is always a pain. Searching for a middle developer can take quite a time and effort. Even if you managed to get one through the interview, you can’t predict how he will show himself. In case of a mistake, the company suffers losses.</p>
-
-    <p>You can hire a bunch of juniors instead. In this case, the probability to find a good fit is much higher. Good employer spots juniors which grew enough, give them a raise and motivate for further growth.</p>
-
-    <p>So the company gets a new grown developer, with known performance, familiar with processes, and so on. It’s a win-win situation.</p>
-
-    <p>If such an approach is arranged in a proper pipeline, then the company can grow safely and stably.</p>
-  </li>
-</ol>
-
-<h2 id="a-bunch-of-simple-tips-on-growing-a-junior">A bunch of simple tips on growing a Junior</h2>
-<h3 id="1-do-not-hire-juniors-if-nobody-can-teach-them">1. Do not hire juniors if nobody can teach them</h3>
-
-<p>What can we understand from problem #1? The company hired a junior, though nobody could (or want) to teach him. He wanted to learn. Chased any opportunity to do that.</p>
-
-<p>But the employer didn’t care about beginner developers. Our Junior didn’t bring any value to the company, didn’t grow as professional, yet got his salary. It’s a lose-lose situation.</p>
-
-<p>Juniors need constant attention and supervision. They are like children who are learning to walk. At first, they are clumsy, can’t take a step. But every time they get better in it. One day they walk on their own, confidently.</p>
-
-<p>What could happen if you left them alone, while they’re learning? Something bad will likely happen. They could get hurt, crawl somewhere they shouldn’t, even break something. And this is exactly what we have in problem #1.</p>
-
-<p>The first stage of junior’s training is the toughest one. It requires a lot of time, emotional efforts, and patience. A company needs to understand, the one who mentors will work slower. But in the long term, it will pay off.</p>
-
-<p>If you’re not ready for such cost, you should not hire juniors. Don’t waste the company’s resources and people’s time. Please.</p>
-
-<p>That’s it with problem #1, let’s move on to problem #2.</p>
-
-<h3 id="2-dont-pass-the-buck">2. Don’t pass the buck</h3>
-
-<p>In dialog from the problem #2 mentor is the one who’s not right. Junior is not qualified enough to formalize a task, find out missing requirements, design a decent solution, etc.</p>
-
-<p>The mentor is the only one to blame that junior didn’t get the task right. But instead of fixing this situation he just passed the buck.</p>
-
-<h3 id="3-for-juniors-you-should-assign-tasks-which-are-detailed-as-much-as-possible">3. For juniors, you should assign tasks which are detailed as much as possible</h3>
-
-<p>Mentor has to detail tasks as much as possible. Alternatively, if you want a junior to think more, you can just give a clue of the right direction. But you shouldn’t make an “Intuition” show out of it.</p>
-
-<p>It’s not necessary to give a task solution right away, but the task description should be detailed enough, to exclude any ambiguity.</p>
-
-<p>If you have any doubts, talk with Junior again and make sure, that you both are on the same page. And one more thing: you should talk, not write in the chat. It helps a lot!</p>
-
-<h3 id="4-do-not-assert-yourself-by-hurting-others">4. Do not assert yourself by hurting others</h3>
-
-<p>Oh, my rant is going to be long for this one. Because such examples give me a butthurt.</p>
-
-<p>In the dialog above mentor was really rude and unprofessional with Junior. I can guess that:</p>
-
-<ol>
-  <li>The mentor has a personal dislike for Junior. It’s hard to tell from just one dialog, but Junior said that he had exactly such a feeling. Should I say that it’s absolutely unacceptable?</li>
-  <li>The mentor doesn’t want to do mentoring. It might sound silly, but not everyone wants to do that. A company should keep an eye on who’s training juniors. If some person doesn’t like such a job, nothing good can get out of it.</li>
-  <li>The mentor is having a hard time doing his own tasks, not to speak of the junior. No matter how difficult it is, you should not transfer your problems, feelings to others. It’s unprofessional at least, but, just humanly, it’s disgusting. Management has to understand that mentoring takes a lot of time and plan accordingly, allocating a fixed buffer of time in the mentor’s schedule.</li>
-  <li>The mentor just can’t teach. A good developer – not necessarily a good teacher. Choosing the right words is worth a lot. What result did the mentor expect? That Junior will think “Oh, what a retard I am, I will work on it”? Such words may discourage, raise doubts. Then people complain about impostor syndrome. Words can kill any desire to ask questions and talk with teammates, because of fear. But the worst part is that a person who put everything on a table may turn around and lose everything. There’s nothing except dumb assertion “you’re stupid, I’m a star”. We’ve all been newbies. Remember how did your colleagues treat you? Did they support you? How did you feel?</li>
-</ol>
-
-<p>None of the options may be an excuse for such a tone of voice. It’s totally unacceptable to talk that way with your subordinates, colleagues. Assert and humiliate others, taking advantage of your position. Nobody has such rights.</p>
-
-<p>If the mentor would use such a tone of voice with a professional of the same level or higher, the conversation would be absolutely different. But newbie closes his eyes on it. He just keeps all the feelings inside. It won’t lead to anything good.</p>
-
-<h3 id="5-give-your-juniors-not-only-routine-tasks">5. Give your Juniors not only routine tasks</h3>
-
-<p>You can’t improve your skills just by doing the same tasks over and over again. Yes, it’s very convenient to pass boring tasks to someone else. But you shouldn’t treat newbies as your slaves. Junior has to train thinking. He needs challenges.</p>
-
-<p>Try to mix in interesting tasks to routine. Remember, things which are boring to you, might be something new for junior. It’s important to keep tasks diverse. Education will go faster that way.</p>
-
-<h3 id="6-give-not-only-negative-feedback">6. Give not only negative feedback</h3>
-
-<p>Remember, there are two tools. Often people miss the second one: positive feedback. Though there’s no universal approach for every person. But usually, everybody likes to get praise. And it can be a great stimulus.</p>
-
-<p>Mentors who are just started to train people often focus attention on mistakes only. And never say or point out where newbie was good at.</p>
-
-<p>Everything should be in balance. Feedback should be objective and balanced as well.</p>
-
-<h3 id="7-let-them-make-mistakes">7. Let them make mistakes</h3>
-
-<p>We learn because of mistakes. When Junior argues with you, you shouldn’t take it personally. If you feel annoyed – it’s your ego.</p>
-
-<p>You shouldn’t just say “Do like this”, without any explanation why – newbie won’t learning anything from that.</p>
-
-<p>Shut your ego down somewhere. Let newbie check his hypothesis or idea. Then he’ll have a perfect example to learn from. You can go through every mistake and objectively tell what exactly was wrong, why, and how to do it right.</p>
-
-<p>Junior will compare “before” and “after”, make conclusions. You’ll see how faster they grow with such an approach.</p>
-
-<hr />
-
-<p>Let’s wrap it up.</p>
-
-<p>Education – is not an easy task. Management should take into account that it will consume a lot of your mentor’s time, thus workload should be adjusted accordingly. It should be a part of a company’s processes.</p>
-
-<p>Not everyone can teach. Assign a mentor role only to those who want it and who’s able to.</p>
-
-<p>Juniors are also humans. They are so unconfident. You should not take advantage of your status and cultivate complexes in them. Remember yourself in their place and give all support their need.</p>
-
-<p>The hiring of juniors is beneficial only if the education process goes fast and effective. Interaction and communication with juniors is different than with colleagues of your level. You should keep it in mind and follow the tips.</p>
-
-<p>If you have a person in your company that fits the role of a mentor, give him or her an opportunity. It’s definitely worth it.</p>]]></content><author><name>Ivan Fateev</name></author><category term="Programming" /><category term="Programming" /><category term="Soft skills" /><category term="Management" /><summary type="html"><![CDATA[I have a student. At the beginning of his path, I helped him to comprehend our craft. Then he got into a quite big company. What they did to him...]]></summary></entry><entry><title type="html">Правильно ли вы растите своих джунов?</title><link href="https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html" rel="alternate" type="text/html" title="Правильно ли вы растите своих джунов?" /><published>2020-04-03T16:00:00-05:00</published><updated>2020-04-03T16:00:00-05:00</updated><id>https://fateev.pro/ru/programming/are-you-growing-your-juniors-right</id><content type="html" xml:base="https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html"><![CDATA[<p>А ничего! Буквально – ничего! В том то и дело.</p>
+<p>What works for me, might not work for you, but still, I believe you might give it a try.</p>]]></content><author><name>Ivan Fateev</name></author><category term="Programming" /><category term="Programming" /><category term="Management" /><summary type="html"><![CDATA[Most of the articles and books tell you how to write a "good code". But in real life, you often find yourself deep in the shit after joining some company or project.]]></summary></entry><entry><title type="html">Правильно ли вы растите своих джунов?</title><link href="https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html" rel="alternate" type="text/html" title="Правильно ли вы растите своих джунов?" /><published>2020-04-03T16:00:00-05:00</published><updated>2020-04-03T16:00:00-05:00</updated><id>https://fateev.pro/ru/programming/are-you-growing-your-juniors-right</id><content type="html" xml:base="https://fateev.pro/ru/programming/are-you-growing-your-juniors-right.html"><![CDATA[<p>А ничего! Буквально – ничего! В том то и дело.</p>
 
 <p>Когда мой ученик рассказал о том, что происходит у него на работе, я не смог больше терпеть, и решился на эту статью. Вдруг получится помочь хоть нескольким людям.</p>
 
@@ -707,7 +615,169 @@ Hiring is always a pain. Searching for a middle developer can take quite a time 
 
 <p>Найм джунов будет выгоден для компании только если этот процесс будет проходить быстро и эффективно. Общение с джунами отличается от общения с коллегами вашего уровня. Это нужно учитывать и следовать советам, которые я описал.</p>
 
-<p>Если у вас в компании есть человек, подходящий на роль ментора, дайте ему возможность. Оно однозначного того стоит.</p>]]></content><author><name>Ivan Fateev</name></author><category term="Programming" /><category term="Programming" /><category term="Soft skills" /><category term="Management" /><summary type="html"><![CDATA[У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите...]]></summary></entry><entry><title type="html">Независимый UI слой — ускоряем разработку UI</title><link href="https://fateev.pro/ru/gamedev/independent-ui-layer.html" rel="alternate" type="text/html" title="Независимый UI слой — ускоряем разработку UI" /><published>2018-11-15T15:00:00-06:00</published><updated>2018-11-15T15:00:00-06:00</updated><id>https://fateev.pro/ru/gamedev/independent-ui-layer</id><content type="html" xml:base="https://fateev.pro/ru/gamedev/independent-ui-layer.html"><![CDATA[<p>Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главных головных болей в повседневной разработке у нас частенько были UI задачи:</p>
+<p>Если у вас в компании есть человек, подходящий на роль ментора, дайте ему возможность. Оно однозначного того стоит.</p>]]></content><author><name>Ivan Fateev</name></author><category term="Programming" /><category term="Programming" /><category term="Soft skills" /><category term="Management" /><summary type="html"><![CDATA[У меня есть ученик. В начале его пути я помогал ему постичь наше ремесло, потом он попал в одну крупную компанию. Что с ним там сделали, вы не поверите...]]></summary></entry><entry><title type="html">Are you growing your juniors right?</title><link href="https://fateev.pro/en/programming/are-you-growing-your-juniors-right.html" rel="alternate" type="text/html" title="Are you growing your juniors right?" /><published>2020-04-03T16:00:00-05:00</published><updated>2020-04-03T16:00:00-05:00</updated><id>https://fateev.pro/en/programming/are-you-growing-your-juniors-right.en</id><content type="html" xml:base="https://fateev.pro/en/programming/are-you-growing-your-juniors-right.html"><![CDATA[<p>Nothing! Literally – nothing. And that’s the point.</p>
+
+<p>When my student told me about what’s happening in his job, I couldn’t take it anymore and decided to write this article. I hope to help at least some people with it.</p>
+
+<p>Let’s look at a couple of problems. Such situations happen not only in our industry. You can find them in any place where they hire interns/beginners.</p>
+
+<h2 id="problem-1-nobody-cares-about-junior">Problem #1: Nobody cares about junior</h2>
+
+<p>Junior worked in a different industry before. It took a long time to decide on a career switch. He learned programming in his spare time. Then he put all stakes on it, quit his old job, and spent several months learning non-stop, living on saved money. Finally, he’s got a new job as an intern programmer, but with a salary much less than he had before.</p>
+
+<p>During the year Junior’s <del>mentors</del> curators changed all the time. They dumbly threw him from one to another, nobody wanted to take care of him.</p>
+
+<p>They didn’t give any meaningful task. Just dumped on him some weird shit, which nobody wanted to deal with.</p>
+
+<p>Later even those shitty tasks came to an end. They said to him to sit and read something, learn yourself.</p>
+
+<p>Then they let him work with some “specific” product. You know, this kind of corporate product which has a really tiny niche. Such experience means nothing on the job market. Nobody else had either desire or experience with it. So he couldn’t even ask anybody to help out.</p>
+
+<p>It was a first programmer job for him, so he couldn’t evaluate whether such a situation is normal or not. Junior was afraid that if he couldn’t figure out something, they would fire him. It depressed him, he had a feeling that he’s wasting time, but there’s nothing to do about that.</p>
+
+<p>He shared it with me, and I recommended to change the job. And he did it.</p>
+
+<h2 id="problem-2-junior-is-trained-by-someone-whos-not-able-to-teach-or-dont-want-to-do-that">Problem #2: Junior is trained by someone who’s not able to teach, or don’t want to do that</h2>
+
+<p>Junior liked the new job. They assigned a specific mentor, which gave appropriate tasks, kept an eye on their status, taught a bit. Junior started to improve his skills.</p>
+
+<p>A couple of months later, the mentor started to behave strangely. In such moments there was a feeling of some personal dislike from his side.</p>
+
+<p>Just look at the dialog below:</p>
+
+<ul>
+  <li>Junior: Mentor, in regards of the task XXX-413, you said: “Change: implement dialog presentation in class RestoreDbAction” - I didn’t get it, What do you mean by “implement”? Now I just made that it calls RestoreDbAction.Confirm instead of IDialogDisplay.Show. Everything else I leave as is, am I right or I missed something?</li>
+  <li>Mentor: It took so long for you to understand. Got it finally?</li>
+  <li>Junior: … so I got it right?</li>
+  <li>Mentor: What?</li>
+  <li>Junior: I needed to use Action.Confirm?</li>
+  <li>Mentor: Of course</li>
+  <li>Mentor: Why didn’t you get it right away? Any questions??</li>
+</ul>
+
+<hr />
+
+<ul>
+  <li>Mentor: Just as I expected, Junior, you didn’t get ANYTHING again. I’m just surprised at how you’re slow-witted….. (sad) I returned the task back to you</li>
+  <li>Junior: But I asked if I got it right</li>
+  <li>Mentor: I also asked. 3 times. And you didn’t get it anyway</li>
+</ul>
+
+<h2 id="why-a-company-needs-juniors">Why a company needs juniors?</h2>
+
+<p>Let’s see what’s the point in growing juniors?</p>
+
+<p>Junior is an investment in the future. Long-term project if you want.</p>
+
+<p>The company gives knowledge and experience, and beginner specialist starts returning investments in the form of completed tasks. So it’s like an effective symbiosis.</p>
+
+<p>Junior is ready to write code just for fun. But if you pay money for it – just perfect.</p>
+
+<p>Faster Junior starts completing real tasks, bring value, more profitable it would be for a company.</p>
+
+<p class="notice--info">Startups rarely hire juniors. Because they need an instant result. For a startup, speed is the most important aspect. Large companies are different. They can afford a slower pace.</p>
+
+<p>There are two big points to hire juniors:</p>
+
+<ol>
+  <li><strong>Cheap workforce</strong>: they do not ask much. And if you trained your junior quickly, then you get a fair specialist which brings value, familiar with the company’s processes, and does not cost much.</li>
+  <li>
+    <p><strong>Predictable source of advanced specialists</strong>.
+Hiring is always a pain. Searching for a middle developer can take quite a time and effort. Even if you managed to get one through the interview, you can’t predict how he will show himself. In case of a mistake, the company suffers losses.</p>
+
+    <p>You can hire a bunch of juniors instead. In this case, the probability to find a good fit is much higher. Good employer spots juniors which grew enough, give them a raise and motivate for further growth.</p>
+
+    <p>So the company gets a new grown developer, with known performance, familiar with processes, and so on. It’s a win-win situation.</p>
+
+    <p>If such an approach is arranged in a proper pipeline, then the company can grow safely and stably.</p>
+  </li>
+</ol>
+
+<h2 id="a-bunch-of-simple-tips-on-growing-a-junior">A bunch of simple tips on growing a Junior</h2>
+<h3 id="1-do-not-hire-juniors-if-nobody-can-teach-them">1. Do not hire juniors if nobody can teach them</h3>
+
+<p>What can we understand from problem #1? The company hired a junior, though nobody could (or want) to teach him. He wanted to learn. Chased any opportunity to do that.</p>
+
+<p>But the employer didn’t care about beginner developers. Our Junior didn’t bring any value to the company, didn’t grow as professional, yet got his salary. It’s a lose-lose situation.</p>
+
+<p>Juniors need constant attention and supervision. They are like children who are learning to walk. At first, they are clumsy, can’t take a step. But every time they get better in it. One day they walk on their own, confidently.</p>
+
+<p>What could happen if you left them alone, while they’re learning? Something bad will likely happen. They could get hurt, crawl somewhere they shouldn’t, even break something. And this is exactly what we have in problem #1.</p>
+
+<p>The first stage of junior’s training is the toughest one. It requires a lot of time, emotional efforts, and patience. A company needs to understand, the one who mentors will work slower. But in the long term, it will pay off.</p>
+
+<p>If you’re not ready for such cost, you should not hire juniors. Don’t waste the company’s resources and people’s time. Please.</p>
+
+<p>That’s it with problem #1, let’s move on to problem #2.</p>
+
+<h3 id="2-dont-pass-the-buck">2. Don’t pass the buck</h3>
+
+<p>In dialog from the problem #2 mentor is the one who’s not right. Junior is not qualified enough to formalize a task, find out missing requirements, design a decent solution, etc.</p>
+
+<p>The mentor is the only one to blame that junior didn’t get the task right. But instead of fixing this situation he just passed the buck.</p>
+
+<h3 id="3-for-juniors-you-should-assign-tasks-which-are-detailed-as-much-as-possible">3. For juniors, you should assign tasks which are detailed as much as possible</h3>
+
+<p>Mentor has to detail tasks as much as possible. Alternatively, if you want a junior to think more, you can just give a clue of the right direction. But you shouldn’t make an “Intuition” show out of it.</p>
+
+<p>It’s not necessary to give a task solution right away, but the task description should be detailed enough, to exclude any ambiguity.</p>
+
+<p>If you have any doubts, talk with Junior again and make sure, that you both are on the same page. And one more thing: you should talk, not write in the chat. It helps a lot!</p>
+
+<h3 id="4-do-not-assert-yourself-by-hurting-others">4. Do not assert yourself by hurting others</h3>
+
+<p>Oh, my rant is going to be long for this one. Because such examples give me a butthurt.</p>
+
+<p>In the dialog above mentor was really rude and unprofessional with Junior. I can guess that:</p>
+
+<ol>
+  <li>The mentor has a personal dislike for Junior. It’s hard to tell from just one dialog, but Junior said that he had exactly such a feeling. Should I say that it’s absolutely unacceptable?</li>
+  <li>The mentor doesn’t want to do mentoring. It might sound silly, but not everyone wants to do that. A company should keep an eye on who’s training juniors. If some person doesn’t like such a job, nothing good can get out of it.</li>
+  <li>The mentor is having a hard time doing his own tasks, not to speak of the junior. No matter how difficult it is, you should not transfer your problems, feelings to others. It’s unprofessional at least, but, just humanly, it’s disgusting. Management has to understand that mentoring takes a lot of time and plan accordingly, allocating a fixed buffer of time in the mentor’s schedule.</li>
+  <li>The mentor just can’t teach. A good developer – not necessarily a good teacher. Choosing the right words is worth a lot. What result did the mentor expect? That Junior will think “Oh, what a retard I am, I will work on it”? Such words may discourage, raise doubts. Then people complain about impostor syndrome. Words can kill any desire to ask questions and talk with teammates, because of fear. But the worst part is that a person who put everything on a table may turn around and lose everything. There’s nothing except dumb assertion “you’re stupid, I’m a star”. We’ve all been newbies. Remember how did your colleagues treat you? Did they support you? How did you feel?</li>
+</ol>
+
+<p>None of the options may be an excuse for such a tone of voice. It’s totally unacceptable to talk that way with your subordinates, colleagues. Assert and humiliate others, taking advantage of your position. Nobody has such rights.</p>
+
+<p>If the mentor would use such a tone of voice with a professional of the same level or higher, the conversation would be absolutely different. But newbie closes his eyes on it. He just keeps all the feelings inside. It won’t lead to anything good.</p>
+
+<h3 id="5-give-your-juniors-not-only-routine-tasks">5. Give your Juniors not only routine tasks</h3>
+
+<p>You can’t improve your skills just by doing the same tasks over and over again. Yes, it’s very convenient to pass boring tasks to someone else. But you shouldn’t treat newbies as your slaves. Junior has to train thinking. He needs challenges.</p>
+
+<p>Try to mix in interesting tasks to routine. Remember, things which are boring to you, might be something new for junior. It’s important to keep tasks diverse. Education will go faster that way.</p>
+
+<h3 id="6-give-not-only-negative-feedback">6. Give not only negative feedback</h3>
+
+<p>Remember, there are two tools. Often people miss the second one: positive feedback. Though there’s no universal approach for every person. But usually, everybody likes to get praise. And it can be a great stimulus.</p>
+
+<p>Mentors who are just started to train people often focus attention on mistakes only. And never say or point out where newbie was good at.</p>
+
+<p>Everything should be in balance. Feedback should be objective and balanced as well.</p>
+
+<h3 id="7-let-them-make-mistakes">7. Let them make mistakes</h3>
+
+<p>We learn because of mistakes. When Junior argues with you, you shouldn’t take it personally. If you feel annoyed – it’s your ego.</p>
+
+<p>You shouldn’t just say “Do like this”, without any explanation why – newbie won’t learning anything from that.</p>
+
+<p>Shut your ego down somewhere. Let newbie check his hypothesis or idea. Then he’ll have a perfect example to learn from. You can go through every mistake and objectively tell what exactly was wrong, why, and how to do it right.</p>
+
+<p>Junior will compare “before” and “after”, make conclusions. You’ll see how faster they grow with such an approach.</p>
+
+<hr />
+
+<p>Let’s wrap it up.</p>
+
+<p>Education – is not an easy task. Management should take into account that it will consume a lot of your mentor’s time, thus workload should be adjusted accordingly. It should be a part of a company’s processes.</p>
+
+<p>Not everyone can teach. Assign a mentor role only to those who want it and who’s able to.</p>
+
+<p>Juniors are also humans. They are so unconfident. You should not take advantage of your status and cultivate complexes in them. Remember yourself in their place and give all support their need.</p>
+
+<p>The hiring of juniors is beneficial only if the education process goes fast and effective. Interaction and communication with juniors is different than with colleagues of your level. You should keep it in mind and follow the tips.</p>
+
+<p>If you have a person in your company that fits the role of a mentor, give him or her an opportunity. It’s definitely worth it.</p>]]></content><author><name>Ivan Fateev</name></author><category term="Programming" /><category term="Programming" /><category term="Soft skills" /><category term="Management" /><summary type="html"><![CDATA[I have a student. At the beginning of his path, I helped him to comprehend our craft. Then he got into a quite big company. What they did to him...]]></summary></entry><entry><title type="html">Независимый UI слой — ускоряем разработку UI</title><link href="https://fateev.pro/ru/gamedev/independent-ui-layer.html" rel="alternate" type="text/html" title="Независимый UI слой — ускоряем разработку UI" /><published>2018-11-15T15:00:00-06:00</published><updated>2018-11-15T15:00:00-06:00</updated><id>https://fateev.pro/ru/gamedev/independent-ui-layer</id><content type="html" xml:base="https://fateev.pro/ru/gamedev/independent-ui-layer.html"><![CDATA[<p>Это первая статья из цикла “Ускоряем разработку UI”. В этом цикле я хочу поднять проблему, которая у нас остро стояла на нескольких проектах. Одной из главных головных болей в повседневной разработке у нас частенько были UI задачи:</p>
 
 <ol>
   <li>UI, как правило, пишется не изолировано, поэтому протестировать его, например, на отдельной сцене, может быть проблематично</li>
@@ -1726,108 +1796,4 @@ Got token: user_stub_token
   <li><a href="https://github.com/sschmid/Entitas-CSharp">Entitas: Entity Component System Framework specifically made for C# &amp; Unity</a></li>
   <li><a href="https://habr.com/post/343778/">Шаблон проектирования Entity-Component-System — реализация и пример игры</a></li>
   <li><a href="http://www.davidpol.com/2018/03/28/survival-shooter-ecs/">Survival Shooter using Unity’s Entity Component System</a></li>
-</ul>]]></content><author><name>Ivan Fateev</name></author><category term="Gamedev" /><category term="Gamedev" /><category term="Architecture" /><category term="Patterns" /><summary type="html"><![CDATA[Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.]]></summary></entry><entry><title type="html">Оффлайн режим в клиент-серверных приложениях</title><link href="https://fateev.pro/ru/gamedev/offline-mode-in-client-server-apps.html" rel="alternate" type="text/html" title="Оффлайн режим в клиент-серверных приложениях" /><published>2018-07-11T09:33:30-05:00</published><updated>2018-07-11T09:33:30-05:00</updated><id>https://fateev.pro/ru/gamedev/offline-mode</id><content type="html" xml:base="https://fateev.pro/ru/gamedev/offline-mode-in-client-server-apps.html"><![CDATA[<p>Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют различные социальные составляющие: кланы, чаты, список друзей, да что угодно. И каждый пук уходит в аналитику.</p>
-
-<p>Конечно же, сетап команды предполагает два отдельных юнита, которые занимаются своей частью: одни – сервером, другие – клиентом. Есть несколько вариантов, как ведется разработка.</p>
-
-<h2 id="параллельная-разработка-по-контракту">Параллельная разработка по контракту</h2>
-
-<p>На этапе планирования задачи, команды договариваются о некоем контракте. Клиентские разработчики говорят что им необходимо. Серверные разработчики прикидывают как это сделать. В конечном счете договариваются о неком API. И каждый уходит пилить свою часть.</p>
-
-<p>Плюсы:</p>
-
-<ul>
-  <li>Ускорение за счет параллельной разработки</li>
-  <li>Работа ведется относительно независимо, сходясь только в точке контракта</li>
-</ul>
-
-<p>Минусы:</p>
-
-<ul>
-  <li>Требует опытной комманды</li>
-  <li>Требует налаженной коммуникации между юнитами</li>
-</ul>
-
-<p>Немного подробнее про минусы. Если команда не очень опытная, или в коммуникация между юнитами не настроена как следует, то после завершения работы над фичой одной из команд, обычно необходима еще несколько итераций, так как невозможно t</p>
-
-<h2 id="ведущийведомый">Ведущий/ведомый</h2>
-
-<p>Один из юнитов в разработки может быть ведущим, и работать на опережение. Этот юнит должен быть на острие бизнес-требований. Обычно это фронтэнд часть, но зависит от продукта.</p>
-
-<p>Итак, если лидирует фронтэнд, то как только этот юнит закончил свою часть, то у них должно быть четкое понимание того, что им нужно от бэкэнда. То есть они могут предоставить детальные требования для серверной команды.</p>
-
-<p>Плюсы:</p>
-
-<ul>
-  <li>Меньше издержек из-за меняющихся требований</li>
-  <li>Более быстрые итерации, так как все “пилоты” делаются одним юнитом</li>
-  <li>При переходе к следующему этапу разработки, на руках есть почти финальные требования и воркфлоу</li>
-</ul>
-
-<p>Минусы:</p>
-
-<ul>
-  <li>Разработка ведется последовательно</li>
-  <li>Нужно подготовить разработку таким образом, чтобы разработка могла вестись независимо от другого юнита</li>
-</ul>
-
-<p>По моему опыту данный подход работает лучше. Например, разрабатывая фичу для игры, еще даже не известно пойдет ли фича в релиз, или ее выкинут на этапе прототипа.</p>
-
-<p>Поэтому разрабатывать функционал на сервере, до того как фичу опробовали на клиенте, может быть пустой тратой времени.</p>
-
-<p>Встает вопрос: как же разрабатывать фичу, которая завязана на сервер, но без сервера?</p>
-
-<p>Ответ прост: сделать оффлайн режим с помощью заглушек.</p>
-
-<h2 id="оффлайн-режим">Оффлайн режим</h2>
-
-<p>Что я понимаю под оффлайн режимом? Я не имею ввиду, что игра должна поддерживать оффлайн геймплей. Если это не заложено в дизайн изначально, то переводить все на поддержку оффлайна – безумство.</p>
-
-<p>Под оффлайн режимом я имею ввиду специальный билд (или настройку для игры), которая позволяет разработчику полностью выключить любые зависимости от внешних сервисов.</p>
-
-<p>Это можно сделать кучей способов. Я расскажу про тот, который использовал я.</p>
-
-<p>Я уже расскзывал про то как избавиться от лишних зависимостей в коде <a href="https://medium.com/@poisonousjohn/%D0%B0%D0%BD%D1%82%D0%B8%D0%BF%D0%B0%D1%82%D1%82%D0%B5%D1%80%D0%BD%D1%8B-%D0%B2-%D0%B8%D0%B3%D1%80%D0%BE%D0%B2%D0%BE%D0%B9-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5-%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B2-%D0%BA%D0%BE%D0%B4%D0%B5-1bd879ef46ad">в этой статье</a>.</p>
-
-<p>Если вы уже используете Dependency Injection, или ваши зависимости представлены в виде интерфейсов, то тут все совсем просто.</p>
-
-<p>Все взаимодействие с сервером вы пускаете через Фасад (Facade). При билде делается настройка “isOffline”, и если она включена, подставляются заглушки для всех сетевых сервисов.</p>
-
-<p><a href="/imgs/offline-mode-facade.png"><img src="/imgs/offline-mode-facade.png" alt="Offline mode class diagram" /></a></p>
-
-<p>На диаграмме я показал, что API может быть разделен на разные компоненты, при этом фасад их скрывает. Каждый из компонентов имеет оффлайн заглушку.</p>
-
-<p>Для заглушек есть несколько вариантов поведения:</p>
-
-<ol>
-  <li>Возвращать один и тот же ответ</li>
-  <li>Реализовывать простую бизнес логику</li>
-</ol>
-
-<p>Первый вариант совсем бесполезный. Он не поможет погонять какую-либо фичу в оффлайне. Второй же вариант вполне годный. Но хранить стейт, пока не убьешь приложение – тоже не очень полезно. Поэтому отдельно я вынес заглушку для сериализации стейта, которую могут использовать стабы.</p>
-
-<p>Такой подход позволить написать и детально потестить бизнес логику без всякого участия серверных разработчиков и привязки к какой-либо инфраструктуре. Плюс ко всему, вы можете писать код где угодно, даже без доступа к интернету (в самолете?).</p>
-
-<p>Когда код будет завершен с клиентской стороны, серверные разработчики могут смотреть в оффлайн имплементацию и иметь представление о том, что приложение ожидает от серверного API и конкретно как его использует.</p>
-
-<p>Конечно у оффлайн режима есть и свои минусы:</p>
-
-<ul>
-  <li>Нужно поддерживать две реализации: онлайн и оффлайн</li>
-  <li>Легаси приложениям может быть сложно переехать на оффлайн режим</li>
-  <li>Если бизнес логика сложна, а на клиенте ее присутствие в продакшене не планируется, то может быть очень накладно делать ее на клиенте, тут уж надо искать обходные пути</li>
-</ul>
-
-<h2 id="гибридный-режим">Гибридный режим</h2>
-
-<p>Есть еще один вариант, когда полный оффлайн режим реализовывать очень проблемно. Это гибридный режим. Под таким режимом я понимаю, что все API работает как обычно, а при реализации новой фичи, часть, завязанная на сервер стаббится. Как только с реализацией фичи на клиенте закончено, стаб убирается и тестится с сервером. Наличие юнит и интеграционных тестов позволяет довольно быстро все проверить.</p>
-
-<p>Такой вариант не очень гибкий. Наверняка им многие пользуются. Тем не менее, некоторые делают стабы прямо с серверной стороны, что тоже требует лишних телодвижений, передеплоев и т.д.</p>
-
-<h2 id="подводим-итоги">Подводим итоги</h2>
-
-<p>Скорость итераций при работе над фичами невероятно важна. Я описал тот вариант работы, который эффективен для нашей команды. Оффлайн режим позволил убрать лишние итерации при изменении контракта, а так же избавить от лишней серверной разработки, когда фичи зарезаются.</p>
-
-<p>У оффлайн режима есть много всяких побочных плюшек, таких как локальное сохранение прогресса на устройстве. Конечно же у такого подхода есть и недостатки.</p>
-
-<p>Надеюсь статья натолкнула вас на интересные мысли :). Пишите, всегда рад поболтать и услышать про другие решения, которые работают для вас.</p>]]></content><author><name>Ivan Fateev</name></author><category term="Gamedev" /><category term="Gamedev" /><category term="Architecture" /><category term="Client-server" /><category term="Patterns" /><summary type="html"><![CDATA[Игры, да и приложения в целом, часто подразумевают наличие механик, завязанных на сервер. Сейчас не часто встретишь оффлайн игру. Как минимум, игры имеют различные социальные составляющие: кланы, чаты, список друзей, да что угодно. И каждый пук уходит в аналитику.]]></summary></entry></feed>
+</ul>]]></content><author><name>Ivan Fateev</name></author><category term="Gamedev" /><category term="Gamedev" /><category term="Architecture" /><category term="Patterns" /><summary type="html"><![CDATA[Использование паттерна “Компонент” – это единственная альтернатива не потеряться среди леса из деревьев наследования. Я поясню.]]></summary></entry></feed>

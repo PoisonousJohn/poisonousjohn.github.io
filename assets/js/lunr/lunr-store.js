@@ -232,4 +232,10 @@ var store = [{
         "tags": ["Management","Processes"],
         "url": "/en/startup-challenges/ensuring-the-quality-appium.html",
         "teaser": "/assets/images/bug-prioritization-matrix.png"
+      },{
+        "title": "Испытательный срок для работодателя. Или как понять в какую компанию ты попал?",
+        "excerpt":"Работать в среде, где вам что-то не нравится — чревато выгоранием и другими проблемами. Несколько простых советов помогут вам определиться с решением. Как относятся к новичкам? Не зависимо от вашего уровня опыта — после трудоустройства вам должны помочь освоиться. Обычно, на испытательный срок новичкам выделяется куратор. Тот кто будет отвечать...","categories": ["Career"],
+        "tags": ["Career"],
+        "url": "/ru/probation-period-for-employer.html",
+        "teaser": "/assets/images/workplace.avif"
       }]
