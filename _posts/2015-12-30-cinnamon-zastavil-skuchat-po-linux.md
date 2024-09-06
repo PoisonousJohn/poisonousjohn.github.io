@@ -4,7 +4,7 @@ title: Cinnamon заставил скучать по Linux
 date: 2015-12-30T00:21:30+00:00
 
 
-guid: http://fateev.pro/?p=366
+guid: http://fateev.me/?p=366
 permalink: /chronicles/cinnamon-zastavil-skuchat-po-linux.html
 vkapi_comments:
   - "1"
@@ -24,6 +24,6 @@ tags:
 
 Так выглядит мой рабочий стол:
 
-<a href="http://fateev.pro/wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346.png" rel="attachment wp-att-367"><img class="alignleft size-medium_large wp-image-367" src="http://fateev.pro/wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346-768x252.png" alt="Screenshot from 2015-12-30 00:13:46" width="768" height="252" /></a>
+<a href="http://fateev.me/wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346.png" rel="attachment wp-att-367"><img class="alignleft size-medium_large wp-image-367" src="http://fateev.me/wp-content/uploads/2015/12/Screenshot-from-2015-12-30-001346-768x252.png" alt="Screenshot from 2015-12-30 00:13:46" width="768" height="252" /></a>
 
 Cinnamon поддерживает различные расширения. Крайне полезным для себя я нашел **gTile**, позволяющий удобно позиционировать окна по хоткеям. Хотя и сам cinnamon позволяет Win+arrows позиционировать окна. Так же полезная настройка - убрать title bar при максимизировании окна, что экономит прилично места на экране.

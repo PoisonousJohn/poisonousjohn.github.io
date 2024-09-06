@@ -4,7 +4,7 @@ title: 'Smiley Boom &#8211; первый крупный релиз'
 date: 2014-06-02T12:52:50+00:00
 
 
-guid: http://fateev.pro/?p=301
+guid: http://fateev.me/?p=301
 permalink: /chronicles/smiley-boom-perviy-krupniy-reliz.html
 dsq_thread_id:
   - "6119440949"
@@ -16,7 +16,7 @@ tags:
   - gamedev
   - mobile
 ---
-<a href="http://fateev.pro/wp-content/uploads/2014/04/smileyBoom.png"><img class="alignleft  wp-image-302" title="smileyBoom" src="http://fateev.pro/wp-content/uploads/2014/04/smileyBoom-300x300.png" alt="" width="180" height="180" /></a>
+<a href="http://fateev.me/wp-content/uploads/2014/04/smileyBoom.png"><img class="alignleft  wp-image-302" title="smileyBoom" src="http://fateev.me/wp-content/uploads/2014/04/smileyBoom-300x300.png" alt="" width="180" height="180" /></a>
 
 Мы наконец-то зарелизили нашу игру <a href="http://www.game-insight.com/ru/games/smiley-boom">Smiley Boom</a>:
 

@@ -4,7 +4,7 @@ title: 'SonataAdminBundle: как добавить произвольную ст
 date: 2012-09-14T01:33:24+00:00
 
 
-guid: http://fateev.pro/?p=99
+guid: http://fateev.me/?p=99
 permalink: /symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html
 dsq_thread_id:
   - "6095488605"
@@ -61,7 +61,7 @@ tags:
 Первый action предназначен для работы с конкретной сущностью, пример получения самой сущности взят из стандартного editAction().
 
 Второй action предназначен для вывода json, к счастью в сонате предусмотрен соответствующий метод.
-<blockquote>Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в <a title="Архитектура Sonata Admin Bundle" href="http://fateev.pro/symfony-sonata/arxitektura-sonata-admin-bundle.html">другой статье</a>.</blockquote>
+<blockquote>Напомню, что контроллер указывается в аргументах, в описании сервиса админ класса. Более подробно об этом я писал в <a title="Архитектура Sonata Admin Bundle" href="http://fateev.me/symfony-sonata/arxitektura-sonata-admin-bundle.html">другой статье</a>.</blockquote>
 &nbsp;Ну и последний шаг - создание шаблона для страницы. Если страницы без кастомного дизайна, и вы намерены придерживаться общего стиля Sonata, то вам необходимо унаследовать стандартный шаблон сонаты:
 
 {% highlight php %}\{\% extends 'SonataAdminBundle:Core:dashboard.html.twig' %}

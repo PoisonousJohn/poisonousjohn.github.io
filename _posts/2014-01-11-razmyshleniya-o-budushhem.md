@@ -4,7 +4,7 @@ title: Размышления о будущем
 date: 2014-01-11T22:51:27+00:00
 
 
-guid: http://fateev.pro/?p=262
+guid: http://fateev.me/?p=262
 permalink: /chronicles/razmyshleniya-o-budushhem.html
 vkapi_comments:
   - "1"
@@ -17,7 +17,7 @@ header:
 categories:
   - Хроники
 ---
-<img class="alignleft size-full wp-image-275" title="Paper-Money-icon" src="http://fateev.pro/wp-content/uploads/2014/01/Paper-Money-icon.png" alt="" width="256" height="256" />
+<img class="alignleft size-full wp-image-275" title="Paper-Money-icon" src="http://fateev.me/wp-content/uploads/2014/01/Paper-Money-icon.png" alt="" width="256" height="256" />
 
 Я живу в Москве уже почти 3 года, переехал сюда из Тулы, это 200 км от Москвы, два с половиной часа на поезде, не так уж и далеко. Я встретил свою любовь, она живет в Москве, потому и переехал. Сразу устроился web-программистом, на довольно скромную по меркам Москвы зарплату. Денег мне хватало, я снимал квартиру с друзьями. Дорога на работу занимала около получаса. Так я проработал год.
 

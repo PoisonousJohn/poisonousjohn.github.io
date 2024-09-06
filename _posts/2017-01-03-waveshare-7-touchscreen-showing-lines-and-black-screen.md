@@ -4,7 +4,7 @@ title: 'Waveshare 7&#8243; touchscreen showing lines and black screen'
 date: 2017-01-03T15:14:30+00:00
 
 
-guid: http://fateev.pro/?p=389
+guid: http://fateev.me/?p=389
 permalink: /iot/waveshare-7-touchscreen-showing-lines-and-black-screen.html
 vkapi_comments:
   - "1"
@@ -21,7 +21,7 @@ tags:
   - IoT
   - Raspberry Pi
 ---
-<a href="http://fateev.pro/wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg" rel="attachment wp-att-390"><img class="alignleft wp-image-390 size-full" src="http://fateev.pro/wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg" alt="Waveshare touchscreen 7inch" width="300" height="225" /></a>I've recently bought a waveshare 7 inch touchscreen, which didn't work out of the box. It comes with custom raspbian image, which isn't handy because you can't upgrade so easily. So actually this display is able to work on stock raspbian with slight modifications to config.txt as you can see below.
+<a href="http://fateev.me/wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg" rel="attachment wp-att-390"><img class="alignleft wp-image-390 size-full" src="http://fateev.me/wp-content/uploads/2017/01/7inch-HDMI-LCD-B_l.jpg" alt="Waveshare touchscreen 7inch" width="300" height="225" /></a>I've recently bought a waveshare 7 inch touchscreen, which didn't work out of the box. It comes with custom raspbian image, which isn't handy because you can't upgrade so easily. So actually this display is able to work on stock raspbian with slight modifications to config.txt as you can see below.
 
 {% highlight config %}
 # set current over USB to 1.2A

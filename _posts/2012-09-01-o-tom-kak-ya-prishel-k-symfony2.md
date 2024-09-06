@@ -4,7 +4,7 @@ title: О том, как я пришел к Symfony2
 date: 2012-09-01T23:44:44+00:00
 
 
-guid: http://fateev.pro/?p=47
+guid: http://fateev.me/?p=47
 permalink: /chronicles/o-tom-kak-ya-prishel-k-symfony2.html
 dsq_thread_id:
   - "6095534844"
@@ -20,7 +20,7 @@ tags:
 ---
 
 
-<a href="http://fateev.pro/wp-content/uploads/2012/09/logo_symfony_header.png"><img class="size-full wp-image-49 alignleft" title="logo_symfony_header" src="http://fateev.pro/wp-content/uploads/2012/09/logo_symfony_header.png" alt="" width="240" height="60" /></a>Это что-то вроде вступительного слова, а также первый из серии постов про мой инструментарий, про те вещи с которыми я работаю.
+<a href="http://fateev.me/wp-content/uploads/2012/09/logo_symfony_header.png"><img class="size-full wp-image-49 alignleft" title="logo_symfony_header" src="http://fateev.me/wp-content/uploads/2012/09/logo_symfony_header.png" alt="" width="240" height="60" /></a>Это что-то вроде вступительного слова, а также первый из серии постов про мой инструментарий, про те вещи с которыми я работаю.
 
 За всю свою не очень долгую карьеру программиста, на чем только я не пробовал кодить. Начиналось все безобидно, в колледже, я захотел сделать свою персональную страничку, тогда это считалось круто, все дела. И я потихоньку начал гуглить на тему, как же это все делается. В то время, как раз, web стремительно развивался и PHP имел широкое распространение.&nbsp;
 

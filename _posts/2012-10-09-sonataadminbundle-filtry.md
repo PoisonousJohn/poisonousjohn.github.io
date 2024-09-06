@@ -4,7 +4,7 @@ title: 'SonataAdminBundle: фильтры'
 date: 2012-10-09T01:31:41+00:00
 
 
-guid: http://fateev.pro/?p=109
+guid: http://fateev.me/?p=109
 permalink: /symfony-sonata/sonataadminbundle-filtry.html
 dsq_thread_id:
   - "6094667200"
@@ -99,7 +99,7 @@ public function getCodesFilter($queryBuilder, $alias, $field, $value)
 </ul>
 <div>В итоге, мы получаем миловидный (благодаря GenemuFormBundle) фильтр с произвольной логикой</div>
 <div>Так выглядят фильтры на одном из проектов:</div>
-<div><a href="http://fateev.pro/wp-content/uploads/2012/10/Screen-Shot-2012-10-09-at-1.32.37-AM.png"><img title="Screen Shot 2012-10-09 at 1.32.37 AM" src="http://fateev.pro/wp-content/uploads/2012/10/Screen-Shot-2012-10-09-at-1.32.37-AM.png" alt="" width="910" height="238" /></a></div>
+<div><a href="http://fateev.me/wp-content/uploads/2012/10/Screen-Shot-2012-10-09-at-1.32.37-AM.png"><img title="Screen Shot 2012-10-09 at 1.32.37 AM" src="http://fateev.me/wp-content/uploads/2012/10/Screen-Shot-2012-10-09-at-1.32.37-AM.png" alt="" width="910" height="238" /></a></div>
 <div>&nbsp;</div>
 <div>3. Есть и третий способ - вынести фильтр в полностью самостоятельный сервис. Актуально, когда этот фильтр часто встречается в вашем проекте. Рассмотрю этот способ в отдельной статье.</div>
 <div>&nbsp;</div>

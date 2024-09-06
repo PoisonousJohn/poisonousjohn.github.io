@@ -4,7 +4,7 @@ title: 'Symfony2: Авторизация через соц. сети VKontakte, 
 date: 2013-04-10T14:35:21+00:00
 
 
-guid: http://fateev.pro/?p=188
+guid: http://fateev.me/?p=188
 permalink: /symfony2/symfony2-avtorizaciya-cherez-soc-seti-vkontakte-facebook-odnoklassniki-oauth-2-0.html
 dsq_thread_id:
   - "6095496210"

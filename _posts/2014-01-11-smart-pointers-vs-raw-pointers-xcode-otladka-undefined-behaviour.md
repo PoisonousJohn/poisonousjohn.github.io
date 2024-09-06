@@ -4,7 +4,7 @@ title: 'Smart pointers vs raw pointers; XCode: отладка undefined behaviou
 date: 2014-01-11T22:44:28+00:00
 
 
-guid: http://fateev.pro/?p=264
+guid: http://fateev.me/?p=264
 permalink: /c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html
 dsq_thread_id:
   - "6600060489"
@@ -18,7 +18,7 @@ tags:
   - xcode
 ---
 <h2>Скорость против удобства или Smart pointers не для игр</h2>
-<img class="alignleft size-full wp-image-269" title="icon-lg-speed" src="http://fateev.pro/wp-content/uploads/2014/01/icon-lg-speed.png" alt="" width="210" height="210" />
+<img class="alignleft size-full wp-image-269" title="icon-lg-speed" src="http://fateev.me/wp-content/uploads/2014/01/icon-lg-speed.png" alt="" width="210" height="210" />
 
 Очень много времени потратил на оптимизацию, все никак не мог понять, что же мне так сильно все тормозит, рендер вроде уже оптимизировал,
 
@@ -31,9 +31,9 @@ tags:
 
 Итак, чтобы иметь возможность отслеживать доступ к уже освобожденной памяти, либо двойное удаление pointer'ов, ну и вообще следить за целостностью кучи, достаточно всего лишь отредактировать <strong>Scheme</strong> и установить галку "<strong>Enable Guard Malloc"</strong> на вкладке <strong>Diagnostics</strong>:
 
-<a href="http://fateev.pro/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.17.png"><img class="alignleft size-medium wp-image-266" title="Снимок экрана 2014-01-11 в 22.29.17" src="http://fateev.pro/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.17-300x168.png" alt="" width="300" height="168" /></a>
+<a href="http://fateev.me/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.17.png"><img class="alignleft size-medium wp-image-266" title="Снимок экрана 2014-01-11 в 22.29.17" src="http://fateev.me/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.17-300x168.png" alt="" width="300" height="168" /></a>
 
-<a href="http://fateev.pro/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.28.png"><img class="alignleft size-medium wp-image-265" title="Снимок экрана 2014-01-11 в 22.29.28" src="http://fateev.pro/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.28-300x203.png" alt="" width="300" height="203" /></a>
+<a href="http://fateev.me/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.28.png"><img class="alignleft size-medium wp-image-265" title="Снимок экрана 2014-01-11 в 22.29.28" src="http://fateev.me/wp-content/uploads/2014/01/Снимок-экрана-2014-01-11-в-22.29.28-300x203.png" alt="" width="300" height="203" /></a>
 
 <strong><span style="color: #ff0000;">К сожалению, у данного метода есть свои ограничения, он будет работать на iOS только в симуляторе, но оно и понятно почему.</span></strong>
 

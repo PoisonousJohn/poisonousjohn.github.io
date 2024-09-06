@@ -4,7 +4,7 @@ title: Genemu Form Bundle
 date: 2012-09-06T22:25:12+00:00
 
 
-guid: http://fateev.pro/?p=83
+guid: http://fateev.me/?p=83
 permalink: /symfony-sonata/genemu-form-bundle.html
 dsq_thread_id:
   - "6095485627"
@@ -56,6 +56,6 @@ GenemuFormBundle, на мой взгляд один из must have бандло�
 
 И вот как примерно это выглядит в форме:
 
-<a href="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-06-at-10.18.54-PM.png"><img class="alignnone size-full wp-image-85" title="Screen Shot 2012-09-06 at 10.18.54 PM" src="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-06-at-10.18.54-PM.png" alt="" width="557" height="198" /></a>
+<a href="http://fateev.me/wp-content/uploads/2012/09/Screen-Shot-2012-09-06-at-10.18.54-PM.png"><img class="alignnone size-full wp-image-85" title="Screen Shot 2012-09-06 at 10.18.54 PM" src="http://fateev.me/wp-content/uploads/2012/09/Screen-Shot-2012-09-06-at-10.18.54-PM.png" alt="" width="557" height="198" /></a>
 
 Также в бандле есть тип поля для загрузки файлов, но я пока его еще не тестил, не приходилось =) но думаю, что все должно быть на уровне.

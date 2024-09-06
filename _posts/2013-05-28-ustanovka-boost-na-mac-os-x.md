@@ -4,7 +4,7 @@ title: Установка Boost на Mac OS X
 date: 2013-05-28T12:50:57+00:00
 
 
-guid: http://fateev.pro/?p=201
+guid: http://fateev.me/?p=201
 permalink: /c_plus_plus/ustanovka-boost-na-mac-os-x.html
 dsq_thread_id:
   - "6095032898"
@@ -16,7 +16,7 @@ tags:
   - boost
   - c++
 ---
-<a href="http://fateev.pro/wp-content/uploads/2013/05/boost.png"><img class="alignleft size-full wp-image-202" title="boost" src="http://fateev.pro/wp-content/uploads/2013/05/boost.png" alt="" width="277" height="86" /></a> Руки наконец дошли до <strong>boost</strong>. Самый простой способ поставить boost, на мой взгляд, это через mac ports, выполнив команду:
+<a href="http://fateev.me/wp-content/uploads/2013/05/boost.png"><img class="alignleft size-full wp-image-202" title="boost" src="http://fateev.me/wp-content/uploads/2013/05/boost.png" alt="" width="277" height="86" /></a> Руки наконец дошли до <strong>boost</strong>. Самый простой способ поставить boost, на мой взгляд, это через mac ports, выполнив команду:
 
 <strong>sudo port install boost</strong>
 

@@ -4,7 +4,7 @@ title: 'Symfony2: Event system'
 date: 2013-01-13T19:11:44+00:00
 
 
-guid: http://fateev.pro/?p=136
+guid: http://fateev.me/?p=136
 permalink: /php/symfony2-event-system.html
 dsq_thread_id:
   - "6095492892"
@@ -20,7 +20,7 @@ categories:
 
 Итак, в чем заключается идея системы событий? В общих чертах, все похоже на паттерн Publisher/Subscriber:
 
-<a href="http://fateev.pro/wp-content/uploads/2013/01/PublishSubscribeSolution.gif"><img class="alignnone size-full wp-image-138" title="Publisher/Subscriber pattern" src="http://fateev.pro/wp-content/uploads/2013/01/PublishSubscribeSolution.gif" alt="" width="504" height="330" /></a>
+<a href="http://fateev.me/wp-content/uploads/2013/01/PublishSubscribeSolution.gif"><img class="alignnone size-full wp-image-138" title="Publisher/Subscriber pattern" src="http://fateev.me/wp-content/uploads/2013/01/PublishSubscribeSolution.gif" alt="" width="504" height="330" /></a>
 
 Все довольно просто, рассмотрим это на примере symfony2:
 <ol>

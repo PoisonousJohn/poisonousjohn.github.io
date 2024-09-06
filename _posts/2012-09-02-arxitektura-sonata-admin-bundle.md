@@ -4,7 +4,7 @@ title: Архитектура Sonata Admin Bundle
 date: 2012-09-02T16:35:47+00:00
 
 
-guid: http://fateev.pro/?p=74
+guid: http://fateev.me/?p=74
 permalink: /symfony-sonata/arxitektura-sonata-admin-bundle.html
 dsq_thread_id:
   - "6094530426"
@@ -18,7 +18,7 @@ tags:
   - symfony2
 ---
 
-<a href="http://fateev.pro/wp-content/uploads/2012/09/sonata.jpg"><img class="size-full wp-image-78 alignleft" title="sonata" src="http://fateev.pro/wp-content/uploads/2012/09/sonata.jpg" alt="" width="59" height="59" /></a>Sonata Admin Bundle, как и вся концепция symfony2 поддерживает сервисно-ориентированную архитектуру, поэтому, чтобы сделать CRUD для сущности, в первую очередь, необходимо создать определенный сервис.
+<a href="http://fateev.me/wp-content/uploads/2012/09/sonata.jpg"><img class="size-full wp-image-78 alignleft" title="sonata" src="http://fateev.me/wp-content/uploads/2012/09/sonata.jpg" alt="" width="59" height="59" /></a>Sonata Admin Bundle, как и вся концепция symfony2 поддерживает сервисно-ориентированную архитектуру, поэтому, чтобы сделать CRUD для сущности, в первую очередь, необходимо создать определенный сервис.
 
 <!--more-->Приведу пример сервиса в моем проекте:
 
@@ -41,8 +41,8 @@ tags:
 <ul>
 	<li>configureFormFields - в данном методе мы настраиваем вид формы для редактирования нашей сущности</li>
 	<li>configureListFields - этот метод определяет набор колонок, которые будут отображены при выводе списка сущностей для редактирования</li>
-	<li>configureDatagridFilters - а в этом методе мы определяем набор фильтров, которые мы сможем использовать для поиска по сущностям (<a title="SonataAdminBundle: фильтры" href="http://fateev.pro/symfony-sonata/sonataadminbundle-filtry.html">Более подробная информация о фильтрах</a>)</li>
-	<li>configureRoutes - соната динамически генерирует роуты для сущностей, с помощью этого метода можно управлять как уже сгенерированными роутами для CRUD'a (create, edit, delete), так и добавить свои роуты, например для <a title="SonataAdminBundle: как добавить произвольную страницу к сущности" href="http://fateev.pro/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">произвольной страницы</a></li>
+	<li>configureDatagridFilters - а в этом методе мы определяем набор фильтров, которые мы сможем использовать для поиска по сущностям (<a title="SonataAdminBundle: фильтры" href="http://fateev.me/symfony-sonata/sonataadminbundle-filtry.html">Более подробная информация о фильтрах</a>)</li>
+	<li>configureRoutes - соната динамически генерирует роуты для сущностей, с помощью этого метода можно управлять как уже сгенерированными роутами для CRUD'a (create, edit, delete), так и добавить свои роуты, например для <a title="SonataAdminBundle: как добавить произвольную страницу к сущности" href="http://fateev.me/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">произвольной страницы</a></li>
 </ul>
 Вцелом, принцип настройки админ класса сходен для всех трех методов, но есть и свои особенности. В простейшем виде метод может выглядеть следующим обарзом:
 
@@ -70,9 +70,9 @@ tags:
 
 Выглядит это примерно так:
 
-<a href="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.36.01-AM.png"><img class="size-medium wp-image-96 alignleft" title="Screen Shot 2012-09-14 at 12.36.01 AM" src="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.36.01-AM-300x65.png" alt="" width="300" height="65" /></a>
+<a href="http://fateev.me/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.36.01-AM.png"><img class="size-medium wp-image-96 alignleft" title="Screen Shot 2012-09-14 at 12.36.01 AM" src="http://fateev.me/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.36.01-AM-300x65.png" alt="" width="300" height="65" /></a>
 
-<a href="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.37.47-AM.png"><img class="alignnone size-medium wp-image-97" title="Screen Shot 2012-09-14 at 12.37.47 AM" src="http://fateev.pro/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.37.47-AM-300x126.png" alt="" width="300" height="126" /></a>
+<a href="http://fateev.me/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.37.47-AM.png"><img class="alignnone size-medium wp-image-97" title="Screen Shot 2012-09-14 at 12.37.47 AM" src="http://fateev.me/wp-content/uploads/2012/09/Screen-Shot-2012-09-14-at-12.37.47-AM-300x126.png" alt="" width="300" height="126" /></a>
 <blockquote>Полный список типов полей, доступных в сонате, можно посмотреть в файле сервисов Sonata/AdminBundle/Resources/config/form_types.xml</blockquote>
 Метод configureListFields, очень похож на configureFormFields, но в нем есть дополнительный метод addIdentifier, который добавляет не только колонку со значением поля, но и делает эту колонку ссылкой для редактирования сущности, если вы опустите это поле, то просто не сможете отредактировать вашу сущность. Вот пример метода:
 
@@ -104,7 +104,7 @@ tags:
         $collection->remove('create');
     }{% endhighlight %}
 
-Данный код запрещает создание новых сущностей. Соната сама скроет все ссылки на создание новой сущности. Более подробно про configureRoutes рассказано <a title="SonataAdminBundle: как добавить произвольную страницу к сущности" href="http://fateev.pro/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">здесь</a>.
+Данный код запрещает создание новых сущностей. Соната сама скроет все ссылки на создание новой сущности. Более подробно про configureRoutes рассказано <a title="SonataAdminBundle: как добавить произвольную страницу к сущности" href="http://fateev.me/symfony-sonata/sonataadminbundle-kak-dobavit-proizvolnuyu-stranicu-k-sushhnosti.html">здесь</a>.
 
 В админ классе есть методы-события, связанные с CRUD'ами: prePersist, postPersist, preUpdate, postUpdate, preRemove, postRemove. Эти методы, в качестве единственного аргумента, получают редактируемый/создаваемый нами объект/ В большинстве случаев, этих методов вполне достаточно, чтобы обслужить создание/обновление/удаление объекта.
 

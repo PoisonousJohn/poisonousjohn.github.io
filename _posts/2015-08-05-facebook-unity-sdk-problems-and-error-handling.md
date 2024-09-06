@@ -4,7 +4,7 @@ title: Facebook Unity SDK Problems and Error Handling
 date: 2015-08-05T10:58:45+00:00
 
 
-guid: http://fateev.pro/?p=344
+guid: http://fateev.me/?p=344
 permalink: /gamedev/unity/facebook-unity-sdk-problems-and-error-handling.html
 dsq_thread_id:
   - "6110913687"
@@ -17,7 +17,7 @@ tags:
   - Facebook
   - unity
 ---
-<a href="http://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2.png"><img class="alignleft wp-image-307 size-medium" src="http://fateev.pro/wp-content/uploads/2014/05/67a6bfe5cb2-300x300.png" alt="Facebook Unity SDK" width="300" height="300" /></a>
+<a href="http://fateev.me/wp-content/uploads/2014/05/67a6bfe5cb2.png"><img class="alignleft wp-image-307 size-medium" src="http://fateev.me/wp-content/uploads/2014/05/67a6bfe5cb2-300x300.png" alt="Facebook Unity SDK" width="300" height="300" /></a>
 
 Unity is quite useful. But every tool has its own cons. One of that cons is a WWW class - some kind of HTTP wrapper. You might say: "What's wrong with it? It's quite handy!". Yes, it is, till you need to work with some kind of REST API.<!--more-->
 

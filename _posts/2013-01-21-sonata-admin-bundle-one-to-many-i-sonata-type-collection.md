@@ -4,7 +4,7 @@ title: 'Sonata Admin Bundle: One-To-Many и sonata_type_collection'
 date: 2013-01-21T15:00:44+00:00
 
 
-guid: http://fateev.pro/?p=148
+guid: http://fateev.me/?p=148
 permalink: /symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html
 dsq_thread_id:
   - "6095480857"
@@ -124,4 +124,4 @@ $formBuilder->add('mac', 'sonata_type_collection',
 
 На этом, собственно все. В конечном счете, one-to-many будет выглядеть примерно таким образом:
 
-<a href="http://fateev.pro/wp-content/uploads/2013/01/Снимок-экрана-2013-01-21-в-14.52.53.png"><img class="alignnone size-medium wp-image-150" title="Снимок экрана 2013-01-21 в 14.52.53" src="http://fateev.pro/wp-content/uploads/2013/01/Снимок-экрана-2013-01-21-в-14.52.53-300x93.png" alt="" width="300" height="93" /></a>
+<a href="http://fateev.me/wp-content/uploads/2013/01/Снимок-экрана-2013-01-21-в-14.52.53.png"><img class="alignnone size-medium wp-image-150" title="Снимок экрана 2013-01-21 в 14.52.53" src="http://fateev.me/wp-content/uploads/2013/01/Снимок-экрана-2013-01-21-в-14.52.53-300x93.png" alt="" width="300" height="93" /></a>
