@@ -18,7 +18,7 @@ docker-compose run --rm jekyll jekyll build
 cd _site
 rm -f CNAME
 touch CNAME
-echo "fateev.pro" >> CNAME
+echo "fateev.me" >> CNAME
 mv index.html index.htm
 
 cd ..
