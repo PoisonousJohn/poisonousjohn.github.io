@@ -16,12 +16,12 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "ru"
-title                    : "Fateev.pro"
+title                    : "Fateev.me"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Ivan Fateev"
 description              : "Иван Фатеев разработка мобильных приложений"
-url                      : https://fateev.pro # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://fateev.me # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : #
