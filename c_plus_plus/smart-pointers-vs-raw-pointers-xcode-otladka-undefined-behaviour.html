@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Smart pointers vs raw pointers; XCode: отладка undefined behaviour - Fateev.pro</title>
+<!-- begin _includes/seo.html --><title>Smart pointers vs raw pointers; XCode: отладка undefined behaviour - Fateev.me</title>
 <meta name="description" content="Скорость против удобства или Smart pointers не для игр   Очень много времени потратил на оптимизацию, все никак не мог понять, что же мне так сильно все тормозит, рендер вроде уже оптимизировал,  добрался до игровой механики. Проект - игра match3. Давно написал систему для match3 поля, ну и благополучно пользовался ей все это время. В свое время систему сделал на smart pointer’ах, чтобы особо не заморачиваться над жизненным циклом объектов, все работало как часы, пока не дошли до задач, где действительно много вычислений производится, профайлер показал, что довольно много времени уходит на alloc/dealloc shared pointer’ов, и я решил переписать всю систему на raw pointers.  Точнее, прежде чем переписать, я решил провести некоторые тесты, для чего я вытащил эту систему в отдельный проект и погонял ее сначала в том виде, в каком она работает в проекте, а затем переписал на raw pointers и снова проверил. Тест показал, что стало быстрее примерно в 2 раза. Значительная разница, учитывая, что в игре smart pointer’ы гоняются кучу раз в течение одного фрейма. И это еще учитывая, что я у них выключил thread safety. Использовать smart pointer в игровых проектах стоит только в крайних случаях, да и то, лучше в тех местах, где нет активной работы с ним Undefined behaviour: как сэкономить кучу времени Довольный и преисполненный оптимизма, я перенес переписанную систему в проект, пришлось много где поменять куски кода на работу с raw pointers, но на этом дело не закончилось. Во первых, как  и любой человек, я допускаю ошибки, и при переходе на raw pointers возникали краши. Вот честно, я не знал как отлаживать undefined behaviour в XCode, я предполагал, что должна быть какая-нибудь утилита, в MS VS таких проблем нет, уже начал копать в сторону Valgrind, но потом подзабил и провозился со всем еще день, пока не застрял на месте, где ошибку ну совсем не мог выявить. Снова начал искать, и, слава Богу, наткнулся на stackoverflow на решение! Надеюсь кому-нибудь это поможет.  Итак, чтобы иметь возможность отслеживать доступ к уже освобожденной памяти, либо двойное удаление pointer’ов, ну и вообще следить за целостностью кучи, достаточно всего лишь отредактировать Scheme и установить галку “Enable Guard Malloc” на вкладке Diagnostics:      К сожалению, у данного метода есть свои ограничения, он будет работать на iOS только в симуляторе, но оно и понятно почему.   ">
 
 
@@ -21,16 +21,16 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Fateev.pro">
+<meta property="og:site_name" content="Fateev.me">
 <meta property="og:title" content="Smart pointers vs raw pointers; XCode: отладка undefined behaviour">
-<meta property="og:url" content="https://fateev.pro/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html">
+<meta property="og:url" content="https://fateev.me/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html">
 
 
   <meta property="og:description" content="Скорость против удобства или Smart pointers не для игр   Очень много времени потратил на оптимизацию, все никак не мог понять, что же мне так сильно все тормозит, рендер вроде уже оптимизировал,  добрался до игровой механики. Проект - игра match3. Давно написал систему для match3 поля, ну и благополучно пользовался ей все это время. В свое время систему сделал на smart pointer’ах, чтобы особо не заморачиваться над жизненным циклом объектов, все работало как часы, пока не дошли до задач, где действительно много вычислений производится, профайлер показал, что довольно много времени уходит на alloc/dealloc shared pointer’ов, и я решил переписать всю систему на raw pointers.  Точнее, прежде чем переписать, я решил провести некоторые тесты, для чего я вытащил эту систему в отдельный проект и погонял ее сначала в том виде, в каком она работает в проекте, а затем переписал на raw pointers и снова проверил. Тест показал, что стало быстрее примерно в 2 раза. Значительная разница, учитывая, что в игре smart pointer’ы гоняются кучу раз в течение одного фрейма. И это еще учитывая, что я у них выключил thread safety. Использовать smart pointer в игровых проектах стоит только в крайних случаях, да и то, лучше в тех местах, где нет активной работы с ним Undefined behaviour: как сэкономить кучу времени Довольный и преисполненный оптимизма, я перенес переписанную систему в проект, пришлось много где поменять куски кода на работу с raw pointers, но на этом дело не закончилось. Во первых, как  и любой человек, я допускаю ошибки, и при переходе на raw pointers возникали краши. Вот честно, я не знал как отлаживать undefined behaviour в XCode, я предполагал, что должна быть какая-нибудь утилита, в MS VS таких проблем нет, уже начал копать в сторону Valgrind, но потом подзабил и провозился со всем еще день, пока не застрял на месте, где ошибку ну совсем не мог выявить. Снова начал искать, и, слава Богу, наткнулся на stackoverflow на решение! Надеюсь кому-нибудь это поможет.  Итак, чтобы иметь возможность отслеживать доступ к уже освобожденной памяти, либо двойное удаление pointer’ов, ну и вообще следить за целостностью кучи, достаточно всего лишь отредактировать Scheme и установить галку “Enable Guard Malloc” на вкладке Diagnostics:      К сожалению, у данного метода есть свои ограничения, он будет работать на iOS только в симуляторе, но оно и понятно почему.   ">
 
 
 
-  <meta property="og:image" content="https://fateev.pro/wp-content/uploads/2014/01/icon-lg-speed.png">
+  <meta property="og:image" content="https://fateev.me/wp-content/uploads/2014/01/icon-lg-speed.png">
 
 
 
@@ -47,7 +47,7 @@
   
 
 
-<link rel="canonical" href="https://fateev.pro/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html">
+<link rel="canonical" href="https://fateev.me/c_plus_plus/smart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html">
 
 
 
@@ -58,7 +58,7 @@
     
       "@type": "Person",
       "name": "Ivan Fateev",
-      "url": "https://fateev.pro/"
+      "url": "https://fateev.me/"
     
   }
 </script>
@@ -73,7 +73,7 @@
 
 
 
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.me Feed">
 
 
 <!-- https://t.co/dKP3o1e -->
@@ -136,7 +136,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Fateev.pro
+          Fateev.me
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
@@ -369,11 +369,11 @@
     <h4 class="page__share-title">Поделиться</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Smart+pointers+vs+raw+pointers%3B+XCode%3A+%D0%BE%D1%82%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0+undefined+behaviour%20https%3A%2F%2Ffateev.pro%2Fc_plus_plus%2Fsmart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Smart+pointers+vs+raw+pointers%3B+XCode%3A+%D0%BE%D1%82%D0%BB%D0%B0%D0%B4%D0%BA%D0%B0+undefined+behaviour%20https%3A%2F%2Ffateev.me%2Fc_plus_plus%2Fsmart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.pro%2Fc_plus_plus%2Fsmart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.me%2Fc_plus_plus%2Fsmart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.pro%2Fc_plus_plus%2Fsmart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.me%2Fc_plus_plus%2Fsmart-pointers-vs-raw-pointers-xcode-otladka-undefined-behaviour.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 

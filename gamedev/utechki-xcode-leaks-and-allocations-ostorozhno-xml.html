@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Утечки. XCode Leaks &#038; Allocations. Осторожно XML - Fateev.pro</title>
+<!-- begin _includes/seo.html --><title>Утечки. XCode Leaks &#038; Allocations. Осторожно XML - Fateev.me</title>
 <meta name="description" content="Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с памятью: после загрузки и выгрузки игровой сцены есть большая утечка порядка 20Мб, что, мягко говоря, много. Изначально я пробовал пользоваться инструментом Leaks, но он не показывал практически ничего. Тогда  я обратил свое внимание на инструмент Allocations. Разобраться в том как с ним работать в моем случае было довольно большой головной болью.  Итак принцип по которому я работал был следующим:  	Загружаю главный экран. Делаю снимок. 	Загружаю игровой экран, загружаю главный экран, делаю снимок. 	Повторяю пункт 2 еще несколько раз. 	Открываю один из средних снимков и смотрю из-за каких объектов выросла куча 	Устраняю те проблемы, причина которых стала очевидной 	Повторяю все с пункта 1 до тех пор, пока результат работы приложения меня не устроит  А теперь в кратце о неожиданных результатах, с которыми я столкнулся. XML очень дорогой формат Итак, я начну с минусов:  	Слишком большие файлы - много избыточной информации 	Довольно долгий парсинг 	Требует довольно большого объема памяти  Плюсы:  	Удобочитаемость - важно особенно на этапе активной разработки, когда нужно что то поменять на лету 	Можно сжать в архив  Большие файлы для меня проблема, так как максимальный размер бандла ограничен, а xml файлов у меня много. Скорость парсинга, конечно, зависит от библиотеки для работы с xml, но, конечно, она несравнима, например, с обработкой бинарного формата. А вот проблема с памятью для меня оказалась большой неожиданностью. Я работаю c xml при помощи tinyxml. Ранее ресурсы были организованы таким образом, что хранился распарсенный xml, и, каждый раз применяя ресурс, я проходил по дереву для получения нужных мне параметров. Здесь открылись две проблемы: один XMLElement в памяти занимал 4Кб, а теперь, если представить сколько этих элементов в среднего размера xml’ке, то можно понять, что это катастрофично. Первым делом я перделал логику таким образом, чтобы парсить xml только при загрузке ресурса, а затем создавать объекты из заранее заполненных структур данных. Это не только освободило изрядный кусок памяти, но и дало большой прирост в производительности. Как показала практика, поиск по элементам в xml намного медленнее, чем, скажем, поиск по unordered_map’у. В итоге, избавившись от постоянной работы с xml, я только выиграл. Следующим шагом, я думаю, стоит перейти с xml на бинарный формат.   ">
 
 
@@ -21,16 +21,16 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Fateev.pro">
+<meta property="og:site_name" content="Fateev.me">
 <meta property="og:title" content="Утечки. XCode Leaks &#038; Allocations. Осторожно XML">
-<meta property="og:url" content="https://fateev.pro/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html">
+<meta property="og:url" content="https://fateev.me/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html">
 
 
   <meta property="og:description" content="Я люблю сложные задачи, но терпеть не могу, когда не ясно откуда идет проблема, как с ней бороться и куда вообще копать. Третий день бьюсь над проблемами с памятью: после загрузки и выгрузки игровой сцены есть большая утечка порядка 20Мб, что, мягко говоря, много. Изначально я пробовал пользоваться инструментом Leaks, но он не показывал практически ничего. Тогда  я обратил свое внимание на инструмент Allocations. Разобраться в том как с ним работать в моем случае было довольно большой головной болью.  Итак принцип по которому я работал был следующим:  	Загружаю главный экран. Делаю снимок. 	Загружаю игровой экран, загружаю главный экран, делаю снимок. 	Повторяю пункт 2 еще несколько раз. 	Открываю один из средних снимков и смотрю из-за каких объектов выросла куча 	Устраняю те проблемы, причина которых стала очевидной 	Повторяю все с пункта 1 до тех пор, пока результат работы приложения меня не устроит  А теперь в кратце о неожиданных результатах, с которыми я столкнулся. XML очень дорогой формат Итак, я начну с минусов:  	Слишком большие файлы - много избыточной информации 	Довольно долгий парсинг 	Требует довольно большого объема памяти  Плюсы:  	Удобочитаемость - важно особенно на этапе активной разработки, когда нужно что то поменять на лету 	Можно сжать в архив  Большие файлы для меня проблема, так как максимальный размер бандла ограничен, а xml файлов у меня много. Скорость парсинга, конечно, зависит от библиотеки для работы с xml, но, конечно, она несравнима, например, с обработкой бинарного формата. А вот проблема с памятью для меня оказалась большой неожиданностью. Я работаю c xml при помощи tinyxml. Ранее ресурсы были организованы таким образом, что хранился распарсенный xml, и, каждый раз применяя ресурс, я проходил по дереву для получения нужных мне параметров. Здесь открылись две проблемы: один XMLElement в памяти занимал 4Кб, а теперь, если представить сколько этих элементов в среднего размера xml’ке, то можно понять, что это катастрофично. Первым делом я перделал логику таким образом, чтобы парсить xml только при загрузке ресурса, а затем создавать объекты из заранее заполненных структур данных. Это не только освободило изрядный кусок памяти, но и дало большой прирост в производительности. Как показала практика, поиск по элементам в xml намного медленнее, чем, скажем, поиск по unordered_map’у. В итоге, избавившись от постоянной работы с xml, я только выиграл. Следующим шагом, я думаю, стоит перейти с xml на бинарный формат.   ">
 
 
 
-  <meta property="og:image" content="https://fateev.pro/wp-content/uploads/2014/06/crystal_xml.png">
+  <meta property="og:image" content="https://fateev.me/wp-content/uploads/2014/06/crystal_xml.png">
 
 
 
@@ -47,7 +47,7 @@
   
 
 
-<link rel="canonical" href="https://fateev.pro/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html">
+<link rel="canonical" href="https://fateev.me/gamedev/utechki-xcode-leaks-and-allocations-ostorozhno-xml.html">
 
 
 
@@ -58,7 +58,7 @@
     
       "@type": "Person",
       "name": "Ivan Fateev",
-      "url": "https://fateev.pro/"
+      "url": "https://fateev.me/"
     
   }
 </script>
@@ -73,7 +73,7 @@
 
 
 
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.me Feed">
 
 
 <!-- https://t.co/dKP3o1e -->
@@ -136,7 +136,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Fateev.pro
+          Fateev.me
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
@@ -373,11 +373,11 @@
     <h4 class="page__share-title">Поделиться</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%D0%A3%D1%82%D0%B5%D1%87%D0%BA%D0%B8.+XCode+Leaks+%26%23038%3B+Allocations.+%D0%9E%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%BE+XML%20https%3A%2F%2Ffateev.pro%2Fgamedev%2Futechki-xcode-leaks-and-allocations-ostorozhno-xml.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%D0%A3%D1%82%D0%B5%D1%87%D0%BA%D0%B8.+XCode+Leaks+%26%23038%3B+Allocations.+%D0%9E%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%BE+XML%20https%3A%2F%2Ffateev.me%2Fgamedev%2Futechki-xcode-leaks-and-allocations-ostorozhno-xml.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.pro%2Fgamedev%2Futechki-xcode-leaks-and-allocations-ostorozhno-xml.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.me%2Fgamedev%2Futechki-xcode-leaks-and-allocations-ostorozhno-xml.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.pro%2Fgamedev%2Futechki-xcode-leaks-and-allocations-ostorozhno-xml.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.me%2Fgamedev%2Futechki-xcode-leaks-and-allocations-ostorozhno-xml.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 

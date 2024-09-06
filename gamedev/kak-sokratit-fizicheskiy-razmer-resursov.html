@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Как сократить физический размер ресурсов - Fateev.pro</title>
+<!-- begin _includes/seo.html --><title>Как сократить физический размер ресурсов - Fateev.me</title>
 <meta name="description" content="Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить PNG на два JPG’a или на JPG + PNG, в первом файле будут храниться RGB каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).  Для разбиения текстур из PNG на два JPG я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:  #!/usr/bin/python  import os, fnmatch import Image import argparse import ntpath import ImageFile  ImageFile.MAXBLOCK = 2048*2048# default is 64k  def splitImage(filename):     print &#39;splitting %s\n&#39; % png     originalImage = Image.open(filename)     baseName = ntpath.splitext(filename)[0]     originalImage.save(baseName + &#39;.jpg&#39;, &#39;JPEG&#39;, quality=95, optimize = True)      if len(originalImage.getbands()) == 4:         ir, ig, ib, ia = originalImage.split()         alphaImage = Image.merge(&quot;RGB&quot;, (ia, ia, ia));         alphaImage.save(baseName + &#39;_alpha.jpg&#39;, &#39;JPEG&#39;, quality=90)      os.remove(filename)   def locate(pattern, root=os.curdir):     for path, dirs, files in os.walk(os.path.abspath(root)):         for filename in fnmatch.filter(files, pattern):             yield os.path.join(path, filename)    parser = argparse.ArgumentParser(description=&#39;Pack animations.&#39;) parser.add_argument(&#39;images&#39;, metavar=&#39;I&#39;, help=&#39;Directory with images&#39;)  args = parser.parse_args()  pngDir = args.images  for png in locate(&quot;*.png&quot;, pngDir):     splitImage(png)     Что касается OpenGL, то в итоге происходит загрузка той же RGBA текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива.   ">
 
 
@@ -21,16 +21,16 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Fateev.pro">
+<meta property="og:site_name" content="Fateev.me">
 <meta property="og:title" content="Как сократить физический размер ресурсов">
-<meta property="og:url" content="https://fateev.pro/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html">
+<meta property="og:url" content="https://fateev.me/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html">
 
 
   <meta property="og:description" content="Обычно больше всего места занимают текстуры. Мы использовали до этого исключительно PNG, а он достаточно много весит. Распространенный хак состоит в том, чтобы разделить PNG на два JPG’a или на JPG + PNG, в первом файле будут храниться RGB каналы, а во втором только маска. Это позволит сильно уменьшит физический размер файлов (у нас вышло более чем в 2 раза, при качестве JPEG = 95).  Для разбиения текстур из PNG на два JPG я написал небольшой скриптик на python’e, который кладет рядом два файла.jpg_alpha.jpg, а оригинальный.png удаляет:  #!/usr/bin/python  import os, fnmatch import Image import argparse import ntpath import ImageFile  ImageFile.MAXBLOCK = 2048*2048# default is 64k  def splitImage(filename):     print &#39;splitting %s\n&#39; % png     originalImage = Image.open(filename)     baseName = ntpath.splitext(filename)[0]     originalImage.save(baseName + &#39;.jpg&#39;, &#39;JPEG&#39;, quality=95, optimize = True)      if len(originalImage.getbands()) == 4:         ir, ig, ib, ia = originalImage.split()         alphaImage = Image.merge(&quot;RGB&quot;, (ia, ia, ia));         alphaImage.save(baseName + &#39;_alpha.jpg&#39;, &#39;JPEG&#39;, quality=90)      os.remove(filename)   def locate(pattern, root=os.curdir):     for path, dirs, files in os.walk(os.path.abspath(root)):         for filename in fnmatch.filter(files, pattern):             yield os.path.join(path, filename)    parser = argparse.ArgumentParser(description=&#39;Pack animations.&#39;) parser.add_argument(&#39;images&#39;, metavar=&#39;I&#39;, help=&#39;Directory with images&#39;)  args = parser.parse_args()  pngDir = args.images  for png in locate(&quot;*.png&quot;, pngDir):     splitImage(png)     Что касается OpenGL, то в итоге происходит загрузка той же RGBA текстуры, только она собирается из двух файлов. Я беру массив пикселей первой текстуры, записываю их в результирующий массив, а любой из каналов второй текстуры (альфы) я записываю в 4 компонент результирующего массива.   ">
 
 
 
-  <meta property="og:image" content="https://fateev.pro/wp-content/uploads/2014/01/archive.png">
+  <meta property="og:image" content="https://fateev.me/wp-content/uploads/2014/01/archive.png">
 
 
 
@@ -47,7 +47,7 @@
   
 
 
-<link rel="canonical" href="https://fateev.pro/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html">
+<link rel="canonical" href="https://fateev.me/gamedev/kak-sokratit-fizicheskiy-razmer-resursov.html">
 
 
 
@@ -58,7 +58,7 @@
     
       "@type": "Person",
       "name": "Ivan Fateev",
-      "url": "https://fateev.pro/"
+      "url": "https://fateev.me/"
     
   }
 </script>
@@ -73,7 +73,7 @@
 
 
 
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.me Feed">
 
 
 <!-- https://t.co/dKP3o1e -->
@@ -136,7 +136,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Fateev.pro
+          Fateev.me
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
@@ -402,11 +402,11 @@
     <h4 class="page__share-title">Поделиться</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%D0%9A%D0%B0%D0%BA+%D1%81%D0%BE%D0%BA%D1%80%D0%B0%D1%82%D0%B8%D1%82%D1%8C+%D1%84%D0%B8%D0%B7%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80+%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BE%D0%B2%20https%3A%2F%2Ffateev.pro%2Fgamedev%2Fkak-sokratit-fizicheskiy-razmer-resursov.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%D0%9A%D0%B0%D0%BA+%D1%81%D0%BE%D0%BA%D1%80%D0%B0%D1%82%D0%B8%D1%82%D1%8C+%D1%84%D0%B8%D0%B7%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80+%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BE%D0%B2%20https%3A%2F%2Ffateev.me%2Fgamedev%2Fkak-sokratit-fizicheskiy-razmer-resursov.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.pro%2Fgamedev%2Fkak-sokratit-fizicheskiy-razmer-resursov.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.me%2Fgamedev%2Fkak-sokratit-fizicheskiy-razmer-resursov.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.pro%2Fgamedev%2Fkak-sokratit-fizicheskiy-razmer-resursov.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.me%2Fgamedev%2Fkak-sokratit-fizicheskiy-razmer-resursov.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 

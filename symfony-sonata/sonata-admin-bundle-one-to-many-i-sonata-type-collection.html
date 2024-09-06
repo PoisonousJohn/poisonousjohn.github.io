@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Sonata Admin Bundle: One-To-Many и sonata_type_collection - Fateev.pro</title>
+<!-- begin _includes/seo.html --><title>Sonata Admin Bundle: One-To-Many и sonata_type_collection - Fateev.me</title>
 <meta name="description" content="На первых порах, в Сонате возникало непонимание того как правильно организовать редактирование связи one-to-many.  На самом деле, есть несколько неочевидных моментов в Сонате, которые могут вызвать проблемы.  Итак, как организовать one-to-many:     ORM сущности   mac:      targetEntity: Mac      mappedBy: device      cascade: [&quot;all&quot;]      orphanRemoval: true  Здесь следует обратить внимание на параметр cascade, который говорит доктрине, что все действия, относящиеся к родителю, должны также влиять на дочерние объекты. Также важен параметр orphanRemove, который облегчит вам жизнь, так как говорит доктрине, что нужно отслеживать объекты, у которых нет привязки к родительскому объекту и удалять их. Это нужно в случаях, когда мы редактируем уже созданную сущность, внутри самой сущности, при редактировании достаточно всего лишь отвязать объект от родительской сущности и доктрина сама удалить его из базы.     Сущность   &lt;?php /** * @var Application\Ailove\EquipBundle\Entity\Mac */ private $mac;  /** * Construct */ public function __construct() {     $this-&gt;mac = new \Doctrine\Common\Collections\ArrayCollection(); }  /** * Set mac * * @param Doctrine\Common\Collections\ArrayCollection $mac */ public function setMac($mac) {     if (!$mac) {         $this-&gt;mac = new \Doctrine\Common\Collections\ArrayCollection();         return;     }      foreach ($mac as $item) {         $item-&gt;setDevice($this);     }      foreach ($this-&gt;getMac() as $item) {         if (!$mac-&gt;contains($item)) {             $this-&gt;getMac()-&gt;removeElement($item);             $item-&gt;setDevice(null);         }     }      $this-&gt;mac = $mac; }  /** * Add mac * * @param Application\Ailove\EquipBundle\Entity\Mac $mac */ public function addMac(\Application\Ailove\EquipBundle\Entity\Mac $mac) {     $mac-&gt;setDevice($this);     $this-&gt;mac[] = $mac; }  /** * Remove mac * * @param Application\Ailove\EquipBundle\Entity\Mac $mac */ public function removeMac(\Application\Ailove\EquipBundle\Entity\Mac $mac) {     $this-&gt;getMac()-&gt;removeElement($mac);     $mac-&gt;setDevice(null); }  /** * Get mac * * @return Doctrine\Common\Collections\Collection */ public function getMac() {     return $this-&gt;mac; }  Здесь нужно обратить внимание, что в первую очередь в one-t0-many поля должны быть обязательно представлены ArrayCollection, для этого нужно добавить соответствующую строчку в конструкторе. Соната требует наличия add и remove методов для свойства, в которых через методы сущности нужно осуществлять привязку или отвязку дочерних объектов, благодаря orphanRemoval доктрина сама определит когда нужно удалять отвязанный объект.     configureFormFields   Внутри админ класса следует добавить следующее поле:  &lt;?php $formBuilder-&gt;add(&#39;mac&#39;, &#39;sonata_type_collection&#39;,     array(&#39;required&#39; =&gt; false, &#39;by_reference&#39; =&gt; false),     array(&#39;edit&#39; =&gt; &#39;inline&#39;, &#39;inline&#39; =&gt; &#39;table&#39;) );  На этом, собственно все. В конечном счете, one-to-many будет выглядеть примерно таким образом:">
 
 
@@ -21,16 +21,16 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ru">
-<meta property="og:site_name" content="Fateev.pro">
+<meta property="og:site_name" content="Fateev.me">
 <meta property="og:title" content="Sonata Admin Bundle: One-To-Many и sonata_type_collection">
-<meta property="og:url" content="https://fateev.pro/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html">
+<meta property="og:url" content="https://fateev.me/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html">
 
 
   <meta property="og:description" content="На первых порах, в Сонате возникало непонимание того как правильно организовать редактирование связи one-to-many.  На самом деле, есть несколько неочевидных моментов в Сонате, которые могут вызвать проблемы.  Итак, как организовать one-to-many:     ORM сущности   mac:      targetEntity: Mac      mappedBy: device      cascade: [&quot;all&quot;]      orphanRemoval: true  Здесь следует обратить внимание на параметр cascade, который говорит доктрине, что все действия, относящиеся к родителю, должны также влиять на дочерние объекты. Также важен параметр orphanRemove, который облегчит вам жизнь, так как говорит доктрине, что нужно отслеживать объекты, у которых нет привязки к родительскому объекту и удалять их. Это нужно в случаях, когда мы редактируем уже созданную сущность, внутри самой сущности, при редактировании достаточно всего лишь отвязать объект от родительской сущности и доктрина сама удалить его из базы.     Сущность   &lt;?php /** * @var Application\Ailove\EquipBundle\Entity\Mac */ private $mac;  /** * Construct */ public function __construct() {     $this-&gt;mac = new \Doctrine\Common\Collections\ArrayCollection(); }  /** * Set mac * * @param Doctrine\Common\Collections\ArrayCollection $mac */ public function setMac($mac) {     if (!$mac) {         $this-&gt;mac = new \Doctrine\Common\Collections\ArrayCollection();         return;     }      foreach ($mac as $item) {         $item-&gt;setDevice($this);     }      foreach ($this-&gt;getMac() as $item) {         if (!$mac-&gt;contains($item)) {             $this-&gt;getMac()-&gt;removeElement($item);             $item-&gt;setDevice(null);         }     }      $this-&gt;mac = $mac; }  /** * Add mac * * @param Application\Ailove\EquipBundle\Entity\Mac $mac */ public function addMac(\Application\Ailove\EquipBundle\Entity\Mac $mac) {     $mac-&gt;setDevice($this);     $this-&gt;mac[] = $mac; }  /** * Remove mac * * @param Application\Ailove\EquipBundle\Entity\Mac $mac */ public function removeMac(\Application\Ailove\EquipBundle\Entity\Mac $mac) {     $this-&gt;getMac()-&gt;removeElement($mac);     $mac-&gt;setDevice(null); }  /** * Get mac * * @return Doctrine\Common\Collections\Collection */ public function getMac() {     return $this-&gt;mac; }  Здесь нужно обратить внимание, что в первую очередь в one-t0-many поля должны быть обязательно представлены ArrayCollection, для этого нужно добавить соответствующую строчку в конструкторе. Соната требует наличия add и remove методов для свойства, в которых через методы сущности нужно осуществлять привязку или отвязку дочерних объектов, благодаря orphanRemoval доктрина сама определит когда нужно удалять отвязанный объект.     configureFormFields   Внутри админ класса следует добавить следующее поле:  &lt;?php $formBuilder-&gt;add(&#39;mac&#39;, &#39;sonata_type_collection&#39;,     array(&#39;required&#39; =&gt; false, &#39;by_reference&#39; =&gt; false),     array(&#39;edit&#39; =&gt; &#39;inline&#39;, &#39;inline&#39; =&gt; &#39;table&#39;) );  На этом, собственно все. В конечном счете, one-to-many будет выглядеть примерно таким образом:">
 
 
 
-  <meta property="og:image" content="https://fateev.pro/wp-content/uploads/2013/01/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0-2013-01-21-%D0%B2-14.52.53.png">
+  <meta property="og:image" content="https://fateev.me/wp-content/uploads/2013/01/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA-%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0-2013-01-21-%D0%B2-14.52.53.png">
 
 
 
@@ -47,7 +47,7 @@
   
 
 
-<link rel="canonical" href="https://fateev.pro/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html">
+<link rel="canonical" href="https://fateev.me/symfony-sonata/sonata-admin-bundle-one-to-many-i-sonata-type-collection.html">
 
 
 
@@ -58,7 +58,7 @@
     
       "@type": "Person",
       "name": "Ivan Fateev",
-      "url": "https://fateev.pro/"
+      "url": "https://fateev.me/"
     
   }
 </script>
@@ -73,7 +73,7 @@
 
 
 
-  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.pro Feed">
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Fateev.me Feed">
 
 
 <!-- https://t.co/dKP3o1e -->
@@ -136,7 +136,7 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/">
-          Fateev.pro
+          Fateev.me
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
@@ -461,11 +461,11 @@
     <h4 class="page__share-title">Поделиться</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Sonata+Admin+Bundle%3A+One-To-Many+%D0%B8+sonata_type_collection%20https%3A%2F%2Ffateev.pro%2Fsymfony-sonata%2Fsonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Sonata+Admin+Bundle%3A+One-To-Many+%D0%B8+sonata_type_collection%20https%3A%2F%2Ffateev.me%2Fsymfony-sonata%2Fsonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.pro%2Fsymfony-sonata%2Fsonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffateev.me%2Fsymfony-sonata%2Fsonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.pro%2Fsymfony-sonata%2Fsonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ffateev.me%2Fsymfony-sonata%2Fsonata-admin-bundle-one-to-many-i-sonata-type-collection.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Поделиться LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
