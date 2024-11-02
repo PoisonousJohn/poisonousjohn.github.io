@@ -30,4 +30,5 @@ cd build
 #rm -rf .jekyll-cache
 git add .
 git commit -am 'regenerated files'
+git pull --rebase
 git push

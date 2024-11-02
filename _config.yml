@@ -117,6 +117,7 @@ footer:
 
 # Reading Files
 include:
+  - yandex_b5363cd872d7b587.html
   - .htaccess
   - _pages
 exclude:
@@ -146,13 +147,16 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - build-and-publish.sh
+  - build
+  - .gitignore
+  - docker-compose.yml
 keep_files:
   - .git
   - .svn
   # - assets/images
   - imgs
   - wp-content/uploads
-exclude: [build, docker-compose.yml, build-and-publish.sh, .gitignore]
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
